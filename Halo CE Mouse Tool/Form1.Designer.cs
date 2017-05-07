@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.SensY = new System.Windows.Forms.TextBox();
@@ -39,6 +40,7 @@
             this.GithubLink = new System.Windows.Forms.LinkLabel();
             this.RedditLink = new System.Windows.Forms.LinkLabel();
             this.label5 = new System.Windows.Forms.Label();
+            this.EnableBtnTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // label1
@@ -94,6 +96,7 @@
             // 
             // ActivateBtn
             // 
+            this.ActivateBtn.Enabled = false;
             this.ActivateBtn.Location = new System.Drawing.Point(125, 54);
             this.ActivateBtn.Name = "ActivateBtn";
             this.ActivateBtn.Size = new System.Drawing.Size(100, 23);
@@ -140,6 +143,11 @@
             this.label5.Size = new System.Drawing.Size(246, 2);
             this.label5.TabIndex = 10;
             // 
+            // EnableBtnTimer
+            // 
+            this.EnableBtnTimer.Enabled = true;
+            this.EnableBtnTimer.Tick += new System.EventHandler(this.EnableBtnTimer_Tick);
+            // 
             // Mainform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -181,6 +189,7 @@
         private System.Windows.Forms.LinkLabel GithubLink;
         private System.Windows.Forms.LinkLabel RedditLink;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Timer EnableBtnTimer;
     }
 }
 
