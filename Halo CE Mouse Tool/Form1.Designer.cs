@@ -177,6 +177,7 @@
             this.MaximizeBox = false;
             this.Name = "Mainform";
             this.Text = "Halo CE Mouse Tool";
+            this.Load += new System.EventHandler(this.Mainform_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
