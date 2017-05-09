@@ -41,6 +41,8 @@
             this.RedditLink = new System.Windows.Forms.LinkLabel();
             this.label5 = new System.Windows.Forms.Label();
             this.EnableBtnTimer = new System.Windows.Forms.Timer(this.components);
+            this.PatchBtnTip = new System.Windows.Forms.ToolTip(this.components);
+            this.ActivateBtnTip = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // label1
@@ -102,6 +104,7 @@
             this.ActivateBtn.Size = new System.Drawing.Size(100, 23);
             this.ActivateBtn.TabIndex = 6;
             this.ActivateBtn.Text = "Activate(PGUP)";
+            this.ActivateBtnTip.SetToolTip(this.ActivateBtn, "Sets the sensitivites to the values above + disables mouse acceleration.");
             this.ActivateBtn.UseVisualStyleBackColor = true;
             // 
             // PatchBtn
@@ -111,6 +114,8 @@
             this.PatchBtn.Size = new System.Drawing.Size(100, 23);
             this.PatchBtn.TabIndex = 7;
             this.PatchBtn.Text = "Patch...";
+            this.PatchBtnTip.SetToolTip(this.PatchBtn, "Permanently patch the mouse acceleration function in the Halo executable, nullify" +
+        "ing the need to use this tool any further.");
             this.PatchBtn.UseVisualStyleBackColor = true;
             // 
             // GithubLink
@@ -147,6 +152,17 @@
             // 
             this.EnableBtnTimer.Enabled = true;
             this.EnableBtnTimer.Tick += new System.EventHandler(this.EnableBtnTimer_Tick);
+            // 
+            // PatchBtnTip
+            // 
+            this.PatchBtnTip.Tag = "test";
+            this.PatchBtnTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.PatchBtnTip.ToolTipTitle = "Patch Halo.exe\'s Mouse Acceleration";
+            // 
+            // ActivateBtnTip
+            // 
+            this.ActivateBtnTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.ActivateBtnTip.ToolTipTitle = "Activate the tool using the values above.";
             // 
             // Mainform
             // 
@@ -190,6 +206,8 @@
         private System.Windows.Forms.LinkLabel RedditLink;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Timer EnableBtnTimer;
+        private System.Windows.Forms.ToolTip PatchBtnTip;
+        private System.Windows.Forms.ToolTip ActivateBtnTip;
     }
 }
 
