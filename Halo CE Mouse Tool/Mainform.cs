@@ -33,5 +33,27 @@ namespace Halo_CE_Mouse_Tool
                 StatusLabel.ForeColor = Color.Red;
             }
         }
+
+
+        private void ActivateBtn_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+
+        private void PatchBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GithubLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
+
+        private void RedditLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.reddit.com/r/halospv3/comments/5dk9ta/finallyhalo_ce_mouse_fix_tool_v10_also_open_source/");
+        }
     }
 }
