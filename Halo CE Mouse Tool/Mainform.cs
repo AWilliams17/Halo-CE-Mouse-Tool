@@ -37,7 +37,7 @@ namespace Halo_CE_Mouse_Tool
 
         private void ActivateBtn_Click(object sender, EventArgs e)
         {
-            
+
         }
 
 

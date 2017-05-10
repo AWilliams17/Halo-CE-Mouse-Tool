@@ -52,6 +52,8 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Mainform.cs</DependentUpon>
     </Compile>
+    <Compile Include="MemoryHelper.cs" />
+    <Compile Include="MemoryWriter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Mainform.resx">
