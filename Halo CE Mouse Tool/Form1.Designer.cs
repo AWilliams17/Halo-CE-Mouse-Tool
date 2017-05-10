@@ -29,10 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.SensY = new System.Windows.Forms.TextBox();
-            this.SensX = new System.Windows.Forms.TextBox();
+            this.Sens = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.StatusLabel = new System.Windows.Forms.Label();
             this.ActivateBtn = new System.Windows.Forms.Button();
@@ -44,37 +42,22 @@
             this.ActivateBtnTip = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(225, 32);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(95, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Vertical Sensitivity:";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 32);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(107, 13);
+            this.label2.Size = new System.Drawing.Size(92, 13);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Horizontal Sensitivity:";
+            this.label2.Text = "Mouse Sensitivity:";
             // 
-            // SensY
+            // Sens
             // 
-            this.SensY.Location = new System.Drawing.Point(324, 29);
-            this.SensY.Name = "SensY";
-            this.SensY.Size = new System.Drawing.Size(61, 20);
-            this.SensY.TabIndex = 2;
-            // 
-            // SensX
-            // 
-            this.SensX.Location = new System.Drawing.Point(125, 29);
-            this.SensX.Name = "SensX";
-            this.SensX.Size = new System.Drawing.Size(61, 20);
-            this.SensX.TabIndex = 3;
+            this.Sens.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.Sens.Location = new System.Drawing.Point(110, 29);
+            this.Sens.Name = "Sens";
+            this.Sens.Size = new System.Drawing.Size(286, 20);
+            this.Sens.TabIndex = 3;
             // 
             // label3
             // 
@@ -169,10 +152,8 @@
             this.Controls.Add(this.ActivateBtn);
             this.Controls.Add(this.StatusLabel);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.SensX);
-            this.Controls.Add(this.SensY);
+            this.Controls.Add(this.Sens);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.MaximizeBox = false;
             this.Name = "Mainform";
@@ -184,11 +165,8 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox SensY;
-        private System.Windows.Forms.TextBox SensX;
+        private System.Windows.Forms.TextBox Sens;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label StatusLabel;
         private System.Windows.Forms.Button ActivateBtn;
