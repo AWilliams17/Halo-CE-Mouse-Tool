@@ -37,7 +37,10 @@ namespace Halo_CE_Mouse_Tool
 
         private void ActivateBtn_Click(object sender, EventArgs e)
         {
-
+            if (HaloMemWriter.ReadMemory("haloce"))
+            {
+                MessageBox.Show("ayyy!");
+            }
         }
 
 

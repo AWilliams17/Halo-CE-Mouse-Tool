@@ -18,16 +18,21 @@ namespace Halo_CE_Mouse_Tool
         private static extern IntPtr OpenProcess(int dwDesiredAccess, bool bInheritHandle, int dwProcessId);
 
         [DllImport("kernel32.dll")]
-        private static extern bool ReadProcessMemory(IntPtr hProcess, uint lpBaseAddress, [Out] byte[] lpBuffer, int dwSize, IntPtr lpNumberOfBytesRead);
+        public static extern bool ReadProcessMemory(int hProcess, int lpBaseAddress, byte[] lpBuffer, int dwSize, ref int lpNumberOfBytesRead);
 
-        [DllImport("kernel32.dll")]
-        private static extern bool WriteProcessMemory(IntPtr hProcess, uint lpBaseAddress, byte[] lpBuffer, int nSize, IntPtr lpNumberOfBytesWritten);
+        [DllImport("kernel32.dll", SetLastError = true)]
+        static extern bool WriteProcessMemory(int hProcess, int lpBaseAddress, byte[] lpBuffer, int dwSize, ref int lpNumberOfBytesWritten);
 
 
-        private static int GetPID(string processname)
+        public static int GetPID(string processname)
         {
-            int PID = Process.GetProcessesByName(processname)[0].Id;
-            return PID;
+            Process[] processes = Process.GetProcessesByName(processname);
+
+            if (processes.Length == 0)
+                return 0;
+
+
+            return processes[0].Id;
         }
 
         public static IntPtr GetProcessHandle(string processname)
@@ -40,11 +45,19 @@ namespace Halo_CE_Mouse_Tool
         public static IntPtr GetBaseAddr(string windowname)
         {
             Process h = Process.GetProcessesByName(windowname).FirstOrDefault();
-            IntPtr base_adr = h.MainModule.EntryPointAddress;
+            IntPtr base_adr = h.MainModule.BaseAddress;
             return base_adr;
         }
 
+        public static bool ReadMemory(string processname)
+        {
+            int bytesRead = 0;
+            byte[] buffer = new byte[0];
 
+            IntPtr processHandle = GetProcessHandle(processname);
+            IntPtr address = GetBaseAddr(processname);
 
+            return ReadProcessMemory((int)processHandle, (int)address, buffer, buffer.Length, ref bytesRead);
+        }
     }
 }
