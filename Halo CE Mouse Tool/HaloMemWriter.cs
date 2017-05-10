@@ -36,14 +36,18 @@ namespace Halo_CE_Mouse_Tool
             return baseaddr;
         }
 
-        public static int WriteHaloMemory(int sens)
+        public static int WriteHaloMemory(float sens)
         {
             Process process = Process.GetProcessesByName("haloce")[0];
             IntPtr processHandle = OpenProcess(0x1F0FFF, false, getPID("haloce"));
             IntPtr baseAddr = getBaseAddr("haloce");
             IntPtr xVal = IntPtr.Add(baseAddr, 0x2ABB50);
             IntPtr yVal = IntPtr.Add(baseAddr, 0x2ABB54);
+            IntPtr MouseAccelAddress = IntPtr.Add(baseAddr, 0x224AB4);
+            IntPtr MouseAccelFunc = IntPtr.Add(baseAddr, 0x8F836);
+            byte[] nop = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
             int bytesWritten = 0;
+            byte[] mouseaccel = new byte[0];
             byte[] buffer = BitConverter.GetBytes(sens);
 
             if (!WriteProcessMemory(processHandle, xVal, buffer, buffer.Length, out bytesWritten))
@@ -52,6 +56,16 @@ namespace Halo_CE_Mouse_Tool
             }
 
             if (!WriteProcessMemory(processHandle, yVal, buffer, buffer.Length, out bytesWritten))
+            {
+                return 0;
+            }
+
+            if (!WriteProcessMemory(processHandle, MouseAccelAddress, mouseaccel, mouseaccel.Length, out bytesWritten))
+            {
+                return 0;
+            }
+
+            if (!WriteProcessMemory(processHandle, MouseAccelFunc, nop, nop.Length, out bytesWritten))
             {
                 return 0;
             }
