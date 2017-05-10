@@ -37,14 +37,7 @@ namespace Halo_CE_Mouse_Tool
 
         private void ActivateBtn_Click(object sender, EventArgs e)
         {
-            if (HaloMemWriter.WriteSensMemory("haloce", int.Parse(Sens.Text)))
-            {
-                MessageBox.Show("yay");
-            }
-            else
-            {
-                MessageBox.Show("boo!");
-            }
+            MessageBox.Show(HaloMemWriter.WriteHaloMemory(int.Parse(Sens.Text)).ToString());
         }
 
 

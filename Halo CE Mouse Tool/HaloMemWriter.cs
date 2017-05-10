@@ -10,18 +10,54 @@ namespace Halo_CE_Mouse_Tool
 {
     class HaloMemWriter
     {
-        const int PROCESS_WM_READ = 0x0010;
         const int PROCESS_VM_WRITE = 0x0020;
         const int PROCESS_VM_OPERATION = 0x0008;
 
-        [DllImport("kernel32.dll")]
-        private static extern IntPtr OpenProcess(int dwDesiredAccess, bool bInheritHandle, int dwProcessId);
-
-        [DllImport("kernel32.dll")]
-        public static extern bool ReadProcessMemory(int hProcess, int lpBaseAddress, byte[] lpBuffer, int dwSize, ref int lpNumberOfBytesRead);
 
         [DllImport("kernel32.dll", SetLastError = true)]
-        static extern bool WriteProcessMemory(int hProcess, int lpBaseAddress, byte[] lpBuffer, int dwSize, ref int lpNumberOfBytesWritten);
-        
+        public static extern bool WriteProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, byte[] lpBuffer, int nSize, out int lpNumberOfBytesWritten);
+        [DllImport("kernel32.dll")]
+        public static extern IntPtr OpenProcess(int dwDesiredAccess ,bool bInheritHandle, int dwProcessId);
+
+
+        public static int getPID(string processname)
+        {
+            Process[] process = Process.GetProcessesByName(processname);
+            int PID = process[0].Id;
+
+            return PID;
+        }
+
+        public static IntPtr getBaseAddr(string processname)
+        {
+            Process[] processes = Process.GetProcessesByName(processname);
+            IntPtr baseaddr = processes[0].MainModule.BaseAddress;
+
+            return baseaddr;
+        }
+
+        public static int WriteHaloMemory(int sens)
+        {
+            Process process = Process.GetProcessesByName("haloce")[0];
+            IntPtr processHandle = OpenProcess(0x1F0FFF, false, getPID("haloce"));
+            IntPtr baseAddr = getBaseAddr("haloce");
+            IntPtr xVal = IntPtr.Add(baseAddr, 0x2ABB50);
+            IntPtr yVal = IntPtr.Add(baseAddr, 0x2ABB54);
+            int bytesWritten = 0;
+            byte[] buffer = BitConverter.GetBytes(sens);
+
+            if (!WriteProcessMemory(processHandle, xVal, buffer, buffer.Length, out bytesWritten))
+            {
+                return 0;
+            }
+
+            if (!WriteProcessMemory(processHandle, yVal, buffer, buffer.Length, out bytesWritten))
+            {
+                return 0;
+            }
+
+            return 1;
+
+        }
     }
 }
