@@ -81,11 +81,11 @@
             // ActivateBtn
             // 
             this.ActivateBtn.Enabled = false;
-            this.ActivateBtn.Location = new System.Drawing.Point(12, 32);
+            this.ActivateBtn.Location = new System.Drawing.Point(15, 32);
             this.ActivateBtn.Name = "ActivateBtn";
             this.ActivateBtn.Size = new System.Drawing.Size(237, 33);
             this.ActivateBtn.TabIndex = 6;
-            this.ActivateBtn.Text = "Activate(PGUP)";
+            this.ActivateBtn.Text = "Activate";
             this.ActivateBtnTip.SetToolTip(this.ActivateBtn, "Sets the sensitivites to the values above + disables mouse acceleration.");
             this.ActivateBtn.UseVisualStyleBackColor = true;
             this.ActivateBtn.Click += new System.EventHandler(this.ActivateBtn_Click);

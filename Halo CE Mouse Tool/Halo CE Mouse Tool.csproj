@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CheckForUpdates.cs" />
     <Compile Include="Mainform.cs">
       <SubType>Form</SubType>
     </Compile>

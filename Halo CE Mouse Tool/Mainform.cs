@@ -17,7 +17,7 @@ namespace Halo_CE_Mouse_Tool
         {
             InitializeComponent();
         }
-
+        
         private void EnableBtnTimer_Tick(object sender, EventArgs e)
         {
             if (Process.GetProcessesByName("haloce").Length > 0)
@@ -61,7 +61,18 @@ namespace Halo_CE_Mouse_Tool
 
         private void Mainform_Load(object sender, EventArgs e)
         {
-            //Check for Updates
+            if (CheckForUpdates.UpdateAvailable() == "yes")
+            {
+                DialogResult d = MessageBox.Show("An Update is Available. Would you like to visit the downloads page?", "Update Found", MessageBoxButtons.YesNo);
+                if (d == DialogResult.Yes)
+                {
+                    Process.Start("https://www.ayy.com");
+                }
+            }
+            else if (CheckForUpdates.UpdateAvailable() == "error")
+            {
+                MessageBox.Show("Failed to check for available updates.");
+            }
         }
     }
 }
