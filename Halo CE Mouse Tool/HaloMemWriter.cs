@@ -46,14 +46,16 @@ namespace Halo_CE_Mouse_Tool
             IntPtr MouseAccelAddress = IntPtr.Add(baseAddr, 0x224AB4);
             IntPtr MouseAccelFunc = IntPtr.Add(baseAddr, 0x8F836);
             byte[] nop = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
-            int bytesWritten = 0;
             byte[] mouseaccel = new byte[0];
             byte[] buffer = BitConverter.GetBytes(sens);
+            int bytesWritten = 0;
 
-            if (!WriteProcessMemory(processHandle, xVal, buffer, buffer.Length, out bytesWritten))
+            if (!WriteProcessMemory(processHandle, xVal, buffer, buffer.Length, out bytesWritten) || !WriteProcessMemory(processHandle, yVal, buffer, buffer.Length, out bytesWritten)
+                || !WriteProcessMemory(processHandle, MouseAccelAddress, mouseaccel, mouseaccel.Length, out bytesWritten) || !WriteProcessMemory(processHandle, MouseAccelFunc, nop, nop.Length, out bytesWritten))
             {
                 return 0;
             }
+            /**
 
             if (!WriteProcessMemory(processHandle, yVal, buffer, buffer.Length, out bytesWritten))
             {
@@ -69,6 +71,7 @@ namespace Halo_CE_Mouse_Tool
             {
                 return 0;
             }
+    **/
 
             return 1;
 
