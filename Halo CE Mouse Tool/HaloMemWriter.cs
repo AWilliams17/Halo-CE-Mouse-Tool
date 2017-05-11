@@ -62,7 +62,6 @@ namespace Halo_CE_Mouse_Tool
             byte[] mouseaccel = BitConverter.GetBytes(0.0);
             byte[] buffer = BitConverter.GetBytes(sens);
             int bytesWritten = 0;
-            //0048F830 - 6 bytes
 
             if (!WriteProcessMemory(processHandle, xVal, buffer, buffer.Length, out bytesWritten) || !WriteProcessMemory(processHandle, yVal, buffer, buffer.Length, out bytesWritten)
                 || !WriteProcessMemory(processHandle, MouseAccelAddress, mouseaccel, mouseaccel.Length, out bytesWritten) || !WriteProcessMemory(processHandle, MouseAccelFunc, nop, nop.Length, out bytesWritten)
