@@ -38,7 +38,6 @@
             this.RedditLink = new System.Windows.Forms.LinkLabel();
             this.EnableBtnTimer = new System.Windows.Forms.Timer(this.components);
             this.ActivateBtnTip = new System.Windows.Forms.ToolTip(this.components);
-            this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -82,9 +81,9 @@
             // ActivateBtn
             // 
             this.ActivateBtn.Enabled = false;
-            this.ActivateBtn.Location = new System.Drawing.Point(133, 32);
+            this.ActivateBtn.Location = new System.Drawing.Point(12, 32);
             this.ActivateBtn.Name = "ActivateBtn";
-            this.ActivateBtn.Size = new System.Drawing.Size(116, 33);
+            this.ActivateBtn.Size = new System.Drawing.Size(237, 33);
             this.ActivateBtn.TabIndex = 6;
             this.ActivateBtn.Text = "Activate(PGUP)";
             this.ActivateBtnTip.SetToolTip(this.ActivateBtn, "Sets the sensitivites to the values above + disables mouse acceleration.");
@@ -123,15 +122,6 @@
             this.ActivateBtnTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.ActivateBtnTip.ToolTipTitle = "Activate the tool using the values above.";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(12, 32);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(116, 33);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "Settings";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // label1
             // 
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -147,7 +137,6 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(264, 101);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.RedditLink);
             this.Controls.Add(this.GithubLink);
             this.Controls.Add(this.ActivateBtn);
@@ -177,7 +166,6 @@
         private System.Windows.Forms.LinkLabel RedditLink;
         private System.Windows.Forms.Timer EnableBtnTimer;
         private System.Windows.Forms.ToolTip ActivateBtnTip;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
     }
 }
