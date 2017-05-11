@@ -56,15 +56,17 @@ namespace Halo_CE_Mouse_Tool
             IntPtr xVal = IntPtr.Add(baseAddr, 0x2ABB50);
             IntPtr yVal = IntPtr.Add(baseAddr, 0x2ABB54);
             IntPtr MouseAccelAddress = IntPtr.Add(baseAddr, 0x224AB4); //Default mouse accel is around 0.7
+            IntPtr MouseAccelFunc2 = IntPtr.Add(baseAddr, 0x8F830);
             IntPtr MouseAccelFunc = IntPtr.Add(baseAddr, 0x8F836);
-            //byte[] nop = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
-            //|| !WriteProcessMemory(processHandle, MouseAccelFunc, nop, nop.Length, out bytesWritten) - not entirely sure if this even does anything but make it feel like garbage
-            byte[] mouseaccel = BitConverter.GetBytes(2000.5);
+            byte[] nop = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            byte[] mouseaccel = BitConverter.GetBytes(0.0);
             byte[] buffer = BitConverter.GetBytes(sens);
             int bytesWritten = 0;
-            
+            //0048F830 - 6 bytes
+
             if (!WriteProcessMemory(processHandle, xVal, buffer, buffer.Length, out bytesWritten) || !WriteProcessMemory(processHandle, yVal, buffer, buffer.Length, out bytesWritten)
-                || !WriteProcessMemory(processHandle, MouseAccelAddress, mouseaccel, mouseaccel.Length, out bytesWritten))
+                || !WriteProcessMemory(processHandle, MouseAccelAddress, mouseaccel, mouseaccel.Length, out bytesWritten) || !WriteProcessMemory(processHandle, MouseAccelFunc, nop, nop.Length, out bytesWritten)
+                || !WriteProcessMemory(processHandle, MouseAccelFunc2, nop, nop.Length, out bytesWritten))
             {
                 return "Failed to patch Halo CE Sensitivity. Error code: " + Marshal.GetLastWin32Error();
             }

@@ -49,12 +49,6 @@ namespace Halo_CE_Mouse_Tool
             }
         }
 
-
-        private void PatchBtn_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void GithubLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             //Put Github Link here later
