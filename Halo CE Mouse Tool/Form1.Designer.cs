@@ -47,22 +47,22 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 32);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(92, 13);
+            this.label2.Size = new System.Drawing.Size(137, 13);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Mouse Sensitivity:";
+            this.label2.Text = "Mouse Sensitivity(0.25 = 1):";
             // 
             // Sens
             // 
             this.Sens.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.Sens.Location = new System.Drawing.Point(110, 29);
+            this.Sens.Location = new System.Drawing.Point(155, 29);
             this.Sens.Name = "Sens";
-            this.Sens.Size = new System.Drawing.Size(286, 20);
+            this.Sens.Size = new System.Drawing.Size(143, 20);
             this.Sens.TabIndex = 3;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(112, 9);
+            this.label3.Location = new System.Drawing.Point(66, 9);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(40, 13);
             this.label3.TabIndex = 4;
@@ -72,7 +72,7 @@
             // 
             this.StatusLabel.AutoSize = true;
             this.StatusLabel.ForeColor = System.Drawing.Color.Red;
-            this.StatusLabel.Location = new System.Drawing.Point(158, 9);
+            this.StatusLabel.Location = new System.Drawing.Point(112, 9);
             this.StatusLabel.Name = "StatusLabel";
             this.StatusLabel.Size = new System.Drawing.Size(150, 13);
             this.StatusLabel.TabIndex = 5;
@@ -81,9 +81,9 @@
             // ActivateBtn
             // 
             this.ActivateBtn.Enabled = false;
-            this.ActivateBtn.Location = new System.Drawing.Point(225, 55);
+            this.ActivateBtn.Location = new System.Drawing.Point(161, 55);
             this.ActivateBtn.Name = "ActivateBtn";
-            this.ActivateBtn.Size = new System.Drawing.Size(171, 33);
+            this.ActivateBtn.Size = new System.Drawing.Size(137, 33);
             this.ActivateBtn.TabIndex = 6;
             this.ActivateBtn.Text = "Activate(PGUP)";
             this.ActivateBtnTip.SetToolTip(this.ActivateBtn, "Sets the sensitivites to the values above + disables mouse acceleration.");
@@ -94,7 +94,7 @@
             // 
             this.PatchBtn.Location = new System.Drawing.Point(12, 55);
             this.PatchBtn.Name = "PatchBtn";
-            this.PatchBtn.Size = new System.Drawing.Size(171, 33);
+            this.PatchBtn.Size = new System.Drawing.Size(137, 33);
             this.PatchBtn.TabIndex = 7;
             this.PatchBtn.Text = "Patch...";
             this.PatchBtnTip.SetToolTip(this.PatchBtn, "Permanently patch the mouse acceleration function in the Halo executable, nullify" +
@@ -116,7 +116,7 @@
             // RedditLink
             // 
             this.RedditLink.AutoSize = true;
-            this.RedditLink.Location = new System.Drawing.Point(321, 111);
+            this.RedditLink.Location = new System.Drawing.Point(223, 111);
             this.RedditLink.Name = "RedditLink";
             this.RedditLink.Size = new System.Drawing.Size(75, 13);
             this.RedditLink.TabIndex = 9;
@@ -145,7 +145,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(409, 129);
+            this.ClientSize = new System.Drawing.Size(309, 129);
             this.Controls.Add(this.RedditLink);
             this.Controls.Add(this.GithubLink);
             this.Controls.Add(this.PatchBtn);

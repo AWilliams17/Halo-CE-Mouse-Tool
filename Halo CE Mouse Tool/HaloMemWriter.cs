@@ -36,44 +36,27 @@ namespace Halo_CE_Mouse_Tool
             return baseaddr;
         }
 
-        public static int WriteHaloMemory(float sens)
+        public static string WriteHaloMemory(float sens) //make this function less gay later
         {
             Process process = Process.GetProcessesByName("haloce")[0];
             IntPtr processHandle = OpenProcess(0x1F0FFF, false, getPID("haloce"));
             IntPtr baseAddr = getBaseAddr("haloce");
             IntPtr xVal = IntPtr.Add(baseAddr, 0x2ABB50);
             IntPtr yVal = IntPtr.Add(baseAddr, 0x2ABB54);
-            IntPtr MouseAccelAddress = IntPtr.Add(baseAddr, 0x224AB4);
-            IntPtr MouseAccelFunc = IntPtr.Add(baseAddr, 0x8F836);
+            IntPtr MouseAccelAddress = IntPtr.Add(baseAddr, 0x224AB4); //Default mouse accel is 7.3
+            IntPtr MouseAccelFunc = IntPtr.Add(baseAddr, 0x8F836); // 6.581
             byte[] nop = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
-            byte[] mouseaccel = new byte[0];
+            byte[] mouseaccel = BitConverter.GetBytes(0);
             byte[] buffer = BitConverter.GetBytes(sens);
             int bytesWritten = 0;
-
+            
             if (!WriteProcessMemory(processHandle, xVal, buffer, buffer.Length, out bytesWritten) || !WriteProcessMemory(processHandle, yVal, buffer, buffer.Length, out bytesWritten)
                 || !WriteProcessMemory(processHandle, MouseAccelAddress, mouseaccel, mouseaccel.Length, out bytesWritten) || !WriteProcessMemory(processHandle, MouseAccelFunc, nop, nop.Length, out bytesWritten))
             {
-                return 0;
-            }
-            /**
-
-            if (!WriteProcessMemory(processHandle, yVal, buffer, buffer.Length, out bytesWritten))
-            {
-                return 0;
+                return "Failed to patch Halo CE Sensitivity. Error code: " + Marshal.GetLastWin32Error();
             }
 
-            if (!WriteProcessMemory(processHandle, MouseAccelAddress, mouseaccel, mouseaccel.Length, out bytesWritten))
-            {
-                return 0;
-            }
-
-            if (!WriteProcessMemory(processHandle, MouseAccelFunc, nop, nop.Length, out bytesWritten))
-            {
-                return 0;
-            }
-    **/
-
-            return 1;
+            return "Successfully patched Halo CE Sensitivity + Mouse Acceleration.";
 
         }
     }
