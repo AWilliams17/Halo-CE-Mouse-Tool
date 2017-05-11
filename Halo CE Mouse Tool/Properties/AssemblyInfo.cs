@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Halo CE Mouse Tool")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A tool which disables Halo CE's Mouse Acceleration and allows fine tuning of Mouse Sensitivities.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Halo CE Mouse Tool")]

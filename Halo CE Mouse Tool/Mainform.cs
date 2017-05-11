@@ -16,6 +16,7 @@ namespace Halo_CE_Mouse_Tool
         public Mainform()
         {
             InitializeComponent();
+            this.Icon = Halo_CE_Mouse_Tool.Properties.Resources.HMFIcon;
         }
         
         private void EnableBtnTimer_Tick(object sender, EventArgs e)
