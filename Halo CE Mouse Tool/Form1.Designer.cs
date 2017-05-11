@@ -47,16 +47,16 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 32);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(137, 13);
+            this.label2.Size = new System.Drawing.Size(92, 13);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Mouse Sensitivity(0.25 = 1):";
+            this.label2.Text = "Mouse Sensitivity:";
             // 
             // Sens
             // 
             this.Sens.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.Sens.Location = new System.Drawing.Point(155, 29);
+            this.Sens.Location = new System.Drawing.Point(110, 29);
             this.Sens.Name = "Sens";
-            this.Sens.Size = new System.Drawing.Size(143, 20);
+            this.Sens.Size = new System.Drawing.Size(187, 20);
             this.Sens.TabIndex = 3;
             // 
             // label3
@@ -105,7 +105,7 @@
             // GithubLink
             // 
             this.GithubLink.AutoSize = true;
-            this.GithubLink.Location = new System.Drawing.Point(9, 111);
+            this.GithubLink.Location = new System.Drawing.Point(9, 91);
             this.GithubLink.Name = "GithubLink";
             this.GithubLink.Size = new System.Drawing.Size(38, 13);
             this.GithubLink.TabIndex = 8;
@@ -116,7 +116,7 @@
             // RedditLink
             // 
             this.RedditLink.AutoSize = true;
-            this.RedditLink.Location = new System.Drawing.Point(223, 111);
+            this.RedditLink.Location = new System.Drawing.Point(223, 91);
             this.RedditLink.Name = "RedditLink";
             this.RedditLink.Size = new System.Drawing.Size(75, 13);
             this.RedditLink.TabIndex = 9;
@@ -145,7 +145,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(309, 129);
+            this.ClientSize = new System.Drawing.Size(309, 110);
             this.Controls.Add(this.RedditLink);
             this.Controls.Add(this.GithubLink);
             this.Controls.Add(this.PatchBtn);

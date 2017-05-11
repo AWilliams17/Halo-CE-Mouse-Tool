@@ -37,7 +37,8 @@ namespace Halo_CE_Mouse_Tool
 
         private void ActivateBtn_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(HaloMemWriter.WriteHaloMemory(float.Parse(Sens.Text)).ToString());
+            float mousesens = float.Parse(Sens.Text) * 0.25f;
+            MessageBox.Show(HaloMemWriter.WriteHaloMemory(mousesens).ToString());
         }
 
 
