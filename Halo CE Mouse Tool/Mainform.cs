@@ -54,7 +54,7 @@ namespace Halo_CE_Mouse_Tool
 
         private void RedditLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://www.reddit.com/r/halospv3/comments/5dk9ta/finallyhalo_ce_mouse_fix_tool_v10_also_open_source/");
+           Process.Start("https://www.reddit.com/r/halospv3/comments/5dk9ta/finallyhalo_ce_mouse_fix_tool_v10_also_open_source/");
         }
 
         private void Mainform_Load(object sender, EventArgs e)
