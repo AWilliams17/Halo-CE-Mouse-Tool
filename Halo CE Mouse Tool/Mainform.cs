@@ -37,8 +37,16 @@ namespace Halo_CE_Mouse_Tool
 
         private void ActivateBtn_Click(object sender, EventArgs e)
         {
-            float mousesens = float.Parse(Sens.Text) * 0.25f;
-            MessageBox.Show(HaloMemWriter.WriteHaloMemory(mousesens).ToString());
+            float mousesens;
+            bool valid = float.TryParse(Sens.Text, out mousesens);
+            if (!valid)
+            {
+                MessageBox.Show("Only numbers allowed in this field.");
+            }
+            else
+            {
+                MessageBox.Show(HaloMemWriter.WriteHaloMemory(mousesens * 0.25f).ToString());
+            }
         }
 
 

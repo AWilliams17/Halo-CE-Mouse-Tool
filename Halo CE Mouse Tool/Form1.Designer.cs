@@ -57,6 +57,7 @@
             // 
             this.Sens.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.Sens.Location = new System.Drawing.Point(104, 6);
+            this.Sens.MaxLength = 10;
             this.Sens.Name = "Sens";
             this.Sens.Size = new System.Drawing.Size(148, 20);
             this.Sens.TabIndex = 3;
