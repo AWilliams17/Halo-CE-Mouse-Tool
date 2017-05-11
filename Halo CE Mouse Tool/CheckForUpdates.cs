@@ -16,7 +16,7 @@ namespace Halo_CE_Mouse_Tool
             byte[] HTML;
             try
             {
-                HTML = wb.DownloadData("https://pastebin.com/raw/KePbXmPk");
+                HTML = wb.DownloadData("https://pastebin.com/raw/UQpXvHBR");
             }
             catch (System.Net.WebException)
             {
@@ -24,7 +24,7 @@ namespace Halo_CE_Mouse_Tool
             }
             UTF8Encoding objUTF8 = new UTF8Encoding();
             string nv = objUTF8.GetString(HTML);
-            int s = int.Parse(nv[10].ToString());
+            int s = int.Parse(nv[0].ToString());
             if (s > v)
             {
                 return "yes";
