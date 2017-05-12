@@ -1,9 +1,1 @@
-c:\users\praetor\documents\visual studio 2015\Projects\Halo CE Mouse Tool\Halo CE Mouse Tool\bin\Debug\Halo CE Mouse Tool.exe.config
-c:\users\praetor\documents\visual studio 2015\Projects\Halo CE Mouse Tool\Halo CE Mouse Tool\bin\Debug\Halo CE Mouse Tool.exe
-c:\users\praetor\documents\visual studio 2015\Projects\Halo CE Mouse Tool\Halo CE Mouse Tool\bin\Debug\Halo CE Mouse Tool.pdb
-c:\users\praetor\documents\visual studio 2015\Projects\Halo CE Mouse Tool\Halo CE Mouse Tool\obj\Debug\Halo_CE_Mouse_Tool.Mainform.resources
-c:\users\praetor\documents\visual studio 2015\Projects\Halo CE Mouse Tool\Halo CE Mouse Tool\obj\Debug\Halo_CE_Mouse_Tool.Properties.Resources.resources
-c:\users\praetor\documents\visual studio 2015\Projects\Halo CE Mouse Tool\Halo CE Mouse Tool\obj\Debug\Halo CE Mouse Tool.csproj.GenerateResource.Cache
-c:\users\praetor\documents\visual studio 2015\Projects\Halo CE Mouse Tool\Halo CE Mouse Tool\obj\Debug\Halo CE Mouse Tool.exe
-c:\users\praetor\documents\visual studio 2015\Projects\Halo CE Mouse Tool\Halo CE Mouse Tool\obj\Debug\Halo CE Mouse Tool.pdb
-C:\Users\Praetor\documents\visual studio 2015\Projects\Halo CE Mouse Tool\Halo CE Mouse Tool\obj\Debug\Halo CE Mouse Tool.csprojResolveAssemblyReference.cache
+C:\Users\Praetor\documents\visual studio 2015\Projects\Halo CE Mouse Tool\Halo CE Mouse Tool\bin\Debug\Halo CE Mouse Tool.exe.config

@@ -52,12 +52,12 @@ namespace Halo_CE_Mouse_Tool
 
         private void GithubLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("https://www.reddit.com/r/halospv3/comments/5dk9ta/finallyhalo_ce_mouse_fix_tool_v10_also_open_source/");
+            Process.Start("https://github.com/AWilliams17/Halo-CE-Mouse-Tool");
         }
 
         private void RedditLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("https://www.reddit.com/r/halospv3/comments/5dk9ta/finallyhalo_ce_mouse_fix_tool_v10_also_open_source/");
+            Process.Start("https://www.reddit.com/r/halospv3/comments/6aoxu0/halo_ce_mouse_tool_released_fine_tune_your_mouse/");
         }
 
         private void Mainform_Load(object sender, EventArgs e)
@@ -67,7 +67,7 @@ namespace Halo_CE_Mouse_Tool
                 DialogResult d = MessageBox.Show("An Update is Available. Would you like to visit the downloads page?", "Update Found", MessageBoxButtons.YesNo);
                 if (d == DialogResult.Yes)
                 {
-                    Process.Start("https://www.ayy.com");
+                    Process.Start("https://github.com/AWilliams17/Halo-CE-Mouse-Tool/releases");
                 }
             }
             else if (CheckForUpdates.UpdateAvailable() == "error")
