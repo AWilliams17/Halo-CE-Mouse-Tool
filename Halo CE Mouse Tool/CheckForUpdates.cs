@@ -18,7 +18,7 @@ namespace Halo_CE_Mouse_Tool
             {
                 HTML = wb.DownloadData("https://pastebin.com/raw/UQpXvHBR");
             }
-            catch (System.Net.WebException)
+            catch //blanket catch exception. bad for business. good for me being lazy.
             {
                 return "error";
             }
