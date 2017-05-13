@@ -56,8 +56,8 @@ namespace Halo_CE_Mouse_Tool
             IntPtr xVal = IntPtr.Add(baseAddr, 0x2ABB50);
             IntPtr yVal = IntPtr.Add(baseAddr, 0x2ABB54);
 
-            IntPtr MouseAccelFunc1 = IntPtr.Zero;
-            IntPtr MouseAccelFunc2 = IntPtr.Zero;
+            IntPtr MouseAccelFunc1 = IntPtr.Add(baseAddr, 0x906F0);
+            IntPtr MouseAccelFunc2 = IntPtr.Add(baseAddr, 0x906CB);
 
             IntPtr MouseAccelAddress = IntPtr.Add(baseAddr, 0x224AB4); //Default mouse accel is around 0.7, but this doesn't seem to do anything when changed?
 
@@ -65,7 +65,7 @@ namespace Halo_CE_Mouse_Tool
             //IntPtr MouseAccelFunc2 = IntPtr.Add(baseAddr, 0x8F830); - This doesn't do anything but just break everything it looks like...?
 
             byte[] nop1 = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
-            byte[] nop2 = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            byte[] nop2 = { 0x90, 0x90, 0x90, 0x90, 0x90 };
             byte[] mouseaccel = BitConverter.GetBytes(0.0);
             byte[] buffer = BitConverter.GetBytes(sens);
             int bytesWritten = 0;
@@ -74,7 +74,8 @@ namespace Halo_CE_Mouse_Tool
             // || !WriteProcessMemory(processHandle, MouseAccelFunc2, nop, nop.Length, out bytesWritten)
 
             if (!WriteProcessMemory(processHandle, xVal, buffer, buffer.Length, out bytesWritten) || !WriteProcessMemory(processHandle, yVal, buffer, buffer.Length, out bytesWritten)
-                || !WriteProcessMemory(processHandle, MouseAccelAddress, mouseaccel, mouseaccel.Length, out bytesWritten))
+                || !WriteProcessMemory(processHandle, MouseAccelAddress, mouseaccel, mouseaccel.Length, out bytesWritten) || !WriteProcessMemory(processHandle, MouseAccelFunc1, nop1, nop1.Length, out bytesWritten) 
+                || !WriteProcessMemory(processHandle, MouseAccelFunc2, nop2, nop2.Length, out bytesWritten))
             {
                 return "Failed to patch Halo CE Sensitivity. Error code: " + Marshal.GetLastWin32Error();
             }
