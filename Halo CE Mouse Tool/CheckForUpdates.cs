@@ -11,7 +11,7 @@ namespace Halo_CE_Mouse_Tool
     {
         public static string UpdateAvailable()
         {
-            int v = 1;
+            int v = 2;
             WebClient wb = new WebClient();
             byte[] HTML;
             try

@@ -149,7 +149,7 @@
             this.MaximumSize = new System.Drawing.Size(278, 140);
             this.MinimumSize = new System.Drawing.Size(278, 140);
             this.Name = "Mainform";
-            this.Text = "Halo CE Mouse Tool";
+            this.Text = "Halo CE Mouse Tool - V2";
             this.Load += new System.EventHandler(this.Mainform_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
