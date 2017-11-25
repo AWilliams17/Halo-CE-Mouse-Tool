@@ -39,6 +39,7 @@
             this.EnableBtnTimer = new System.Windows.Forms.Timer(this.components);
             this.ActivateBtnTip = new System.Windows.Forms.ToolTip(this.components);
             this.label1 = new System.Windows.Forms.Label();
+            this.DonateLink = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // label2
@@ -104,7 +105,7 @@
             // RedditLink
             // 
             this.RedditLink.AutoSize = true;
-            this.RedditLink.Location = new System.Drawing.Point(173, 83);
+            this.RedditLink.Location = new System.Drawing.Point(184, 83);
             this.RedditLink.Name = "RedditLink";
             this.RedditLink.Size = new System.Drawing.Size(75, 13);
             this.RedditLink.TabIndex = 9;
@@ -130,12 +131,24 @@
             this.label1.Size = new System.Drawing.Size(281, 2);
             this.label1.TabIndex = 13;
             // 
+            // DonateLink
+            // 
+            this.DonateLink.AutoSize = true;
+            this.DonateLink.Location = new System.Drawing.Point(88, 83);
+            this.DonateLink.Name = "DonateLink";
+            this.DonateLink.Size = new System.Drawing.Size(66, 13);
+            this.DonateLink.TabIndex = 14;
+            this.DonateLink.TabStop = true;
+            this.DonateLink.Text = "Donate BTC";
+            this.DonateLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.DonateLink_LinkClicked);
+            // 
             // Mainform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(262, 101);
+            this.Controls.Add(this.DonateLink);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.RedditLink);
             this.Controls.Add(this.GithubLink);
@@ -146,10 +159,10 @@
             this.Controls.Add(this.label2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(278, 140);
+            this.MaximumSize = new System.Drawing.Size(278, 600);
             this.MinimumSize = new System.Drawing.Size(278, 140);
             this.Name = "Mainform";
-            this.Text = "Halo CE Mouse Tool - V2";
+            this.Text = "Halo CE Mouse Tool - V3";
             this.Load += new System.EventHandler(this.Mainform_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -167,6 +180,7 @@
         private System.Windows.Forms.Timer EnableBtnTimer;
         private System.Windows.Forms.ToolTip ActivateBtnTip;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.LinkLabel DonateLink;
     }
 }
 

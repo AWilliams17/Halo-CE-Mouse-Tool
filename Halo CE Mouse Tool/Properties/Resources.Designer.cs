@@ -69,5 +69,15 @@ namespace Halo_CE_Mouse_Tool.Properties {
                 return ((System.Drawing.Icon)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap x9cRL6m {
+            get {
+                object obj = ResourceManager.GetObject("x9cRL6m", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

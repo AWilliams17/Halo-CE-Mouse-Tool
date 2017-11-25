@@ -13,6 +13,8 @@ namespace Halo_CE_Mouse_Tool
 {
     public partial class Mainform : Form
     {
+        public static Donateform donateform;
+
         public Mainform()
         {
             InitializeComponent();
@@ -53,6 +55,16 @@ namespace Halo_CE_Mouse_Tool
         private void GithubLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("https://github.com/AWilliams17/Halo-CE-Mouse-Tool");
+        }
+
+        private void DonateLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (donateform == null || donateform.IsDisposed)
+            {
+                donateform = new Donateform();
+                donateform.Show();
+            }
+
         }
 
         private void RedditLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

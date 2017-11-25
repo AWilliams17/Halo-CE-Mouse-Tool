@@ -65,6 +65,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CheckForUpdates.cs" />
+    <Compile Include="Donateform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Donateform.Designer.cs">
+      <DependentUpon>Donateform.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mainform.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,6 +80,9 @@
     <Compile Include="HaloMemWriter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Donateform.resx">
+      <DependentUpon>Donateform.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Mainform.resx">
       <DependentUpon>Mainform.cs</DependentUpon>
     </EmbeddedResource>
@@ -114,6 +123,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\HMFIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\x9cRL6m1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
