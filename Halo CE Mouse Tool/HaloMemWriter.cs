@@ -45,7 +45,7 @@ namespace Halo_CE_Mouse_Tool
             return baseaddr;
         }
 
-        public static string WriteHaloMemory(float sens) //make this function less gay later
+        public static string WriteHaloMemory(float sensX, float sensY)
         {
             Process process = Process.GetProcessesByName("haloce")[0];
             IntPtr processHandle = OpenProcess(PROCESS_WM_READ | PROCESS_VM_WRITE | PROCESS_VM_OPERATION, false, getPID("haloce"));
@@ -59,19 +59,19 @@ namespace Halo_CE_Mouse_Tool
             IntPtr yVal = IntPtr.Add(baseAddr, 0x2ABB54);
             IntPtr MouseAccelFunc1 = IntPtr.Add(baseAddr, 0x8F836);
             IntPtr MouseAccelFunc2 = IntPtr.Add(baseAddr, 0x8F830);
-            IntPtr MouseAccelAddress = IntPtr.Add(baseAddr, 0x224AB4);
 
             byte[] nop = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
             byte[] mouseaccel = BitConverter.GetBytes((float)0);
-            byte[] buffer = BitConverter.GetBytes(sens);
+            byte[] buffer1 = BitConverter.GetBytes(sensX);
+            byte[] buffer2 = BitConverter.GetBytes(sensY);
 
             int bytesWritten = 0;
 
             if (
-                !WriteProcessMemory(processHandle, xVal, buffer, buffer.Length, out bytesWritten) || !WriteProcessMemory(processHandle, yVal, buffer, buffer.Length, out bytesWritten)
+                !WriteProcessMemory(processHandle, xVal, buffer1, buffer1.Length, out bytesWritten) 
+                || !WriteProcessMemory(processHandle, yVal, buffer2, buffer2.Length, out bytesWritten)
                 || !WriteProcessMemory(processHandle, MouseAccelFunc1, nop, nop.Length, out bytesWritten) 
                 || !WriteProcessMemory(processHandle, MouseAccelFunc2, nop, nop.Length, out bytesWritten) 
-                || !WriteProcessMemory(processHandle, MouseAccelAddress, mouseaccel, mouseaccel.Length, out bytesWritten)
                 )
             {
                 return "Failed to patch Halo CE Sensitivity. Error code: " + Marshal.GetLastWin32Error();
