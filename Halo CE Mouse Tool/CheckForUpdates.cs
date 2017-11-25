@@ -11,7 +11,7 @@ namespace Halo_CE_Mouse_Tool
     {
         public static string UpdateAvailable()
         {
-            int v = 2;
+            int v = 3; //use this to set the version #... very shitty. need to make this better.
             WebClient wb = new WebClient();
             byte[] HTML;
             try
@@ -25,9 +25,9 @@ namespace Halo_CE_Mouse_Tool
             UTF8Encoding objUTF8 = new UTF8Encoding();
             string nv = objUTF8.GetString(HTML);
             int s = int.Parse(nv[0].ToString());
-            if (s > v)
+            if (s > v) //If the current version is less than the one that is currently released...
             {
-                return "yes";
+                return "yes"; //i mean obv that means theres an update
             }
             return "no";
         }

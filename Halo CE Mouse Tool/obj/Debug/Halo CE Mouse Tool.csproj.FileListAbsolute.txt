@@ -7,3 +7,6 @@ C:\Users\Praetor\Documents\Visual Studio 2015\Projects\Halo-CE-Mouse-Tool\Halo C
 C:\Users\Praetor\Documents\Visual Studio 2015\Projects\Halo-CE-Mouse-Tool\Halo CE Mouse Tool\obj\Debug\Halo_CE_Mouse_Tool.Properties.Resources.resources
 C:\Users\Praetor\Documents\Visual Studio 2015\Projects\Halo-CE-Mouse-Tool\Halo CE Mouse Tool\obj\Debug\Halo CE Mouse Tool.exe
 C:\Users\Praetor\Documents\Visual Studio 2015\Projects\Halo-CE-Mouse-Tool\Halo CE Mouse Tool\obj\Debug\Halo CE Mouse Tool.pdb
+C:\Users\Austin\Halo-CE-Mouse-Tool\Halo CE Mouse Tool\bin\Debug\Halo CE Mouse Tool.exe.config
+C:\Users\Austin\Halo-CE-Mouse-Tool\Halo CE Mouse Tool\obj\Debug\Halo CE Mouse Tool.exe
+C:\Users\Austin\Halo-CE-Mouse-Tool\Halo CE Mouse Tool\obj\Debug\Halo CE Mouse Tool.pdb
