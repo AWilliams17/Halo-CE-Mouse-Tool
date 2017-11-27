@@ -11,6 +11,7 @@ using System.Diagnostics;
 
 namespace Halo_CE_Mouse_Tool {
     public partial class Mainform : Form {
+        ProcessHandler processhandler;
 
         public Mainform() {
             InitializeComponent();
@@ -21,7 +22,7 @@ namespace Halo_CE_Mouse_Tool {
         }
 
         private void ActivateBtn_Click(object sender, EventArgs e) {
-
+            
         }
 
         private void GithubLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
@@ -36,7 +37,8 @@ namespace Halo_CE_Mouse_Tool {
 
         }
 
-        private void SetUp() {
+        private void SetUp() { //Create objects
+            processhandler = new ProcessHandler();
 
         }
     }
