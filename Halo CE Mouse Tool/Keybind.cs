@@ -11,9 +11,7 @@ using System.Threading.Tasks;
     And handle keypresses.
 
 */
-namespace Halo_CE_Mouse_Tool
-{
-    class Keybind
-    {
+namespace Halo_CE_Mouse_Tool {
+    class Keybind {
     }
 }

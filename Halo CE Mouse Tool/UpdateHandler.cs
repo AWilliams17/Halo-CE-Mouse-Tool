@@ -9,9 +9,7 @@ using System.Threading.Tasks;
     This class should check for updates and return a true/false value if one
     is available. It also should hold the current program version.
 */
-namespace Halo_CE_Mouse_Tool
-{
-    class UpdateHandler
-    {
+namespace Halo_CE_Mouse_Tool {
+    class UpdateHandler {
     }
 }

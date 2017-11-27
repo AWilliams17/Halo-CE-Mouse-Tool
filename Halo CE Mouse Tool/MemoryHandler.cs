@@ -9,9 +9,7 @@ using System.Threading.Tasks;
     This class should allow access to a processes memory, and allow reading from
     and writing to it.
 */
-namespace Halo_CE_Mouse_Tool
-{
-    class MemoryHandler
-    {
+namespace Halo_CE_Mouse_Tool {
+    class MemoryHandler {
     }
 }

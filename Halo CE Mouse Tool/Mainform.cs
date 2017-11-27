@@ -9,44 +9,34 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 
-namespace Halo_CE_Mouse_Tool
-{
-    public partial class Mainform : Form
-    {
+namespace Halo_CE_Mouse_Tool {
+    public partial class Mainform : Form {
 
-        public Mainform()
-        {
+        public Mainform() {
             InitializeComponent();
         }
-        
-        private void EnableBtnTimer_Tick(object sender, EventArgs e)
-        {
+
+        private void Mainform_Load(object sender, EventArgs e) {
+            SetUp();
+        }
+
+        private void ActivateBtn_Click(object sender, EventArgs e) {
 
         }
 
-
-        private void ActivateBtn_Click(object sender, EventArgs e)
-        {
+        private void GithubLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
 
         }
 
-        private void GithubLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
+        private void DonateLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
 
         }
 
-        private void DonateLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
+        private void RedditLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
 
         }
 
-        private void RedditLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-
-        }
-
-        private void Mainform_Load(object sender, EventArgs e)
-        {
+        private void SetUp() {
 
         }
     }
