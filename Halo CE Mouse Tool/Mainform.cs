@@ -36,11 +36,7 @@ namespace Halo_CE_Mouse_Tool {
         }
 
         private void ActivateBtn_Click_1(object sender, EventArgs e) {
-            byte[] mouseaccelnop = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
-            memoryhandler.WriteToProcessMemory("haloce", settings.SensX(), 0x2ABB50);
-            memoryhandler.WriteToProcessMemory("haloce", settings.SensY(), 0x2ABB54);
-            memoryhandler.WriteToProcessMemory("haloce", mouseaccelnop, 0x8F830);
-            memoryhandler.WriteToProcessMemory("haloce", mouseaccelnop, 0x8F836);
+            WriteHaloMemory();
         }
 
         private void SetUp() { //Create objects
@@ -53,7 +49,7 @@ namespace Halo_CE_Mouse_Tool {
         }
 
         private void StatusLabelTimer_Tick(object sender, EventArgs e) {
-            if (processhandler.ProcessIsRunning("Halo Custom Edition")) {
+            if (processhandler.ProcessIsRunning("HALOCE")) {
                 StatusLabel.Text = "Halo CE Process found.";
                 StatusLabel.ForeColor = Color.Green;
                 ActivateBtn.Enabled = true;
@@ -84,12 +80,53 @@ namespace Halo_CE_Mouse_Tool {
             }
         }
 
+        private void WriteHaloMemory() {
+            byte[] mouseaccelnop = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            int return_value;
+            int curr_addr = 0;
+            byte[] curr_val = { };
+            for (int i = 0; i != 4; i++) {
+                if (i == 0) {
+                    curr_val = BitConverter.GetBytes(settings.SensX());
+                    curr_addr = 0x2ABB50;
+                }
+                if (i == 1) {
+                    curr_val = BitConverter.GetBytes(settings.SensX());
+                    curr_addr = 0x2ABB54;
+                }
+                if (i == 2 && settings.PatchAcceleration()) {
+                    curr_val = mouseaccelnop;
+                    curr_addr = 0x8F836;
+                }
+                if (i == 3 && settings.PatchAcceleration()) {
+                    curr_val = mouseaccelnop;
+                    curr_addr = 0x8F830;
+                }
+                return_value = memoryhandler.WriteToProcessMemory("haloce", curr_val, curr_addr);
+                if (return_value != 0) {
+                    if (return_value == 1) {
+                        MessageBox.Show("Access Denied. Are you running the tool as an admin?");
+                    } else {
+                        MessageBox.Show("One or more values failed to write. Error code: " + return_value.ToString());
+                    }
+                    break;
+                }
+                else if (i == 3 && return_value == 0) {
+                    MessageBox.Show("Successfully wrote sensitivity values to memory.");
+                }
+            }
+        }
+
         private void GithubLink_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e) {
             Process.Start("https://github.com/AWilliams17/Halo-CE-Mouse-Tool");
         }
 
         private void RedditLink_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e) {
             Process.Start("https://www.reddit.com/r/halospv3/comments/6aoxu0/halo_ce_mouse_tool_released_fine_tune_your_mouse/");
+        }
+
+        private void HotkeyLabelTimer_Tick(object sender, EventArgs e) {
+
         }
     }
 }

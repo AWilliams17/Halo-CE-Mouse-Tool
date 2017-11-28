@@ -43,6 +43,7 @@
             this.GithubLink = new System.Windows.Forms.LinkLabel();
             this.DonateLink = new System.Windows.Forms.LinkLabel();
             this.StatusLabelTimer = new System.Windows.Forms.Timer(this.components);
+            this.HotkeyLabelTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // SensX
@@ -171,6 +172,11 @@
             this.StatusLabelTimer.Enabled = true;
             this.StatusLabelTimer.Tick += new System.EventHandler(this.StatusLabelTimer_Tick);
             // 
+            // HotkeyLabelTimer
+            // 
+            this.HotkeyLabelTimer.Enabled = true;
+            this.HotkeyLabelTimer.Tick += new System.EventHandler(this.HotkeyLabelTimer_Tick);
+            // 
             // Mainform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -217,6 +223,7 @@
         private System.Windows.Forms.LinkLabel GithubLink;
         private System.Windows.Forms.LinkLabel DonateLink;
         private System.Windows.Forms.Timer StatusLabelTimer;
+        private System.Windows.Forms.Timer HotkeyLabelTimer;
     }
 }
 
