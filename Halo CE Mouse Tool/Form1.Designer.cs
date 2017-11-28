@@ -112,6 +112,7 @@
             this.SettingsBtn.TabIndex = 7;
             this.SettingsBtn.Text = "Settings";
             this.SettingsBtn.UseVisualStyleBackColor = true;
+            this.SettingsBtn.Click += new System.EventHandler(this.SettingsBtn_Click);
             // 
             // label4
             // 
@@ -160,6 +161,7 @@
             this.DonateLink.TabIndex = 12;
             this.DonateLink.TabStop = true;
             this.DonateLink.Text = "Donate";
+            this.DonateLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.DonateLink_LinkClicked_1);
             // 
             // StatusLabelTimer
             // 

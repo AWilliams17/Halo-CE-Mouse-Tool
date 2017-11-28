@@ -12,14 +12,13 @@ using System.Windows.Forms;
 */
 namespace Halo_CE_Mouse_Tool {
     class FormHandler {
-        private bool formexists(string form_name) {
+        public bool formopen(Form frm) {
+            foreach (Form form in Application.OpenForms) {
+                if (form == frm) {
+                    return true;
+                }
+            }
             return false;
-        }
-        private bool formopen(string form_name) {
-            return false;
-        }
-        public void OpenForm(string form_name) { //Open form if it exists, create one and show if not.
-            
         }
     }
 }

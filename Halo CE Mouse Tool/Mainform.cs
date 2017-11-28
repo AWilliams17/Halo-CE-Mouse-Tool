@@ -15,6 +15,9 @@ namespace Halo_CE_Mouse_Tool {
         UpdateHandler updatehandler;
         SettingsHandler settings;
         KeybindHandler keybindhandler;
+        FormHandler formhandler;
+        static SettingsForm settingsform;
+        static DonateForm donateform;
 
         public Mainform() {
             InitializeComponent();
@@ -52,6 +55,7 @@ namespace Halo_CE_Mouse_Tool {
             updatehandler = new UpdateHandler();
             settings = new SettingsHandler();
             keybindhandler = new KeybindHandler();
+            formhandler = new FormHandler();
         }
 
         private void StatusLabelTimer_Tick(object sender, EventArgs e) {
@@ -65,6 +69,24 @@ namespace Halo_CE_Mouse_Tool {
                 StatusLabel.ForeColor = Color.Red;
                 ActivateBtn.Enabled = false;
                 keybindhandler.SuspendKeybinds();
+            }
+        }
+
+        private void SettingsBtn_Click(object sender, EventArgs e) {
+            if (formhandler.formopen(settingsform)) {
+                settingsform.Show();
+            } else {
+                settingsform = new SettingsForm();
+                settingsform.Show();
+            }
+        }
+
+        private void DonateLink_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e) {
+            if (formhandler.formopen(donateform)) {
+                donateform.Show();
+            } else {
+                donateform = new DonateForm();
+                donateform.Show();
             }
         }
     }
