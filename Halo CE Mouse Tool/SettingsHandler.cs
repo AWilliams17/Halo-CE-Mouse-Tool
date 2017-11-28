@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Xml;
 
 /*
     -SettingsHandler Class-
@@ -13,11 +14,11 @@ using System.IO;
 namespace Halo_CE_Mouse_Tool {
     class SettingsHandler {
         private float SensX;
-        private float SensY;
+        private float SensY = 1;
+        private string XMLPath = Application.StartupPath + "/CEMT.xml";
 
-        public bool IniExists() {
-            string pathtoexec = Application.StartupPath;
-            if (File.Exists(pathtoexec + "/CEMT.ini")){
+        private bool XMLExists() {
+            if (File.Exists(XMLPath)){
                 return true;
             } else {
                 return false;
@@ -56,9 +57,21 @@ namespace Halo_CE_Mouse_Tool {
 
         }
 
-        public void LoadSettingsFromIni() {
-            if (IniExists()) {
+        public int LoadSettingsFromXML() { //1 == successfully read & set XML
+            if (XMLExists()) {
                 //Load and set values
+                XmlReader xmlReader = XmlReader.Create(XMLPath);
+                while (xmlReader.Read()) {
+                    if ((xmlReader.NodeType == XmlNodeType.Element) && (xmlReader.Name == "CEMTSensitivity")) {
+                        if (xmlReader.HasAttributes) {
+                            MessageBox.Show(xmlReader.GetAttribute("SensX"));
+                            MessageBox.Show(xmlReader.GetAttribute("SensY"));
+                        }
+                    }
+                }
+                return 1;
+            } else {
+                return 0; //0 == didn't find an XML
             }
         }
 

@@ -32,12 +32,14 @@ namespace Halo_CE_Mouse_Tool {
                 updatehandler.CheckForUpdates();
             }
 
-            if (settings.IniExists()) {
-                MessageBox.Show("Found ini");
+            int loadxml = settings.LoadSettingsFromXML();
+            if (loadxml == 1) {
+                MessageBox.Show("Successfully found & Read XML.");
+                SensX.Text = settings.GetSensX().ToString();
+                SensY.Text = settings.GetSensY().ToString();
             } else {
-                MessageBox.Show("Didn't find ini");
+                MessageBox.Show("Didn't find an XML file. Will now generate one...");
             }
-
 
         }
 
