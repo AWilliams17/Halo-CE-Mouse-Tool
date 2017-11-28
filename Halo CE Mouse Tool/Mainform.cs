@@ -11,7 +11,7 @@ using System.Diagnostics;
 namespace Halo_CE_Mouse_Tool {
     public partial class Mainform : Form {
         ProcessHandler processhandler;
-        UpdateHandler updatehandler;
+        public UpdateHandler updatehandler;
         KeybindHandler keybindhandler;
         FormHandler formhandler;
         MemoryHandler memoryhandler;
@@ -34,11 +34,13 @@ namespace Halo_CE_Mouse_Tool {
             int loadxml = settings.LoadSettingsFromXML();
             if (loadxml == 1) {
                 MessageBox.Show("Successfully found & Read XML.");
-                SensX.Text = settings.GetSensX().ToString();
-                SensY.Text = settings.GetSensY().ToString();
             } else {
-                MessageBox.Show("Didn't find an XML file. Will now generate one...");
+                MessageBox.Show("Didn't find an XML file. Will now generate one with default values...");
+                settings.WriteSettingsToXML();
+                settings.LoadSettingsFromXML();
             }
+            SensX.Text = settings.GetSensX().ToString();
+            SensY.Text = settings.GetSensY().ToString();
 
         }
 

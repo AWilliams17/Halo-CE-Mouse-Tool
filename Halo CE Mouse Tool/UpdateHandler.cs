@@ -13,7 +13,7 @@ using System.Threading.Tasks;
     is available. It also should hold the current program version.
 */
 namespace Halo_CE_Mouse_Tool {
-    class UpdateHandler {
+    public class UpdateHandler {
         private int version = 4;
 
         public int GetVersion() {

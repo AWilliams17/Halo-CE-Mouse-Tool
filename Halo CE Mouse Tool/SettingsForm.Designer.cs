@@ -40,6 +40,7 @@
             this.EnableHotkeyCheckbox.TabIndex = 0;
             this.EnableHotkeyCheckbox.Text = "Enable Hotkey";
             this.EnableHotkeyCheckbox.UseVisualStyleBackColor = true;
+            this.EnableHotkeyCheckbox.CheckedChanged += new System.EventHandler(this.EnableHotkeyCheckbox_CheckedChanged);
             // 
             // label1
             // 
@@ -66,6 +67,7 @@
             this.UpdateCheckbox.TabIndex = 3;
             this.UpdateCheckbox.Text = "Check for Updates on Start";
             this.UpdateCheckbox.UseVisualStyleBackColor = true;
+            this.UpdateCheckbox.CheckedChanged += new System.EventHandler(this.UpdateCheckbox_CheckedChanged);
             // 
             // MouseAccelCheckbox
             // 
@@ -76,6 +78,7 @@
             this.MouseAccelCheckbox.TabIndex = 4;
             this.MouseAccelCheckbox.Text = "Patch Mouse Acceleration";
             this.MouseAccelCheckbox.UseVisualStyleBackColor = true;
+            this.MouseAccelCheckbox.CheckedChanged += new System.EventHandler(this.MouseAccelCheckbox_CheckedChanged);
             // 
             // CheckforUpdatesBtn
             // 
@@ -85,6 +88,7 @@
             this.CheckforUpdatesBtn.TabIndex = 7;
             this.CheckforUpdatesBtn.Text = "Check for Updates";
             this.CheckforUpdatesBtn.UseVisualStyleBackColor = true;
+            this.CheckforUpdatesBtn.Click += new System.EventHandler(this.CheckforUpdatesBtn_Click);
             // 
             // SettingsForm
             // 

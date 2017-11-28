@@ -78,7 +78,29 @@ namespace Halo_CE_Mouse_Tool {
             CheckForUpdates = updates;
         }
 
-        public void WriteSettingsToIni() {
+        public void WriteSettingsToXML() {
+            if (!XMLExists()) { //XML Doesn't exist. Generate one with defaults.
+                XmlWriter xmlWriter = XmlWriter.Create("CEMT.xml");
+
+                xmlWriter.WriteStartDocument();
+                xmlWriter.WriteStartElement("CEMT");
+
+                xmlWriter.WriteStartElement("CEMTSensitivity");
+                xmlWriter.WriteAttributeString("SensX", "1");
+                xmlWriter.WriteAttributeString("SensY", "1");
+                xmlWriter.WriteAttributeString("PatchAccel", "1");
+                xmlWriter.WriteEndElement();
+
+                xmlWriter.WriteStartElement("CEMTApplication");
+                xmlWriter.WriteAttributeString("CheckForUpdates", "1");
+                xmlWriter.WriteAttributeString("Hotkey", "F1");
+                xmlWriter.WriteAttributeString("HotkeyEnabled", "1");
+
+                xmlWriter.WriteEndDocument();
+                xmlWriter.Close();
+            } else {
+
+            }
 
         }
         /*
