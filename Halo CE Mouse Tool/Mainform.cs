@@ -16,6 +16,7 @@ namespace Halo_CE_Mouse_Tool {
         SettingsHandler settings;
         KeybindHandler keybindhandler;
         FormHandler formhandler;
+        MemoryHandler memoryhandler;
         static SettingsForm settingsform;
         static DonateForm donateform;
 
@@ -34,20 +35,12 @@ namespace Halo_CE_Mouse_Tool {
             settings.LoadSettingsFromIni();
         }
 
-        private void ActivateBtn_Click(object sender, EventArgs e) {
-            
-        }
-
-        private void GithubLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-
-        }
-
-        private void DonateLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-
-        }
-
-        private void RedditLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-
+        private void ActivateBtn_Click_1(object sender, EventArgs e) {
+            byte[] mouseaccelnop = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+            memoryhandler.WriteToProcessMemory("haloce", settings.SensX(), 0x2ABB50);
+            memoryhandler.WriteToProcessMemory("haloce", settings.SensY(), 0x2ABB54);
+            memoryhandler.WriteToProcessMemory("haloce", mouseaccelnop, 0x8F830);
+            memoryhandler.WriteToProcessMemory("haloce", mouseaccelnop, 0x8F836);
         }
 
         private void SetUp() { //Create objects
@@ -56,6 +49,7 @@ namespace Halo_CE_Mouse_Tool {
             settings = new SettingsHandler();
             keybindhandler = new KeybindHandler();
             formhandler = new FormHandler();
+            memoryhandler = new MemoryHandler();
         }
 
         private void StatusLabelTimer_Tick(object sender, EventArgs e) {
@@ -88,6 +82,14 @@ namespace Halo_CE_Mouse_Tool {
                 donateform = new DonateForm();
                 donateform.Show();
             }
+        }
+
+        private void GithubLink_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e) {
+            Process.Start("https://github.com/AWilliams17/Halo-CE-Mouse-Tool");
+        }
+
+        private void RedditLink_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e) {
+            Process.Start("https://www.reddit.com/r/halospv3/comments/6aoxu0/halo_ce_mouse_tool_released_fine_tune_your_mouse/");
         }
     }
 }

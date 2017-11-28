@@ -26,12 +26,12 @@ namespace Halo_CE_Mouse_Tool {
             return true;
         }
 
-        public string SensX() {
-            return "";
+        public float SensX() {
+            return 0;
         }
 
-        public string SensY() {
-            return "";
+        public float SensY() {
+            return 0;
         }
 
         public void WriteSettingsToIni() {

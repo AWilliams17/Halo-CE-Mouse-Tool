@@ -103,6 +103,7 @@
             this.ActivateBtn.TabIndex = 6;
             this.ActivateBtn.Text = "Activate";
             this.ActivateBtn.UseVisualStyleBackColor = true;
+            this.ActivateBtn.Click += new System.EventHandler(this.ActivateBtn_Click_1);
             // 
             // SettingsBtn
             // 
@@ -141,6 +142,7 @@
             this.RedditLink.TabIndex = 10;
             this.RedditLink.TabStop = true;
             this.RedditLink.Text = "Reddit Thread";
+            this.RedditLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.RedditLink_LinkClicked_1);
             // 
             // GithubLink
             // 
@@ -151,6 +153,7 @@
             this.GithubLink.TabIndex = 11;
             this.GithubLink.TabStop = true;
             this.GithubLink.Text = "Github";
+            this.GithubLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.GithubLink_LinkClicked_1);
             // 
             // DonateLink
             // 
