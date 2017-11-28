@@ -82,7 +82,7 @@
             // 
             // CheckforUpdatesBtn
             // 
-            this.CheckforUpdatesBtn.Location = new System.Drawing.Point(15, 110);
+            this.CheckforUpdatesBtn.Location = new System.Drawing.Point(15, 109);
             this.CheckforUpdatesBtn.Name = "CheckforUpdatesBtn";
             this.CheckforUpdatesBtn.Size = new System.Drawing.Size(151, 23);
             this.CheckforUpdatesBtn.TabIndex = 7;

@@ -56,6 +56,7 @@ namespace Halo_CE_Mouse_Tool {
             } else {
                 settings.SetPatchAcceleration(0);
             }
+            MessageBox.Show("Note: If you have already run the tool with Mouse Acceleration patching set to on, you can not turn it back on. You must restart Halo CE in order to get it back.");
         }
 
         private void CheckforUpdatesBtn_Click(object sender, EventArgs e) {
