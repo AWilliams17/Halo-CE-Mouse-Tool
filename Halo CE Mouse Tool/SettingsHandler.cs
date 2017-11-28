@@ -14,7 +14,12 @@ using System.Xml;
 namespace Halo_CE_Mouse_Tool {
     class SettingsHandler {
         private float SensX;
-        private float SensY = 1;
+        private float SensY;
+        private int PatchAcceleration;
+        private int CheckForUpdates;
+        private int HotkeyEnabled;
+        private string Hotkey;
+
         private string XMLPath = Application.StartupPath + "/CEMT.xml";
 
         private bool XMLExists() {
@@ -25,16 +30,20 @@ namespace Halo_CE_Mouse_Tool {
             }
         }
 
-        public bool CheckForUpdatesOnStart() {
-            return false;
+        public int CheckForUpdatesOnStart() {
+            return CheckForUpdates;
         }
 
-        public bool HotkeyEnabled() {
-            return false;
+        public int GetHotkeyEnabled() {
+            return HotkeyEnabled;
         }
 
-        public bool PatchAcceleration() {
-            return true;
+        public string GetHotkey() {
+            return Hotkey;
+        }
+
+        public int GetPatchAcceleration() {
+            return PatchAcceleration;
         }
 
         public float GetSensX() {
@@ -53,6 +62,22 @@ namespace Halo_CE_Mouse_Tool {
             SensY = val;
         }
 
+        public void SetHotkey(string hotkey) {
+            Hotkey = hotkey;
+        }
+
+        public void SetHotkeyEnabled(int hotkeyon) {
+            HotkeyEnabled = hotkeyon;
+        }
+
+        public void SetPatchAcceleration(int accel) {
+            PatchAcceleration = accel;
+        }
+
+        public void SetCheckForUpdates(int updates) {
+            CheckForUpdates = updates;
+        }
+
         public void WriteSettingsToIni() {
 
         }
@@ -64,8 +89,30 @@ namespace Halo_CE_Mouse_Tool {
                 while (xmlReader.Read()) {
                     if ((xmlReader.NodeType == XmlNodeType.Element) && (xmlReader.Name == "CEMTSensitivity")) {
                         if (xmlReader.HasAttributes) {
-                            MessageBox.Show(xmlReader.GetAttribute("SensX"));
-                            MessageBox.Show(xmlReader.GetAttribute("SensY"));
+                            float sensX;
+                            float sensY;
+                            int patchaccel;
+                            float.TryParse(xmlReader.GetAttribute("SensX"), out sensX);
+                            float.TryParse(xmlReader.GetAttribute("SensY"), out sensY);
+                            int.TryParse(xmlReader.GetAttribute("PatchAccel"), out patchaccel);
+
+                            SetSensX(sensX);
+                            SetSensY(sensY);
+                            SetPatchAcceleration(patchaccel);
+                        }
+                    }
+                    if ((xmlReader.NodeType == XmlNodeType.Element) && (xmlReader.Name == "CEMTApplication")) {
+                        if (xmlReader.HasAttributes) {
+                            int checkforupdates;
+                            int hotkeyenabled;
+                            string hotkey = xmlReader.GetAttribute("Hotkey");
+                            int.TryParse(xmlReader.GetAttribute("CheckForUpdates"), out checkforupdates);
+                            int.TryParse(xmlReader.GetAttribute("HotkeyEnabled"), out hotkeyenabled);
+
+                            SetCheckForUpdates(checkforupdates);
+                            SetHotkey(hotkey);
+                            SetHotkeyEnabled(hotkeyenabled);
+                            
                         }
                     }
                 }

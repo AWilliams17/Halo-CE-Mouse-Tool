@@ -28,7 +28,7 @@ namespace Halo_CE_Mouse_Tool {
             SetUp();
             this.Text =  "Halo CE Mouse Tool v" + updatehandler.GetVersion().ToString();
             
-            if (settings.CheckForUpdatesOnStart()) {
+            if (settings.CheckForUpdatesOnStart() == 1) {
                 updatehandler.CheckForUpdates();
             }
 
@@ -102,11 +102,11 @@ namespace Halo_CE_Mouse_Tool {
                     curr_val = BitConverter.GetBytes(settings.GetSensY());
                     curr_addr = 0x2ABB54;
                 }
-                if (i == 2 && settings.PatchAcceleration()) {
+                if (i == 2 && settings.GetPatchAcceleration() == 1) {
                     curr_val = mouseaccelnop;
                     curr_addr = 0x8F836;
                 }
-                if (i == 3 && settings.PatchAcceleration()) {
+                if (i == 3 && settings.GetPatchAcceleration() == 1) {
                     curr_val = mouseaccelnop;
                     curr_addr = 0x8F830;
                 }
