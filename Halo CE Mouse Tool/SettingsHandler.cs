@@ -12,7 +12,7 @@ using System.Xml;
     This class handles all settings related stuff. It's also terrible.
 */
 namespace Halo_CE_Mouse_Tool {
-    class SettingsHandler {
+    public class SettingsHandler {
         private float SensX;
         private float SensY;
         private int PatchAcceleration;

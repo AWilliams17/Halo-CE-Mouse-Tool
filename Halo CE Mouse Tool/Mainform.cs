@@ -8,15 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
-
 namespace Halo_CE_Mouse_Tool {
     public partial class Mainform : Form {
         ProcessHandler processhandler;
         UpdateHandler updatehandler;
-        SettingsHandler settings;
         KeybindHandler keybindhandler;
         FormHandler formhandler;
         MemoryHandler memoryhandler;
+        public SettingsHandler settings;
         static SettingsForm settingsform;
         static DonateForm donateform;
 
@@ -50,10 +49,10 @@ namespace Halo_CE_Mouse_Tool {
         private void SetUp() { //Create objects
             processhandler = new ProcessHandler();
             updatehandler = new UpdateHandler();
-            settings = new SettingsHandler();
             keybindhandler = new KeybindHandler();
             formhandler = new FormHandler();
             memoryhandler = new MemoryHandler();
+            settings = new SettingsHandler();
         }
 
         private void StatusLabelTimer_Tick(object sender, EventArgs e) {
@@ -74,7 +73,7 @@ namespace Halo_CE_Mouse_Tool {
             if (formhandler.formopen(settingsform)) {
                 settingsform.Show();
             } else {
-                settingsform = new SettingsForm(settings.GetHotkey(), settings.CheckForUpdatesOnStart(), settings.GetPatchAcceleration(), settings.GetHotkeyEnabled());
+                settingsform = new SettingsForm(this);
                 settingsform.Show();
             }
         }

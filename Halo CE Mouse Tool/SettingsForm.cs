@@ -10,18 +10,20 @@ using System.Windows.Forms;
 
 namespace Halo_CE_Mouse_Tool {
     public partial class SettingsForm : Form {
-        public SettingsForm(string hotkey, int checkforupdatesonlaunch, int patchaccel, int hotkeyon) {
+        SettingsHandler settings;
+        public SettingsForm(Mainform f1) {
             InitializeComponent();
+            settings = f1.settings;
 
-            HotkeyText.Text = hotkey;
-            if (checkforupdatesonlaunch == 1) {
-                UpdateCheckbox.Checked = true;
+            HotkeyText.Text = settings.GetHotkey();
+            if (settings.GetHotkeyEnabled() == 1) {
+                EnableHotkeyCheckbox.Checked = true;
             }
-            if (patchaccel == 1) {
+            if (settings.GetPatchAcceleration() == 1) {
                 MouseAccelCheckbox.Checked = true;
             }
-            if (hotkeyon == 1) {
-                EnableHotkeyCheckbox.Checked = true;
+            if (settings.CheckForUpdatesOnStart() == 1) {
+                UpdateCheckbox.Checked = true;
             }
 
         }
