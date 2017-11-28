@@ -130,7 +130,7 @@
             // HotkeyStatus
             // 
             this.HotkeyStatus.AutoSize = true;
-            this.HotkeyStatus.Location = new System.Drawing.Point(62, 70);
+            this.HotkeyStatus.Location = new System.Drawing.Point(58, 70);
             this.HotkeyStatus.Name = "HotkeyStatus";
             this.HotkeyStatus.Size = new System.Drawing.Size(16, 13);
             this.HotkeyStatus.TabIndex = 9;

@@ -78,30 +78,40 @@ namespace Halo_CE_Mouse_Tool {
             CheckForUpdates = updates;
         }
 
-        public void WriteSettingsToXML() {
-            if (!XMLExists()) { //XML Doesn't exist. Generate one with defaults.
-                XmlWriter xmlWriter = XmlWriter.Create("CEMT.xml");
+        public void GenerateXML() {
+            XmlWriter xmlWriter = XmlWriter.Create("CEMT.xml");
 
-                xmlWriter.WriteStartDocument();
-                xmlWriter.WriteStartElement("CEMT");
+            xmlWriter.WriteStartDocument();
+            xmlWriter.WriteStartElement("CEMT");
 
-                xmlWriter.WriteStartElement("CEMTSensitivity");
-                xmlWriter.WriteAttributeString("SensX", "1");
-                xmlWriter.WriteAttributeString("SensY", "1");
-                xmlWriter.WriteAttributeString("PatchAccel", "1");
-                xmlWriter.WriteEndElement();
+            xmlWriter.WriteStartElement("CEMTSensitivity");
+            xmlWriter.WriteAttributeString("SensX", "1");
+            xmlWriter.WriteAttributeString("SensY", "1");
+            xmlWriter.WriteAttributeString("PatchAccel", "1");
+            xmlWriter.WriteEndElement();
 
-                xmlWriter.WriteStartElement("CEMTApplication");
-                xmlWriter.WriteAttributeString("CheckForUpdates", "1");
-                xmlWriter.WriteAttributeString("Hotkey", "F1");
-                xmlWriter.WriteAttributeString("HotkeyEnabled", "1");
+            xmlWriter.WriteStartElement("CEMTApplication");
+            xmlWriter.WriteAttributeString("CheckForUpdates", "1");
+            xmlWriter.WriteAttributeString("Hotkey", "F1");
+            xmlWriter.WriteAttributeString("HotkeyEnabled", "1");
 
-                xmlWriter.WriteEndDocument();
-                xmlWriter.Close();
-            } else {
+            xmlWriter.WriteEndDocument();
+            xmlWriter.Close();
+        }
 
+        public void WriteXML() {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(XMLPath);
+
+            XmlNode root = doc.DocumentElement["CEMTSensitivity"];
+            foreach (XmlAttribute c in root.Attributes) {
+                MessageBox.Show(c.Value);
             }
 
+            XmlNode g = doc.DocumentElement["CEMTApplication"];
+            foreach (XmlAttribute f in g.Attributes) {
+                MessageBox.Show(f.Value);
+            }
         }
         /*
             Rob say Code Monkey very dilligent - but his output stink.
@@ -148,8 +158,5 @@ namespace Halo_CE_Mouse_Tool {
                 return 0; //0 == didn't find an XML
             }
         }
-
-
-
     }
 }

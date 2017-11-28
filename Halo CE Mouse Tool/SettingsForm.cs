@@ -14,7 +14,7 @@ namespace Halo_CE_Mouse_Tool {
         UpdateHandler updatehandler;
         public SettingsForm(Mainform f1) {
             InitializeComponent();
-            settings = f1.settings;
+            settings = Mainform.settings;
             updatehandler = f1.updatehandler;
 
             HotkeyText.Text = settings.GetHotkey();

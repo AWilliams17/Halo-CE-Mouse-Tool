@@ -15,18 +15,19 @@ namespace Halo_CE_Mouse_Tool {
         KeybindHandler keybindhandler;
         FormHandler formhandler;
         MemoryHandler memoryhandler;
-        public SettingsHandler settings;
+        public static SettingsHandler settings;
         static SettingsForm settingsform;
         static DonateForm donateform;
 
         public Mainform() {
             InitializeComponent();
+            AppDomain.CurrentDomain.ProcessExit += new EventHandler(OnProcessExit);
         }
 
         private void Mainform_Load(object sender, EventArgs e) {
             SetUp();
-            this.Text =  "Halo CE Mouse Tool v" + updatehandler.GetVersion().ToString();
-            
+            this.Text = "Halo CE Mouse Tool v" + updatehandler.GetVersion().ToString();
+
             if (settings.CheckForUpdatesOnStart() == 1) {
                 updatehandler.CheckForUpdates();
             }
@@ -36,7 +37,7 @@ namespace Halo_CE_Mouse_Tool {
                 MessageBox.Show("Successfully found & Read XML.");
             } else {
                 MessageBox.Show("Didn't find an XML file. Will now generate one with default values...");
-                settings.WriteSettingsToXML();
+                settings.GenerateXML();
                 settings.LoadSettingsFromXML();
             }
             SensX.Text = settings.GetSensX().ToString();
@@ -119,8 +120,7 @@ namespace Halo_CE_Mouse_Tool {
                         MessageBox.Show("One or more values failed to write. Error code: " + return_value.ToString());
                     }
                     break;
-                }
-                else if (i == 3 && return_value == 0) {
+                } else if (i == 3 && return_value == 0) {
                     MessageBox.Show("Successfully wrote sensitivity values to memory.");
                 }
             }
@@ -135,15 +135,23 @@ namespace Halo_CE_Mouse_Tool {
         }
 
         private void HotkeyLabelTimer_Tick(object sender, EventArgs e) {
-
+            if (settings.GetHotkeyEnabled() == 1 && settings.GetHotkey() != null) {
+                HotkeyStatus.Text = "Keybind is set to: " + settings.GetHotkey();
+            } else {
+                HotkeyStatus.Text = "Keybind is disabled/not set.";
+            }
         }
 
         private void SensX_TextChanged(object sender, EventArgs e) {
-
+            settings.SetSensX(float.Parse(SensX.Text));
         }
 
         private void SensY_TextChanged(object sender, EventArgs e) {
+            settings.SetSensY(float.Parse(SensY.Text));
+        }
 
+        static void OnProcessExit(object sender, EventArgs e) {
+            settings.WriteXML();
         }
     }
 }
