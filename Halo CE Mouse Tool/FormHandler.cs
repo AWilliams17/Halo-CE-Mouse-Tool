@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 /*
     -FormHandler Class-
@@ -11,5 +12,14 @@ using System.Threading.Tasks;
 */
 namespace Halo_CE_Mouse_Tool {
     class FormHandler {
+        private bool formexists(string form_name) {
+            return false;
+        }
+        private bool formopen(string form_name) {
+            return false;
+        }
+        public void OpenForm(string form_name) { //Open form if it exists, create one and show if not.
+            
+        }
     }
 }

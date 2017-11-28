@@ -12,6 +12,8 @@ using System.Diagnostics;
 namespace Halo_CE_Mouse_Tool {
     public partial class Mainform : Form {
         ProcessHandler processhandler;
+        UpdateHandler updatehandler;
+        SettingsHandler settings;
 
         public Mainform() {
             InitializeComponent();
@@ -19,6 +21,13 @@ namespace Halo_CE_Mouse_Tool {
 
         private void Mainform_Load(object sender, EventArgs e) {
             SetUp();
+            this.Text =  "Halo CE Mouse Tool v" + updatehandler.GetVersion().ToString();
+            
+            if (settings.CheckForUpdatesOnStart()) {
+                updatehandler.CheckForUpdates();
+            }
+
+            settings.LoadSettingsFromIni();
         }
 
         private void ActivateBtn_Click(object sender, EventArgs e) {
@@ -39,7 +48,8 @@ namespace Halo_CE_Mouse_Tool {
 
         private void SetUp() { //Create objects
             processhandler = new ProcessHandler();
-
+            updatehandler = new UpdateHandler();
+            settings = new SettingsHandler();
         }
     }
 }
