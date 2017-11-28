@@ -28,19 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.SensX = new System.Windows.Forms.TextBox();
             this.SensY = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.StatusLabel = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.ActivateBtn = new System.Windows.Forms.Button();
+            this.SettingsBtn = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.HotkeyStatus = new System.Windows.Forms.Label();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
+            this.RedditLink = new System.Windows.Forms.LinkLabel();
+            this.GithubLink = new System.Windows.Forms.LinkLabel();
+            this.DonateLink = new System.Windows.Forms.LinkLabel();
+            this.StatusLabelTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // SensX
@@ -93,23 +95,23 @@
             this.StatusLabel.TabIndex = 5;
             this.StatusLabel.Text = "---";
             // 
-            // button1
+            // ActivateBtn
             // 
-            this.button1.Location = new System.Drawing.Point(14, 86);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Activate";
-            this.button1.UseVisualStyleBackColor = true;
+            this.ActivateBtn.Location = new System.Drawing.Point(14, 86);
+            this.ActivateBtn.Name = "ActivateBtn";
+            this.ActivateBtn.Size = new System.Drawing.Size(75, 23);
+            this.ActivateBtn.TabIndex = 6;
+            this.ActivateBtn.Text = "Activate";
+            this.ActivateBtn.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // SettingsBtn
             // 
-            this.button2.Location = new System.Drawing.Point(110, 86);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Settings";
-            this.button2.UseVisualStyleBackColor = true;
+            this.SettingsBtn.Location = new System.Drawing.Point(110, 86);
+            this.SettingsBtn.Name = "SettingsBtn";
+            this.SettingsBtn.Size = new System.Drawing.Size(75, 23);
+            this.SettingsBtn.TabIndex = 7;
+            this.SettingsBtn.Text = "Settings";
+            this.SettingsBtn.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
@@ -129,35 +131,40 @@
             this.HotkeyStatus.TabIndex = 9;
             this.HotkeyStatus.Text = "---";
             // 
-            // linkLabel1
+            // RedditLink
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(13, 112);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(75, 13);
-            this.linkLabel1.TabIndex = 10;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Reddit Thread";
+            this.RedditLink.AutoSize = true;
+            this.RedditLink.Location = new System.Drawing.Point(13, 112);
+            this.RedditLink.Name = "RedditLink";
+            this.RedditLink.Size = new System.Drawing.Size(75, 13);
+            this.RedditLink.TabIndex = 10;
+            this.RedditLink.TabStop = true;
+            this.RedditLink.Text = "Reddit Thread";
             // 
-            // linkLabel2
+            // GithubLink
             // 
-            this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Location = new System.Drawing.Point(147, 112);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(38, 13);
-            this.linkLabel2.TabIndex = 11;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "Github";
+            this.GithubLink.AutoSize = true;
+            this.GithubLink.Location = new System.Drawing.Point(147, 112);
+            this.GithubLink.Name = "GithubLink";
+            this.GithubLink.Size = new System.Drawing.Size(38, 13);
+            this.GithubLink.TabIndex = 11;
+            this.GithubLink.TabStop = true;
+            this.GithubLink.Text = "Github";
             // 
-            // linkLabel3
+            // DonateLink
             // 
-            this.linkLabel3.AutoSize = true;
-            this.linkLabel3.Location = new System.Drawing.Point(94, 112);
-            this.linkLabel3.Name = "linkLabel3";
-            this.linkLabel3.Size = new System.Drawing.Size(42, 13);
-            this.linkLabel3.TabIndex = 12;
-            this.linkLabel3.TabStop = true;
-            this.linkLabel3.Text = "Donate";
+            this.DonateLink.AutoSize = true;
+            this.DonateLink.Location = new System.Drawing.Point(94, 112);
+            this.DonateLink.Name = "DonateLink";
+            this.DonateLink.Size = new System.Drawing.Size(42, 13);
+            this.DonateLink.TabIndex = 12;
+            this.DonateLink.TabStop = true;
+            this.DonateLink.Text = "Donate";
+            // 
+            // StatusLabelTimer
+            // 
+            this.StatusLabelTimer.Enabled = true;
+            this.StatusLabelTimer.Tick += new System.EventHandler(this.StatusLabelTimer_Tick);
             // 
             // Mainform
             // 
@@ -165,13 +172,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(202, 131);
-            this.Controls.Add(this.linkLabel3);
-            this.Controls.Add(this.linkLabel2);
-            this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.DonateLink);
+            this.Controls.Add(this.GithubLink);
+            this.Controls.Add(this.RedditLink);
             this.Controls.Add(this.HotkeyStatus);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.SettingsBtn);
+            this.Controls.Add(this.ActivateBtn);
             this.Controls.Add(this.StatusLabel);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -197,13 +204,14 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label StatusLabel;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button ActivateBtn;
+        private System.Windows.Forms.Button SettingsBtn;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label HotkeyStatus;
-        private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.LinkLabel linkLabel2;
-        private System.Windows.Forms.LinkLabel linkLabel3;
+        private System.Windows.Forms.LinkLabel RedditLink;
+        private System.Windows.Forms.LinkLabel GithubLink;
+        private System.Windows.Forms.LinkLabel DonateLink;
+        private System.Windows.Forms.Timer StatusLabelTimer;
     }
 }
 

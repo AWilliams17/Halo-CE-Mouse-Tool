@@ -72,7 +72,7 @@
     </Compile>
     <Compile Include="FormHandler.cs" />
     <Compile Include="IniHandler.cs" />
-    <Compile Include="Keybind.cs" />
+    <Compile Include="KeybindHandler.cs" />
     <Compile Include="Mainform.cs">
       <SubType>Form</SubType>
     </Compile>

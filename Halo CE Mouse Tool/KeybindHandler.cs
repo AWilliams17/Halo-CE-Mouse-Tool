@@ -12,6 +12,14 @@ using System.Threading.Tasks;
 
 */
 namespace Halo_CE_Mouse_Tool {
-    class Keybind {
+    class KeybindHandler {
+        private bool KeybindsEnabled;
+        public void SuspendKeybinds() {
+            KeybindsEnabled = false;
+        }
+
+        public void EnableKeybinds() {
+            KeybindsEnabled = true;
+        }
     }
 }
