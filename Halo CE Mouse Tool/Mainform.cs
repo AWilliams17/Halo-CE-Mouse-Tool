@@ -32,7 +32,13 @@ namespace Halo_CE_Mouse_Tool {
                 updatehandler.CheckForUpdates();
             }
 
-            settings.LoadSettingsFromIni();
+            if (settings.IniExists()) {
+                MessageBox.Show("Found ini");
+            } else {
+                MessageBox.Show("Didn't find ini");
+            }
+
+
         }
 
         private void ActivateBtn_Click_1(object sender, EventArgs e) {
@@ -87,11 +93,11 @@ namespace Halo_CE_Mouse_Tool {
             byte[] curr_val = { };
             for (int i = 0; i != 4; i++) {
                 if (i == 0) {
-                    curr_val = BitConverter.GetBytes(settings.SensX());
+                    curr_val = BitConverter.GetBytes(settings.GetSensX());
                     curr_addr = 0x2ABB50;
                 }
                 if (i == 1) {
-                    curr_val = BitConverter.GetBytes(settings.SensX());
+                    curr_val = BitConverter.GetBytes(settings.GetSensY());
                     curr_addr = 0x2ABB54;
                 }
                 if (i == 2 && settings.PatchAcceleration()) {
@@ -126,6 +132,14 @@ namespace Halo_CE_Mouse_Tool {
         }
 
         private void HotkeyLabelTimer_Tick(object sender, EventArgs e) {
+
+        }
+
+        private void SensX_TextChanged(object sender, EventArgs e) {
+
+        }
+
+        private void SensY_TextChanged(object sender, EventArgs e) {
 
         }
     }

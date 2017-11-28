@@ -52,6 +52,7 @@
             this.SensX.Name = "SensX";
             this.SensX.Size = new System.Drawing.Size(99, 20);
             this.SensX.TabIndex = 0;
+            this.SensX.TextChanged += new System.EventHandler(this.SensX_TextChanged);
             // 
             // SensY
             // 
@@ -59,6 +60,7 @@
             this.SensY.Name = "SensY";
             this.SensY.Size = new System.Drawing.Size(99, 20);
             this.SensY.TabIndex = 1;
+            this.SensY.TextChanged += new System.EventHandler(this.SensY_TextChanged);
             // 
             // label1
             // 
