@@ -74,7 +74,7 @@ namespace Halo_CE_Mouse_Tool {
             if (formhandler.formopen(settingsform)) {
                 settingsform.Show();
             } else {
-                settingsform = new SettingsForm();
+                settingsform = new SettingsForm(settings.GetHotkey(), settings.CheckForUpdatesOnStart(), settings.GetPatchAcceleration(), settings.GetHotkeyEnabled());
                 settingsform.Show();
             }
         }

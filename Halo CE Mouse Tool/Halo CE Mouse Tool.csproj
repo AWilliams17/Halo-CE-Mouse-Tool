@@ -71,7 +71,6 @@
       <DependentUpon>DonateForm.cs</DependentUpon>
     </Compile>
     <Compile Include="FormHandler.cs" />
-    <Compile Include="XMLReader.cs" />
     <Compile Include="KeybindHandler.cs" />
     <Compile Include="Mainform.cs">
       <SubType>Form</SubType>

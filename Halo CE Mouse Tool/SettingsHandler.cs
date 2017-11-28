@@ -9,7 +9,7 @@ using System.Xml;
 
 /*
     -SettingsHandler Class-
-    This class should call inihandler and set the settings in the application
+    This class handles all settings related stuff. It's also terrible.
 */
 namespace Halo_CE_Mouse_Tool {
     class SettingsHandler {
@@ -81,7 +81,12 @@ namespace Halo_CE_Mouse_Tool {
         public void WriteSettingsToIni() {
 
         }
-
+        /*
+            Rob say Code Monkey very dilligent - but his output stink.
+            His code not functional or elegant.
+            What do code monkey think?
+            Code monkey think he get back to work on tool.
+        */
         public int LoadSettingsFromXML() { //1 == successfully read & set XML
             if (XMLExists()) {
                 //Load and set values
