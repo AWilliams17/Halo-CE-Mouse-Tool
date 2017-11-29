@@ -105,13 +105,30 @@ namespace Halo_CE_Mouse_Tool {
 
             XmlNode root = doc.DocumentElement["CEMTSensitivity"];
             foreach (XmlAttribute c in root.Attributes) {
-                MessageBox.Show(c.Value);
+                if (c.Name == "SensX") {
+                    c.Value = GetSensX().ToString();
+                }
+                if (c.Name == "SensY") {
+                    c.Value = GetSensY().ToString();
+                }
+                if (c.Name == "PatchAccel") {
+                    c.Value = GetPatchAcceleration().ToString();
+                }
             }
 
             XmlNode g = doc.DocumentElement["CEMTApplication"];
             foreach (XmlAttribute f in g.Attributes) {
-                MessageBox.Show(f.Value);
+                if (f.Name == "CheckForUpdates") {
+                    f.Value = CheckForUpdatesOnStart().ToString();
+                }
+                if (f.Name == "Hotkey") {
+                    f.Value = GetHotkey();
+                }
+                if (f.Name == "HotkeyEnabled") {
+                    f.Value = GetHotkeyEnabled().ToString();
+                }
             }
+            doc.Save(XMLPath);
         }
         /*
             Rob say Code Monkey very dilligent - but his output stink.
