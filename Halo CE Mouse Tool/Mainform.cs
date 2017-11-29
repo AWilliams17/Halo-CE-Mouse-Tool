@@ -29,10 +29,7 @@ namespace Halo_CE_Mouse_Tool {
         private void Mainform_Load(object sender, EventArgs e) {
             SetUp();
             this.Text = "Halo CE Mouse Tool v" + updatehandler.GetVersion().ToString();
-
-            if (settings.CheckForUpdatesOnStart() == 1) {
-                updatehandler.CheckForUpdates();
-            }
+            
 
             int loadxml = settings.LoadSettingsFromXML();
             if (loadxml == 1) {
@@ -44,6 +41,10 @@ namespace Halo_CE_Mouse_Tool {
             }
             SensX.Text = settings.GetSensX().ToString();
             SensY.Text = settings.GetSensY().ToString();
+
+            if (settings.CheckForUpdatesOnStart() == 1) {
+                updatehandler.CheckForUpdates();
+            }
 
         }
 
