@@ -7,9 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 
 namespace Halo_CE_Mouse_Tool {
     public partial class SettingsForm : Form {
+
         SettingsHandler settings;
         UpdateHandler updatehandler;
         public SettingsForm(Mainform f1) {
@@ -60,6 +62,14 @@ namespace Halo_CE_Mouse_Tool {
 
         private void CheckforUpdatesBtn_Click(object sender, EventArgs e) {
             updatehandler.CheckForUpdates();
+        }
+
+        private void HotkeyText_TextChanged(object sender, EventArgs e) {
+
+        }
+
+        private void HotkeyText_KeyDown(object sender, KeyEventArgs e) {
+            
         }
     }
 }

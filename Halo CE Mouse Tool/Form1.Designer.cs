@@ -44,6 +44,7 @@
             this.DonateLink = new System.Windows.Forms.LinkLabel();
             this.StatusLabelTimer = new System.Windows.Forms.Timer(this.components);
             this.HotkeyLabelTimer = new System.Windows.Forms.Timer(this.components);
+            this.HotkeyTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // SensX
@@ -179,6 +180,11 @@
             this.HotkeyLabelTimer.Enabled = true;
             this.HotkeyLabelTimer.Tick += new System.EventHandler(this.HotkeyLabelTimer_Tick);
             // 
+            // HotkeyTimer
+            // 
+            this.HotkeyTimer.Enabled = true;
+            this.HotkeyTimer.Tick += new System.EventHandler(this.HotkeyTimer_Tick);
+            // 
             // Mainform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -226,6 +232,7 @@
         private System.Windows.Forms.LinkLabel DonateLink;
         private System.Windows.Forms.Timer StatusLabelTimer;
         private System.Windows.Forms.Timer HotkeyLabelTimer;
+        private System.Windows.Forms.Timer HotkeyTimer;
     }
 }
 

@@ -8,17 +8,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
+
 namespace Halo_CE_Mouse_Tool {
     public partial class Mainform : Form {
         ProcessHandler processhandler;
         public UpdateHandler updatehandler;
-        KeybindHandler keybindhandler;
+        public static KeybindHandler keybindhandler = new KeybindHandler();
         FormHandler formhandler;
-        MemoryHandler memoryhandler;
+        static MemoryHandler memoryhandler;
         public static SettingsHandler settings;
         static SettingsForm settingsform;
         static DonateForm donateform;
-
+        
         public Mainform() {
             InitializeComponent();
             AppDomain.CurrentDomain.ProcessExit += new EventHandler(OnProcessExit);
@@ -52,7 +54,6 @@ namespace Halo_CE_Mouse_Tool {
         private void SetUp() { //Create objects
             processhandler = new ProcessHandler();
             updatehandler = new UpdateHandler();
-            keybindhandler = new KeybindHandler();
             formhandler = new FormHandler();
             memoryhandler = new MemoryHandler();
             settings = new SettingsHandler();
@@ -90,7 +91,7 @@ namespace Halo_CE_Mouse_Tool {
             }
         }
 
-        private void WriteHaloMemory() {
+        public static int WriteHaloMemory() {
             byte[] mouseaccelnop = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
             int return_value;
             int curr_addr = 0;
@@ -116,14 +117,16 @@ namespace Halo_CE_Mouse_Tool {
                 if (return_value != 0) {
                     if (return_value == 1) {
                         MessageBox.Show("Access Denied. Are you running the tool as an admin?");
+                        return 1;
                     } else {
                         MessageBox.Show("One or more values failed to write. Error code: " + return_value.ToString());
+                        return return_value;
                     }
-                    break;
                 } else if (i == 3 && return_value == 0) {
                     MessageBox.Show("Successfully wrote sensitivity values to memory.");
                 }
             }
+            return 0;
         }
 
         private void GithubLink_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e) {
@@ -152,6 +155,18 @@ namespace Halo_CE_Mouse_Tool {
 
         static void OnProcessExit(object sender, EventArgs e) {
             settings.WriteXML();
+        }
+
+        private void HotkeyTimer_Tick(object sender, EventArgs e) {
+            if (keybindhandler.GetKeybindStatus() && settings.GetHotkeyEnabled() == 1) {
+                if (KeybindHandler.IsKeyPushedDown((Keys)Enum.Parse(typeof(Keys), settings.GetHotkey()))) {
+                    if (WriteHaloMemory() == 0) {
+                        System.Media.SystemSounds.Beep.Play();
+                    } else {
+                        System.Media.SystemSounds.Exclamation.Play();
+                    }
+                }
+            }
         }
     }
 }

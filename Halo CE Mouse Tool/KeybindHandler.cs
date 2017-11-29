@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.InteropServices;
+using System.Diagnostics;
 
 /*
     -Keybind Class-
@@ -12,7 +15,17 @@ using System.Threading.Tasks;
 
 */
 namespace Halo_CE_Mouse_Tool {
-    class KeybindHandler {
+    public class KeybindHandler {
+
+        [DllImport("user32.dll")]
+        static extern short GetAsyncKeyState(System.Windows.Forms.Keys vKey);
+
+
+        public static bool IsKeyPushedDown(System.Windows.Forms.Keys vKey) {
+            return 0 != (GetAsyncKeyState(vKey) & 0x8000);
+        }
+
+
         private bool KeybindsEnabled;
 
         public bool GetKeybindStatus() {
