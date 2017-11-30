@@ -55,9 +55,9 @@
             // 
             this.HotkeyText.Location = new System.Drawing.Point(62, 6);
             this.HotkeyText.Name = "HotkeyText";
+            this.HotkeyText.ReadOnly = true;
             this.HotkeyText.Size = new System.Drawing.Size(104, 20);
             this.HotkeyText.TabIndex = 2;
-            this.HotkeyText.TextChanged += new System.EventHandler(this.HotkeyText_TextChanged);
             this.HotkeyText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.HotkeyText_KeyDown);
             // 
             // UpdateCheckbox

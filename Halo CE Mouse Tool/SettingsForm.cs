@@ -64,12 +64,11 @@ namespace Halo_CE_Mouse_Tool {
             updatehandler.CheckForUpdates();
         }
 
-        private void HotkeyText_TextChanged(object sender, EventArgs e) {
-
-        }
-
         private void HotkeyText_KeyDown(object sender, KeyEventArgs e) {
-            
+            string key = e.KeyCode.ToString();
+
+            HotkeyText.Text = key;
+            settings.SetHotkey(key);
         }
     }
 }

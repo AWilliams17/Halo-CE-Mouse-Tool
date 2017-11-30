@@ -25,7 +25,6 @@ namespace Halo_CE_Mouse_Tool {
             return 0 != (GetAsyncKeyState(vKey) & 0x8000);
         }
 
-
         private bool KeybindsEnabled;
 
         public bool GetKeybindStatus() {
