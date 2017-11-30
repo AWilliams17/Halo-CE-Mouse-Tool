@@ -90,6 +90,7 @@
     </Compile>
     <Compile Include="SettingsHandler.cs" />
     <Compile Include="UpdateHandler.cs" />
+    <Compile Include="utils.cs" />
     <Compile Include="XMLHandler.cs" />
     <EmbeddedResource Include="DonateForm.resx">
       <DependentUpon>DonateForm.cs</DependentUpon>

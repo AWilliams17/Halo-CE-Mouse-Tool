@@ -1,4 +1,4 @@
 <CEMT>
-  <CEMTSensitivity SensX="1" SensY="1" PatchAccel="1" />
+  <CEMTSensitivity SensX="2" SensY="2" PatchAccel="1" />
   <CEMTApplication Hotkey="F1" HotkeyEnabled="1" CheckForUpdates="1" SoundsEnabled="0" />
 </CEMT>

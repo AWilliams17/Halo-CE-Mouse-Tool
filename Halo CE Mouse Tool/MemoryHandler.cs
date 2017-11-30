@@ -12,7 +12,7 @@ using System.Diagnostics;
     and writing to it.
 */
 namespace Halo_CE_Mouse_Tool {
-    class MemoryHandler {
+    public class MemoryHandler {
         const int PROCESS_WM_READ = 0x0010;
         const int PROCESS_VM_WRITE = 0x0020;
         const int PROCESS_VM_OPERATION = 0x0008;
