@@ -13,12 +13,13 @@ using System.Security.Principal; //For checking if user is running as admin
 
 namespace Halo_CE_Mouse_Tool {
     public partial class Mainform : Form {
-        ProcessHandler processhandler;
-        public UpdateHandler updatehandler;
+        public ProcessHandler processhandler = new ProcessHandler();
+        public UpdateHandler updatehandler = new UpdateHandler();
         public static KeybindHandler keybindhandler = new KeybindHandler();
-        FormHandler formhandler;
-        static MemoryHandler memoryhandler;
-        public static SettingsHandler settings;
+        public FormHandler formhandler = new FormHandler();
+        static MemoryHandler memoryhandler = new MemoryHandler();
+        public static SettingsHandler settings = new SettingsHandler();
+
         static SettingsForm settingsform;
         static DonateForm donateform;
 
@@ -30,7 +31,6 @@ namespace Halo_CE_Mouse_Tool {
         public Mainform() {
             InitializeComponent();
             AppDomain.CurrentDomain.ProcessExit += new EventHandler(OnProcessExit);
-            SetUp();
 
             string window_title = "Halo CE Mouse Tool v" + updatehandler.GetVersion().ToString();
             if (!IsAdministrator()) {
@@ -38,8 +38,9 @@ namespace Halo_CE_Mouse_Tool {
                 MessageBox.Show("Warning - You must run this tool as an administrator in order for it to work properly.");
             }
             this.Text = window_title;
+        }
 
-
+        private void Mainform_Load(object sender, EventArgs e) {
             int loadxml = settings.LoadSettingsFromXML();
             if (loadxml == 1) {
                 MessageBox.Show("Successfully found & Read XML.");
@@ -48,28 +49,17 @@ namespace Halo_CE_Mouse_Tool {
                 settings.GenerateXML();
                 settings.LoadSettingsFromXML();
             }
-            SensX.Text = settings.GetSensX().ToString();
-            SensY.Text = settings.GetSensY().ToString();
 
             if (settings.CheckForUpdatesOnStart() == 1) {
                 updatehandler.CheckForUpdates();
             }
-        }
 
-        private void Mainform_Load(object sender, EventArgs e) {
-            
+            SensX.Text = settings.GetSensX().ToString();
+            SensY.Text = settings.GetSensY().ToString();
         }
 
         private void ActivateBtn_Click_1(object sender, EventArgs e) {
             WriteHaloMemory();
-        }
-
-        private void SetUp() { //Create objects
-            processhandler = new ProcessHandler();
-            updatehandler = new UpdateHandler();
-            formhandler = new FormHandler();
-            memoryhandler = new MemoryHandler();
-            settings = new SettingsHandler();
         }
 
         private void StatusLabelTimer_Tick(object sender, EventArgs e) {

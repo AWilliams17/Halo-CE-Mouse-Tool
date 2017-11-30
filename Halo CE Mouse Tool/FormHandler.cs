@@ -11,7 +11,7 @@ using System.Windows.Forms;
     show them.
 */
 namespace Halo_CE_Mouse_Tool {
-    class FormHandler {
+    public class FormHandler {
         public bool formopen(Form frm) {
             foreach (Form form in Application.OpenForms) {
                 if (form == frm) {
