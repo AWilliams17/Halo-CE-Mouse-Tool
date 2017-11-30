@@ -45,10 +45,6 @@
             this.StatusLabelTimer = new System.Windows.Forms.Timer(this.components);
             this.HotkeyLabelTimer = new System.Windows.Forms.Timer(this.components);
             this.HotkeyTimer = new System.Windows.Forms.Timer(this.components);
-            this.HSensTooltip = new System.Windows.Forms.ToolTip(this.components);
-            this.VSensTooltip = new System.Windows.Forms.ToolTip(this.components);
-            this.ActivateBtnTooltip = new System.Windows.Forms.ToolTip(this.components);
-            this.SettingsBtnTooltip = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // SensX
@@ -237,10 +233,6 @@
         private System.Windows.Forms.Timer StatusLabelTimer;
         private System.Windows.Forms.Timer HotkeyLabelTimer;
         private System.Windows.Forms.Timer HotkeyTimer;
-        private System.Windows.Forms.ToolTip HSensTooltip;
-        private System.Windows.Forms.ToolTip VSensTooltip;
-        private System.Windows.Forms.ToolTip ActivateBtnTooltip;
-        private System.Windows.Forms.ToolTip SettingsBtnTooltip;
     }
 }
 
