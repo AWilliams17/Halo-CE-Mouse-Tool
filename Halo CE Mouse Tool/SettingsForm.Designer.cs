@@ -23,12 +23,18 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             this.EnableHotkeyCheckbox = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.HotkeyText = new System.Windows.Forms.TextBox();
             this.UpdateCheckbox = new System.Windows.Forms.CheckBox();
             this.MouseAccelCheckbox = new System.Windows.Forms.CheckBox();
             this.CheckforUpdatesBtn = new System.Windows.Forms.Button();
+            this.HotkeyTextTooltip = new System.Windows.Forms.ToolTip(this.components);
+            this.HotkeyCheckboxTooltip = new System.Windows.Forms.ToolTip(this.components);
+            this.UpdateCheckboxTooltip = new System.Windows.Forms.ToolTip(this.components);
+            this.UpdateBtnTooltip = new System.Windows.Forms.ToolTip(this.components);
+            this.MouseAccelTooltip = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // EnableHotkeyCheckbox
@@ -122,5 +128,10 @@
         private System.Windows.Forms.CheckBox UpdateCheckbox;
         private System.Windows.Forms.CheckBox MouseAccelCheckbox;
         private System.Windows.Forms.Button CheckforUpdatesBtn;
+        private System.Windows.Forms.ToolTip HotkeyTextTooltip;
+        private System.Windows.Forms.ToolTip HotkeyCheckboxTooltip;
+        private System.Windows.Forms.ToolTip UpdateCheckboxTooltip;
+        private System.Windows.Forms.ToolTip UpdateBtnTooltip;
+        private System.Windows.Forms.ToolTip MouseAccelTooltip;
     }
 }
