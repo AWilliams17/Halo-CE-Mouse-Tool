@@ -72,7 +72,7 @@ namespace Halo_CE_Mouse_Tool {
         }
 
         private void RedditLink_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e) {
-            Process.Start("https://www.reddit.com/r/halospv3/comments/6aoxu0/halo_ce_mouse_tool_released_fine_tune_your_mouse/");
+            Process.Start("https://www.reddit.com/r/halospv3/comments/7fdrpr/just_released_halo_mouse_tool_v3/?st=jan506jz&sh=1bd4ebda");
         }
 
         private void HotkeyLabelTimer_Tick(object sender, EventArgs e) {
