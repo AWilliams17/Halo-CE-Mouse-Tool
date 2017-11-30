@@ -41,14 +41,6 @@ namespace Halo_CE_Mouse_Tool {
         public Mainform() {
             InitializeComponent();
             AppDomain.CurrentDomain.ProcessExit += new EventHandler(OnProcessExit);
-
-            string window_title = "Halo CE Mouse Tool v" + updatehandler.version.ToString();
-            if (!IsAdministrator()) {
-                window_title += " -NOT ADMIN-";
-                notice.Play();
-                MessageBox.Show("Warning - You must run this tool as an administrator in order for it to work properly.");
-            }
-            this.Text = window_title;
         }
 
         private void Mainform_Load(object sender, EventArgs e) {
@@ -58,6 +50,14 @@ namespace Halo_CE_Mouse_Tool {
             }
             SensX.Text = settings.SensX.ToString();
             SensY.Text = settings.SensY.ToString();
+
+            string window_title = "Halo CE Mouse Tool v" + updatehandler.version.ToString();
+            if (!IsAdministrator()) {
+                window_title += " -NOT ADMIN-";
+                notice.Play();
+                MessageBox.Show("Warning - You must run this tool as an administrator in order for it to work properly.");
+            }
+            this.Text = window_title;
         }
 
         private void ActivateBtn_Click_1(object sender, EventArgs e) {
