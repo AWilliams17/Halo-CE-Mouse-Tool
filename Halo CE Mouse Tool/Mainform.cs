@@ -19,6 +19,7 @@ namespace Halo_CE_Mouse_Tool {
         static MemoryHandler memoryhandler = new MemoryHandler();
         public static SettingsHandler settings = new SettingsHandler();
         public static KeybindHandler keybindhandler = new KeybindHandler();
+        public static XMLHandler xmlhandler = new XMLHandler();
 
         static SettingsForm settingsform;
         static DonateForm donateform;
@@ -41,13 +42,13 @@ namespace Halo_CE_Mouse_Tool {
         }
 
         private void Mainform_Load(object sender, EventArgs e) {
-            int loadxml = settings.LoadSettingsFromXML();
+            int loadxml = xmlhandler.LoadSettingsFromXML(settings);
             if (loadxml == 1) {
                 MessageBox.Show("Successfully found & Read XML.");
             } else {
                 MessageBox.Show("Didn't find an XML file. Will now generate one with default values...");
-                settings.GenerateXML();
-                settings.LoadSettingsFromXML();
+                xmlhandler.GenerateXML();
+                xmlhandler.LoadSettingsFromXML(settings);
             }
 
             if (settings.CheckForUpdatesOnStart == 1) {
@@ -141,7 +142,7 @@ namespace Halo_CE_Mouse_Tool {
         }
 
         private void HotkeyLabelTimer_Tick(object sender, EventArgs e) {
-            if (settings.HotkeyEnabled == 1 && settings.Hotkey != null) {
+            if (settings.HotkeyEnabled == 1) {
                 HotkeyStatus.Text = "Keybind is set to: " + settings.Hotkey;
             } else {
                 HotkeyStatus.Text = "Keybind is disabled/not set.";
@@ -149,15 +150,31 @@ namespace Halo_CE_Mouse_Tool {
         }
 
         private void SensX_TextChanged(object sender, EventArgs e) {
-            settings.SensX = float.Parse(SensX.Text);
+            float conv_SensX;
+            if (SensX.Text != "") {
+                 if (!float.TryParse(SensX.Text, out conv_SensX)){
+                    SensX.Text = "0";
+                    MessageBox.Show("Invalid input. Only numbers allowed.");
+                } else {
+                    settings.SensX = conv_SensX;
+                }
+            }
         }
 
         private void SensY_TextChanged(object sender, EventArgs e) {
-            settings.SensY = float.Parse(SensY.Text);
+            float conv_SensY;
+            if (SensY.Text != "") {
+                if (!float.TryParse(SensY.Text, out conv_SensY)) {
+                    SensY.Text = "0";
+                    MessageBox.Show("Invalid input. Only numbers allowed.");
+                } else {
+                    settings.SensY = conv_SensY;
+                }
+            }
         }
 
         static void OnProcessExit(object sender, EventArgs e) {
-            settings.WriteXML();
+            xmlhandler.WriteSettingsToXML(settings);
         }
 
         private void HotkeyTimer_Tick(object sender, EventArgs e) {
@@ -169,6 +186,20 @@ namespace Halo_CE_Mouse_Tool {
                         System.Media.SystemSounds.Exclamation.Play();
                     }
                 }
+            }
+        }
+
+        private void SensX_Leave(object sender, EventArgs e) {
+            if (SensX.Text == "") {
+                SensX.Focus();
+                MessageBox.Show("Error: You can't leave this field blank.");
+            }
+        }
+
+        private void SensY_Leave(object sender, EventArgs e) {
+            if (SensY.Text == "") {
+                SensY.Focus();
+                MessageBox.Show("Error: You can't leave this field blank.");
             }
         }
     }
