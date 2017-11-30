@@ -42,32 +42,110 @@ namespace Halo_CE_Mouse_Tool {
 
         public void WriteSettingsToXML(SettingsHandler s) {
             XmlDocument doc = new XmlDocument();
-            doc.Load(XMLPath);
+            try {
+                doc.Load(XMLPath);
+            } catch (XmlException) { //Root element missing
+                XmlElement elem = doc.CreateElement("CEMT");
+                doc.AppendChild(elem);
+            }
+            bool SensXWrote = true;
+            bool SensYWrote = true;
+            bool PatchAccelWrote = true;
+            bool CheckForUpdatesWrote = true;
+            bool HotkeyWrote = true;
+            bool HotkeyEnabledWrote = true;
 
             XmlNode root = doc.DocumentElement["CEMTSensitivity"];
-            foreach (XmlAttribute c in root.Attributes) {
-                if (c.Name == "SensX") {
-                    c.Value = s.SensX.ToString();
+            try {
+                foreach (XmlAttribute c in root.Attributes) {
+                    if (c.Name == "SensX") {
+                        c.Value = s.SensX.ToString();
+                    } else {
+                        SensXWrote = false;
+                    }
+                    if (c.Name == "SensY") {
+                        c.Value = s.SensY.ToString();
+                    } else {
+                        SensYWrote = false;
+                    }
+                    if (c.Name == "PatchAccel") {
+                        c.Value = s.PatchAcceleration.ToString();
+                    } else {
+                        PatchAccelWrote = false;
+                    }
                 }
-                if (c.Name == "SensY") {
-                    c.Value = s.SensY.ToString();
-                }
-                if (c.Name == "PatchAccel") {
-                    c.Value = s.PatchAcceleration.ToString();
-                }
+            } catch (NullReferenceException) {
+                XmlElement CEMTSensitivity = doc.CreateElement("CEMTSensitivity");
+                doc.DocumentElement.AppendChild(CEMTSensitivity);
+                SensXWrote = false;
+                SensYWrote = false;
+                PatchAccelWrote = false;
+                root = doc.DocumentElement["CEMTSensitivity"];
             }
 
             XmlNode g = doc.DocumentElement["CEMTApplication"];
-            foreach (XmlAttribute f in g.Attributes) {
-                if (f.Name == "CheckForUpdates") {
-                    f.Value = s.CheckForUpdatesOnStart.ToString();
+            try {
+                foreach (XmlAttribute f in g.Attributes) {
+                    if (f.Name == "CheckForUpdates") {
+                        f.Value = s.CheckForUpdatesOnStart.ToString();
+                    } else {
+                        CheckForUpdatesWrote = false;
+                    }
+                    if (f.Name == "Hotkey") {
+                        f.Value = s.Hotkey;
+                    } else {
+                        HotkeyWrote = false;
+                    }
+                    if (f.Name == "HotkeyEnabled") {
+                        f.Value = s.HotkeyEnabled.ToString();
+                    } else {
+                        HotkeyEnabledWrote = false;
+                    }
                 }
-                if (f.Name == "Hotkey") {
-                    f.Value = s.Hotkey;
-                }
-                if (f.Name == "HotkeyEnabled") {
-                    f.Value = s.HotkeyEnabled.ToString();
-                }
+            } catch (NullReferenceException) {
+                XmlElement CEMTApplication = doc.CreateElement("CEMTApplication");
+                doc.DocumentElement.AppendChild(CEMTApplication);
+                CheckForUpdatesWrote = false;
+                HotkeyEnabledWrote = false;
+                HotkeyWrote = false;
+                g = doc.DocumentElement["CEMTApplication"];
+            }
+
+            if (!SensXWrote) {
+                XmlAttribute SensX = doc.CreateAttribute("SensX");
+                SensX.Value = "1";
+                root.Attributes.SetNamedItem(SensX);
+            }
+            if (!SensYWrote) {
+                XmlAttribute SensY = doc.CreateAttribute("SensY");
+                SensY.Value = "1";
+                root.Attributes.SetNamedItem(SensY);
+            }
+            if (!SensYWrote) {
+                XmlAttribute SensY = doc.CreateAttribute("SensY");
+                SensY.Value = "1";
+                root.Attributes.SetNamedItem(SensY);
+            }
+            if (!PatchAccelWrote) {
+                XmlAttribute PatchAccel = doc.CreateAttribute("PatchAccel");
+                PatchAccel.Value = "1";
+                root.Attributes.SetNamedItem(PatchAccel);
+            }
+
+            if (!HotkeyWrote) {
+                XmlAttribute Hotkey = doc.CreateAttribute("Hotkey");
+                Hotkey.Value = "F1";
+                g.Attributes.SetNamedItem(Hotkey);
+            }
+            if (!HotkeyEnabledWrote) {
+                XmlAttribute HotkeyEnabled = doc.CreateAttribute("HotkeyEnabled");
+                HotkeyEnabled.Value = "1";
+                g.Attributes.SetNamedItem(HotkeyEnabled);
+            }
+            if (!CheckForUpdatesWrote) {
+                XmlAttribute CheckForUpdates = doc.CreateAttribute("CheckForUpdates");
+                CheckForUpdates.Value = "1";
+                g.Attributes.SetNamedItem(CheckForUpdates);
             }
             doc.Save(XMLPath);
         }
