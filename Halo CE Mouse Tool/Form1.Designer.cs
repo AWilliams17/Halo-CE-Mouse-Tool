@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Mainform));
             this.SensX = new System.Windows.Forms.TextBox();
             this.SensY = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -45,6 +46,7 @@
             this.StatusLabelTimer = new System.Windows.Forms.Timer(this.components);
             this.HotkeyLabelTimer = new System.Windows.Forms.Timer(this.components);
             this.HotkeyTimer = new System.Windows.Forms.Timer(this.components);
+            this.Tooltip = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // SensX
@@ -53,6 +55,8 @@
             this.SensX.Name = "SensX";
             this.SensX.Size = new System.Drawing.Size(144, 20);
             this.SensX.TabIndex = 0;
+            this.Tooltip.SetToolTip(this.SensX, "This textbox controls your Horizontal sensitivity.\r\nOnly integers/decimals are al" +
+        "lowed in this field.\r\nEG: 1.5.");
             this.SensX.TextChanged += new System.EventHandler(this.SensX_TextChanged);
             // 
             // SensY
@@ -61,6 +65,8 @@
             this.SensY.Name = "SensY";
             this.SensY.Size = new System.Drawing.Size(144, 20);
             this.SensY.TabIndex = 1;
+            this.Tooltip.SetToolTip(this.SensY, "This textbox controls your Vertical sensitivity.\r\nOnly integers/decimals are allo" +
+        "wed in this field.\r\nEG: 1.5.\r\n");
             this.SensY.TextChanged += new System.EventHandler(this.SensY_TextChanged);
             // 
             // label1
@@ -106,6 +112,7 @@
             this.ActivateBtn.Size = new System.Drawing.Size(89, 23);
             this.ActivateBtn.TabIndex = 6;
             this.ActivateBtn.Text = "Activate";
+            this.Tooltip.SetToolTip(this.ActivateBtn, resources.GetString("ActivateBtn.ToolTip"));
             this.ActivateBtn.UseVisualStyleBackColor = true;
             this.ActivateBtn.Click += new System.EventHandler(this.ActivateBtn_Click_1);
             // 
@@ -116,6 +123,7 @@
             this.SettingsBtn.Size = new System.Drawing.Size(89, 23);
             this.SettingsBtn.TabIndex = 7;
             this.SettingsBtn.Text = "Settings";
+            this.Tooltip.SetToolTip(this.SettingsBtn, resources.GetString("SettingsBtn.ToolTip"));
             this.SettingsBtn.UseVisualStyleBackColor = true;
             this.SettingsBtn.Click += new System.EventHandler(this.SettingsBtn_Click);
             // 
@@ -185,6 +193,11 @@
             this.HotkeyTimer.Enabled = true;
             this.HotkeyTimer.Tick += new System.EventHandler(this.HotkeyTimer_Tick);
             // 
+            // Tooltip
+            // 
+            this.Tooltip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.Tooltip.ToolTipTitle = "About";
+            // 
             // Mainform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -233,6 +246,7 @@
         private System.Windows.Forms.Timer StatusLabelTimer;
         private System.Windows.Forms.Timer HotkeyLabelTimer;
         private System.Windows.Forms.Timer HotkeyTimer;
+        private System.Windows.Forms.ToolTip Tooltip;
     }
 }
 

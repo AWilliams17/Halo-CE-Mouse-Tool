@@ -23,12 +23,15 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
             this.EnableHotkeyCheckbox = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.HotkeyText = new System.Windows.Forms.TextBox();
             this.UpdateCheckbox = new System.Windows.Forms.CheckBox();
             this.MouseAccelCheckbox = new System.Windows.Forms.CheckBox();
             this.CheckforUpdatesBtn = new System.Windows.Forms.Button();
+            this.Tooltip = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // EnableHotkeyCheckbox
@@ -39,6 +42,7 @@
             this.EnableHotkeyCheckbox.Size = new System.Drawing.Size(96, 17);
             this.EnableHotkeyCheckbox.TabIndex = 0;
             this.EnableHotkeyCheckbox.Text = "Enable Hotkey";
+            this.Tooltip.SetToolTip(this.EnableHotkeyCheckbox, "Check this to enable your selected Hotkey.");
             this.EnableHotkeyCheckbox.UseVisualStyleBackColor = true;
             this.EnableHotkeyCheckbox.CheckedChanged += new System.EventHandler(this.EnableHotkeyCheckbox_CheckedChanged);
             // 
@@ -58,6 +62,7 @@
             this.HotkeyText.ReadOnly = true;
             this.HotkeyText.Size = new System.Drawing.Size(104, 20);
             this.HotkeyText.TabIndex = 2;
+            this.Tooltip.SetToolTip(this.HotkeyText, "Press this textbox and then press the button\r\nyou want to use as your hotkey.");
             this.HotkeyText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.HotkeyText_KeyDown);
             // 
             // UpdateCheckbox
@@ -68,6 +73,8 @@
             this.UpdateCheckbox.Size = new System.Drawing.Size(155, 17);
             this.UpdateCheckbox.TabIndex = 3;
             this.UpdateCheckbox.Text = "Check for Updates on Start";
+            this.Tooltip.SetToolTip(this.UpdateCheckbox, "Check this to have the tool automatically check for\r\nupdates on launch and tell y" +
+        "ou if one is available\r\nor not.");
             this.UpdateCheckbox.UseVisualStyleBackColor = true;
             this.UpdateCheckbox.CheckedChanged += new System.EventHandler(this.UpdateCheckbox_CheckedChanged);
             // 
@@ -79,6 +86,7 @@
             this.MouseAccelCheckbox.Size = new System.Drawing.Size(151, 17);
             this.MouseAccelCheckbox.TabIndex = 4;
             this.MouseAccelCheckbox.Text = "Patch Mouse Acceleration";
+            this.Tooltip.SetToolTip(this.MouseAccelCheckbox, resources.GetString("MouseAccelCheckbox.ToolTip"));
             this.MouseAccelCheckbox.UseVisualStyleBackColor = true;
             this.MouseAccelCheckbox.CheckedChanged += new System.EventHandler(this.MouseAccelCheckbox_CheckedChanged);
             // 
@@ -89,8 +97,15 @@
             this.CheckforUpdatesBtn.Size = new System.Drawing.Size(151, 23);
             this.CheckforUpdatesBtn.TabIndex = 7;
             this.CheckforUpdatesBtn.Text = "Check for Updates";
+            this.Tooltip.SetToolTip(this.CheckforUpdatesBtn, "Press this to manually check if there is an update available\r\nfor Halo Mouse Tool" +
+        ". Useful if you don\'t check for updates\r\non start.");
             this.CheckforUpdatesBtn.UseVisualStyleBackColor = true;
             this.CheckforUpdatesBtn.Click += new System.EventHandler(this.CheckforUpdatesBtn_Click);
+            // 
+            // Tooltip
+            // 
+            this.Tooltip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.Tooltip.ToolTipTitle = "About";
             // 
             // SettingsForm
             // 
@@ -122,5 +137,6 @@
         private System.Windows.Forms.CheckBox UpdateCheckbox;
         private System.Windows.Forms.CheckBox MouseAccelCheckbox;
         private System.Windows.Forms.Button CheckforUpdatesBtn;
+        private System.Windows.Forms.ToolTip Tooltip;
     }
 }

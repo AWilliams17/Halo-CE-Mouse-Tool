@@ -117,4 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="Tooltip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="MouseAccelCheckbox.ToolTip" xml:space="preserve">
+    <value>Check this to patch the Mouse Acceleration function
+in Halo CE upon activation of the tool.
+
+NOTE: If you have already activated the tool with this
+enabled, IT WILL NOT REENABLE IT. You must
+restart Halo CE to get Mouse Acceleration back.</value>
+  </data>
 </root>

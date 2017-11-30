@@ -117,6 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="Tooltip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>433, 17</value>
+  </metadata>
+  <data name="ActivateBtn.ToolTip" xml:space="preserve">
+    <value>Press this button to write your desired settings to
+the Halo process. You can also use your hotkey,
+if it is enabled and properly set.
+
+Also note: If you have previously patched the 
+acceleration, you can not reenable it. You must
+restart to get it back.</value>
+  </data>
+  <data name="SettingsBtn.ToolTip" xml:space="preserve">
+    <value>Edit the settings for the tool such as:
+-What hotkey you want to use
+-If you want to patch the mouse acceleration
+-If you want the hotkey to even be enabled
+-If you want to check for updates on launch
+You can also check for an update manually.</value>
+  </data>
   <metadata name="StatusLabelTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
