@@ -32,6 +32,9 @@ namespace Halo_CE_Mouse_Tool {
             if (settings.CheckForUpdatesOnStart == 1) {
                 UpdateCheckbox.Checked = true;
             }
+            if (settings.SoundsEnabled == 1) {
+                SoundsEnabledCheckbox.Checked = true;
+            }
 
         }
 
@@ -60,6 +63,14 @@ namespace Halo_CE_Mouse_Tool {
                 settings.PatchAcceleration = 1;
             } else {
                 settings.PatchAcceleration = 0;
+            }
+        }
+
+        private void SoundsEnabledCheckbox_CheckedChanged(object sender, EventArgs e) {
+            if (SoundsEnabledCheckbox.Checked) {
+                settings.SoundsEnabled = 1;
+            } else {
+                settings.SoundsEnabled = 0;
             }
         }
 

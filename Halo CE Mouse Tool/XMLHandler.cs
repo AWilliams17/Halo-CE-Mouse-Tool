@@ -33,6 +33,7 @@ namespace Halo_CE_Mouse_Tool {
 
             xmlWriter.WriteStartElement("CEMTApplication");
             xmlWriter.WriteAttributeString("CheckForUpdates", "1");
+            xmlWriter.WriteAttributeString("SoundsEnabled", "1");
             xmlWriter.WriteAttributeString("Hotkey", "F1");
             xmlWriter.WriteAttributeString("HotkeyEnabled", "1");
 
@@ -52,6 +53,7 @@ namespace Halo_CE_Mouse_Tool {
             bool SensYWrote = true;
             bool PatchAccelWrote = true;
             bool CheckForUpdatesWrote = true;
+            bool SoundsEnabledWrote = true;
             bool HotkeyWrote = true;
             bool HotkeyEnabledWrote = true;
 
@@ -91,6 +93,11 @@ namespace Halo_CE_Mouse_Tool {
                     } else {
                         CheckForUpdatesWrote = false;
                     }
+                    if (f.Name == "SoundsEnabled") {
+                        f.Value = s.SoundsEnabled.ToString();
+                    } else {
+                        SoundsEnabledWrote = false;
+                    }
                     if (f.Name == "Hotkey") {
                         f.Value = s.Hotkey;
                     } else {
@@ -106,6 +113,7 @@ namespace Halo_CE_Mouse_Tool {
                 XmlElement CEMTApplication = doc.CreateElement("CEMTApplication");
                 doc.DocumentElement.AppendChild(CEMTApplication);
                 CheckForUpdatesWrote = false;
+                SoundsEnabledWrote = false;
                 HotkeyEnabledWrote = false;
                 HotkeyWrote = false;
                 g = doc.DocumentElement["CEMTApplication"];
@@ -113,39 +121,39 @@ namespace Halo_CE_Mouse_Tool {
 
             if (!SensXWrote) {
                 XmlAttribute SensX = doc.CreateAttribute("SensX");
-                SensX.Value = "1";
+                SensX.Value = s.SensX.ToString();
                 root.Attributes.SetNamedItem(SensX);
             }
             if (!SensYWrote) {
                 XmlAttribute SensY = doc.CreateAttribute("SensY");
-                SensY.Value = "1";
-                root.Attributes.SetNamedItem(SensY);
-            }
-            if (!SensYWrote) {
-                XmlAttribute SensY = doc.CreateAttribute("SensY");
-                SensY.Value = "1";
+                SensY.Value = s.SensY.ToString();
                 root.Attributes.SetNamedItem(SensY);
             }
             if (!PatchAccelWrote) {
                 XmlAttribute PatchAccel = doc.CreateAttribute("PatchAccel");
-                PatchAccel.Value = "1";
+                PatchAccel.Value = s.PatchAcceleration.ToString();
                 root.Attributes.SetNamedItem(PatchAccel);
             }
 
             if (!HotkeyWrote) {
                 XmlAttribute Hotkey = doc.CreateAttribute("Hotkey");
-                Hotkey.Value = "F1";
+                Hotkey.Value = s.Hotkey;
                 g.Attributes.SetNamedItem(Hotkey);
             }
             if (!HotkeyEnabledWrote) {
                 XmlAttribute HotkeyEnabled = doc.CreateAttribute("HotkeyEnabled");
-                HotkeyEnabled.Value = "1";
+                HotkeyEnabled.Value = s.HotkeyEnabled.ToString();
                 g.Attributes.SetNamedItem(HotkeyEnabled);
             }
             if (!CheckForUpdatesWrote) {
                 XmlAttribute CheckForUpdates = doc.CreateAttribute("CheckForUpdates");
-                CheckForUpdates.Value = "1";
+                CheckForUpdates.Value = s.CheckForUpdatesOnStart.ToString();
                 g.Attributes.SetNamedItem(CheckForUpdates);
+            }
+            if (!SoundsEnabledWrote) {
+                XmlAttribute SoundsEnabled = doc.CreateAttribute("SoundsEnabled");
+                SoundsEnabled.Value = s.SoundsEnabled.ToString();
+                g.Attributes.SetNamedItem(SoundsEnabled);
             }
             doc.Save(XMLPath);
         }
@@ -188,6 +196,7 @@ namespace Halo_CE_Mouse_Tool {
                             if (xmlReader.HasAttributes) {
                                 int checkforupdates;
                                 int hotkeyenabled;
+                                int soundsenabled;
                                 string hotkey = xmlReader.GetAttribute("Hotkey");
                                 if (hotkey == null) {
                                     err = true;
@@ -203,6 +212,11 @@ namespace Halo_CE_Mouse_Tool {
                                     err = true;
                                 } else {
                                     s.HotkeyEnabled = hotkeyenabled;
+                                }
+                                if (!int.TryParse(xmlReader.GetAttribute("SoundsEnabled"), out soundsenabled)) {
+                                    err = true;
+                                } else {
+                                    s.SoundsEnabled = soundsenabled;
                                 }
                             }
                         }

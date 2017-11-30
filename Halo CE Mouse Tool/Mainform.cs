@@ -54,7 +54,7 @@ namespace Halo_CE_Mouse_Tool {
             string window_title = "Halo CE Mouse Tool v" + updatehandler.version.ToString();
             if (!IsAdministrator()) {
                 window_title += " -NOT ADMIN-";
-                notice.Play();
+                sound_notice();
                 MessageBox.Show("Warning - You must run this tool as an administrator in order for it to work properly.");
             }
             this.Text = window_title;
@@ -120,7 +120,7 @@ namespace Halo_CE_Mouse_Tool {
                 }
                 return_value = memoryhandler.WriteToProcessMemory("haloce", curr_val, curr_addr);
                 if (return_value != 0) {
-                    error.Play();
+                    sound_error();
                     if (return_value == 1) {
                         MessageBox.Show("Access Denied. Are you running the tool as Admin?");
                     } else {
@@ -128,7 +128,7 @@ namespace Halo_CE_Mouse_Tool {
                     }
                 }
             }
-            success.Play();
+            sound_success();
             MessageBox.Show("Successfully wrote values to memory.");
         }
 
@@ -201,10 +201,13 @@ namespace Halo_CE_Mouse_Tool {
         private void HandleXML() {
             int loadxml = xmlhandler.LoadSettingsFromXML(settings);
             if (loadxml == 1) {
+                sound_success();
                 MessageBox.Show("Successfully found & Read XML.");
             } else if (loadxml == 2 || loadxml == 3) {
+                sound_error();
                 MessageBox.Show("An XML file was found, but an error occurred whilst reading it. It is possible one or more settings were not set. They have been set to default.");
             } else {
+                sound_notice();
                 MessageBox.Show("Didn't find an XML file. Will now generate one with default values...");
                 xmlhandler.GenerateXML();
                 xmlhandler.LoadSettingsFromXML(settings);
@@ -214,10 +217,10 @@ namespace Halo_CE_Mouse_Tool {
         public void CheckForUpdates() {
             int res = updatehandler.CheckForUpdates();
             if (res == 2) {
-                error.Play();
+                sound_error();
                 MessageBox.Show("An error occurred while checking for updates.");
             } else {
-                notice.Play();
+                sound_notice();
                 if (res == 0) {
                     MessageBox.Show("No updates were found.");
                 } else {
@@ -226,6 +229,23 @@ namespace Halo_CE_Mouse_Tool {
                         Process.Start("https://github.com/AWilliams17/Halo-CE-Mouse-Tool/releases");
                     }
                 }
+            }
+        }
+        public void sound_success() {
+            if (settings.SoundsEnabled == 1) {
+                success.Play();
+            }
+        }
+
+        public void sound_error() {
+            if (settings.SoundsEnabled == 1) {
+                error.Play();
+            }
+        }
+
+        public void sound_notice() {
+            if (settings.SoundsEnabled == 1) {
+                notice.Play();
             }
         }
     }

@@ -32,6 +32,7 @@
             this.MouseAccelCheckbox = new System.Windows.Forms.CheckBox();
             this.CheckforUpdatesBtn = new System.Windows.Forms.Button();
             this.Tooltip = new System.Windows.Forms.ToolTip(this.components);
+            this.SoundsEnabledCheckbox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // EnableHotkeyCheckbox
@@ -92,7 +93,7 @@
             // 
             // CheckforUpdatesBtn
             // 
-            this.CheckforUpdatesBtn.Location = new System.Drawing.Point(15, 109);
+            this.CheckforUpdatesBtn.Location = new System.Drawing.Point(15, 126);
             this.CheckforUpdatesBtn.Name = "CheckforUpdatesBtn";
             this.CheckforUpdatesBtn.Size = new System.Drawing.Size(151, 23);
             this.CheckforUpdatesBtn.TabIndex = 7;
@@ -107,11 +108,23 @@
             this.Tooltip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.Tooltip.ToolTipTitle = "About";
             // 
+            // SoundsEnabledCheckbox
+            // 
+            this.SoundsEnabledCheckbox.AutoSize = true;
+            this.SoundsEnabledCheckbox.Location = new System.Drawing.Point(15, 101);
+            this.SoundsEnabledCheckbox.Name = "SoundsEnabledCheckbox";
+            this.SoundsEnabledCheckbox.Size = new System.Drawing.Size(104, 17);
+            this.SoundsEnabledCheckbox.TabIndex = 8;
+            this.SoundsEnabledCheckbox.Text = "Sounds Enabled";
+            this.SoundsEnabledCheckbox.UseVisualStyleBackColor = true;
+            this.SoundsEnabledCheckbox.CheckedChanged += new System.EventHandler(this.SoundsEnabledCheckbox_CheckedChanged);
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(179, 144);
+            this.ClientSize = new System.Drawing.Size(179, 161);
+            this.Controls.Add(this.SoundsEnabledCheckbox);
             this.Controls.Add(this.CheckforUpdatesBtn);
             this.Controls.Add(this.MouseAccelCheckbox);
             this.Controls.Add(this.UpdateCheckbox);
@@ -120,8 +133,8 @@
             this.Controls.Add(this.EnableHotkeyCheckbox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(195, 183);
-            this.MinimumSize = new System.Drawing.Size(195, 183);
+            this.MaximumSize = new System.Drawing.Size(195, 200);
+            this.MinimumSize = new System.Drawing.Size(195, 200);
             this.Name = "SettingsForm";
             this.Text = "Settings";
             this.Load += new System.EventHandler(this.SettingsForm_Load);
@@ -139,5 +152,6 @@
         private System.Windows.Forms.CheckBox MouseAccelCheckbox;
         private System.Windows.Forms.Button CheckforUpdatesBtn;
         private System.Windows.Forms.ToolTip Tooltip;
+        private System.Windows.Forms.CheckBox SoundsEnabledCheckbox;
     }
 }

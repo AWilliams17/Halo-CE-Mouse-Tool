@@ -19,7 +19,8 @@ namespace Halo_CE_Mouse_Tool {
         private int _CheckForUpdatesOnStart { get; set; } = 1;
         private int _HotkeyEnabled { get; set; } = 1;
         private string _Hotkey { get; set; } = "F1";
-        
+        private int _SoundEnabled { get; set; } = 1;
+
 
 
         public float SensX {
@@ -40,6 +41,10 @@ namespace Halo_CE_Mouse_Tool {
         public int CheckForUpdatesOnStart {
             get { return _CheckForUpdatesOnStart; }
             set { _CheckForUpdatesOnStart = value; }
+        }
+        public int SoundsEnabled {
+            get { return _SoundEnabled; }
+            set { _SoundEnabled = value; }
         }
 
         public int HotkeyEnabled {
