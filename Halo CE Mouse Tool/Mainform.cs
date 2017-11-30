@@ -14,7 +14,7 @@ using System.IO;
 using System.Media;
 
 namespace Halo_CE_Mouse_Tool {
-    public partial class Mainform : Form {
+    public partial class Mainform : Form { //And here we go...
         public ProcessHandler processhandler = new ProcessHandler();
         public UpdateHandler updatehandler = new UpdateHandler();
         public FormHandler formhandler = new FormHandler();
@@ -30,8 +30,8 @@ namespace Halo_CE_Mouse_Tool {
         public SoundPlayer notice = new System.Media.SoundPlayer(notice_file);
         public SoundPlayer error = new System.Media.SoundPlayer(error_file);
 
-        static SettingsForm settingsform;
-        static DonateForm donateform;
+        public SettingsForm settingsform;
+        public DonateForm donateform;
 
         public static bool IsAdministrator() {
             return (new WindowsPrincipal(WindowsIdentity.GetCurrent()))
@@ -79,21 +79,11 @@ namespace Halo_CE_Mouse_Tool {
         }
 
         private void SettingsBtn_Click(object sender, EventArgs e) {
-            if (formhandler.formopen(settingsform)) {
-                settingsform.Show();
-            } else {
-                settingsform = new SettingsForm(this);
-                settingsform.Show();
-            }
+            formhandler.formopen(settingsform, this);
         }
 
         private void DonateLink_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e) {
-            if (formhandler.formopen(donateform)) {
-                donateform.Show();
-            } else {
-                donateform = new DonateForm();
-                donateform.Show();
-            }
+            formhandler.formopen(donateform, this);
         }
 
         public void WriteHaloMemory() {

@@ -20,5 +20,27 @@ namespace Halo_CE_Mouse_Tool {
             }
             return false;
         }
+        
+        public void formopen(SettingsForm frm, Mainform g) {
+            foreach (Form form in Application.OpenForms) {
+                if (form == frm) {
+                    g.settingsform.Dispose();
+                    break;
+                }
+            }
+            g.settingsform = new SettingsForm(g);
+            g.settingsform.Show();
+        }
+
+        public void formopen(DonateForm frm, Mainform g) {
+            foreach (Form form in Application.OpenForms) {
+                if (form == frm) {
+                    g.donateform.Dispose();
+                    break;
+                }
+            }
+            g.donateform = new DonateForm();
+            g.donateform.Show();
+        }
     }
 }
