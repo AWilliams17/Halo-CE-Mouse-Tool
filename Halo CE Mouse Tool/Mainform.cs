@@ -15,10 +15,10 @@ namespace Halo_CE_Mouse_Tool {
     public partial class Mainform : Form {
         public ProcessHandler processhandler = new ProcessHandler();
         public UpdateHandler updatehandler = new UpdateHandler();
-        public static KeybindHandler keybindhandler = new KeybindHandler();
         public FormHandler formhandler = new FormHandler();
         static MemoryHandler memoryhandler = new MemoryHandler();
         public static SettingsHandler settings = new SettingsHandler();
+        public static KeybindHandler keybindhandler = new KeybindHandler();
 
         static SettingsForm settingsform;
         static DonateForm donateform;
@@ -32,7 +32,7 @@ namespace Halo_CE_Mouse_Tool {
             InitializeComponent();
             AppDomain.CurrentDomain.ProcessExit += new EventHandler(OnProcessExit);
 
-            string window_title = "Halo CE Mouse Tool v" + updatehandler.GetVersion().ToString();
+            string window_title = "Halo CE Mouse Tool v" + updatehandler.version.ToString();
             if (!IsAdministrator()) {
                 window_title += " -NOT ADMIN-";
                 MessageBox.Show("Warning - You must run this tool as an administrator in order for it to work properly.");
@@ -50,12 +50,12 @@ namespace Halo_CE_Mouse_Tool {
                 settings.LoadSettingsFromXML();
             }
 
-            if (settings.CheckForUpdatesOnStart() == 1) {
+            if (settings.CheckForUpdatesOnStart == 1) {
                 updatehandler.CheckForUpdates();
             }
 
-            SensX.Text = settings.GetSensX().ToString();
-            SensY.Text = settings.GetSensY().ToString();
+            SensX.Text = settings.SensX.ToString();
+            SensY.Text = settings.SensY.ToString();
         }
 
         private void ActivateBtn_Click_1(object sender, EventArgs e) {
@@ -101,18 +101,18 @@ namespace Halo_CE_Mouse_Tool {
             byte[] curr_val = { };
             for (int i = 0; i != 4; i++) {
                 if (i == 0) {
-                    curr_val = BitConverter.GetBytes(settings.GetSensX());
+                    curr_val = BitConverter.GetBytes(settings.SensX);
                     curr_addr = 0x2ABB50;
                 }
                 if (i == 1) {
-                    curr_val = BitConverter.GetBytes(settings.GetSensY());
+                    curr_val = BitConverter.GetBytes(settings.SensY);
                     curr_addr = 0x2ABB54;
                 }
-                if (i == 2 && settings.GetPatchAcceleration() == 1) {
+                if (i == 2 && settings.PatchAcceleration == 1) {
                     curr_val = mouseaccelnop;
                     curr_addr = 0x8F836;
                 }
-                if (i == 3 && settings.GetPatchAcceleration() == 1) {
+                if (i == 3 && settings.PatchAcceleration == 1) {
                     curr_val = mouseaccelnop;
                     curr_addr = 0x8F830;
                 }
@@ -141,19 +141,19 @@ namespace Halo_CE_Mouse_Tool {
         }
 
         private void HotkeyLabelTimer_Tick(object sender, EventArgs e) {
-            if (settings.GetHotkeyEnabled() == 1 && settings.GetHotkey() != null) {
-                HotkeyStatus.Text = "Keybind is set to: " + settings.GetHotkey();
+            if (settings.HotkeyEnabled == 1 && settings.Hotkey != null) {
+                HotkeyStatus.Text = "Keybind is set to: " + settings.Hotkey;
             } else {
                 HotkeyStatus.Text = "Keybind is disabled/not set.";
             }
         }
 
         private void SensX_TextChanged(object sender, EventArgs e) {
-            settings.SetSensX(float.Parse(SensX.Text));
+            settings.SensX = float.Parse(SensX.Text);
         }
 
         private void SensY_TextChanged(object sender, EventArgs e) {
-            settings.SetSensY(float.Parse(SensY.Text));
+            settings.SensY = float.Parse(SensY.Text);
         }
 
         static void OnProcessExit(object sender, EventArgs e) {
@@ -161,8 +161,8 @@ namespace Halo_CE_Mouse_Tool {
         }
 
         private void HotkeyTimer_Tick(object sender, EventArgs e) {
-            if (keybindhandler.GetKeybindStatus() && settings.GetHotkeyEnabled() == 1) {
-                if (KeybindHandler.IsKeyPushedDown((Keys)Enum.Parse(typeof(Keys), settings.GetHotkey()))) {
+            if (keybindhandler.KeybindsEnabled && settings.HotkeyEnabled == 1) {
+                if (KeybindHandler.IsKeyPushedDown((Keys)Enum.Parse(typeof(Keys), settings.Hotkey))) {
                     if (WriteHaloMemory() == 0) {
                         System.Media.SystemSounds.Beep.Play();
                     } else {

@@ -13,12 +13,43 @@ using System.Xml;
 */
 namespace Halo_CE_Mouse_Tool {
     public class SettingsHandler {
-        private float SensX;
-        private float SensY;
-        private int PatchAcceleration;
-        private int CheckForUpdates;
-        private int HotkeyEnabled;
-        private string Hotkey;
+        private float _SensX { get; set; }
+        private float _SensY { get; set; }
+        private int _PatchAcceleration { get; set; }
+        private int _CheckForUpdatesOnStart { get; set; }
+        private int _HotkeyEnabled { get; set; }
+        private string _Hotkey { get; set; }
+
+
+        public float SensX {
+            get { return _SensX; }
+            set { _SensX = value; }
+        }
+
+        public float SensY {
+            get { return _SensY; }
+            set { _SensY = value; }
+        }
+
+        public int PatchAcceleration {
+            get { return _PatchAcceleration; }
+            set { _PatchAcceleration = value; }
+        }
+
+        public int CheckForUpdatesOnStart {
+            get { return _CheckForUpdatesOnStart; }
+            set { _CheckForUpdatesOnStart = value; }
+        }
+
+        public int HotkeyEnabled {
+            get { return _HotkeyEnabled; }
+            set { _HotkeyEnabled = value; }
+        }
+        public string Hotkey {
+            get { return _Hotkey; }
+            set { _Hotkey = value; }
+        }
+
 
         private string XMLPath = Application.StartupPath + "/CEMT.xml";
 
@@ -28,54 +59,6 @@ namespace Halo_CE_Mouse_Tool {
             } else {
                 return false;
             }
-        }
-
-        public int CheckForUpdatesOnStart() {
-            return CheckForUpdates;
-        }
-
-        public int GetHotkeyEnabled() {
-            return HotkeyEnabled;
-        }
-
-        public string GetHotkey() {
-            return Hotkey;
-        }
-
-        public int GetPatchAcceleration() {
-            return PatchAcceleration;
-        }
-
-        public float GetSensX() {
-            return SensX;
-        }
-
-        public float GetSensY() {
-            return SensY;
-        }
-
-        public void SetSensX(float val) {
-            SensX = val;
-        }
-
-        public void SetSensY(float val) {
-            SensY = val;
-        }
-
-        public void SetHotkey(string hotkey) {
-            Hotkey = hotkey;
-        }
-
-        public void SetHotkeyEnabled(int hotkeyon) {
-            HotkeyEnabled = hotkeyon;
-        }
-
-        public void SetPatchAcceleration(int accel) {
-            PatchAcceleration = accel;
-        }
-
-        public void SetCheckForUpdates(int updates) {
-            CheckForUpdates = updates;
         }
 
         public void GenerateXML() {
@@ -106,26 +89,26 @@ namespace Halo_CE_Mouse_Tool {
             XmlNode root = doc.DocumentElement["CEMTSensitivity"];
             foreach (XmlAttribute c in root.Attributes) {
                 if (c.Name == "SensX") {
-                    c.Value = GetSensX().ToString();
+                    c.Value = SensX.ToString();
                 }
                 if (c.Name == "SensY") {
-                    c.Value = GetSensY().ToString();
+                    c.Value = SensY.ToString();
                 }
                 if (c.Name == "PatchAccel") {
-                    c.Value = GetPatchAcceleration().ToString();
+                    c.Value = PatchAcceleration.ToString();
                 }
             }
 
             XmlNode g = doc.DocumentElement["CEMTApplication"];
             foreach (XmlAttribute f in g.Attributes) {
                 if (f.Name == "CheckForUpdates") {
-                    f.Value = CheckForUpdatesOnStart().ToString();
+                    f.Value = CheckForUpdatesOnStart.ToString();
                 }
                 if (f.Name == "Hotkey") {
-                    f.Value = GetHotkey();
+                    f.Value = Hotkey;
                 }
                 if (f.Name == "HotkeyEnabled") {
-                    f.Value = GetHotkeyEnabled().ToString();
+                    f.Value = HotkeyEnabled.ToString();
                 }
             }
             doc.Save(XMLPath);
@@ -150,9 +133,9 @@ namespace Halo_CE_Mouse_Tool {
                             float.TryParse(xmlReader.GetAttribute("SensY"), out sensY);
                             int.TryParse(xmlReader.GetAttribute("PatchAccel"), out patchaccel);
 
-                            SetSensX(sensX);
-                            SetSensY(sensY);
-                            SetPatchAcceleration(patchaccel);
+                            SensX = sensX;
+                            SensY = sensY;
+                            PatchAcceleration = patchaccel;
                         }
                     }
                     if ((xmlReader.NodeType == XmlNodeType.Element) && (xmlReader.Name == "CEMTApplication")) {
@@ -163,9 +146,9 @@ namespace Halo_CE_Mouse_Tool {
                             int.TryParse(xmlReader.GetAttribute("CheckForUpdates"), out checkforupdates);
                             int.TryParse(xmlReader.GetAttribute("HotkeyEnabled"), out hotkeyenabled);
 
-                            SetCheckForUpdates(checkforupdates);
-                            SetHotkey(hotkey);
-                            SetHotkeyEnabled(hotkeyenabled);
+                            CheckForUpdatesOnStart = checkforupdates;
+                            Hotkey = hotkey;
+                            HotkeyEnabled = hotkeyenabled;
                             
                         }
                     }

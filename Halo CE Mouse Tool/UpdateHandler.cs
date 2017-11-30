@@ -14,11 +14,7 @@ using System.Threading.Tasks;
 */
 namespace Halo_CE_Mouse_Tool {
     public class UpdateHandler {
-        private int version = 4;
-
-        public int GetVersion() {
-            return version;
-        }
+        public int version { get; } = 4;
 
         public void CheckForUpdates() {
             WebClient wb = new WebClient();

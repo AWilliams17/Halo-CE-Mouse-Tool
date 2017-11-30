@@ -19,14 +19,14 @@ namespace Halo_CE_Mouse_Tool {
             settings = Mainform.settings;
             updatehandler = f1.updatehandler;
 
-            HotkeyText.Text = settings.GetHotkey();
-            if (settings.GetHotkeyEnabled() == 1) {
+            HotkeyText.Text = settings.Hotkey;
+            if (settings.HotkeyEnabled == 1) {
                 EnableHotkeyCheckbox.Checked = true;
             }
-            if (settings.GetPatchAcceleration() == 1) {
+            if (settings.PatchAcceleration == 1) {
                 MouseAccelCheckbox.Checked = true;
             }
-            if (settings.CheckForUpdatesOnStart() == 1) {
+            if (settings.CheckForUpdatesOnStart == 1) {
                 UpdateCheckbox.Checked = true;
             }
 
@@ -38,25 +38,25 @@ namespace Halo_CE_Mouse_Tool {
 
         private void EnableHotkeyCheckbox_CheckedChanged(object sender, EventArgs e) {
             if (EnableHotkeyCheckbox.Checked) {
-                settings.SetHotkeyEnabled(1);
+                settings.HotkeyEnabled = 1;
             } else {
-                settings.SetHotkeyEnabled(0);
+                settings.HotkeyEnabled = 0;
             }
         }
 
         private void UpdateCheckbox_CheckedChanged(object sender, EventArgs e) {
             if (UpdateCheckbox.Checked) {
-                settings.SetCheckForUpdates(1);
+                settings.CheckForUpdatesOnStart = 1;
             } else {
-                settings.SetCheckForUpdates(0);
+                settings.CheckForUpdatesOnStart = 0;
             }
         }
 
         private void MouseAccelCheckbox_CheckedChanged(object sender, EventArgs e) {
             if (MouseAccelCheckbox.Checked) {
-                settings.SetPatchAcceleration(1);
+                settings.PatchAcceleration = 1;
             } else {
-                settings.SetPatchAcceleration(0);
+                settings.PatchAcceleration = 0;
             }
         }
 
@@ -68,7 +68,7 @@ namespace Halo_CE_Mouse_Tool {
             string key = e.KeyCode.ToString();
 
             HotkeyText.Text = key;
-            settings.SetHotkey(key);
+            settings.Hotkey = key;
         }
     }
 }
