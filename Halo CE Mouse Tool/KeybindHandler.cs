@@ -15,7 +15,7 @@ using System.Diagnostics;
 
 */
 namespace Halo_CE_Mouse_Tool {
-    public class KeybindHandler {
+    public static class KeybindHandler {
 
         [DllImport("user32.dll")]
         static extern short GetAsyncKeyState(System.Windows.Forms.Keys vKey);
@@ -25,14 +25,7 @@ namespace Halo_CE_Mouse_Tool {
             return 0 != (GetAsyncKeyState(vKey) & 0x8000);
         }
 
-        public bool KeybindsEnabled { get; private set; }
-
-        public void SuspendKeybinds() {
-            KeybindsEnabled = false;
-        }
-
-        public void EnableKeybinds() {
-            KeybindsEnabled = true;
-        }
+        public static bool KeybindsEnabled { get; set; }
+        
     }
 }

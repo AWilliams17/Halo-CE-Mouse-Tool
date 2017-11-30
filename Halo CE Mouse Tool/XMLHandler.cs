@@ -8,10 +8,10 @@ using System.IO;
 using System.Xml;
 
 namespace Halo_CE_Mouse_Tool {
-    public class XMLHandler {
-        private string XMLPath = Application.StartupPath + "/CEMT.xml";
+    public static class XMLHandler {
+        private static string XMLPath = Application.StartupPath + "/CEMT.xml";
 
-        private bool XMLExists() {
+        private static bool XMLExists() {
             if (File.Exists(XMLPath)) {
                 return true;
             } else {
@@ -19,7 +19,7 @@ namespace Halo_CE_Mouse_Tool {
             }
         }
 
-        public void GenerateXML() {
+        public static void GenerateXML() {
             XmlWriter xmlWriter = XmlWriter.Create("CEMT.xml");
 
             xmlWriter.WriteStartDocument();
@@ -41,7 +41,7 @@ namespace Halo_CE_Mouse_Tool {
             xmlWriter.Close();
         }
 
-        public void WriteSettingsToXML(SettingsHandler s) {
+        public static void WriteSettingsToXML(SettingsHandler s) {
             XmlDocument doc = new XmlDocument();
             try {
                 doc.Load(XMLPath);
@@ -163,7 +163,7 @@ namespace Halo_CE_Mouse_Tool {
             What do code monkey think?
             Code monkey think he get back to work on tool.
         */
-        public int LoadSettingsFromXML(SettingsHandler s) {
+        public static int LoadSettingsFromXML(SettingsHandler s) {
             bool err = false;
             if (XMLExists()) {
                 //Load and set values

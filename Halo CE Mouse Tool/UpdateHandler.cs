@@ -15,7 +15,7 @@ using System.IO;
 */
 namespace Halo_CE_Mouse_Tool {
     public class WebClientWithTimeout : WebClient {
-        int t;
+        private int t;
         public WebClientWithTimeout(int timeout) {
             t = timeout;
         }
@@ -26,11 +26,11 @@ namespace Halo_CE_Mouse_Tool {
         }
     }
 
-    public class UpdateHandler {
-        public int version { get; } = 4;
+    public static class UpdateHandler {
+        public const int version = 4; //Current program version
 
-        public int CheckForUpdates() {
-            WebClientWithTimeout wb = new WebClientWithTimeout(5000);
+        public static int CheckForUpdates() {
+            WebClientWithTimeout wb = new WebClientWithTimeout(5000); //Timeout after 5 seconds. Add option in future.
             byte[] HTML;
             try {
                 HTML = wb.DownloadData("https://pastebin.com/raw/UQpXvHBR");

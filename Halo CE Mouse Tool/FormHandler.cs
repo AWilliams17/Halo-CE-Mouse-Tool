@@ -11,8 +11,8 @@ using System.Windows.Forms;
     show them.
 */
 namespace Halo_CE_Mouse_Tool {
-    public class FormHandler {
-        public bool formopen(Form frm) {
+    public static class FormHandler {
+        public static bool formopen(Form frm) {
             foreach (Form form in Application.OpenForms) {
                 if (form == frm) {
                     return true;
@@ -21,18 +21,18 @@ namespace Halo_CE_Mouse_Tool {
             return false;
         }
         
-        public void formopen(SettingsForm frm, Mainform g) {
+        public static void formopen(SettingsForm frm, Mainform g) {
             foreach (Form form in Application.OpenForms) {
                 if (form == frm) {
                     g.settingsform.Dispose();
                     break;
                 }
             }
-            g.settingsform = new SettingsForm(g);
+            g.settingsform = new SettingsForm();
             g.settingsform.Show();
         }
 
-        public void formopen(DonateForm frm, Mainform g) {
+        public static void formopen(DonateForm frm, Mainform g) {
             foreach (Form form in Application.OpenForms) {
                 if (form == frm) {
                     g.donateform.Dispose();

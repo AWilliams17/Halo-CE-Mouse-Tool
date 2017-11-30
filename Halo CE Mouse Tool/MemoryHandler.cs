@@ -12,25 +12,25 @@ using System.Diagnostics;
     and writing to it.
 */
 namespace Halo_CE_Mouse_Tool {
-    public class MemoryHandler {
+    public static class MemoryHandler {
         const int PROCESS_WM_READ = 0x0010;
         const int PROCESS_VM_WRITE = 0x0020;
         const int PROCESS_VM_OPERATION = 0x0008;
 
         [DllImport("kernel32.dll", SetLastError = true)]
-        public static extern bool WriteProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, byte[] lpBuffer, int nSize, out int lpNumberOfBytesWritten);
+        private static extern bool WriteProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, byte[] lpBuffer, int nSize, out int lpNumberOfBytesWritten);
         [DllImport("kernel32.dll")]
-        public static extern IntPtr OpenProcess(int dwDesiredAccess, bool bInheritHandle, int dwProcessId);
+        private static extern IntPtr OpenProcess(int dwDesiredAccess, bool bInheritHandle, int dwProcessId);
 
 
-        private int GetPID(string processname) {
+        private static int GetPID(string processname) {
             Process[] process = Process.GetProcessesByName(processname);
             int PID = process[0].Id;
 
             return PID;
         }
 
-        private IntPtr getBaseAddr(string processname) {
+        private static IntPtr getBaseAddr(string processname) {
             IntPtr baseaddr;
             try {
                 Process[] processes = Process.GetProcessesByName(processname);
@@ -48,7 +48,7 @@ namespace Halo_CE_Mouse_Tool {
             Return value 0: Success
             Otherwise, error code is returned.
         */
-        public int WriteToProcessMemory(string processname, float value, int address) {
+        public static int WriteToProcessMemory(string processname, float value, int address) {
             Process process = Process.GetProcessesByName(processname)[0];
             IntPtr processHandle = OpenProcess(PROCESS_WM_READ | PROCESS_VM_WRITE | PROCESS_VM_OPERATION, false, GetPID(processname));
             IntPtr baseAddr = getBaseAddr(processname);
@@ -66,7 +66,7 @@ namespace Halo_CE_Mouse_Tool {
             return 0;
         }
 
-        public int WriteToProcessMemory(string processname, byte[] value, int address) {
+        public static int WriteToProcessMemory(string processname, byte[] value, int address) {
             Process process = Process.GetProcessesByName(processname)[0];
             IntPtr processHandle = OpenProcess(PROCESS_WM_READ | PROCESS_VM_WRITE | PROCESS_VM_OPERATION, false, GetPID(processname));
             IntPtr baseAddr = getBaseAddr(processname);

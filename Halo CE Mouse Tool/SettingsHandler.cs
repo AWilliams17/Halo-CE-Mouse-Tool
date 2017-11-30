@@ -7,10 +7,6 @@ using System.Windows.Forms;
 using System.IO;
 using System.Xml;
 
-/*
-    -SettingsHandler Class-
-    This class handles all settings related stuff. It's also terrible.
-*/
 namespace Halo_CE_Mouse_Tool {
     public class SettingsHandler {
         private float _SensX { get; set; } = 1;
@@ -20,9 +16,7 @@ namespace Halo_CE_Mouse_Tool {
         private int _HotkeyEnabled { get; set; } = 1;
         private string _Hotkey { get; set; } = "F1";
         private int _SoundEnabled { get; set; } = 1;
-
-
-
+        
         public float SensX {
             get { return _SensX; }
             set { _SensX = value; }

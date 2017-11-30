@@ -12,27 +12,19 @@ using System.Diagnostics;
 
 namespace Halo_CE_Mouse_Tool {
     public partial class SettingsForm : Form {
-
-        SettingsHandler settings;
-        UpdateHandler updatehandler;
-        Mainform f;
-        public SettingsForm(Mainform f1) {
+        public SettingsForm() {
             InitializeComponent();
-            settings = Mainform.settings;
-            updatehandler = f1.updatehandler;
-            f = f1;
-
-            HotkeyText.Text = settings.Hotkey;
-            if (settings.HotkeyEnabled == 1) {
+            HotkeyText.Text = Mainform.settings.Hotkey;
+            if (Mainform.settings.HotkeyEnabled == 1) {
                 EnableHotkeyCheckbox.Checked = true;
             }
-            if (settings.PatchAcceleration == 1) {
+            if (Mainform.settings.PatchAcceleration == 1) {
                 MouseAccelCheckbox.Checked = true;
             }
-            if (settings.CheckForUpdatesOnStart == 1) {
+            if (Mainform.settings.CheckForUpdatesOnStart == 1) {
                 UpdateCheckbox.Checked = true;
             }
-            if (settings.SoundsEnabled == 1) {
+            if (Mainform.settings.SoundsEnabled == 1) {
                 SoundsEnabledCheckbox.Checked = true;
             }
 
@@ -44,45 +36,45 @@ namespace Halo_CE_Mouse_Tool {
 
         private void EnableHotkeyCheckbox_CheckedChanged(object sender, EventArgs e) {
             if (EnableHotkeyCheckbox.Checked) {
-                settings.HotkeyEnabled = 1;
+                Mainform.settings.HotkeyEnabled = 1;
             } else {
-                settings.HotkeyEnabled = 0;
+                Mainform.settings.HotkeyEnabled = 0;
             }
         }
 
         private void UpdateCheckbox_CheckedChanged(object sender, EventArgs e) {
             if (UpdateCheckbox.Checked) {
-                settings.CheckForUpdatesOnStart = 1;
+                Mainform.settings.CheckForUpdatesOnStart = 1;
             } else {
-                settings.CheckForUpdatesOnStart = 0;
+                Mainform.settings.CheckForUpdatesOnStart = 0;
             }
         }
 
         private void MouseAccelCheckbox_CheckedChanged(object sender, EventArgs e) {
             if (MouseAccelCheckbox.Checked) {
-                settings.PatchAcceleration = 1;
+                Mainform.settings.PatchAcceleration = 1;
             } else {
-                settings.PatchAcceleration = 0;
+                Mainform.settings.PatchAcceleration = 0;
             }
         }
 
         private void SoundsEnabledCheckbox_CheckedChanged(object sender, EventArgs e) {
             if (SoundsEnabledCheckbox.Checked) {
-                settings.SoundsEnabled = 1;
+                Mainform.settings.SoundsEnabled = 1;
             } else {
-                settings.SoundsEnabled = 0;
+                Mainform.settings.SoundsEnabled = 0;
             }
         }
 
         private void CheckforUpdatesBtn_Click(object sender, EventArgs e) {
-            f.utilities.CheckForUpdates();
+            utils.CheckForUpdates();
         }
 
         private void HotkeyText_KeyDown(object sender, KeyEventArgs e) {
             string key = e.KeyCode.ToString();
 
             HotkeyText.Text = key;
-            settings.Hotkey = key;
+            Mainform.settings.Hotkey = key;
         }
     }
 }
