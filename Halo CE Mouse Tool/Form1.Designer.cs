@@ -101,9 +101,9 @@
             // 
             // ActivateBtn
             // 
-            this.ActivateBtn.Location = new System.Drawing.Point(14, 86);
+            this.ActivateBtn.Location = new System.Drawing.Point(16, 86);
             this.ActivateBtn.Name = "ActivateBtn";
-            this.ActivateBtn.Size = new System.Drawing.Size(75, 23);
+            this.ActivateBtn.Size = new System.Drawing.Size(89, 23);
             this.ActivateBtn.TabIndex = 6;
             this.ActivateBtn.Text = "Activate";
             this.ActivateBtn.UseVisualStyleBackColor = true;
@@ -111,9 +111,9 @@
             // 
             // SettingsBtn
             // 
-            this.SettingsBtn.Location = new System.Drawing.Point(155, 86);
+            this.SettingsBtn.Location = new System.Drawing.Point(141, 86);
             this.SettingsBtn.Name = "SettingsBtn";
-            this.SettingsBtn.Size = new System.Drawing.Size(75, 23);
+            this.SettingsBtn.Size = new System.Drawing.Size(89, 23);
             this.SettingsBtn.TabIndex = 7;
             this.SettingsBtn.Text = "Settings";
             this.SettingsBtn.UseVisualStyleBackColor = true;
@@ -162,7 +162,7 @@
             // DonateLink
             // 
             this.DonateLink.AutoSize = true;
-            this.DonateLink.Location = new System.Drawing.Point(120, 112);
+            this.DonateLink.Location = new System.Drawing.Point(116, 112);
             this.DonateLink.Name = "DonateLink";
             this.DonateLink.Size = new System.Drawing.Size(42, 13);
             this.DonateLink.TabIndex = 12;

@@ -24,7 +24,7 @@
         /// </summary>
         private void InitializeComponent() {
             this.label1 = new System.Windows.Forms.Label();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.PaypalLink = new System.Windows.Forms.LinkLabel();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
@@ -38,15 +38,16 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Well if you insist...";
             // 
-            // linkLabel1
+            // PaypalLink
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(100, 9);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(90, 13);
-            this.linkLabel1.TabIndex = 1;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Here\'s my paypal.";
+            this.PaypalLink.AutoSize = true;
+            this.PaypalLink.Location = new System.Drawing.Point(100, 9);
+            this.PaypalLink.Name = "PaypalLink";
+            this.PaypalLink.Size = new System.Drawing.Size(90, 13);
+            this.PaypalLink.TabIndex = 1;
+            this.PaypalLink.TabStop = true;
+            this.PaypalLink.Text = "Here\'s my paypal.";
+            this.PaypalLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.PaypalLink_LinkClicked);
             // 
             // label2
             // 
@@ -62,6 +63,7 @@
             this.textBox1.Location = new System.Drawing.Point(15, 25);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(285, 47);
             this.textBox1.TabIndex = 3;
             this.textBox1.Text = "BTC: 1HXoT5Zjf6vMZqSN411ybpQ3YXaBgun6j2\r\nLTC: LXQzjGtUutfBy3YsuAM1k5C7iABnYBPy9U\r" +
@@ -74,7 +76,7 @@
             this.ClientSize = new System.Drawing.Size(314, 81);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.PaypalLink);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.MaximumSize = new System.Drawing.Size(330, 120);
@@ -89,7 +91,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.LinkLabel PaypalLink;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox1;
     }
