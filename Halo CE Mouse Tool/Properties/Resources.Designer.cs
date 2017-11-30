@@ -63,20 +63,10 @@ namespace Halo_CE_Mouse_Tool.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon HMFIcon {
+        internal static System.Drawing.Icon MouseTool {
             get {
-                object obj = ResourceManager.GetObject("HMFIcon", resourceCulture);
+                object obj = ResourceManager.GetObject("MouseTool", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap x9cRL6m {
-            get {
-                object obj = ResourceManager.GetObject("x9cRL6m", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

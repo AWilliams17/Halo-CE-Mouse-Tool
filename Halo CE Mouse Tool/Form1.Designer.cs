@@ -218,6 +218,7 @@
             this.Controls.Add(this.SensY);
             this.Controls.Add(this.SensX);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(258, 170);
             this.MinimumSize = new System.Drawing.Size(258, 170);
