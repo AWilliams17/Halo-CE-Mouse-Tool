@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Security.Principal; //For checking if user is running as admin
+using System.IO;
+using System.Media;
 
 namespace Halo_CE_Mouse_Tool {
     public partial class Mainform : Form {
@@ -20,6 +22,13 @@ namespace Halo_CE_Mouse_Tool {
         public static SettingsHandler settings = new SettingsHandler();
         public static KeybindHandler keybindhandler = new KeybindHandler();
         public static XMLHandler xmlhandler = new XMLHandler();
+
+        static Stream success_file = Properties.Resources.SND_Success;
+        static Stream notice_file = Properties.Resources.SND_Notice;
+        static Stream error_file = Properties.Resources.SND_Error;
+        public SoundPlayer success = new System.Media.SoundPlayer(success_file);
+        public SoundPlayer notice = new System.Media.SoundPlayer(notice_file);
+        public SoundPlayer error = new System.Media.SoundPlayer(error_file);
 
         static SettingsForm settingsform;
         static DonateForm donateform;
@@ -36,28 +45,17 @@ namespace Halo_CE_Mouse_Tool {
             string window_title = "Halo CE Mouse Tool v" + updatehandler.version.ToString();
             if (!IsAdministrator()) {
                 window_title += " -NOT ADMIN-";
+                notice.Play();
                 MessageBox.Show("Warning - You must run this tool as an administrator in order for it to work properly.");
             }
             this.Text = window_title;
         }
 
         private void Mainform_Load(object sender, EventArgs e) {
-            int loadxml = xmlhandler.LoadSettingsFromXML(settings);
-            if (loadxml == 1) {
-                MessageBox.Show("Successfully found & Read XML.");
-            } else if (loadxml == 2 || loadxml == 3) {
-                MessageBox.Show("An XML file was found, but an error occurred whilst reading it. It is possible one or more settings were not set. They have been set to default.");
-            }
-            else {
-                MessageBox.Show("Didn't find an XML file. Will now generate one with default values...");
-                xmlhandler.GenerateXML();
-                xmlhandler.LoadSettingsFromXML(settings);
-            }
-
+            HandleXML();
             if (settings.CheckForUpdatesOnStart == 1) {
-                updatehandler.CheckForUpdates();
+                CheckForUpdates();
             }
-
             SensX.Text = settings.SensX.ToString();
             SensY.Text = settings.SensY.ToString();
         }
@@ -98,7 +96,7 @@ namespace Halo_CE_Mouse_Tool {
             }
         }
 
-        public static int WriteHaloMemory() {
+        public void WriteHaloMemory() {
             byte[] mouseaccelnop = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
             int return_value;
             int curr_addr = 0;
@@ -122,18 +120,16 @@ namespace Halo_CE_Mouse_Tool {
                 }
                 return_value = memoryhandler.WriteToProcessMemory("haloce", curr_val, curr_addr);
                 if (return_value != 0) {
+                    error.Play();
                     if (return_value == 1) {
-                        MessageBox.Show("Access Denied. Are you running the tool as an admin?");
-                        return 1;
+                        MessageBox.Show("Access Denied. Are you running the tool as Admin?");
                     } else {
-                        MessageBox.Show("One or more values failed to write. Error code: " + return_value.ToString());
-                        return return_value;
+                        MessageBox.Show("One or more values failed to write. Error code " + return_value);
                     }
-                } else if (i == 3 && return_value == 0) {
-                    MessageBox.Show("Successfully wrote sensitivity values to memory.");
                 }
             }
-            return 0;
+            success.Play();
+            MessageBox.Show("Successfully wrote values to memory.");
         }
 
         private void GithubLink_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e) {
@@ -183,11 +179,7 @@ namespace Halo_CE_Mouse_Tool {
         private void HotkeyTimer_Tick(object sender, EventArgs e) {
             if (keybindhandler.KeybindsEnabled && settings.HotkeyEnabled == 1) {
                 if (KeybindHandler.IsKeyPushedDown((Keys)Enum.Parse(typeof(Keys), settings.Hotkey))) {
-                    if (WriteHaloMemory() == 0) {
-                        System.Media.SystemSounds.Beep.Play();
-                    } else {
-                        System.Media.SystemSounds.Exclamation.Play();
-                    }
+                    WriteHaloMemory();
                 }
             }
         }
@@ -203,6 +195,37 @@ namespace Halo_CE_Mouse_Tool {
             if (SensY.Text == "") {
                 SensY.Focus();
                 MessageBox.Show("Error: You can't leave this field blank.");
+            }
+        }
+
+        private void HandleXML() {
+            int loadxml = xmlhandler.LoadSettingsFromXML(settings);
+            if (loadxml == 1) {
+                MessageBox.Show("Successfully found & Read XML.");
+            } else if (loadxml == 2 || loadxml == 3) {
+                MessageBox.Show("An XML file was found, but an error occurred whilst reading it. It is possible one or more settings were not set. They have been set to default.");
+            } else {
+                MessageBox.Show("Didn't find an XML file. Will now generate one with default values...");
+                xmlhandler.GenerateXML();
+                xmlhandler.LoadSettingsFromXML(settings);
+            }
+        }
+
+        public void CheckForUpdates() {
+            int res = updatehandler.CheckForUpdates();
+            if (res == 2) {
+                error.Play();
+                MessageBox.Show("An error occurred while checking for updates.");
+            } else {
+                notice.Play();
+                if (res == 0) {
+                    MessageBox.Show("No updates were found.");
+                } else {
+                    DialogResult d = MessageBox.Show("An Update is Available. Would you like to visit the downloads page?", "Update Found", MessageBoxButtons.YesNo);
+                    if (d == DialogResult.Yes) {
+                        Process.Start("https://github.com/AWilliams17/Halo-CE-Mouse-Tool/releases");
+                    }
+                }
             }
         }
     }

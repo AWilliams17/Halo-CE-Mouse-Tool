@@ -8,16 +8,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Diagnostics;
 
 namespace Halo_CE_Mouse_Tool {
     public partial class SettingsForm : Form {
 
         SettingsHandler settings;
         UpdateHandler updatehandler;
+        Mainform f;
         public SettingsForm(Mainform f1) {
             InitializeComponent();
             settings = Mainform.settings;
             updatehandler = f1.updatehandler;
+            f = f1;
 
             HotkeyText.Text = settings.Hotkey;
             if (settings.HotkeyEnabled == 1) {
@@ -61,7 +64,7 @@ namespace Halo_CE_Mouse_Tool {
         }
 
         private void CheckforUpdatesBtn_Click(object sender, EventArgs e) {
-            updatehandler.CheckForUpdates();
+            f.CheckForUpdates();
         }
 
         private void HotkeyText_KeyDown(object sender, KeyEventArgs e) {

@@ -16,7 +16,7 @@ namespace Halo_CE_Mouse_Tool {
     public class UpdateHandler {
         public int version { get; } = 4;
 
-        public void CheckForUpdates() {
+        public int CheckForUpdates() {
             WebClient wb = new WebClient();
             byte[] HTML;
             try {
@@ -25,14 +25,11 @@ namespace Halo_CE_Mouse_Tool {
                 string nv = objUTF8.GetString(HTML);
                 int version_available = int.Parse(nv[0].ToString());
                 if (version_available > version) {
-                    DialogResult d = MessageBox.Show("An Update is Available. Would you like to visit the downloads page?", "Update Found", MessageBoxButtons.YesNo);
-                    if (d == DialogResult.Yes) {
-                        Process.Start("https://github.com/AWilliams17/Halo-CE-Mouse-Tool/releases");
-                    }
+                    return 1;
                 }
-                MessageBox.Show("No updates were found.");
+                return 0;
             } catch {
-                MessageBox.Show("An error occurred while checking for updates.");
+                return 2;
             }
         }
     }

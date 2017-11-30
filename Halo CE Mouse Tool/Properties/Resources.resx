@@ -121,4 +121,13 @@
   <data name="MouseTool" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MouseTool.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="SND_Error" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Error.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SND_Notice" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Notice.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SND_Success" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Success.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>
