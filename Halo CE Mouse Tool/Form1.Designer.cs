@@ -51,7 +51,7 @@
             // 
             this.SensX.Location = new System.Drawing.Point(86, 6);
             this.SensX.Name = "SensX";
-            this.SensX.Size = new System.Drawing.Size(99, 20);
+            this.SensX.Size = new System.Drawing.Size(144, 20);
             this.SensX.TabIndex = 0;
             this.SensX.TextChanged += new System.EventHandler(this.SensX_TextChanged);
             // 
@@ -59,7 +59,7 @@
             // 
             this.SensY.Location = new System.Drawing.Point(86, 32);
             this.SensY.Name = "SensY";
-            this.SensY.Size = new System.Drawing.Size(99, 20);
+            this.SensY.Size = new System.Drawing.Size(144, 20);
             this.SensY.TabIndex = 1;
             this.SensY.TextChanged += new System.EventHandler(this.SensY_TextChanged);
             // 
@@ -111,7 +111,7 @@
             // 
             // SettingsBtn
             // 
-            this.SettingsBtn.Location = new System.Drawing.Point(110, 86);
+            this.SettingsBtn.Location = new System.Drawing.Point(155, 86);
             this.SettingsBtn.Name = "SettingsBtn";
             this.SettingsBtn.Size = new System.Drawing.Size(75, 23);
             this.SettingsBtn.TabIndex = 7;
@@ -151,7 +151,7 @@
             // GithubLink
             // 
             this.GithubLink.AutoSize = true;
-            this.GithubLink.Location = new System.Drawing.Point(147, 112);
+            this.GithubLink.Location = new System.Drawing.Point(192, 112);
             this.GithubLink.Name = "GithubLink";
             this.GithubLink.Size = new System.Drawing.Size(38, 13);
             this.GithubLink.TabIndex = 11;
@@ -162,7 +162,7 @@
             // DonateLink
             // 
             this.DonateLink.AutoSize = true;
-            this.DonateLink.Location = new System.Drawing.Point(94, 112);
+            this.DonateLink.Location = new System.Drawing.Point(120, 112);
             this.DonateLink.Name = "DonateLink";
             this.DonateLink.Size = new System.Drawing.Size(42, 13);
             this.DonateLink.TabIndex = 12;
@@ -190,7 +190,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(202, 131);
+            this.ClientSize = new System.Drawing.Size(242, 131);
             this.Controls.Add(this.DonateLink);
             this.Controls.Add(this.GithubLink);
             this.Controls.Add(this.RedditLink);
@@ -206,8 +206,8 @@
             this.Controls.Add(this.SensX);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(218, 170);
-            this.MinimumSize = new System.Drawing.Size(218, 170);
+            this.MaximumSize = new System.Drawing.Size(258, 170);
+            this.MinimumSize = new System.Drawing.Size(258, 170);
             this.Name = "Mainform";
             this.Load += new System.EventHandler(this.Mainform_Load);
             this.ResumeLayout(false);

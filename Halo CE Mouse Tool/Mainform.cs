@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Security.Principal; //For checking if user is running as admin
 
 namespace Halo_CE_Mouse_Tool {
     public partial class Mainform : Form {
@@ -20,16 +21,24 @@ namespace Halo_CE_Mouse_Tool {
         public static SettingsHandler settings;
         static SettingsForm settingsform;
         static DonateForm donateform;
-        
+
+        public static bool IsAdministrator() {
+            return (new WindowsPrincipal(WindowsIdentity.GetCurrent()))
+                      .IsInRole(WindowsBuiltInRole.Administrator);
+        }
+
         public Mainform() {
             InitializeComponent();
             AppDomain.CurrentDomain.ProcessExit += new EventHandler(OnProcessExit);
-        }
-
-        private void Mainform_Load(object sender, EventArgs e) {
             SetUp();
-            this.Text = "Halo CE Mouse Tool v" + updatehandler.GetVersion().ToString();
-            
+
+            string window_title = "Halo CE Mouse Tool v" + updatehandler.GetVersion().ToString();
+            if (!IsAdministrator()) {
+                window_title += " -NOT ADMIN-";
+                MessageBox.Show("Warning - You must run this tool as an administrator in order for it to work properly.");
+            }
+            this.Text = window_title;
+
 
             int loadxml = settings.LoadSettingsFromXML();
             if (loadxml == 1) {
@@ -45,7 +54,10 @@ namespace Halo_CE_Mouse_Tool {
             if (settings.CheckForUpdatesOnStart() == 1) {
                 updatehandler.CheckForUpdates();
             }
+        }
 
+        private void Mainform_Load(object sender, EventArgs e) {
+            
         }
 
         private void ActivateBtn_Click_1(object sender, EventArgs e) {
