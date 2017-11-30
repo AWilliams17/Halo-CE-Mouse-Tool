@@ -45,7 +45,10 @@ namespace Halo_CE_Mouse_Tool {
             int loadxml = xmlhandler.LoadSettingsFromXML(settings);
             if (loadxml == 1) {
                 MessageBox.Show("Successfully found & Read XML.");
-            } else {
+            } else if (loadxml == 2 || loadxml == 3) {
+                MessageBox.Show("An XML file was found, but an error occurred whilst reading it. It is possible one or more settings were not set. They have been set to default.");
+            }
+            else {
                 MessageBox.Show("Didn't find an XML file. Will now generate one with default values...");
                 xmlhandler.GenerateXML();
                 xmlhandler.LoadSettingsFromXML(settings);

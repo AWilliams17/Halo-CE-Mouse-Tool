@@ -77,41 +77,65 @@ namespace Halo_CE_Mouse_Tool {
             What do code monkey think?
             Code monkey think he get back to work on tool.
         */
-        public int LoadSettingsFromXML(SettingsHandler s) { //1 == successfully read & set XML
+        public int LoadSettingsFromXML(SettingsHandler s) {
+            bool err = false;
             if (XMLExists()) {
                 //Load and set values
                 XmlReader xmlReader = XmlReader.Create(XMLPath);
-                while (xmlReader.Read()) {
-                    if ((xmlReader.NodeType == XmlNodeType.Element) && (xmlReader.Name == "CEMTSensitivity")) {
-                        if (xmlReader.HasAttributes) {
-                            float sensX;
-                            float sensY;
-                            int patchaccel;
-                            float.TryParse(xmlReader.GetAttribute("SensX"), out sensX);
-                            float.TryParse(xmlReader.GetAttribute("SensY"), out sensY);
-                            int.TryParse(xmlReader.GetAttribute("PatchAccel"), out patchaccel);
-
-                            s.SensX = sensX;
-                            s.SensY = sensY;
-                            s.PatchAcceleration = patchaccel;
+                try {
+                    while (xmlReader.Read()) {
+                        if ((xmlReader.NodeType == XmlNodeType.Element) && (xmlReader.Name == "CEMTSensitivity")) {
+                            if (xmlReader.HasAttributes) {
+                                float sensX;
+                                float sensY;
+                                int patchaccel;
+                                if (!float.TryParse(xmlReader.GetAttribute("SensX"), out sensX)) {
+                                    err = true;
+                                } else {
+                                    s.SensX = sensX;
+                                }
+                                 if (!float.TryParse(xmlReader.GetAttribute("SensY"), out sensY)) {
+                                    err = true;
+                                } else {
+                                    s.SensY = sensY;
+                                }
+                                if (!int.TryParse(xmlReader.GetAttribute("PatchAccel"), out patchaccel)) {
+                                    err = true;
+                                } else {
+                                    s.PatchAcceleration = patchaccel;
+                                }
+                            }
+                        }
+                        if ((xmlReader.NodeType == XmlNodeType.Element) && (xmlReader.Name == "CEMTApplication")) {
+                            if (xmlReader.HasAttributes) {
+                                int checkforupdates;
+                                int hotkeyenabled;
+                                string hotkey = xmlReader.GetAttribute("Hotkey");
+                                if (hotkey == null) {
+                                    err = true;
+                                } else {
+                                    s.Hotkey = hotkey;
+                                }
+                                if (!int.TryParse(xmlReader.GetAttribute("CheckForUpdates"), out checkforupdates)) {
+                                    err = true;
+                                } else {
+                                    s.CheckForUpdatesOnStart = checkforupdates;
+                                }
+                                if (!int.TryParse(xmlReader.GetAttribute("HotkeyEnabled"), out hotkeyenabled)) {
+                                    err = true;
+                                } else {
+                                    s.HotkeyEnabled = hotkeyenabled;
+                                }
+                            }
                         }
                     }
-                    if ((xmlReader.NodeType == XmlNodeType.Element) && (xmlReader.Name == "CEMTApplication")) {
-                        if (xmlReader.HasAttributes) {
-                            int checkforupdates;
-                            int hotkeyenabled;
-                            string hotkey = xmlReader.GetAttribute("Hotkey");
-                            int.TryParse(xmlReader.GetAttribute("CheckForUpdates"), out checkforupdates);
-                            int.TryParse(xmlReader.GetAttribute("HotkeyEnabled"), out hotkeyenabled);
-
-                            s.CheckForUpdatesOnStart = checkforupdates;
-                            s.Hotkey = hotkey;
-                            s.HotkeyEnabled = hotkeyenabled;
-
-                        }
-                    }
+                } catch (XmlException){
+                    return 2; //2 == Exception
                 }
-                return 1;
+                if (err == true) {
+                    return 3; //3 == One or more values not read properly; they are set to default values
+                }
+                return 1; //1 == Successfully read
             } else {
                 return 0; //0 == didn't find an XML
             }

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CEMT>
-  <CEMTSensitivity SensX="3" SensY="1" PatchAccel="1" />
-  <CEMTApplication CheckForUpdates="1" Hotkey="W" HotkeyEnabled="1" />
+  <CEMTSensitivity SensX="1" SensY="1" PatchAccel="1" />
+  <CEMTApplication CheckForUpdates="1" Hotkey="F1" HotkeyEnabled="1" />
 </CEMT>

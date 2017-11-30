@@ -13,12 +13,12 @@ using System.Xml;
 */
 namespace Halo_CE_Mouse_Tool {
     public class SettingsHandler {
-        private float _SensX { get; set; }
-        private float _SensY { get; set; }
-        private int _PatchAcceleration { get; set; }
-        private int _CheckForUpdatesOnStart { get; set; }
-        private int _HotkeyEnabled { get; set; }
-        private string _Hotkey { get; set; }
+        private float _SensX { get; set; } = 1;
+        private float _SensY { get; set; } = 1;
+        private int _PatchAcceleration { get; set; } = 1;
+        private int _CheckForUpdatesOnStart { get; set; } = 1;
+        private int _HotkeyEnabled { get; set; } = 1;
+        private string _Hotkey { get; set; } = "F1";
         
 
 
