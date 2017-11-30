@@ -52,8 +52,9 @@
             // SensX
             // 
             this.SensX.Location = new System.Drawing.Point(86, 6);
+            this.SensX.MaxLength = 32;
             this.SensX.Name = "SensX";
-            this.SensX.Size = new System.Drawing.Size(144, 20);
+            this.SensX.Size = new System.Drawing.Size(132, 20);
             this.SensX.TabIndex = 0;
             this.Tooltip.SetToolTip(this.SensX, "This textbox controls your Horizontal sensitivity.\r\nOnly integers/decimals are al" +
         "lowed in this field.\r\nEG: 1.5.");
@@ -63,8 +64,9 @@
             // SensY
             // 
             this.SensY.Location = new System.Drawing.Point(86, 32);
+            this.SensY.MaxLength = 32;
             this.SensY.Name = "SensY";
-            this.SensY.Size = new System.Drawing.Size(144, 20);
+            this.SensY.Size = new System.Drawing.Size(132, 20);
             this.SensY.TabIndex = 1;
             this.Tooltip.SetToolTip(this.SensY, "This textbox controls your Vertical sensitivity.\r\nOnly integers/decimals are allo" +
         "wed in this field.\r\nEG: 1.5.\r\n");
@@ -109,7 +111,7 @@
             // 
             // ActivateBtn
             // 
-            this.ActivateBtn.Location = new System.Drawing.Point(16, 86);
+            this.ActivateBtn.Location = new System.Drawing.Point(15, 91);
             this.ActivateBtn.Name = "ActivateBtn";
             this.ActivateBtn.Size = new System.Drawing.Size(89, 23);
             this.ActivateBtn.TabIndex = 6;
@@ -120,7 +122,7 @@
             // 
             // SettingsBtn
             // 
-            this.SettingsBtn.Location = new System.Drawing.Point(141, 86);
+            this.SettingsBtn.Location = new System.Drawing.Point(129, 91);
             this.SettingsBtn.Name = "SettingsBtn";
             this.SettingsBtn.Size = new System.Drawing.Size(89, 23);
             this.SettingsBtn.TabIndex = 7;
@@ -132,7 +134,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 70);
+            this.label4.Location = new System.Drawing.Point(12, 73);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(44, 13);
             this.label4.TabIndex = 8;
@@ -141,7 +143,7 @@
             // HotkeyStatus
             // 
             this.HotkeyStatus.AutoSize = true;
-            this.HotkeyStatus.Location = new System.Drawing.Point(58, 70);
+            this.HotkeyStatus.Location = new System.Drawing.Point(58, 73);
             this.HotkeyStatus.Name = "HotkeyStatus";
             this.HotkeyStatus.Size = new System.Drawing.Size(16, 13);
             this.HotkeyStatus.TabIndex = 9;
@@ -150,7 +152,7 @@
             // RedditLink
             // 
             this.RedditLink.AutoSize = true;
-            this.RedditLink.Location = new System.Drawing.Point(13, 112);
+            this.RedditLink.Location = new System.Drawing.Point(13, 117);
             this.RedditLink.Name = "RedditLink";
             this.RedditLink.Size = new System.Drawing.Size(75, 13);
             this.RedditLink.TabIndex = 10;
@@ -161,7 +163,7 @@
             // GithubLink
             // 
             this.GithubLink.AutoSize = true;
-            this.GithubLink.Location = new System.Drawing.Point(192, 112);
+            this.GithubLink.Location = new System.Drawing.Point(180, 117);
             this.GithubLink.Name = "GithubLink";
             this.GithubLink.Size = new System.Drawing.Size(38, 13);
             this.GithubLink.TabIndex = 11;
@@ -172,7 +174,7 @@
             // DonateLink
             // 
             this.DonateLink.AutoSize = true;
-            this.DonateLink.Location = new System.Drawing.Point(116, 112);
+            this.DonateLink.Location = new System.Drawing.Point(112, 117);
             this.DonateLink.Name = "DonateLink";
             this.DonateLink.Size = new System.Drawing.Size(42, 13);
             this.DonateLink.TabIndex = 12;
@@ -205,7 +207,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(242, 131);
+            this.ClientSize = new System.Drawing.Size(230, 136);
             this.Controls.Add(this.DonateLink);
             this.Controls.Add(this.GithubLink);
             this.Controls.Add(this.RedditLink);
@@ -222,8 +224,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(258, 170);
-            this.MinimumSize = new System.Drawing.Size(258, 170);
+            this.MaximumSize = new System.Drawing.Size(246, 175);
+            this.MinimumSize = new System.Drawing.Size(246, 175);
             this.Name = "Mainform";
             this.Load += new System.EventHandler(this.Mainform_Load);
             this.ResumeLayout(false);
