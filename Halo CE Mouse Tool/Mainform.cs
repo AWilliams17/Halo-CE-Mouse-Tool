@@ -15,7 +15,7 @@ using System.Media;
 namespace Halo_CE_Mouse_Tool {
     public partial class Mainform : Form { //And here we go...
         public static SettingsHandler settings = new SettingsHandler();
-        
+        //TODO: Why aren't these static?
         public SettingsForm settingsform;
         public DonateForm donateform;
 
@@ -29,6 +29,7 @@ namespace Halo_CE_Mouse_Tool {
             if (settings.CheckForUpdatesOnStart == 1) {
                 utils.CheckForUpdates();
             }
+            //Perhaps I can move these to handlexml?
             SensX.Text = settings.SensX.ToString();
             SensY.Text = settings.SensY.ToString();
 
@@ -84,27 +85,28 @@ namespace Halo_CE_Mouse_Tool {
         }
 
         private void SensX_TextChanged(object sender, EventArgs e) {
-            utils.parse_sensitivity(this.SensX, 'x');
+            utils.parse_sensitivity(this.SensX, 'x'); //Make sure the input is valid.
         }
 
         private void SensY_TextChanged(object sender, EventArgs e) {
-            utils.parse_sensitivity(this.SensX, 'y');
+            utils.parse_sensitivity(this.SensX, 'y'); //Same as above.
         }
 
         static void OnProcessExit(object sender, EventArgs e) {
-            XMLHandler.WriteSettingsToXML(settings);
+            XMLHandler.WriteSettingsToXML(settings); //When the application exits, purge all the current settings to the config.
         }
 
         private void HotkeyTimer_Tick(object sender, EventArgs e) {
-            utils.keybind_handle();
+            utils.keybind_handle(); //If the user presses their hotkey, then handle it.
+            //Is there a better way of doing this?
         }
 
         private void SensX_Leave(object sender, EventArgs e) {
-            utils.check_if_blank(this.SensX);
+            utils.check_if_blank(this.SensX); //If the user tries to leave with the textbox being blank, then force them back to it.
         }
 
         private void SensY_Leave(object sender, EventArgs e) {
-            utils.check_if_blank(this.SensY);
+            utils.check_if_blank(this.SensY); //Same as above.
         }
     }
 }

@@ -10,9 +10,14 @@ using System.Media;
 using System.IO;
 
 namespace Halo_CE_Mouse_Tool {
+    /*
+            -utils.cs-
+        This class contains code originally in mainform.cs which bloated the shit out of it.
+        Very bloated and hideous. Better than it was before tho.
+    */
     public static class utils {
-        public static void WriteHaloMemory() {
-            byte[] mouseaccelnop = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+        public static void WriteHaloMemory() { //Calls WriteMemory with selected settings.
+            byte[] mouseaccelnop = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 }; //For noping the acceleration
             int return_value;
             int curr_addr = 0;
             byte[] curr_val = { };
@@ -47,7 +52,7 @@ namespace Halo_CE_Mouse_Tool {
             MessageBox.Show("Successfully wrote values to memory.");
         }
 
-        public static void HandleXML() {
+        public static void HandleXML() { //For loading settings from the XML file.
             int loadxml = XMLHandler.LoadSettingsFromXML(Mainform.settings);
             if (loadxml == 1) {
                 SoundHandler.sound_success();
@@ -63,12 +68,12 @@ namespace Halo_CE_Mouse_Tool {
             }
         }
 
-        public static bool IsAdministrator() {
+        public static bool IsAdministrator() { //Detects if the user is admin or not (dur)
             return (new WindowsPrincipal(WindowsIdentity.GetCurrent()))
                       .IsInRole(WindowsBuiltInRole.Administrator);
         }
 
-        public static void parse_sensitivity(TextBox origin, char sens) {
+        public static void parse_sensitivity(TextBox origin, char sens) { //For performing validation on the sensitivity text boxes.
             float conv_float;
             if (origin.Text != "") {
                 if (!float.TryParse(origin.Text, out conv_float)) {
@@ -76,7 +81,7 @@ namespace Halo_CE_Mouse_Tool {
                     SoundHandler.sound_error();
                     MessageBox.Show("Invalid input. Only numbers allowed.");
                 } else {
-                    if (sens == 'x') {
+                    if (sens == 'x') { //If the sensitivity value is the x one or y one.
                         Mainform.settings.SensX = conv_float;
                     } else {
                         Mainform.settings.SensY = conv_float;
@@ -85,7 +90,7 @@ namespace Halo_CE_Mouse_Tool {
             }
         }
 
-        public static void check_if_blank(TextBox origin) {
+        public static void check_if_blank(TextBox origin) { //Check if the sensitivity textbox is blank or not. Prevent user from leaving if it is.
             if (origin.Text == "") {
                 origin.Focus();
                 SoundHandler.sound_error();
@@ -93,7 +98,7 @@ namespace Halo_CE_Mouse_Tool {
             }
         }
 
-        public static void CheckForUpdates() {
+        public static void CheckForUpdates() { //For checking for updates...
             int res = UpdateHandler.CheckForUpdates();
             if (res == 2) {
                 SoundHandler.sound_error();
@@ -110,8 +115,7 @@ namespace Halo_CE_Mouse_Tool {
                 }
             }
         }
-
-        public static void keybind_handle() {
+        public static void keybind_handle() { //Detects if the hotkey is pressed or not. IDK if there's a better way of doing this or not.
             if (KeybindHandler.KeybindsEnabled && Mainform.settings.HotkeyEnabled == 1) {
                 if (KeybindHandler.IsKeyPushedDown((Keys)Enum.Parse(typeof(Keys), Mainform.settings.Hotkey))) {
                     WriteHaloMemory();
