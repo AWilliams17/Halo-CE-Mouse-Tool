@@ -35,7 +35,7 @@ namespace Halo_CE_Mouse_Tool {
             string window_title = "Halo CE Mouse Tool v" + UpdateHandler.version.ToString();
             if (!utils.IsAdministrator()) {
                 window_title += " -NOT ADMIN-";
-                utils.sounds.sound_notice();
+                SoundHandler.sound_notice();
                 MessageBox.Show("Warning - You must run this tool as an administrator in order for it to work properly.");
             }
             this.Text = window_title;
