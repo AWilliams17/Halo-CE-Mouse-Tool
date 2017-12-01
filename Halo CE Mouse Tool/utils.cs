@@ -73,6 +73,7 @@ namespace Halo_CE_Mouse_Tool {
             if (origin.Text != "") {
                 if (!float.TryParse(origin.Text, out conv_float)) {
                     origin.Text = "0";
+                    sounds.sound_error();
                     MessageBox.Show("Invalid input. Only numbers allowed.");
                 } else {
                     if (sens == 'x') {
@@ -87,6 +88,7 @@ namespace Halo_CE_Mouse_Tool {
         public static void check_if_blank(TextBox origin) {
             if (origin.Text == "") {
                 origin.Focus();
+                sounds.sound_error();
                 MessageBox.Show("Error: You can't leave this field blank.");
             }
         }

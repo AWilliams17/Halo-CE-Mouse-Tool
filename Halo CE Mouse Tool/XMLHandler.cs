@@ -8,10 +8,15 @@ using System.IO;
 using System.Xml;
 
 namespace Halo_CE_Mouse_Tool {
+    /*
+        -XMLHandler.cs-
+        This class handles the applications XML file.
+        prepare to feast your eyes upon some horrible bloat
+    */
     public static class XMLHandler {
         private static string XMLPath = Application.StartupPath + "/CEMT.xml";
 
-        private static bool XMLExists() {
+        private static bool XMLExists() { //Check if the XML configuration file exists.
             if (File.Exists(XMLPath)) {
                 return true;
             } else {
@@ -19,7 +24,7 @@ namespace Halo_CE_Mouse_Tool {
             }
         }
 
-        public static void GenerateXML() {
+        public static void GenerateXML() { //Used for generating a new XML file with hardcoded default values.
             XmlWriter xmlWriter = XmlWriter.Create("CEMT.xml");
 
             xmlWriter.WriteStartDocument();
@@ -41,7 +46,7 @@ namespace Halo_CE_Mouse_Tool {
             xmlWriter.Close();
         }
 
-        public static void WriteSettingsToXML(SettingsHandler s) {
+        public static void WriteSettingsToXML(SettingsHandler s) { //Called when program exits. Push current settings to the XML file.
             XmlDocument doc = new XmlDocument();
             try {
                 doc.Load(XMLPath);
@@ -49,6 +54,7 @@ namespace Halo_CE_Mouse_Tool {
                 XmlElement elem = doc.CreateElement("CEMT");
                 doc.AppendChild(elem);
             }
+            //These are to determine if the XML wrote everything correctly.
             bool SensXWrote = true;
             bool SensYWrote = true;
             bool PatchAccelWrote = true;
@@ -76,16 +82,16 @@ namespace Halo_CE_Mouse_Tool {
                         PatchAccelWrote = false;
                     }
                 }
-            } catch (NullReferenceException) {
+            } catch (NullReferenceException) { //Occurs if CEMTSensitivity doesn't exist.
                 XmlElement CEMTSensitivity = doc.CreateElement("CEMTSensitivity");
                 doc.DocumentElement.AppendChild(CEMTSensitivity);
-                SensXWrote = false;
+                SensXWrote = false; //If CEMTSensitivity doesn't exist, then obv the values didn't get written.
                 SensYWrote = false;
                 PatchAccelWrote = false;
-                root = doc.DocumentElement["CEMTSensitivity"];
+                root = doc.DocumentElement["CEMTSensitivity"]; //Reset root to CEMTSensitivity. it will be written to later.
             }
 
-            XmlNode g = doc.DocumentElement["CEMTApplication"];
+            XmlNode g = doc.DocumentElement["CEMTApplication"]; //Same business as above.
             try {
                 foreach (XmlAttribute f in g.Attributes) {
                     if (f.Name == "CheckForUpdates") {
@@ -119,6 +125,8 @@ namespace Halo_CE_Mouse_Tool {
                 g = doc.DocumentElement["CEMTApplication"];
             }
 
+            //Anakin Memewalker: This is where the fun begins
+            //If any of the attributes failed to write, then remake them and try again.
             if (!SensXWrote) {
                 XmlAttribute SensX = doc.CreateAttribute("SensX");
                 SensX.Value = s.SensX.ToString();
@@ -161,10 +169,9 @@ namespace Halo_CE_Mouse_Tool {
             Rob say Code Monkey very dilligent - but his output stink.
             His code not functional or elegant.
             What do code monkey think?
-            Code monkey think he get back to work on tool.
         */
         public static int LoadSettingsFromXML(SettingsHandler s) {
-            bool err = false;
+            bool err = false; //If an error occurs during the loading, set this to true and leave the setting to its default value.
             if (XMLExists()) {
                 //Load and set values
                 XmlReader xmlReader = XmlReader.Create(XMLPath);
@@ -231,6 +238,7 @@ namespace Halo_CE_Mouse_Tool {
             } else {
                 return 0; //0 == didn't find an XML
             }
+            //TODO: Make this class not shit.
         }
     }
 }

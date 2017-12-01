@@ -8,7 +8,7 @@ using System.Diagnostics;
 /*
     -ProcessHandler Class-
     This class should check if a process is running or not. :/ Might be removed
-    later because thats kinda silly.
+    later because thats kinda silly. But I guess it helps split things up. -shrug-
 */
 namespace Halo_CE_Mouse_Tool {
     public static class ProcessHandler  {
@@ -20,10 +20,10 @@ namespace Halo_CE_Mouse_Tool {
             Process[] processlist = Process.GetProcesses();
             foreach (Process i in processlist) {
                 if (i.ProcessName == process_name) {
-                    return true;
+                    return true; //I found the process name in the current list of running processes.
                 }
             }
-            return false;
+            return false; //I didn't find the process name.
         }
     }
 }

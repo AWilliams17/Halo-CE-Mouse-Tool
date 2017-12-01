@@ -14,7 +14,7 @@ using System.IO;
     is available. It also should hold the current program version.
 */
 namespace Halo_CE_Mouse_Tool {
-    public class WebClientWithTimeout : WebClient {
+    public class WebClientWithTimeout : WebClient { //Custom webclient implementation to allow for custom timeout
         private int t;
         public WebClientWithTimeout(int timeout) {
             t = timeout;
@@ -29,20 +29,21 @@ namespace Halo_CE_Mouse_Tool {
     public static class UpdateHandler {
         public const int version = 4; //Current program version
 
-        public static int CheckForUpdates() {
+        public static int CheckForUpdates() { //Download a url, in this case pastebin, which has a single number in it.
             WebClientWithTimeout wb = new WebClientWithTimeout(3000); //Timeout after 5 seconds. Add option in future.
             byte[] HTML;
             try {
-                HTML = wb.DownloadData("https://pastebin.com/raw/UQpXvHBR");
+                HTML = wb.DownloadData("https://pastebin.com/raw/UQpXvHBR"); //The number in the pastebin is the currently released version of the tool.
                 UTF8Encoding objUTF8 = new UTF8Encoding();
                 string nv = objUTF8.GetString(HTML);
                 int version_available = int.Parse(nv[0].ToString());
-                if (version_available > version) {
-                    return 1; //There is an update available.
+                if (version_available > version) { //Compare the version available to the current version of the application.
+                    return 1; //There is an update available. Return 1.
                 }
-                return 0; //There are no updates available.
-            } catch {
-                return 2;
+                return 0; //There are no updates available. Return 0.
+            } catch { //Generalized catch. Bad for business.
+                return 2;  //An error occurred, return 2. 
+                //TODO:Needs more specific error codes.
             }
         }
     }

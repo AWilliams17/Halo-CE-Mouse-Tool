@@ -23,14 +23,14 @@ namespace Halo_CE_Mouse_Tool {
         private static extern IntPtr OpenProcess(int dwDesiredAccess, bool bInheritHandle, int dwProcessId);
 
 
-        private static int GetPID(string processname) {
+        private static int GetPID(string processname) { //Return the PID of the requested process. Needs exception handling.
             Process[] process = Process.GetProcessesByName(processname);
             int PID = process[0].Id;
 
             return PID;
         }
 
-        private static IntPtr getBaseAddr(string processname) {
+        private static IntPtr getBaseAddr(string processname) { //Return the base address of the requested process.
             IntPtr baseaddr;
             try {
                 Process[] processes = Process.GetProcessesByName(processname);
@@ -48,7 +48,7 @@ namespace Halo_CE_Mouse_Tool {
             Return value 0: Success
             Otherwise, error code is returned.
         */
-        public static int WriteToProcessMemory(string processname, float value, int address) {
+        public static int WriteToProcessMemory(string processname, float value, int address) { //For floats
             Process process = Process.GetProcessesByName(processname)[0];
             IntPtr processHandle = OpenProcess(PROCESS_WM_READ | PROCESS_VM_WRITE | PROCESS_VM_OPERATION, false, GetPID(processname));
             IntPtr baseAddr = getBaseAddr(processname);
@@ -66,7 +66,7 @@ namespace Halo_CE_Mouse_Tool {
             return 0;
         }
 
-        public static int WriteToProcessMemory(string processname, byte[] value, int address) {
+        public static int WriteToProcessMemory(string processname, byte[] value, int address) { //For byte[]s
             Process process = Process.GetProcessesByName(processname)[0];
             IntPtr processHandle = OpenProcess(PROCESS_WM_READ | PROCESS_VM_WRITE | PROCESS_VM_OPERATION, false, GetPID(processname));
             IntPtr baseAddr = getBaseAddr(processname);
@@ -82,5 +82,6 @@ namespace Halo_CE_Mouse_Tool {
             }
             return 0;
         }
+        //Better way to do this?
     }
 }

@@ -12,7 +12,7 @@ using System.Windows.Forms;
 */
 namespace Halo_CE_Mouse_Tool {
     public static class FormHandler {
-        public static bool formopen(Form frm) {
+        public static bool formopen(Form frm) { //General formopen func, return true if the form is found, false otherwise.
             foreach (Form form in Application.OpenForms) {
                 if (form == frm) {
                     return true;
@@ -21,7 +21,7 @@ namespace Halo_CE_Mouse_Tool {
             return false;
         }
         
-        public static void formopen(SettingsForm frm, Mainform g) {
+        public static void formopen(SettingsForm frm, Mainform g) { //For settingsform specifically - if it exists, show it, otherwise create a new one and show it.
             foreach (Form form in Application.OpenForms) {
                 if (form == frm) {
                     g.settingsform.Dispose();
@@ -32,7 +32,7 @@ namespace Halo_CE_Mouse_Tool {
             g.settingsform.Show();
         }
 
-        public static void formopen(DonateForm frm, Mainform g) {
+        public static void formopen(DonateForm frm, Mainform g) { //Same as above, only for Donateform.
             foreach (Form form in Application.OpenForms) {
                 if (form == frm) {
                     g.donateform.Dispose();

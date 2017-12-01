@@ -2,5 +2,4 @@ Future Features:
 -Let +/- keys add/subtract from sensitivity to allow fine tuning of sensitivity whilst ingame
 -Let user change update timeout
 -Maybe make XML be loaded/saved to Halo Custom Edition folder if the location if the install can be found?
-
-I can't think of anything else atm.
+-Automatically write to memory when Halo is detected?

@@ -8,12 +8,17 @@ using System.IO;
 using System.Xml;
 
 namespace Halo_CE_Mouse_Tool {
+    /*
+        -SettingsHandler.cs-
+        This class contains the settings for the application.
+        I didn't declare as static since I wanted to try to keep it centralized or something.
+    */
     public class SettingsHandler {
         private float _SensX { get; set; } = 1;
         private float _SensY { get; set; } = 1;
         private int _PatchAcceleration { get; set; } = 1;
         private int _CheckForUpdatesOnStart { get; set; } = 1;
-        private int _HotkeyEnabled { get; set; } = 1;
+        private int _HotkeyEnabled { get; set; } = 1; //TODO: I use Hotkey and Keybind interchangebly throughout the code. Why not just use Hotkey?
         private string _Hotkey { get; set; } = "F1";
         private int _SoundEnabled { get; set; } = 1;
         

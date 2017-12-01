@@ -116,6 +116,7 @@
             this.SoundsEnabledCheckbox.Size = new System.Drawing.Size(104, 17);
             this.SoundsEnabledCheckbox.TabIndex = 8;
             this.SoundsEnabledCheckbox.Text = "Sounds Enabled";
+            this.Tooltip.SetToolTip(this.SoundsEnabledCheckbox, "If checked, sounds will play on successful/erroneous\r\nactions.");
             this.SoundsEnabledCheckbox.UseVisualStyleBackColor = true;
             this.SoundsEnabledCheckbox.CheckedChanged += new System.EventHandler(this.SoundsEnabledCheckbox_CheckedChanged);
             // 
