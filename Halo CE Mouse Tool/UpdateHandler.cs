@@ -30,7 +30,7 @@ namespace Halo_CE_Mouse_Tool {
         public const int version = 4; //Current program version
 
         public static int CheckForUpdates() {
-            WebClientWithTimeout wb = new WebClientWithTimeout(5000); //Timeout after 5 seconds. Add option in future.
+            WebClientWithTimeout wb = new WebClientWithTimeout(3000); //Timeout after 5 seconds. Add option in future.
             byte[] HTML;
             try {
                 HTML = wb.DownloadData("https://pastebin.com/raw/UQpXvHBR");
