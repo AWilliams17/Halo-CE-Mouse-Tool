@@ -3,3 +3,6 @@ Future Features:
 -Let user change update timeout
 -Maybe make XML be loaded/saved to Halo Custom Edition folder if the location if the install can be found?
 -Automatically write to memory when Halo is detected?
+-Automatically launch Halo CE when the tool starts? (although this will prevent SPV3 from being launched. might be a way around that?)
+-Allow user to turn off message boxes when using the hotkey to write memory
+-Add a bottle opener
