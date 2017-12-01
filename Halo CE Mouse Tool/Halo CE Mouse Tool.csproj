@@ -90,7 +90,9 @@
     </Compile>
     <Compile Include="SettingsHandler.cs" />
     <Compile Include="SoundHandler.cs" />
-    <Compile Include="UpdateHandler.cs" />
+    <Compile Include="UpdateHandler.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="utils.cs" />
     <Compile Include="XMLHandler.cs" />
     <EmbeddedResource Include="DonateForm.resx">

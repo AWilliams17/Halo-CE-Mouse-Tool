@@ -48,24 +48,6 @@ namespace Halo_CE_Mouse_Tool {
             Return value 0: Success
             Otherwise, error code is returned.
         */
-        public static int WriteToProcessMemory(string processname, float value, int address) { //For floats
-            Process process = Process.GetProcessesByName(processname)[0];
-            IntPtr processHandle = OpenProcess(PROCESS_WM_READ | PROCESS_VM_WRITE | PROCESS_VM_OPERATION, false, GetPID(processname));
-            IntPtr baseAddr = getBaseAddr(processname);
-            if ((int)baseAddr == 0) {
-                return 1;
-            }
-
-            IntPtr addr = IntPtr.Add(baseAddr, address);
-            byte[] buffer = BitConverter.GetBytes(value);
-            int bytesWritten = 0;
-
-            if (!WriteProcessMemory(processHandle, addr, buffer, buffer.Length, out bytesWritten)) {
-                return Marshal.GetLastWin32Error();
-            }
-            return 0;
-        }
-
         public static int WriteToProcessMemory(string processname, byte[] value, int address) { //For byte[]s
             Process process = Process.GetProcessesByName(processname)[0];
             IntPtr processHandle = OpenProcess(PROCESS_WM_READ | PROCESS_VM_WRITE | PROCESS_VM_OPERATION, false, GetPID(processname));
@@ -82,6 +64,5 @@ namespace Halo_CE_Mouse_Tool {
             }
             return 0;
         }
-        //Better way to do this?
     }
 }
