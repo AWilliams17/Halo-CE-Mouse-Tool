@@ -48,7 +48,7 @@ namespace Halo_CE_Mouse_Tool {
             Return value 0: Success
             Otherwise, error code is returned.
         */
-        public static int WriteToProcessMemory(string processname, byte[] value, int address) { //For byte[]s
+        public static int WriteToProcessMemory(string processname, byte[] value, int address) {
             Process process = Process.GetProcessesByName(processname)[0];
             IntPtr processHandle = OpenProcess(PROCESS_WM_READ | PROCESS_VM_WRITE | PROCESS_VM_OPERATION, false, GetPID(processname));
             IntPtr baseAddr = getBaseAddr(processname);

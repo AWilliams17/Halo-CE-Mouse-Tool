@@ -13,14 +13,14 @@ namespace Halo_CE_Mouse_Tool {
         This class contains the settings for the application.
         I didn't declare as static since I wanted to try to keep it centralized or something.
     */
-    public class SettingsHandler {
-        private float _SensX { get; set; } = 1;
-        private float _SensY { get; set; } = 1;
-        private int _PatchAcceleration { get; set; } = 1;
-        private int _CheckForUpdatesOnStart { get; set; } = 1;
-        private int _HotkeyEnabled { get; set; } = 1; //TODO: I use Hotkey and Keybind interchangebly throughout the code. Why not just use Hotkey?
-        private string _Hotkey { get; set; } = "F1";
-        private int _SoundEnabled { get; set; } = 1;
+    public class SettingsHandler { //I'll just keep the getters/setters so in the future I can perform validation of some sort
+        private float _SensX = 1;
+        private float _SensY = 1;
+        private int _PatchAcceleration = 1;
+        private int _CheckForUpdatesOnStart = 1;
+        private int _HotkeyEnabled = 1; //TODO: I use Hotkey and Keybind interchangebly throughout the code. Why not just use Hotkey?
+        private string _Hotkey = "F1";
+        private int _SoundEnabled = 1;
         
         public float SensX {
             get { return _SensX; }
