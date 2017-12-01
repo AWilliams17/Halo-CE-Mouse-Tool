@@ -34,7 +34,7 @@ namespace Halo_CE_Mouse_Tool {
             SensY.Text = settings.SensY.ToString();
 
             string window_title = "Halo CE Mouse Tool v" + UpdateHandler.version.ToString();
-            if (!utils.IsAdministrator()) {
+            if (!utils.IsAdministrator()) { //Gripe at the user if they're not an admin.
                 window_title += " -NOT ADMIN-";
                 SoundHandler.sound_notice();
                 MessageBox.Show("Warning - You must run this tool as an administrator in order for it to work properly.");
@@ -65,6 +65,8 @@ namespace Halo_CE_Mouse_Tool {
         }
 
         private void DonateLink_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e) {
+            // >Implying anyone would ever give me money for this shit
+            //Aren't I ever the dreamer
             FormHandler.formopen(donateform, this);
         }
 
@@ -73,6 +75,7 @@ namespace Halo_CE_Mouse_Tool {
         }
 
         private void RedditLink_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e) {
+            //TODO: Maybe I can not hardcode this?
             Process.Start("https://www.reddit.com/r/halospv3/comments/7fdrpr/just_released_halo_mouse_tool_v3/?st=jan506jz&sh=1bd4ebda");
         }
 

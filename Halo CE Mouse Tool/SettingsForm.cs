@@ -12,7 +12,7 @@ using System.Diagnostics;
 
 namespace Halo_CE_Mouse_Tool {
     public partial class SettingsForm : Form {
-        public SettingsForm() {
+        public SettingsForm() { //Grab all the users settings and set the controls accordingly
             InitializeComponent();
             HotkeyText.Text = Mainform.settings.Hotkey;
             if (Mainform.settings.HotkeyEnabled == 1) {
@@ -31,7 +31,7 @@ namespace Halo_CE_Mouse_Tool {
         }
 
         private void SettingsForm_Load(object sender, EventArgs e) {
-
+            //idk why this is here
         }
 
         private void EnableHotkeyCheckbox_CheckedChanged(object sender, EventArgs e) {

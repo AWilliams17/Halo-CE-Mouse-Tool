@@ -25,25 +25,30 @@ namespace Halo_CE_Mouse_Tool {
         }
 
         public static void GenerateXML() { //Used for generating a new XML file with hardcoded default values.
-            XmlWriter xmlWriter = XmlWriter.Create("CEMT.xml");
+            try {
+                XmlWriter xmlWriter = XmlWriter.Create("CEMT.xml");
 
-            xmlWriter.WriteStartDocument();
-            xmlWriter.WriteStartElement("CEMT");
+                xmlWriter.WriteStartDocument();
+                xmlWriter.WriteStartElement("CEMT");
 
-            xmlWriter.WriteStartElement("CEMTSensitivity");
-            xmlWriter.WriteAttributeString("SensX", "1");
-            xmlWriter.WriteAttributeString("SensY", "1");
-            xmlWriter.WriteAttributeString("PatchAccel", "1");
-            xmlWriter.WriteEndElement();
+                xmlWriter.WriteStartElement("CEMTSensitivity");
+                xmlWriter.WriteAttributeString("SensX", "1");
+                xmlWriter.WriteAttributeString("SensY", "1");
+                xmlWriter.WriteAttributeString("PatchAccel", "1");
+                xmlWriter.WriteEndElement();
 
-            xmlWriter.WriteStartElement("CEMTApplication");
-            xmlWriter.WriteAttributeString("CheckForUpdates", "1");
-            xmlWriter.WriteAttributeString("SoundsEnabled", "1");
-            xmlWriter.WriteAttributeString("Hotkey", "F1");
-            xmlWriter.WriteAttributeString("HotkeyEnabled", "1");
+                xmlWriter.WriteStartElement("CEMTApplication");
+                xmlWriter.WriteAttributeString("CheckForUpdates", "1");
+                xmlWriter.WriteAttributeString("SoundsEnabled", "1");
+                xmlWriter.WriteAttributeString("Hotkey", "F1");
+                xmlWriter.WriteAttributeString("HotkeyEnabled", "1");
 
-            xmlWriter.WriteEndDocument();
-            xmlWriter.Close();
+                xmlWriter.WriteEndDocument();
+                xmlWriter.Close();
+            } catch (System.UnauthorizedAccessException) {
+                SoundHandler.sound_error();
+                MessageBox.Show("Error! I can not create an XML file at this location. You do not have access. Please re-run as Admin. I will continue without writing a config.");
+            }
         }
 
         public static void WriteSettingsToXML(SettingsHandler s) { //Called when program exits. Push current settings to the XML file.

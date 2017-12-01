@@ -12,6 +12,9 @@ using System.IO;
     -UpdateHandler Class-
     This class should check for updates and return a true/false value if one
     is available. It also should hold the current program version.
+
+    TODO: CheckUpdate() Causes the program to freeze while it checks. I need to run
+    it on another thread/do it asynchronously?
 */
 namespace Halo_CE_Mouse_Tool {
     public class WebClientWithTimeout : WebClient { //Custom webclient implementation to allow for custom timeout
@@ -30,7 +33,7 @@ namespace Halo_CE_Mouse_Tool {
         public const int version = 4; //Current program version
 
         public static int CheckForUpdates() { //Download a url, in this case pastebin, which has a single number in it.
-            WebClientWithTimeout wb = new WebClientWithTimeout(3000); //Timeout after 5 seconds. Add option in future.
+            WebClientWithTimeout wb = new WebClientWithTimeout(3000); //Timeout after 3 seconds. Add option in future.
             byte[] HTML;
             try {
                 HTML = wb.DownloadData("https://pastebin.com/raw/UQpXvHBR"); //The number in the pastebin is the currently released version of the tool.
