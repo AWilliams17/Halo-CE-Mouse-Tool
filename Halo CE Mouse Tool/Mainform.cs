@@ -14,8 +14,8 @@ using System.Media;
 
 namespace Halo_CE_Mouse_Tool {
     public partial class Mainform : Form { //And here we go...
-        public static SettingsHandler settings = new SettingsHandler();
-        //TODO: Why aren't these static?
+        public SettingsHandler settings = new SettingsHandler();
+        public XMLHandler xmlhandler = new XMLHandler();
         public SettingsForm settingsform;
         public DonateForm donateform;
 
@@ -25,9 +25,9 @@ namespace Halo_CE_Mouse_Tool {
         }
 
         private void Mainform_Load(object sender, EventArgs e) {
-            utils.HandleXML();
+            utils.HandleXML(settings);
             if (settings.CheckForUpdatesOnStart == 1) {
-                utils.CheckForUpdates();
+                utils.CheckForUpdates(settings);
             }
             //Perhaps I can move these to handlexml?
             SensX.Text = settings.SensX.ToString();
@@ -36,14 +36,14 @@ namespace Halo_CE_Mouse_Tool {
             string window_title = "Halo CE Mouse Tool v" + UpdateHandler.version.ToString();
             if (!utils.IsAdministrator()) { //Gripe at the user if they're not an admin.
                 window_title += " -NOT ADMIN-";
-                SoundHandler.sound_notice();
+                SoundHandler.sound_notice(settings);
                 MessageBox.Show("Warning - You must run this tool as an administrator in order for it to work properly.");
             }
             this.Text = window_title;
         }
 
         private void ActivateBtn_Click_1(object sender, EventArgs e) {
-            utils.WriteHaloMemory();
+            utils.WriteHaloMemory(this.settings);
         }
 
         private void StatusLabelTimer_Tick(object sender, EventArgs e) {
@@ -88,28 +88,29 @@ namespace Halo_CE_Mouse_Tool {
         }
 
         private void SensX_TextChanged(object sender, EventArgs e) {
-            utils.parse_sensitivity(this.SensX, 'x'); //Make sure the input is valid.
+            utils.parse_sensitivity(this.SensX, 'x', settings); //Make sure the input is valid.
         }
 
         private void SensY_TextChanged(object sender, EventArgs e) {
-            utils.parse_sensitivity(this.SensX, 'y'); //Same as above.
+            utils.parse_sensitivity(this.SensX, 'y', settings); //Same as above.
+
         }
 
-        static void OnProcessExit(object sender, EventArgs e) {
-            XMLHandler.WriteSettingsToXML(settings); //When the application exits, purge all the current settings to the config.
+        public void OnProcessExit(object sender, EventArgs e) {
+            XMLHandler.WriteSettingsToXML(settings);
         }
 
         private void HotkeyTimer_Tick(object sender, EventArgs e) {
-            utils.keybind_handle(); //If the user presses their hotkey, then handle it.
+            utils.keybind_handle(settings); //If the user presses their hotkey, then handle it.
             //Is there a better way of doing this?
         }
 
         private void SensX_Leave(object sender, EventArgs e) {
-            utils.check_if_blank(this.SensX); //If the user tries to leave with the textbox being blank, then force them back to it.
+            utils.check_if_blank(this.SensX, settings); //If the user tries to leave with the textbox being blank, then force them back to it.
         }
 
         private void SensY_Leave(object sender, EventArgs e) {
-            utils.check_if_blank(this.SensY); //Same as above.
+            utils.check_if_blank(this.SensY, settings); //Same as above.
         }
     }
 }

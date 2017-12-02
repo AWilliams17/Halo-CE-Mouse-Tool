@@ -21,20 +21,20 @@ namespace Halo_CE_Mouse_Tool {
         private static SoundPlayer notice = new System.Media.SoundPlayer(notice_file);
         private static SoundPlayer error = new System.Media.SoundPlayer(error_file);
 
-        public static void sound_success() {
-            if (Mainform.settings.SoundsEnabled == 1) {
+        public static void sound_success(SettingsHandler settings) {
+            if (settings.SoundsEnabled == 1) {
                 success.Play();
             }
         }
 
-        public static void sound_error() {
-            if (Mainform.settings.SoundsEnabled == 1) {
+        public static void sound_error(SettingsHandler settings) {
+            if (settings.SoundsEnabled == 1) {
                 error.Play();
             }
         }
 
-        public static void sound_notice() {
-            if (Mainform.settings.SoundsEnabled == 1) {
+        public static void sound_notice(SettingsHandler settings) {
+            if (settings.SoundsEnabled == 1) {
                 notice.Play();
             }
         }

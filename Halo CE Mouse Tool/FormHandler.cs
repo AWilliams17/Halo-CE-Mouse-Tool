@@ -28,7 +28,7 @@ namespace Halo_CE_Mouse_Tool {
                     break;
                 }
             }
-            g.settingsform = new SettingsForm();
+            g.settingsform = new SettingsForm(g.settings);
             g.settingsform.Show();
         }
 

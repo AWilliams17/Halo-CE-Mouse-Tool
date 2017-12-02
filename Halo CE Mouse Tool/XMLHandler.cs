@@ -13,7 +13,7 @@ namespace Halo_CE_Mouse_Tool {
         This class handles the applications XML file.
         prepare to feast your eyes upon some horrible bloat
     */
-    public static class XMLHandler {
+    public class XMLHandler {
         private static string XMLPath = Application.StartupPath + "/CEMT.xml";
 
         private static bool XMLExists() { //Check if the XML configuration file exists.
@@ -24,7 +24,7 @@ namespace Halo_CE_Mouse_Tool {
             }
         }
 
-        public static void GenerateXML() { //Used for generating a new XML file with hardcoded default values.
+        public static void GenerateXML(SettingsHandler settings) { //Used for generating a new XML file with hardcoded default values.
             try {
                 XmlWriter xmlWriter = XmlWriter.Create("CEMT.xml");
 
@@ -46,12 +46,12 @@ namespace Halo_CE_Mouse_Tool {
                 xmlWriter.WriteEndDocument();
                 xmlWriter.Close();
             } catch (System.UnauthorizedAccessException) {
-                SoundHandler.sound_error();
+                SoundHandler.sound_error(settings);
                 MessageBox.Show("Error! I can not create an XML file at this location. You do not have access. Please re-run as Admin. I will continue without writing a config.");
             }
         }
 
-        public static void WriteSettingsToXML(SettingsHandler s) { //Called when program exits. Push current settings to the XML file.
+        public static void WriteSettingsToXML(SettingsHandler settings) { //Called when program exits. Push current settings to the XML file.
             XmlDocument doc = new XmlDocument();
             try {
                 doc.Load(XMLPath);
@@ -72,17 +72,17 @@ namespace Halo_CE_Mouse_Tool {
             try {
                 foreach (XmlAttribute c in root.Attributes) {
                     if (c.Name == "SensX") {
-                        c.Value = s.SensX.ToString();
+                        c.Value = settings.SensX.ToString();
                     } else {
                         SensXWrote = false;
                     }
                     if (c.Name == "SensY") {
-                        c.Value = s.SensY.ToString();
+                        c.Value = settings.SensY.ToString();
                     } else {
                         SensYWrote = false;
                     }
                     if (c.Name == "PatchAccel") {
-                        c.Value = s.PatchAcceleration.ToString();
+                        c.Value = settings.PatchAcceleration.ToString();
                     } else {
                         PatchAccelWrote = false;
                     }
@@ -100,22 +100,22 @@ namespace Halo_CE_Mouse_Tool {
             try {
                 foreach (XmlAttribute f in g.Attributes) {
                     if (f.Name == "CheckForUpdates") {
-                        f.Value = s.CheckForUpdatesOnStart.ToString();
+                        f.Value = settings.CheckForUpdatesOnStart.ToString();
                     } else {
                         CheckForUpdatesWrote = false;
                     }
                     if (f.Name == "SoundsEnabled") {
-                        f.Value = s.SoundsEnabled.ToString();
+                        f.Value = settings.SoundsEnabled.ToString();
                     } else {
                         SoundsEnabledWrote = false;
                     }
                     if (f.Name == "Hotkey") {
-                        f.Value = s.Hotkey;
+                        f.Value = settings.Hotkey;
                     } else {
                         HotkeyWrote = false;
                     }
                     if (f.Name == "HotkeyEnabled") {
-                        f.Value = s.HotkeyEnabled.ToString();
+                        f.Value = settings.HotkeyEnabled.ToString();
                     } else {
                         HotkeyEnabledWrote = false;
                     }
@@ -134,38 +134,38 @@ namespace Halo_CE_Mouse_Tool {
             //If any of the attributes failed to write, then remake them and try again.
             if (!SensXWrote) {
                 XmlAttribute SensX = doc.CreateAttribute("SensX");
-                SensX.Value = s.SensX.ToString();
+                SensX.Value = settings.SensX.ToString();
                 root.Attributes.SetNamedItem(SensX);
             }
             if (!SensYWrote) {
                 XmlAttribute SensY = doc.CreateAttribute("SensY");
-                SensY.Value = s.SensY.ToString();
+                SensY.Value = settings.SensY.ToString();
                 root.Attributes.SetNamedItem(SensY);
             }
             if (!PatchAccelWrote) {
                 XmlAttribute PatchAccel = doc.CreateAttribute("PatchAccel");
-                PatchAccel.Value = s.PatchAcceleration.ToString();
+                PatchAccel.Value = settings.PatchAcceleration.ToString();
                 root.Attributes.SetNamedItem(PatchAccel);
             }
 
             if (!HotkeyWrote) {
                 XmlAttribute Hotkey = doc.CreateAttribute("Hotkey");
-                Hotkey.Value = s.Hotkey;
+                Hotkey.Value = settings.Hotkey;
                 g.Attributes.SetNamedItem(Hotkey);
             }
             if (!HotkeyEnabledWrote) {
                 XmlAttribute HotkeyEnabled = doc.CreateAttribute("HotkeyEnabled");
-                HotkeyEnabled.Value = s.HotkeyEnabled.ToString();
+                HotkeyEnabled.Value = settings.HotkeyEnabled.ToString();
                 g.Attributes.SetNamedItem(HotkeyEnabled);
             }
             if (!CheckForUpdatesWrote) {
                 XmlAttribute CheckForUpdates = doc.CreateAttribute("CheckForUpdates");
-                CheckForUpdates.Value = s.CheckForUpdatesOnStart.ToString();
+                CheckForUpdates.Value = settings.CheckForUpdatesOnStart.ToString();
                 g.Attributes.SetNamedItem(CheckForUpdates);
             }
             if (!SoundsEnabledWrote) {
                 XmlAttribute SoundsEnabled = doc.CreateAttribute("SoundsEnabled");
-                SoundsEnabled.Value = s.SoundsEnabled.ToString();
+                SoundsEnabled.Value = settings.SoundsEnabled.ToString();
                 g.Attributes.SetNamedItem(SoundsEnabled);
             }
             doc.Save(XMLPath);
