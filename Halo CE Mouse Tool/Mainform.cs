@@ -47,7 +47,7 @@ namespace Halo_CE_Mouse_Tool {
         }
 
         private void StatusLabelTimer_Tick(object sender, EventArgs e) {
-            if (ProcessHandler.ProcessIsRunning("HALOCE")) {
+            if (ProcessHandler.ProcessIsRunning("haloce")) {
                 StatusLabel.Text = "Halo CE Process found.";
                 StatusLabel.ForeColor = Color.Green;
                 ActivateBtn.Enabled = true;

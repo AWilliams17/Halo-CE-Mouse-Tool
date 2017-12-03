@@ -6,3 +6,5 @@ Future Features:
 -Automatically launch Halo CE when the tool starts? (although this will prevent SPV3 from being launched. might be a way around that?)
 -Allow user to turn off message boxes when using the hotkey to write memory
 -Add a bottle opener
+-Embed a DLL into the tool, if the user wishes to, they can have this DLL get pasted into the controls directory in Halo,
+which will patch the sensitivity that way.
