@@ -61,13 +61,21 @@ namespace Halo_CE_Mouse_Tool {
         }
 
         private void SettingsBtn_Click(object sender, EventArgs e) {
-            FormHandler.formopen(settingsform, this);
+            if (FormHandler.formopen(settingsform)) {
+                settingsform.Dispose();
+            }
+            settingsform = new SettingsForm(settings);
+            settingsform.Show();
         }
 
         private void DonateLink_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e) {
             // >Implying anyone would ever give me money for this shit
             //Aren't I ever the dreamer
-            FormHandler.formopen(donateform, this);
+            if (FormHandler.formopen(donateform)) {
+                donateform.Dispose();
+            }
+            donateform = new DonateForm();
+            donateform.Show();
         }
 
         private void GithubLink_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e) {

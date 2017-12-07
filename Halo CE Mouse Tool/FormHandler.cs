@@ -20,27 +20,5 @@ namespace Halo_CE_Mouse_Tool {
             }
             return false;
         }
-        
-        public static void formopen(SettingsForm frm, Mainform g) { //For settingsform specifically - if it exists, show it, otherwise create a new one and show it.
-            foreach (Form form in Application.OpenForms) {
-                if (form == frm) {
-                    g.settingsform.Dispose();
-                    break;
-                }
-            }
-            g.settingsform = new SettingsForm(g.settings);
-            g.settingsform.Show();
-        }
-
-        public static void formopen(DonateForm frm, Mainform g) { //Same as above, only for Donateform.
-            foreach (Form form in Application.OpenForms) {
-                if (form == frm) {
-                    g.donateform.Dispose();
-                    break;
-                }
-            }
-            g.donateform = new DonateForm();
-            g.donateform.Show();
-        }
     }
 }
