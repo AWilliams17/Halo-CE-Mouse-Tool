@@ -230,6 +230,7 @@ namespace Halo_CE_Mouse_Tool {
                                 } else {
                                     s.SoundsEnabled = soundsenabled;
                                 }
+                                xmlReader.Close();
                             }
                         }
                     }
