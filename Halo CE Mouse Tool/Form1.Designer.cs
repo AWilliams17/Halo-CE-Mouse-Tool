@@ -59,6 +59,7 @@
             this.Tooltip.SetToolTip(this.SensX, "This textbox controls your Horizontal sensitivity.\r\nOnly integers/decimals are al" +
         "lowed in this field.\r\nEG: 1.5.");
             this.SensX.TextChanged += new System.EventHandler(this.SensX_TextChanged);
+            this.SensX.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SensX_KeyDown);
             this.SensX.Leave += new System.EventHandler(this.SensX_Leave);
             // 
             // SensY
@@ -71,6 +72,7 @@
             this.Tooltip.SetToolTip(this.SensY, "This textbox controls your Vertical sensitivity.\r\nOnly integers/decimals are allo" +
         "wed in this field.\r\nEG: 1.5.\r\n");
             this.SensY.TextChanged += new System.EventHandler(this.SensY_TextChanged);
+            this.SensY.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SensY_KeyDown);
             this.SensY.Leave += new System.EventHandler(this.SensY_Leave);
             // 
             // label1

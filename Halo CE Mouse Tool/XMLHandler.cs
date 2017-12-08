@@ -16,17 +16,16 @@ namespace Halo_CE_Mouse_Tool
     */
     public class XMLHandler
     {
-        private static string XMLPath = Application.StartupPath + "/CEMT.xml";
+        private static string XMLPath;
+
+        public XMLHandler(string xmlpath)
+        {
+            XMLPath = xmlpath;
+        }
 
         private static bool XMLExists()
         { //Check if the XML configuration file exists.
-            if (File.Exists(XMLPath))
-            {
-                return true;
-            }
-            else {
-                return false;
-            }
+            return File.Exists(XMLPath);
         }
         public static void Serialize_Settings(SettingsHandler settings)
         {
@@ -36,25 +35,17 @@ namespace Halo_CE_Mouse_Tool
             WriteFileStream.Close();
         }
 
-        public static int DeSerialize_Settings(SettingsHandler settings)
+        public static SettingsHandler DeSerialize_Settings()
         {
             if (XMLExists())
             {
                 XmlSerializer SerializerObj = new XmlSerializer(typeof(SettingsHandler));
                 FileStream ReadFileStream = new FileStream(@XMLPath, FileMode.Open, FileAccess.Read, FileShare.Read);
                 SettingsHandler settings_loaded = (SettingsHandler)SerializerObj.Deserialize(ReadFileStream);
-                settings.SensX = settings_loaded.SensX;
-                settings.SensY = settings_loaded.SensY;
-                settings.PatchAcceleration = settings_loaded.PatchAcceleration;
-                settings.Hotkey = settings_loaded.Hotkey;
-                settings.HotkeyEnabled = settings_loaded.HotkeyEnabled;
-                settings.SoundsEnabled = settings_loaded.SoundsEnabled;
-                settings.CheckForUpdatesOnStart = settings_loaded.CheckForUpdatesOnStart;
                 ReadFileStream.Close();
-
-                return 1;
+                return settings_loaded;
             }
-            return 0;
+            return null;
         }
     }
 }

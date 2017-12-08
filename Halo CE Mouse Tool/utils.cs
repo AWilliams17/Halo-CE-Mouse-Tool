@@ -63,10 +63,21 @@ namespace Halo_CE_Mouse_Tool
             MessageBox.Show("Successfully wrote values to memory.");
         }
 
-        public static void HandleXML(SettingsHandler settings)
+        public static void LoadSettings(SettingsHandler settings)
         { //For loading settings from the XML file.
-            int loadxml = XMLHandler.DeSerialize_Settings(settings);
-            
+            SettingsHandler loaded_settings = XMLHandler.DeSerialize_Settings();
+            settings.SensX = loaded_settings.SensX;
+            settings.SensY = loaded_settings.SensY;
+            settings.PatchAcceleration = loaded_settings.PatchAcceleration;
+            settings.Hotkey = loaded_settings.Hotkey;
+            settings.HotkeyEnabled = loaded_settings.HotkeyEnabled;
+            settings.SoundsEnabled = loaded_settings.SoundsEnabled;
+            settings.CheckForUpdatesOnStart = loaded_settings.CheckForUpdatesOnStart;
+        }
+
+        public static void SaveSettings(SettingsHandler settings)
+        { //For saving settings to the XML file.
+            XMLHandler.Serialize_Settings(settings);
         }
 
         public static bool IsAdministrator()
@@ -89,10 +100,10 @@ namespace Halo_CE_Mouse_Tool
                 else {
                     if (sens == 'x')
                     { //If the sensitivity value is the x one or y one.
-                        settings.SensX = conv_float;
+                        settings.SensX = float.Parse(origin.Text);
                     }
                     else {
-                        settings.SensY = conv_float;
+                        settings.SensY = float.Parse(origin.Text);
                     }
                 }
             }

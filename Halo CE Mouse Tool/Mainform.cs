@@ -14,25 +14,25 @@ using System.Media;
 
 namespace Halo_CE_Mouse_Tool {
     public partial class Mainform : Form { //And here we go...
+        public XMLHandler xmlhandler = new XMLHandler(Application.StartupPath + "/CEMT.xml");
         public SettingsHandler settings = new SettingsHandler();
-        public XMLHandler xmlhandler = new XMLHandler();
         public SettingsForm settingsform;
         public DonateForm donateform;
 
         public Mainform() {
             InitializeComponent();
             AppDomain.CurrentDomain.ProcessExit += new EventHandler(OnProcessExit);
+            MessageBox.Show("a");
         }
 
         private void Mainform_Load(object sender, EventArgs e) {
-            utils.HandleXML(settings);
-            if (settings.CheckForUpdatesOnStart == 1) {
-                utils.CheckForUpdates(settings);
-            }
-            //Perhaps I can move these to handlexml?
+            utils.LoadSettings(settings);
             SensX.Text = settings.SensX.ToString();
             SensY.Text = settings.SensY.ToString();
-
+            if (settings.CheckForUpdatesOnStart == 1)
+            {
+                utils.CheckForUpdates(settings);
+            }
             string window_title = "Halo CE Mouse Tool v" + UpdateHandler.version.ToString();
             if (!utils.IsAdministrator()) { //Gripe at the user if they're not an admin.
                 window_title += " -NOT ADMIN-";
@@ -100,12 +100,11 @@ namespace Halo_CE_Mouse_Tool {
         }
 
         private void SensY_TextChanged(object sender, EventArgs e) {
-            utils.parse_sensitivity(this.SensX, 'y', settings); //Same as above.
-
+            utils.parse_sensitivity(this.SensY, 'y', settings); //Same as above.
         }
 
         public void OnProcessExit(object sender, EventArgs e) {
-            XMLHandler.Serialize_Settings(settings);
+            utils.SaveSettings(settings);
         }
 
         private void HotkeyTimer_Tick(object sender, EventArgs e) {
@@ -119,6 +118,16 @@ namespace Halo_CE_Mouse_Tool {
 
         private void SensY_Leave(object sender, EventArgs e) {
             utils.check_if_blank(this.SensY, settings); //Same as above.
+        }
+
+        private void SensX_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void SensY_KeyDown(object sender, KeyEventArgs e)
+        {
+
         }
     }
 }

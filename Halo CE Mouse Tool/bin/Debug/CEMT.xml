@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SettingsHandler xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SensX>1</SensX>
+  <SensX>5</SensX>
   <SensY>1</SensY>
-  <PatchAcceleration>1</PatchAcceleration>
-  <CheckForUpdatesOnStart>1</CheckForUpdatesOnStart>
-  <HotkeyEnabled>1</HotkeyEnabled>
+  <PatchAcceleration>0</PatchAcceleration>
+  <CheckForUpdatesOnStart>0</CheckForUpdatesOnStart>
+  <HotkeyEnabled>0</HotkeyEnabled>
   <Hotkey>F1</Hotkey>
-  <SoundsEnabled>1</SoundsEnabled>
+  <SoundsEnabled>0</SoundsEnabled>
 </SettingsHandler>
