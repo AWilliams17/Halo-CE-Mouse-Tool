@@ -65,23 +65,8 @@ namespace Halo_CE_Mouse_Tool
 
         public static void HandleXML(SettingsHandler settings)
         { //For loading settings from the XML file.
-            int loadxml = XMLHandler.LoadSettingsFromXML(settings);
-            if (loadxml == 1)
-            {
-                SoundHandler.sound_success(settings);
-                MessageBox.Show("Successfully found & Read XML.");
-            }
-            else if (loadxml == 2 || loadxml == 3)
-            {
-                SoundHandler.sound_error(settings);
-                MessageBox.Show("An XML file was found, but an error occurred whilst reading it. It is possible one or more settings were not set. They have been set to default.");
-            }
-            else {
-                SoundHandler.sound_notice(settings);
-                MessageBox.Show("Didn't find an XML file. Will now generate one with default values...");
-                XMLHandler.GenerateXML(settings);
-                XMLHandler.LoadSettingsFromXML(settings);
-            }
+            int loadxml = XMLHandler.DeSerialize_Settings(settings);
+            
         }
 
         public static bool IsAdministrator()

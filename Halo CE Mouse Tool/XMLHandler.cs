@@ -36,12 +36,25 @@ namespace Halo_CE_Mouse_Tool
             WriteFileStream.Close();
         }
 
-        public static void DeSerialize_Settings(SettingsHandler settings)
+        public static int DeSerialize_Settings(SettingsHandler settings)
         {
-            XmlSerializer SerializerObj = new XmlSerializer(typeof(SettingsHandler));
-            FileStream ReadFileStream = new FileStream(@XMLPath, FileMode.Open, FileAccess.Read, FileShare.Read);
-            settings = (SettingsHandler)SerializerObj.Deserialize(ReadFileStream);
-            ReadFileStream.Close();
+            if (XMLExists())
+            {
+                XmlSerializer SerializerObj = new XmlSerializer(typeof(SettingsHandler));
+                FileStream ReadFileStream = new FileStream(@XMLPath, FileMode.Open, FileAccess.Read, FileShare.Read);
+                SettingsHandler settings_loaded = (SettingsHandler)SerializerObj.Deserialize(ReadFileStream);
+                settings.SensX = settings_loaded.SensX;
+                settings.SensY = settings_loaded.SensY;
+                settings.PatchAcceleration = settings_loaded.PatchAcceleration;
+                settings.Hotkey = settings_loaded.Hotkey;
+                settings.HotkeyEnabled = settings_loaded.HotkeyEnabled;
+                settings.SoundsEnabled = settings_loaded.SoundsEnabled;
+                settings.CheckForUpdatesOnStart = settings_loaded.CheckForUpdatesOnStart;
+                ReadFileStream.Close();
+
+                return 1;
+            }
+            return 0;
         }
     }
 }

@@ -105,7 +105,7 @@ namespace Halo_CE_Mouse_Tool {
         }
 
         public void OnProcessExit(object sender, EventArgs e) {
-            XMLHandler.WriteSettingsToXML(settings);
+            XMLHandler.Serialize_Settings(settings);
         }
 
         private void HotkeyTimer_Tick(object sender, EventArgs e) {
