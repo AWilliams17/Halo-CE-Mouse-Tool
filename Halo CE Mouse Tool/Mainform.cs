@@ -119,15 +119,5 @@ namespace Halo_CE_Mouse_Tool {
         private void SensY_Leave(object sender, EventArgs e) {
             utils.check_if_blank(this.SensY, settings); //Same as above.
         }
-
-        private void SensX_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
-        private void SensY_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
     }
 }
