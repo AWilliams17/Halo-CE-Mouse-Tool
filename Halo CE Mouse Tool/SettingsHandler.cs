@@ -7,13 +7,15 @@ using System.Windows.Forms;
 using System.IO;
 using System.Xml;
 
-namespace Halo_CE_Mouse_Tool {
+namespace Halo_CE_Mouse_Tool
+{
     /*
         -SettingsHandler.cs-
         This class contains the settings for the application.
         I didn't declare as static since I wanted to try to keep it centralized or something.
     */
-    public class SettingsHandler { //I'll just keep the getters/setters so in the future I can perform validation of some sort
+    public class SettingsHandler
+    { //I'll just keep the getters/setters so in the future I can perform validation of some sort
         public float SensX { get; set; } = 1;
         public float SensY { get; set; } = 1;
         public int PatchAcceleration { get; set; } = 1;
