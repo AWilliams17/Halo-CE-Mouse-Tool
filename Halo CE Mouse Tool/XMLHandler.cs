@@ -54,7 +54,7 @@ namespace Halo_CE_Mouse_Tool
                 {
                     settings_loaded = (SettingsHandler)SerializerObj.Deserialize(ReadFileStream);
                 }
-                catch (System.InvalidOperationException)
+                catch (InvalidOperationException) //Seems to occur if the xml file for some reason has been screwed up.
                 {
                     settings_loaded = null; //Failed to load it. return null. I will leave what to do with the corrupt config file up to the user.
                 }

@@ -63,6 +63,7 @@ namespace Halo_CE_Mouse_Tool
             MessageBox.Show("Successfully wrote values to memory.");
         }
 
+        //This method is kind of... yea... might wanna try to shorten this.
         public static void LoadSettings(SettingsHandler settings, int context) //Pass the context so if I need to call SerializeSettings, I will have something to pass it.
         { //For loading settings from the XML file.
             SettingsHandler loaded_settings = XMLHandler.DeSerialize_Settings();
@@ -92,11 +93,11 @@ namespace Halo_CE_Mouse_Tool
                         if (!IsAdministrator()) //If the user isn't an administrator, then the file might be set to readonly.
                         {
                             MessageBox.Show(err_text + "You are not running as administrator, so it's possible I do not have permission to access the file. Please re-run the tool as admin.");
-                            Application.Exit();
+                            Application.Exit(); //Exit the tool so the user can re-run as admin. Really not much else I can do.
                         }
                     }
                 }
-                SaveSettings(settings, 2); //Try to generate a new config.
+                SaveSettings(settings, 2); //Try to generate a new config. Since I am calling from loadsettings, pass 2 to the context arg.
             }
             else
             {
