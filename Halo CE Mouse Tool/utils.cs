@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Principal; //For checking if user is running as admin
 using System.Diagnostics;
-using System.Media;
 using System.IO;
 
 namespace Halo_CE_Mouse_Tool

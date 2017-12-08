@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Net;
-using System.Windows.Forms;
-using System.Diagnostics;
-using System.Threading.Tasks;
-using System.IO;
 
 /*
     -UpdateHandler Class-
@@ -17,6 +11,7 @@ using System.IO;
     it on another thread/do it asynchronously?
 */
 namespace Halo_CE_Mouse_Tool {
+    [System.ComponentModel.DesignerCategory("Code")]
     public class WebClientWithTimeout : WebClient { //Custom webclient implementation to allow for custom timeout
         private int t;
         public WebClientWithTimeout(int timeout) {
@@ -29,6 +24,7 @@ namespace Halo_CE_Mouse_Tool {
         }
     }
 
+    [System.ComponentModel.DesignerCategory("Code")]
     public static class UpdateHandler {
         public const int version = 4; //Current program version
 
