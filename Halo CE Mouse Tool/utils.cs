@@ -63,21 +63,71 @@ namespace Halo_CE_Mouse_Tool
             MessageBox.Show("Successfully wrote values to memory.");
         }
 
-        public static void LoadSettings(SettingsHandler settings)
+        public static void LoadSettings(SettingsHandler settings, int context) //Pass the context so if I need to call SerializeSettings, I will have something to pass it.
         { //For loading settings from the XML file.
             SettingsHandler loaded_settings = XMLHandler.DeSerialize_Settings();
-            settings.SensX = loaded_settings.SensX;
-            settings.SensY = loaded_settings.SensY;
-            settings.PatchAcceleration = loaded_settings.PatchAcceleration;
-            settings.Hotkey = loaded_settings.Hotkey;
-            settings.HotkeyEnabled = loaded_settings.HotkeyEnabled;
-            settings.SoundsEnabled = loaded_settings.SoundsEnabled;
-            settings.CheckForUpdatesOnStart = loaded_settings.CheckForUpdatesOnStart;
+            if (loaded_settings == null)
+            {
+                SoundHandler.sound_error(settings);
+                if (!XMLHandler.XMLExists())
+                {
+                    MessageBox.Show("I did not find an XML config file. A new one will be generated with default values.");
+                }
+                else
+                {
+                    MessageBox.Show("An XML config file was found, but I failed to load it properly. It is possible it is damaged. A new one will be generated.");
+                    FileInfo fi = new FileInfo(XMLHandler.XMLPath);
+                    if (fi.IsReadOnly && IsAdministrator()) //If the file is readonly for some reason, that will cause an unauthorizedaccessexception.
+                    {
+                        File.SetAttributes(XMLHandler.XMLPath, File.GetAttributes(XMLHandler.XMLPath) & ~FileAttributes.ReadOnly); //So make it not readonly.
+                        //Since the application must be run as admin in order to set attributes, I check for that.
+                    }
+                    try
+                    {
+                        File.Delete(XMLHandler.XMLPath);
+                    }
+                    catch (UnauthorizedAccessException)
+                    {
+                        string err_text = "An error occurred whilst attempting to delete the corrupt config file. ";
+                        if (!IsAdministrator()) //If the user isn't an administrator, then the file might be set to readonly.
+                        {
+                            MessageBox.Show(err_text + "You are not running as administrator, so it's possible I do not have permission to access the file. Please re-run the tool as admin.");
+                            Application.Exit();
+                        }
+                    }
+                }
+                SaveSettings(settings, 2); //Try to generate a new config.
+            }
+            else
+            {
+                settings.SensX = loaded_settings.SensX;
+                settings.SensY = loaded_settings.SensY;
+                settings.PatchAcceleration = loaded_settings.PatchAcceleration;
+                settings.Hotkey = loaded_settings.Hotkey;
+                settings.HotkeyEnabled = loaded_settings.HotkeyEnabled;
+                settings.SoundsEnabled = loaded_settings.SoundsEnabled;
+                settings.CheckForUpdatesOnStart = loaded_settings.CheckForUpdatesOnStart;
+                SoundHandler.sound_success(settings);
+                MessageBox.Show("Successfully loaded the XML file.");
+            }
         }
 
-        public static void SaveSettings(SettingsHandler settings)
+        /*
+            If the context passed is 1, then the caller was the on_exit function, and I will ignore the exceptions to let it close gracefully.
+            If the context passed is 2, then the caller was the load settings function, and I will tell the user an error occured generating a new config.
+        */
+        public static void SaveSettings(SettingsHandler settings, int context)
         { //For saving settings to the XML file.
-            XMLHandler.Serialize_Settings(settings);
+            int save_settings = XMLHandler.Serialize_Settings(settings); //Return 1 for success, 0 on unauthorized access exception.
+            if (context == 1 && save_settings != 1)
+            {
+                save_settings = XMLHandler.Serialize_Settings(settings); //If an exception occurs, ignore it and exit.
+            }
+            else if (context == 2 && save_settings != 1)
+            {
+                SoundHandler.sound_error(settings);
+                MessageBox.Show("An access violation occurred whilst generating a new configuration file. Are you running as admin?");
+            }
         }
 
         public static bool IsAdministrator()

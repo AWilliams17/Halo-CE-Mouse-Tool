@@ -22,11 +22,10 @@ namespace Halo_CE_Mouse_Tool {
         public Mainform() {
             InitializeComponent();
             AppDomain.CurrentDomain.ProcessExit += new EventHandler(OnProcessExit);
-            MessageBox.Show("a");
         }
 
         private void Mainform_Load(object sender, EventArgs e) {
-            utils.LoadSettings(settings);
+            utils.LoadSettings(settings, 2);
             SensX.Text = settings.SensX.ToString();
             SensY.Text = settings.SensY.ToString();
             if (settings.CheckForUpdatesOnStart == 1)
@@ -104,7 +103,7 @@ namespace Halo_CE_Mouse_Tool {
         }
 
         public void OnProcessExit(object sender, EventArgs e) {
-            utils.SaveSettings(settings);
+            utils.SaveSettings(settings, 1); //The exception generated if the user has no access to the file will be ignored. Nothing I can do about that.
         }
 
         private void HotkeyTimer_Tick(object sender, EventArgs e) {

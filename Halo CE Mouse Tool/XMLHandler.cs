@@ -16,23 +16,31 @@ namespace Halo_CE_Mouse_Tool
     */
     public class XMLHandler
     {
-        private static string XMLPath;
+        public static string XMLPath;
 
         public XMLHandler(string xmlpath)
         {
             XMLPath = xmlpath;
         }
 
-        private static bool XMLExists()
+        public static bool XMLExists()
         { //Check if the XML configuration file exists.
             return File.Exists(XMLPath);
         }
-        public static void Serialize_Settings(SettingsHandler settings)
+        public static int Serialize_Settings(SettingsHandler settings) //For context, if I am calling it in processexit, the context will be 0. Otherwise, it will be 1.
         {
-            XmlSerializer SerializerObj = new XmlSerializer(typeof(SettingsHandler));
-            TextWriter WriteFileStream = new StreamWriter(@XMLPath);
-            SerializerObj.Serialize(WriteFileStream, settings);
-            WriteFileStream.Close();
+            try
+            {
+                XmlSerializer SerializerObj = new XmlSerializer(typeof(SettingsHandler));
+                TextWriter WriteFileStream = new StreamWriter(@XMLPath);
+                SerializerObj.Serialize(WriteFileStream, settings);
+                WriteFileStream.Close();
+                return 1; //Success
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return 0; //Exception occurred. Let the caller handle it.
+            }
         }
 
         public static SettingsHandler DeSerialize_Settings()
@@ -40,12 +48,23 @@ namespace Halo_CE_Mouse_Tool
             if (XMLExists())
             {
                 XmlSerializer SerializerObj = new XmlSerializer(typeof(SettingsHandler));
+                SettingsHandler settings_loaded;
                 FileStream ReadFileStream = new FileStream(@XMLPath, FileMode.Open, FileAccess.Read, FileShare.Read);
-                SettingsHandler settings_loaded = (SettingsHandler)SerializerObj.Deserialize(ReadFileStream);
-                ReadFileStream.Close();
+                try
+                {
+                    settings_loaded = (SettingsHandler)SerializerObj.Deserialize(ReadFileStream);
+                }
+                catch (System.InvalidOperationException)
+                {
+                    settings_loaded = null; //Failed to load it. return null. I will leave what to do with the corrupt config file up to the user.
+                }
+                finally //Always close the filestream no matter the outcome.
+                {
+                    ReadFileStream.Close();
+                }
                 return settings_loaded;
             }
-            return null;
+            return null; //It doesn't exist. Return null.
         }
     }
 }
