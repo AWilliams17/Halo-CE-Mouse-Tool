@@ -48,7 +48,7 @@ namespace Halo_CE_Mouse_Tool
 
         private void ActivateBtn_Click_1(object sender, EventArgs e)
         {
-            utils.WriteHaloMemory(this.settings);
+            utils.WriteHaloMemory(this.settings, 0);
         }
 
         private void StatusLabelTimer_Tick(object sender, EventArgs e)

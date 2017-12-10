@@ -13,7 +13,7 @@ namespace Halo_CE_Mouse_Tool
     */
     public static class utils
     {
-        public static void WriteHaloMemory(SettingsHandler settings)
+        public static void WriteHaloMemory(SettingsHandler settings, int hide_messages)
         { //Calls WriteMemory with selected settings.
             byte[] mouseaccelnop = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 }; //For noping the acceleration
             int return_value;
@@ -55,7 +55,10 @@ namespace Halo_CE_Mouse_Tool
                 }
             }
             SoundHandler.sound_success(settings);
-            MessageBox.Show("Successfully wrote values to memory.");
+            if (hide_messages == 0)
+            {
+                MessageBox.Show("Successfully wrote values to memory.");
+            }
         }
 
         //This method is kind of... yea... might wanna try to shorten this.
@@ -103,6 +106,7 @@ namespace Halo_CE_Mouse_Tool
                 settings.HotkeyEnabled = loaded_settings.HotkeyEnabled;
                 settings.SoundsEnabled = loaded_settings.SoundsEnabled;
                 settings.CheckForUpdatesOnStart = loaded_settings.CheckForUpdatesOnStart;
+                settings.HideKeybindSuccessMsg = loaded_settings.HideKeybindSuccessMsg;
                 SoundHandler.sound_success(settings);
                 MessageBox.Show("Successfully loaded the XML file.");
             }
@@ -194,7 +198,7 @@ namespace Halo_CE_Mouse_Tool
             {
                 if (KeybindHandler.IsKeyPushedDown((Keys)Enum.Parse(typeof(Keys), settings.Hotkey)))
                 {
-                    WriteHaloMemory(settings);
+                    WriteHaloMemory(settings, settings.HideKeybindSuccessMsg);
                 }
             }
         }

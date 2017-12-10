@@ -14,5 +14,6 @@
         public int HotkeyEnabled { get; set; } = 1; //TODO: I use Hotkey and Keybind interchangebly throughout the code. Why not just use Hotkey?
         public string Hotkey { get; set; } = "F1";
         public int SoundsEnabled { get; set; } = 1;
+        public int HideKeybindSuccessMsg { get; set; } = 0;
     }
 }
