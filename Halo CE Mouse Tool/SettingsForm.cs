@@ -40,6 +40,7 @@ namespace Halo_CE_Mouse_Tool
             {
                 HideHotkeyMsgCheckbox.Checked = true;
             }
+            UpdateTimeoutUpDown.Value = Convert.ToDecimal(settings.UpdateTimeout);
 
         }
 
@@ -115,6 +116,14 @@ namespace Halo_CE_Mouse_Tool
             {
                 settings.HideKeybindSuccessMsg = 0;
             }
+        }
+
+        private void UpdateTimeoutUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            int val = Convert.ToInt32(UpdateTimeoutUpDown.Value);
+            val = val * 1000;
+
+            settings.UpdateTimeout = val;
         }
     }
 }

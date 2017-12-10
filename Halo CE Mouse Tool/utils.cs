@@ -107,6 +107,7 @@ namespace Halo_CE_Mouse_Tool
                 settings.SoundsEnabled = loaded_settings.SoundsEnabled;
                 settings.CheckForUpdatesOnStart = loaded_settings.CheckForUpdatesOnStart;
                 settings.HideKeybindSuccessMsg = loaded_settings.HideKeybindSuccessMsg;
+                settings.UpdateTimeout = loaded_settings.UpdateTimeout;
                 SoundHandler.sound_success(settings);
                 MessageBox.Show("Successfully loaded the XML file.");
             }
@@ -171,7 +172,7 @@ namespace Halo_CE_Mouse_Tool
 
         public static void CheckForUpdates(SettingsHandler settings)
         { //For checking for updates...
-            int res = UpdateHandler.CheckForUpdates();
+            int res = UpdateHandler.CheckForUpdates(settings.UpdateTimeout);
             if (res == 2)
             {
                 SoundHandler.sound_error(settings);

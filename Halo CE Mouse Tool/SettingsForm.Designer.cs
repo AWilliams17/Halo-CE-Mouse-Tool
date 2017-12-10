@@ -34,6 +34,9 @@
             this.Tooltip = new System.Windows.Forms.ToolTip(this.components);
             this.SoundsEnabledCheckbox = new System.Windows.Forms.CheckBox();
             this.HideHotkeyMsgCheckbox = new System.Windows.Forms.CheckBox();
+            this.UpdateTimeoutUpDown = new System.Windows.Forms.NumericUpDown();
+            this.label2 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.UpdateTimeoutUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // EnableHotkeyCheckbox
@@ -83,7 +86,7 @@
             // MouseAccelCheckbox
             // 
             this.MouseAccelCheckbox.AutoSize = true;
-            this.MouseAccelCheckbox.Location = new System.Drawing.Point(15, 101);
+            this.MouseAccelCheckbox.Location = new System.Drawing.Point(15, 127);
             this.MouseAccelCheckbox.Name = "MouseAccelCheckbox";
             this.MouseAccelCheckbox.Size = new System.Drawing.Size(151, 17);
             this.MouseAccelCheckbox.TabIndex = 4;
@@ -94,7 +97,7 @@
             // 
             // CheckforUpdatesBtn
             // 
-            this.CheckforUpdatesBtn.Location = new System.Drawing.Point(15, 146);
+            this.CheckforUpdatesBtn.Location = new System.Drawing.Point(15, 173);
             this.CheckforUpdatesBtn.Name = "CheckforUpdatesBtn";
             this.CheckforUpdatesBtn.Size = new System.Drawing.Size(151, 23);
             this.CheckforUpdatesBtn.TabIndex = 7;
@@ -112,7 +115,7 @@
             // SoundsEnabledCheckbox
             // 
             this.SoundsEnabledCheckbox.AutoSize = true;
-            this.SoundsEnabledCheckbox.Location = new System.Drawing.Point(15, 124);
+            this.SoundsEnabledCheckbox.Location = new System.Drawing.Point(15, 150);
             this.SoundsEnabledCheckbox.Name = "SoundsEnabledCheckbox";
             this.SoundsEnabledCheckbox.Size = new System.Drawing.Size(104, 17);
             this.SoundsEnabledCheckbox.TabIndex = 8;
@@ -133,11 +136,46 @@
             this.HideHotkeyMsgCheckbox.UseVisualStyleBackColor = true;
             this.HideHotkeyMsgCheckbox.CheckedChanged += new System.EventHandler(this.HideHotkeyMsgCheckbox_CheckedChanged);
             // 
+            // UpdateTimeoutUpDown
+            // 
+            this.UpdateTimeoutUpDown.Location = new System.Drawing.Point(104, 101);
+            this.UpdateTimeoutUpDown.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.UpdateTimeoutUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.UpdateTimeoutUpDown.Name = "UpdateTimeoutUpDown";
+            this.UpdateTimeoutUpDown.ReadOnly = true;
+            this.UpdateTimeoutUpDown.Size = new System.Drawing.Size(62, 20);
+            this.UpdateTimeoutUpDown.TabIndex = 10;
+            this.UpdateTimeoutUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.UpdateTimeoutUpDown.ValueChanged += new System.EventHandler(this.UpdateTimeoutUpDown_ValueChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 103);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(86, 13);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Update Timeout:";
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(179, 176);
+            this.ClientSize = new System.Drawing.Size(179, 206);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.UpdateTimeoutUpDown);
             this.Controls.Add(this.HideHotkeyMsgCheckbox);
             this.Controls.Add(this.SoundsEnabledCheckbox);
             this.Controls.Add(this.CheckforUpdatesBtn);
@@ -149,12 +187,13 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(195, 215);
+            this.MaximumSize = new System.Drawing.Size(195, 245);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(195, 215);
+            this.MinimumSize = new System.Drawing.Size(195, 245);
             this.Name = "SettingsForm";
             this.Text = "Settings";
             this.Load += new System.EventHandler(this.SettingsForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.UpdateTimeoutUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -171,5 +210,7 @@
         private System.Windows.Forms.ToolTip Tooltip;
         private System.Windows.Forms.CheckBox SoundsEnabledCheckbox;
         private System.Windows.Forms.CheckBox HideHotkeyMsgCheckbox;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.NumericUpDown UpdateTimeoutUpDown;
     }
 }

@@ -28,8 +28,8 @@ namespace Halo_CE_Mouse_Tool {
     public static class UpdateHandler {
         public const int version = 4; //Current program version
 
-        public static int CheckForUpdates() { //Download a url, in this case pastebin, which has a single number in it.
-            WebClientWithTimeout wb = new WebClientWithTimeout(3000); //Timeout after 3 seconds. Add option in future.
+        public static int CheckForUpdates(int timeout) { //Download a url, in this case pastebin, which has a single number in it.
+            WebClientWithTimeout wb = new WebClientWithTimeout(timeout);
             byte[] HTML;
             try {
                 HTML = wb.DownloadData("https://pastebin.com/raw/UQpXvHBR"); //The number in the pastebin is the currently released version of the tool.

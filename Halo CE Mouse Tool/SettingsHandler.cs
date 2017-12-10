@@ -15,5 +15,6 @@
         public string Hotkey { get; set; } = "F1";
         public int SoundsEnabled { get; set; } = 1;
         public int HideKeybindSuccessMsg { get; set; } = 0;
+        public int UpdateTimeout { get; set; } = 3000;
     }
 }
