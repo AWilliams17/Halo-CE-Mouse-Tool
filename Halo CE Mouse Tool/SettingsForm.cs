@@ -40,7 +40,7 @@ namespace Halo_CE_Mouse_Tool
             {
                 HideHotkeyMsgCheckbox.Checked = true;
             }
-            UpdateTimeoutUpDown.Value = Convert.ToDecimal(settings.UpdateTimeout);
+            UpdateTimeoutUpDown.Value = Convert.ToDecimal(settings.UpdateTimeout) / 1000;
 
         }
 
