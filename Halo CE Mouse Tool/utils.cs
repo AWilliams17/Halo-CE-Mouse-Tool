@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using System.Security.Principal; //For checking if user is running as admin
 using System.Diagnostics;
 using System.IO;
+using System.Threading;
 
 namespace Halo_CE_Mouse_Tool
 {
@@ -172,26 +173,29 @@ namespace Halo_CE_Mouse_Tool
 
         public static void CheckForUpdates(SettingsHandler settings)
         { //For checking for updates...
-            int res = UpdateHandler.CheckForUpdates(settings.UpdateTimeout);
-            if (res == 2)
-            {
-                SoundHandler.sound_error(settings);
-                MessageBox.Show("An error occurred while checking for updates(Timeout?)");
-            }
-            else {
-                SoundHandler.sound_notice(settings);
-                if (res == 0)
+            Thread update_thread = new Thread(() => {
+                int res = UpdateHandler.CheckForUpdates(settings.UpdateTimeout);
+                if (res == 2)
                 {
-                    MessageBox.Show("No updates were found.");
+                    SoundHandler.sound_error(settings);
+                    MessageBox.Show("An error occurred while checking for updates(Timeout?)");
                 }
                 else {
-                    DialogResult d = MessageBox.Show("An Update is Available. Would you like to visit the downloads page?", "Update Found", MessageBoxButtons.YesNo);
-                    if (d == DialogResult.Yes)
+                    SoundHandler.sound_notice(settings);
+                    if (res == 0)
                     {
-                        Process.Start("https://github.com/AWilliams17/Halo-CE-Mouse-Tool/releases");
+                        MessageBox.Show("No updates were found.");
+                    }
+                    else {
+                        DialogResult d = MessageBox.Show("An Update is Available. Would you like to visit the downloads page?", "Update Found", MessageBoxButtons.YesNo);
+                        if (d == DialogResult.Yes)
+                        {
+                            Process.Start("https://github.com/AWilliams17/Halo-CE-Mouse-Tool/releases");
+                        }
                     }
                 }
-            }
+            });
+            update_thread.Start();
         }
         public static void keybind_handle(SettingsHandler settings)
         { //Detects if the hotkey is pressed or not. IDK if there's a better way of doing this or not.

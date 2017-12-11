@@ -32,10 +32,6 @@ namespace Halo_CE_Mouse_Tool
             utils.LoadSettings(settings, 2);
             SensX.Text = settings.SensX.ToString();
             SensY.Text = settings.SensY.ToString();
-            if (settings.CheckForUpdatesOnStart == 1)
-            {
-                utils.CheckForUpdates(settings);
-            }
             string window_title = "Halo CE Mouse Tool v" + UpdateHandler.version.ToString();
             if (!utils.IsAdministrator())
             { //Gripe at the user if they're not an admin.
@@ -44,6 +40,11 @@ namespace Halo_CE_Mouse_Tool
                 MessageBox.Show("Warning - You must run this tool as an administrator in order for it to work properly.");
             }
             this.Text = window_title;
+
+            if (settings.CheckForUpdatesOnStart == 1)
+            {
+                utils.CheckForUpdates(settings);
+            }
         }
 
         private void ActivateBtn_Click_1(object sender, EventArgs e)
