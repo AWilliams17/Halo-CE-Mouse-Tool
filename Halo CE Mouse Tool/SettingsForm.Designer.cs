@@ -36,7 +36,11 @@
             this.HideHotkeyMsgCheckbox = new System.Windows.Forms.CheckBox();
             this.UpdateTimeoutUpDown = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
+            this.IncrementHotkeyCheckbox = new System.Windows.Forms.CheckBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.IncrementAmount = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.UpdateTimeoutUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.IncrementAmount)).BeginInit();
             this.SuspendLayout();
             // 
             // EnableHotkeyCheckbox
@@ -97,7 +101,7 @@
             // 
             // CheckforUpdatesBtn
             // 
-            this.CheckforUpdatesBtn.Location = new System.Drawing.Point(15, 173);
+            this.CheckforUpdatesBtn.Location = new System.Drawing.Point(15, 222);
             this.CheckforUpdatesBtn.Name = "CheckforUpdatesBtn";
             this.CheckforUpdatesBtn.Size = new System.Drawing.Size(151, 23);
             this.CheckforUpdatesBtn.TabIndex = 7;
@@ -115,7 +119,7 @@
             // SoundsEnabledCheckbox
             // 
             this.SoundsEnabledCheckbox.AutoSize = true;
-            this.SoundsEnabledCheckbox.Location = new System.Drawing.Point(15, 150);
+            this.SoundsEnabledCheckbox.Location = new System.Drawing.Point(15, 199);
             this.SoundsEnabledCheckbox.Name = "SoundsEnabledCheckbox";
             this.SoundsEnabledCheckbox.Size = new System.Drawing.Size(104, 17);
             this.SoundsEnabledCheckbox.TabIndex = 8;
@@ -138,7 +142,7 @@
             // 
             // UpdateTimeoutUpDown
             // 
-            this.UpdateTimeoutUpDown.Location = new System.Drawing.Point(104, 101);
+            this.UpdateTimeoutUpDown.Location = new System.Drawing.Point(114, 101);
             this.UpdateTimeoutUpDown.Maximum = new decimal(new int[] {
             10,
             0,
@@ -151,7 +155,7 @@
             0});
             this.UpdateTimeoutUpDown.Name = "UpdateTimeoutUpDown";
             this.UpdateTimeoutUpDown.ReadOnly = true;
-            this.UpdateTimeoutUpDown.Size = new System.Drawing.Size(62, 20);
+            this.UpdateTimeoutUpDown.Size = new System.Drawing.Size(52, 20);
             this.UpdateTimeoutUpDown.TabIndex = 10;
             this.UpdateTimeoutUpDown.Value = new decimal(new int[] {
             1,
@@ -169,11 +173,64 @@
             this.label2.TabIndex = 11;
             this.label2.Text = "Update Timeout:";
             // 
+            // IncrementHotkeyCheckbox
+            // 
+            this.IncrementHotkeyCheckbox.AutoSize = true;
+            this.IncrementHotkeyCheckbox.Location = new System.Drawing.Point(15, 150);
+            this.IncrementHotkeyCheckbox.Name = "IncrementHotkeyCheckbox";
+            this.IncrementHotkeyCheckbox.Size = new System.Drawing.Size(151, 17);
+            this.IncrementHotkeyCheckbox.TabIndex = 12;
+            this.IncrementHotkeyCheckbox.Text = "Enable Increment Hotkeys";
+            this.IncrementHotkeyCheckbox.UseVisualStyleBackColor = true;
+            this.IncrementHotkeyCheckbox.CheckedChanged += new System.EventHandler(this.IncrementHotkeyCheckbox_CheckedChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 175);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(96, 13);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "Increment Amount:";
+            // 
+            // IncrementAmount
+            // 
+            this.IncrementAmount.DecimalPlaces = 1;
+            this.IncrementAmount.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.IncrementAmount.Location = new System.Drawing.Point(114, 173);
+            this.IncrementAmount.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.IncrementAmount.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.IncrementAmount.Name = "IncrementAmount";
+            this.IncrementAmount.ReadOnly = true;
+            this.IncrementAmount.Size = new System.Drawing.Size(52, 20);
+            this.IncrementAmount.TabIndex = 14;
+            this.IncrementAmount.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            this.IncrementAmount.ValueChanged += new System.EventHandler(this.IncrementAmount_ValueChanged);
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(179, 206);
+            this.ClientSize = new System.Drawing.Size(179, 256);
+            this.Controls.Add(this.IncrementAmount);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.IncrementHotkeyCheckbox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.UpdateTimeoutUpDown);
             this.Controls.Add(this.HideHotkeyMsgCheckbox);
@@ -187,13 +244,14 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(195, 245);
+            this.MaximumSize = new System.Drawing.Size(195, 295);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(195, 245);
+            this.MinimumSize = new System.Drawing.Size(195, 295);
             this.Name = "SettingsForm";
             this.Text = "Settings";
             this.Load += new System.EventHandler(this.SettingsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.UpdateTimeoutUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.IncrementAmount)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -212,5 +270,8 @@
         private System.Windows.Forms.CheckBox HideHotkeyMsgCheckbox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown UpdateTimeoutUpDown;
+        private System.Windows.Forms.CheckBox IncrementHotkeyCheckbox;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.NumericUpDown IncrementAmount;
     }
 }

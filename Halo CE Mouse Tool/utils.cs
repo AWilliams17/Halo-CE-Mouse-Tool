@@ -99,7 +99,7 @@ namespace Halo_CE_Mouse_Tool
                 SaveSettings(settings, 2); //Try to generate a new config. Since I am calling from loadsettings, pass 2 to the context arg.
             }
             else
-            {
+            { //ToDo: validate these for gods sake...
                 settings.SensX = loaded_settings.SensX;
                 settings.SensY = loaded_settings.SensY;
                 settings.PatchAcceleration = loaded_settings.PatchAcceleration;
@@ -109,6 +109,8 @@ namespace Halo_CE_Mouse_Tool
                 settings.CheckForUpdatesOnStart = loaded_settings.CheckForUpdatesOnStart;
                 settings.HideKeybindSuccessMsg = loaded_settings.HideKeybindSuccessMsg;
                 settings.UpdateTimeout = loaded_settings.UpdateTimeout;
+                settings.IncrementSens = loaded_settings.IncrementSens;
+                settings.IncrementAmount = loaded_settings.IncrementAmount;
                 SoundHandler.sound_success(settings);
                 MessageBox.Show("Successfully loaded the XML file.");
             }
@@ -197,13 +199,32 @@ namespace Halo_CE_Mouse_Tool
             });
             update_thread.Start();
         }
-        public static void keybind_handle(SettingsHandler settings)
+        public static void keybind_handle(SettingsHandler settings, TextBox sensXText, TextBox sensYText)
         { //Detects if the hotkey is pressed or not. IDK if there's a better way of doing this or not.
             if (KeybindHandler.KeybindsEnabled && settings.HotkeyEnabled == 1)
             {
                 if (KeybindHandler.IsKeyPushedDown((Keys)Enum.Parse(typeof(Keys), settings.Hotkey)))
                 {
                     WriteHaloMemory(settings, settings.HideKeybindSuccessMsg);
+                }
+            }
+            if (settings.IncrementSens == 1)
+            {
+                if (KeybindHandler.IsKeyPushedDown(Keys.Oemplus))
+                {
+                    settings.SensX += settings.IncrementAmount;
+                    settings.SensY += settings.IncrementAmount;
+                    WriteHaloMemory(settings, 1);
+                    sensXText.Text = settings.SensX.ToString();
+                    sensYText.Text = settings.SensY.ToString();
+                }
+                else if (KeybindHandler.IsKeyPushedDown(Keys.OemMinus))
+                {
+                    settings.SensX -= settings.IncrementAmount;
+                    settings.SensY -= settings.IncrementAmount;
+                    WriteHaloMemory(settings, 1);
+                    sensXText.Text = settings.SensX.ToString();
+                    sensYText.Text = settings.SensY.ToString();
                 }
             }
         }

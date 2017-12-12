@@ -40,7 +40,12 @@ namespace Halo_CE_Mouse_Tool
             {
                 HideHotkeyMsgCheckbox.Checked = true;
             }
+            if (settings.IncrementSens == 1)
+            {
+                IncrementHotkeyCheckbox.Checked = true;
+            }
             UpdateTimeoutUpDown.Value = Convert.ToDecimal(settings.UpdateTimeout) / 1000;
+            IncrementAmount.Value = Convert.ToDecimal(settings.IncrementAmount);
 
         }
 
@@ -124,6 +129,24 @@ namespace Halo_CE_Mouse_Tool
             val = val * 1000;
 
             settings.UpdateTimeout = val;
+        }
+
+        private void IncrementHotkeyCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (IncrementHotkeyCheckbox.Checked)
+            {
+                settings.IncrementSens = 1;
+            }
+            else
+            {
+                settings.IncrementSens = 0;
+            }
+        }
+
+        private void IncrementAmount_ValueChanged(object sender, EventArgs e)
+        {
+            float val = (float)IncrementAmount.Value;
+            settings.IncrementAmount = val;
         }
     }
 }

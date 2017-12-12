@@ -130,7 +130,7 @@ namespace Halo_CE_Mouse_Tool
 
         private void HotkeyTimer_Tick(object sender, EventArgs e)
         {
-            utils.keybind_handle(settings); //If the user presses their hotkey, then handle it.
+            utils.keybind_handle(settings, SensX, SensY); //If the user presses their hotkey, then handle it.
             //Is there a better way of doing this?
         }
 
