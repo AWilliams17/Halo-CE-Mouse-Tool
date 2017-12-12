@@ -6,4 +6,3 @@ Future Features:
 -Add a bottle opener
 -Embed a DLL into the tool, if the user wishes to, they can have this DLL get pasted into the controls directory in Halo,
 which will patch the sensitivity that way.
--Add threading
