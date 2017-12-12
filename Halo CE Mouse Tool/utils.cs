@@ -100,17 +100,17 @@ namespace Halo_CE_Mouse_Tool
             }
             else
             { //ToDo: validate these for gods sake...
-                settings.SensX = loaded_settings.SensX;
-                settings.SensY = loaded_settings.SensY;
-                settings.PatchAcceleration = loaded_settings.PatchAcceleration;
+                settings.setSensX(loaded_settings.SensX);
+                settings.setSensY(loaded_settings.SensY);
+                settings.setPatchAcceleration(loaded_settings.PatchAcceleration);
                 settings.Hotkey = loaded_settings.Hotkey;
-                settings.HotkeyEnabled = loaded_settings.HotkeyEnabled;
-                settings.SoundsEnabled = loaded_settings.SoundsEnabled;
-                settings.CheckForUpdatesOnStart = loaded_settings.CheckForUpdatesOnStart;
-                settings.HideKeybindSuccessMsg = loaded_settings.HideKeybindSuccessMsg;
-                settings.UpdateTimeout = loaded_settings.UpdateTimeout;
-                settings.IncrementSens = loaded_settings.IncrementSens;
-                settings.IncrementAmount = loaded_settings.IncrementAmount;
+                settings.setHotKeyEnabled(loaded_settings.HotkeyEnabled);
+                settings.setSoundsEnabled(loaded_settings.SoundsEnabled);
+                settings.setCheckForUpdates(loaded_settings.CheckForUpdatesOnStart);
+                settings.setHideKeybindSuccessMsg(loaded_settings.HideKeybindSuccessMsg);
+                settings.setUpdateTimeout(loaded_settings.UpdateTimeout);
+                settings.setIncrementSens(loaded_settings.IncrementSens);
+                settings.setIncrementAmount(loaded_settings.IncrementAmount);
                 SoundHandler.sound_success(settings);
                 MessageBox.Show("Successfully loaded the XML file.");
             }
@@ -154,10 +154,10 @@ namespace Halo_CE_Mouse_Tool
                 else {
                     if (sens == 'x')
                     { //If the sensitivity value is the x one or y one.
-                        settings.SensX = float.Parse(origin.Text);
+                        settings.setSensX(float.Parse(origin.Text));
                     }
                     else {
-                        settings.SensY = float.Parse(origin.Text);
+                        settings.setSensY(float.Parse(origin.Text));
                     }
                 }
             }
@@ -212,16 +212,20 @@ namespace Halo_CE_Mouse_Tool
             {
                 if (KeybindHandler.IsKeyPushedDown(Keys.Oemplus))
                 {
-                    settings.SensX += settings.IncrementAmount;
-                    settings.SensY += settings.IncrementAmount;
+                    float SensX = settings.SensX;
+                    float SensY = settings.SensY;
+                    settings.setSensX(SensX += settings.IncrementAmount);
+                    settings.setSensY(SensY += settings.IncrementAmount);
                     WriteHaloMemory(settings, 1);
                     sensXText.Text = settings.SensX.ToString();
                     sensYText.Text = settings.SensY.ToString();
                 }
                 else if (KeybindHandler.IsKeyPushedDown(Keys.OemMinus))
                 {
-                    settings.SensX -= settings.IncrementAmount;
-                    settings.SensY -= settings.IncrementAmount;
+                    float SensX = settings.SensX;
+                    float SensY = settings.SensY;
+                    settings.setSensX(SensX -= settings.IncrementAmount);
+                    settings.setSensY(SensY -= settings.IncrementAmount);
                     WriteHaloMemory(settings, 1);
                     sensXText.Text = settings.SensX.ToString();
                     sensYText.Text = settings.SensY.ToString();
