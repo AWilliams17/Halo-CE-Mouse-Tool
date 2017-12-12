@@ -39,7 +39,7 @@ namespace Halo_CE_Mouse_Tool
                 SoundHandler.sound_notice(settings);
                 MessageBox.Show("Warning - You must run this tool as an administrator in order for it to work properly.");
             }
-            this.Text = window_title;
+            Text = window_title;
 
             if (settings.CheckForUpdatesOnStart == 1)
             {
@@ -115,12 +115,12 @@ namespace Halo_CE_Mouse_Tool
 
         private void SensX_TextChanged(object sender, EventArgs e)
         {
-            utils.parse_sensitivity(this.SensX, 'x', settings); //Make sure the input is valid.
+            utils.parse_sensitivity(SensX, 'x', settings); //Make sure the input is valid.
         }
 
         private void SensY_TextChanged(object sender, EventArgs e)
         {
-            utils.parse_sensitivity(this.SensY, 'y', settings); //Same as above.
+            utils.parse_sensitivity(SensY, 'y', settings); //Same as above.
         }
 
         public void OnProcessExit(object sender, EventArgs e)
@@ -136,12 +136,12 @@ namespace Halo_CE_Mouse_Tool
 
         private void SensX_Leave(object sender, EventArgs e)
         {
-            utils.check_if_blank(this.SensX, settings); //If the user tries to leave with the textbox being blank, then force them back to it.
+            utils.check_if_blank(SensX, settings); //If the user tries to leave with the textbox being blank, then force them back to it.
         }
 
         private void SensY_Leave(object sender, EventArgs e)
         {
-            utils.check_if_blank(this.SensY, settings); //Same as above.
+            utils.check_if_blank(SensY, settings); //Same as above.
         }
     }
 }
