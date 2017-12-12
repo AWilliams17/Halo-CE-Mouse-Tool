@@ -214,21 +214,39 @@ namespace Halo_CE_Mouse_Tool
                 {
                     float SensX = settings.SensX;
                     float SensY = settings.SensY;
-                    settings.setSensX(SensX += settings.IncrementAmount);
-                    settings.setSensY(SensY += settings.IncrementAmount);
-                    WriteHaloMemory(settings, 1);
-                    sensXText.Text = settings.SensX.ToString();
-                    sensYText.Text = settings.SensY.ToString();
+                    float res = SensX + settings.IncrementAmount;
+                    float res2 = SensY + settings.IncrementAmount;
+                    if (res > 12 || res2 > 12) //Don't increase sensitivity if it will make it go above 12.
+                    {
+                        SoundHandler.sound_error(settings);
+                    }
+                    else
+                    {
+                        settings.setSensX(SensX += settings.IncrementAmount);
+                        settings.setSensY(SensY += settings.IncrementAmount);
+                        WriteHaloMemory(settings, 1);
+                        sensXText.Text = settings.SensX.ToString();
+                        sensYText.Text = settings.SensY.ToString();
+                    }
                 }
                 else if (KeybindHandler.IsKeyPushedDown(Keys.OemMinus))
                 {
                     float SensX = settings.SensX;
                     float SensY = settings.SensY;
-                    settings.setSensX(SensX -= settings.IncrementAmount);
-                    settings.setSensY(SensY -= settings.IncrementAmount);
-                    WriteHaloMemory(settings, 1);
-                    sensXText.Text = settings.SensX.ToString();
-                    sensYText.Text = settings.SensY.ToString();
+                    float res = SensX - settings.IncrementAmount;
+                    float res2 = SensY - settings.IncrementAmount;
+                    if (res <= 0 || res2 <= 0) //Don't decrease the sensitivity if it will make it drop below 0.
+                    {
+                        SoundHandler.sound_error(settings);
+                    }
+                    else
+                    {
+                        settings.setSensX(SensX -= settings.IncrementAmount);
+                        settings.setSensY(SensY -= settings.IncrementAmount);
+                        WriteHaloMemory(settings, 1);
+                        sensXText.Text = settings.SensX.ToString();
+                        sensYText.Text = settings.SensY.ToString();
+                    }
                 }
             }
         }

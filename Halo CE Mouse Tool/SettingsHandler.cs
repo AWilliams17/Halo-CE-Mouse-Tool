@@ -135,11 +135,11 @@ namespace Halo_CE_Mouse_Tool
         {
             if (value < 0 || value > 5)
             {
-                IncrementAmount = value;
+                IncrementAmount = 0.5F;
             }
             else
             {
-                IncrementAmount = 0.5F;
+                IncrementAmount = value;
             }
         }
     }
