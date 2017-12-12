@@ -58,10 +58,10 @@ namespace Halo_CE_Mouse_Tool
         {
             if (EnableHotkeyCheckbox.Checked)
             {
-                settings.setHotKeyEnabled(1);
+                settings.HotkeyEnabled = 1;
             }
             else {
-                settings.setHotKeyEnabled(0);
+                settings.HotkeyEnabled = 0;
             }
         }
 
@@ -69,10 +69,10 @@ namespace Halo_CE_Mouse_Tool
         {
             if (UpdateCheckbox.Checked)
             {
-                settings.setCheckForUpdates(1);
+                settings.CheckForUpdatesOnStart = 1;
             }
             else {
-                settings.setCheckForUpdates(0);
+                settings.CheckForUpdatesOnStart = 0;
             }
         }
 
@@ -80,10 +80,10 @@ namespace Halo_CE_Mouse_Tool
         {
             if (MouseAccelCheckbox.Checked)
             {
-                settings.setPatchAcceleration(1);
+                settings.PatchAcceleration = 1;
             }
             else {
-                settings.setPatchAcceleration(0);
+                settings.PatchAcceleration = 0;
             }
         }
 
@@ -91,10 +91,10 @@ namespace Halo_CE_Mouse_Tool
         {
             if (SoundsEnabledCheckbox.Checked)
             {
-                settings.setSoundsEnabled(1);
+                settings.SoundsEnabled = 1;
             }
             else {
-                settings.setSoundsEnabled(0);
+                settings.SoundsEnabled = 0;
             }
         }
 
@@ -115,11 +115,11 @@ namespace Halo_CE_Mouse_Tool
         {
             if (HideHotkeyMsgCheckbox.Checked)
             {
-                settings.setHideKeybindSuccessMsg(1);
+                settings.HideKeybindSuccessMsg = 1;
             }
             else
             {
-                settings.setHideKeybindSuccessMsg(0);
+                settings.HideKeybindSuccessMsg = 0;
             }
         }
 
@@ -128,25 +128,25 @@ namespace Halo_CE_Mouse_Tool
             int val = Convert.ToInt32(UpdateTimeoutUpDown.Value);
             val = val * 1000;
 
-            settings.setUpdateTimeout(val);
+            settings.UpdateTimeout = val;
         }
 
         private void IncrementHotkeyCheckbox_CheckedChanged(object sender, EventArgs e)
         {
             if (IncrementHotkeyCheckbox.Checked)
             {
-                settings.setIncrementSens(1);
+                settings.IncrementSens = 1;
             }
             else
             {
-                settings.setIncrementSens(0);
+                settings.IncrementSens = 0;
             }
         }
 
         private void IncrementAmount_ValueChanged(object sender, EventArgs e)
         {
             float val = (float)IncrementAmount.Value;
-            settings.setIncrementAmount(val);
+            settings.IncrementAmount = val;
         }
     }
 }

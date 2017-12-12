@@ -100,19 +100,34 @@ namespace Halo_CE_Mouse_Tool
             }
             else
             {
-                settings.setSensX(loaded_settings.SensX);
-                settings.setSensY(loaded_settings.SensY);
-                settings.setPatchAcceleration(loaded_settings.PatchAcceleration);
-                settings.Hotkey = loaded_settings.Hotkey;
-                settings.setHotKeyEnabled(loaded_settings.HotkeyEnabled);
-                settings.setSoundsEnabled(loaded_settings.SoundsEnabled);
-                settings.setCheckForUpdates(loaded_settings.CheckForUpdatesOnStart);
-                settings.setHideKeybindSuccessMsg(loaded_settings.HideKeybindSuccessMsg);
-                settings.setUpdateTimeout(loaded_settings.UpdateTimeout);
-                settings.setIncrementSens(loaded_settings.IncrementSens);
-                settings.setIncrementAmount(loaded_settings.IncrementAmount);
-                SoundHandler.sound_success(settings);
-                MessageBox.Show("Successfully loaded the XML file.");
+                try
+                {
+                    settings.SensX = loaded_settings.SensX;
+                    settings.SensY = loaded_settings.SensY;
+                    settings.PatchAcceleration = loaded_settings.PatchAcceleration;
+                    settings.Hotkey = loaded_settings.Hotkey;
+                    settings.HotkeyEnabled = loaded_settings.HotkeyEnabled;
+                    settings.SoundsEnabled = loaded_settings.SoundsEnabled;
+                    settings.CheckForUpdatesOnStart = loaded_settings.CheckForUpdatesOnStart;
+                    settings.HideKeybindSuccessMsg = loaded_settings.HideKeybindSuccessMsg;
+                    settings.UpdateTimeout = loaded_settings.UpdateTimeout;
+                    settings.IncrementSens = loaded_settings.IncrementSens;
+                    settings.IncrementAmount = loaded_settings.IncrementAmount;
+                    SoundHandler.sound_success(settings);
+                    MessageBox.Show("Successfully loaded the XML file.");
+                }
+                catch (Exception ex)
+                {
+                    SoundHandler.sound_error(settings);
+                    if (ex is ArgumentException || ex is ArgumentOutOfRangeException)
+                    {
+                        MessageBox.Show("An error occurred whilst loading the settings file: One or more values were not set correctly. Did you manually edit the file? These settings have been set to their defaults.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("An error occurred whilst loading the settings file: Unspecified error. Possible malformation of config file. Settings that failed to load have been set back to their defaults.");
+                    }
+                }
             }
         }
 
@@ -154,10 +169,25 @@ namespace Halo_CE_Mouse_Tool
                 else {
                     if (sens == 'x')
                     { //If the sensitivity value is the x one or y one.
-                        settings.setSensX(float.Parse(origin.Text));
+                        try
+                        {
+                            settings.SensX = float.Parse(origin.Text);
+                        }
+                        catch (ArgumentOutOfRangeException)
+                        {
+                            MessageBox.Show("Error: Sensitivities can not go below 0.");
+                        }
                     }
-                    else {
-                        settings.setSensY(float.Parse(origin.Text));
+                    else
+                    {
+                        try
+                        {
+                            settings.SensY = float.Parse(origin.Text);
+                        }
+                        catch (ArgumentOutOfRangeException)
+                        {
+                            MessageBox.Show("Error: Sensitivities can not go below 0.");
+                        }
                     }
                 }
             }
@@ -175,7 +205,8 @@ namespace Halo_CE_Mouse_Tool
 
         public static void CheckForUpdates(SettingsHandler settings)
         { //For checking for updates...
-            Thread update_thread = new Thread(() => {
+            Thread update_thread = new Thread(() =>
+            {
                 int res = UpdateHandler.CheckForUpdates(settings.UpdateTimeout);
                 if (res == 2)
                 {
@@ -212,40 +243,33 @@ namespace Halo_CE_Mouse_Tool
             {
                 if (KeybindHandler.IsKeyPushedDown(Keys.Oemplus))
                 {
-                    float SensX = settings.SensX;
-                    float SensY = settings.SensY;
-                    float res = SensX + settings.IncrementAmount;
-                    float res2 = SensY + settings.IncrementAmount;
-                    if (res > 12 || res2 > 12) //Don't increase sensitivity if it will make it go above 12.
+                    try
                     {
-                        SoundHandler.sound_error(settings);
-                    }
-                    else
-                    {
-                        settings.setSensX(SensX += settings.IncrementAmount);
-                        settings.setSensY(SensY += settings.IncrementAmount);
+                        settings.SensX = settings.SensX += settings.IncrementAmount;
+                        settings.SensY = settings.SensY += settings.IncrementAmount;
                         WriteHaloMemory(settings, 1);
                         sensXText.Text = settings.SensX.ToString();
                         sensYText.Text = settings.SensY.ToString();
+                    }
+                    catch (ArgumentOutOfRangeException)
+                    {
+                        SoundHandler.sound_error(settings);
                     }
                 }
+
                 else if (KeybindHandler.IsKeyPushedDown(Keys.OemMinus))
                 {
-                    float SensX = settings.SensX;
-                    float SensY = settings.SensY;
-                    float res = SensX - settings.IncrementAmount;
-                    float res2 = SensY - settings.IncrementAmount;
-                    if (res <= 0 || res2 <= 0) //Don't decrease the sensitivity if it will make it drop below 0.
+                    try
                     {
-                        SoundHandler.sound_error(settings);
-                    }
-                    else
-                    {
-                        settings.setSensX(SensX -= settings.IncrementAmount);
-                        settings.setSensY(SensY -= settings.IncrementAmount);
+                        settings.SensX = settings.SensX -= settings.IncrementAmount;
+                        settings.SensY = settings.SensY -= settings.IncrementAmount;
                         WriteHaloMemory(settings, 1);
                         sensXText.Text = settings.SensX.ToString();
                         sensYText.Text = settings.SensY.ToString();
+                    }
+                    catch (ArgumentOutOfRangeException)
+                    {
+                        SoundHandler.sound_error(settings);
                     }
                 }
             }

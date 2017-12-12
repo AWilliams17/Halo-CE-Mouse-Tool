@@ -1,4 +1,5 @@
 ﻿using System.Runtime.Serialization;
+using System;
 using System.Windows.Forms;
 
 namespace Halo_CE_Mouse_Tool
@@ -11,135 +12,202 @@ namespace Halo_CE_Mouse_Tool
     [DataContract]
     public class SettingsHandler
     { //I'll just keep the getters/setters so in the future I can perform validation of some sort
-        [DataMember] public float SensX { get; private set; } = 1;
-        [DataMember] public float SensY { get; private set; } = 1;
-        [DataMember] public int PatchAcceleration { get; private set; } = 1;
-        [DataMember] public int CheckForUpdatesOnStart { get; private set; } = 1;
-        [DataMember] public int HotkeyEnabled { get; private set; } = 1; //TODO: I use Hotkey and Keybind interchangebly throughout the code. Why not just use Hotkey?
-        [DataMember] public string Hotkey { get; set; } = "F1";
-        [DataMember] public int SoundsEnabled { get; private set; }
-        [DataMember] public int HideKeybindSuccessMsg { get; private set; } = 0;
-        [DataMember] public int UpdateTimeout { get; private set; } = 3000;
-        [DataMember] public int IncrementSens { get; private set; } = 1;
-        [DataMember] public float IncrementAmount { get; private set; } = 0.5F;
+        [DataMember] private float SensXP = 1;
+        [DataMember] private float SensYP = 1;
+        [DataMember] private int PatchAccelerationP = 1;
+        [DataMember] private int CheckForUpdatesP = 1;
+        [DataMember] private int HotkeyEnabledP = 1;
+        [DataMember] private string HotkeyP = "F1";
+        [DataMember] private int SoundsEnabledP = 1;
+        [DataMember] private int HideKeyBindSuccessMsgP = 1;
+        [DataMember] private int UpdateTimeoutP = 3000;
+        [DataMember] private int IncrementSensP = 1;
+        [DataMember] private float IncrementAmountP = 0.5F;
 
-        public void setSensX(float value)
+
+        public float SensX
         {
-            if (value > 0)
+            get
             {
-                SensX = value;
+                return SensXP;
             }
-            else
+            set
             {
-                SensX = 1;
+                if (value < 0)
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+                else
+                {
+                    SensXP = value;
+                }
             }
         }
-
-        public void setSensY(float value)
+        public float SensY
         {
-            if (value > 0)
+            get
             {
-                SensY = value;
+                return SensYP;
             }
-            else
+            set
             {
-                SensY = 1;
+                if (value < 0)
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+                else
+                {
+                    SensYP = value;
+                }
             }
         }
-
-        public void setPatchAcceleration(int value)
+        public int PatchAcceleration
         {
-            if (value == 0 || value == 1)
+            get
             {
-                PatchAcceleration = value;
+                return PatchAccelerationP;
             }
-            else
+            set
             {
-                PatchAcceleration = 1;
+                if (value == 1 || value == 0)
+                {
+                    PatchAccelerationP = value;
+
+                }
+                else
+                {
+                    throw new ArgumentException();
+                }
             }
         }
-
-        public void setCheckForUpdates(int value)
+        public int CheckForUpdatesOnStart
         {
-            if (value == 0 || value == 1)
+            get
             {
-                CheckForUpdatesOnStart = value;
+                return CheckForUpdatesP;
             }
-            else
+            set
             {
-                CheckForUpdatesOnStart = 1;
+                if (value == 1 || value == 0)
+                {
+                    CheckForUpdatesP = value;
+                }
+                else
+                {
+                    throw new ArgumentException();
+                }
             }
         }
-
-        public void setHotKeyEnabled(int value)
+        public int HotkeyEnabled
         {
-            if (value == 0 || value == 1)
+            get
             {
-                HotkeyEnabled= value;
+                return HotkeyEnabledP;
             }
-            else
+            set
             {
-                HotkeyEnabled = 1;
+                if (value == 1 || value == 0)
+                {
+                    HotkeyEnabledP = value;
+                }
+                else
+                {
+                    throw new ArgumentException();
+                }
             }
         }
-
-        public void setSoundsEnabled(int value)
+        public string Hotkey
         {
-            if (value == 0 || value == 1)
+            get
             {
-                SoundsEnabled = value;
+                return HotkeyP;
             }
-            else
+            set
             {
-                SoundsEnabled = 1;
+                HotkeyP = value; //I guess I'll just validate if its got a Keys equiv.
             }
         }
-
-        public void setHideKeybindSuccessMsg(int value)
+        public int SoundsEnabled
         {
-            if (value == 0 || value == 1)
+            get
             {
-                HideKeybindSuccessMsg = value;
+                return SoundsEnabledP;
             }
-            else
+            set
             {
-                HideKeybindSuccessMsg = 0;
+                if (value == 1 || value == 0)
+                {
+                    SoundsEnabledP = value;
+                }
+                else
+                {
+                    throw new ArgumentException();
+                }
             }
         }
-
-        public void setUpdateTimeout(int value)
+        public int HideKeybindSuccessMsg
         {
-            if (value == 0 || value == 1)
+            get
             {
-                UpdateTimeout = value;
+                return HideKeyBindSuccessMsgP;
             }
-            else
+            set
             {
-                UpdateTimeout = 3000;
+                if (value == 1 || value == 0)
+                {
+                    HideKeyBindSuccessMsgP = value;
+                }
+                else
+                {
+                    throw new ArgumentException();
+                }
             }
         }
-
-        public void setIncrementSens(int value)
+        public int UpdateTimeout
         {
-            if (value == 0 || value == 1)
+            get
             {
-                IncrementSens = value;
+                return UpdateTimeoutP;
             }
-            else
+            set
             {
-                IncrementSens = 1;
+                UpdateTimeoutP = value; //IDK if I should really care what the user sets the timeout to...
             }
         }
-
-        public void setIncrementAmount(float value)
+        public int IncrementSens
         {
-            if (value < 0 || value > 5)
+            get
             {
-                IncrementAmount = 0.5F;
+                return IncrementSensP;
             }
-            else
+            set
             {
-                IncrementAmount = value;
+                if (value == 0 || value == 1)
+                {
+                    IncrementSensP = value;
+                }
+                else
+                {
+                    throw new ArgumentException();
+                }
+            }
+        }
+        public float IncrementAmount
+        {
+            get
+            {
+                return IncrementAmountP;
+            }
+            set
+            {
+                if (value < 0 || value > 5)
+                {
+                    throw new ArgumentException();
+                }
+                else
+                {
+                    IncrementAmountP = value;
+                }
             }
         }
     }
