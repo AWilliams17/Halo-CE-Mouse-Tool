@@ -208,7 +208,7 @@ namespace Halo_CE_Mouse_Tool
                     WriteHaloMemory(settings, settings.HideKeybindSuccessMsg);
                 }
             }
-            if (settings.IncrementSens == 1)
+            if (settings.IncrementSens == 1 && KeybindHandler.KeybindsEnabled)
             {
                 if (KeybindHandler.IsKeyPushedDown(Keys.Oemplus))
                 {
