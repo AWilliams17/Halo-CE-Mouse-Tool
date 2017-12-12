@@ -1,129 +1,133 @@
-﻿namespace Halo_CE_Mouse_Tool
+﻿using System.Runtime.Serialization;
+using System.Windows.Forms;
+
+namespace Halo_CE_Mouse_Tool
 {
     /*
         -SettingsHandler.cs-
         This class contains the settings for the application.
         I didn't declare as static since I wanted to try to keep it centralized or something.
     */
+    [DataContract]
     public class SettingsHandler
     { //I'll just keep the getters/setters so in the future I can perform validation of some sort
-        public float SensX { get; private set; } = 1;
-        public float SensY { get; private set; } = 1;
-        public int PatchAcceleration { get; private set; } = 1;
-        public int CheckForUpdatesOnStart { get; private set; } = 1;
-        public int HotkeyEnabled { get; private set; } = 1; //TODO: I use Hotkey and Keybind interchangebly throughout the code. Why not just use Hotkey?
-        public string Hotkey { get; set; } = "F1";
-        public int SoundsEnabled { get; private set; } = 1;
-        public int HideKeybindSuccessMsg { get; private set; } = 0;
-        public int UpdateTimeout { get; private set; } = 3000;
-        public int IncrementSens { get; private set; } = 1;
-        public float IncrementAmount { get; private set; } = 0.5F;
+        [DataMember] public float SensX { get; private set; } = 1;
+        [DataMember] public float SensY { get; private set; } = 1;
+        [DataMember] public int PatchAcceleration { get; private set; } = 1;
+        [DataMember] public int CheckForUpdatesOnStart { get; private set; } = 1;
+        [DataMember] public int HotkeyEnabled { get; private set; } = 1; //TODO: I use Hotkey and Keybind interchangebly throughout the code. Why not just use Hotkey?
+        [DataMember] public string Hotkey { get; set; } = "F1";
+        [DataMember] public int SoundsEnabled { get; private set; }
+        [DataMember] public int HideKeybindSuccessMsg { get; private set; } = 0;
+        [DataMember] public int UpdateTimeout { get; private set; } = 3000;
+        [DataMember] public int IncrementSens { get; private set; } = 1;
+        [DataMember] public float IncrementAmount { get; private set; } = 0.5F;
 
         public void setSensX(float value)
         {
-            if (value <= 0)
+            if (value > 0)
             {
-                SensX = 0.1F;
+                SensX = value;
             }
             else
             {
-                SensX = value;
+                SensX = 1;
             }
         }
 
         public void setSensY(float value)
         {
-            if (value <= 0)
+            if (value > 0)
             {
-                SensX = 0.1F;
+                SensY = value;
             }
             else
             {
-                SensY = value;
+                SensY = 1;
             }
         }
 
         public void setPatchAcceleration(int value)
         {
-            if (value != 0 || value != 1)
+            if (value == 0 || value == 1)
             {
-                PatchAcceleration = 1;
+                PatchAcceleration = value;
             }
             else
             {
-                PatchAcceleration = value;
+                PatchAcceleration = 1;
             }
         }
 
         public void setCheckForUpdates(int value)
         {
-            if (value != 0 || value != 1)
+            if (value == 0 || value == 1)
             {
-                CheckForUpdatesOnStart = 1;
+                CheckForUpdatesOnStart = value;
             }
             else
             {
-                CheckForUpdatesOnStart = value;
+                CheckForUpdatesOnStart = 1;
             }
         }
 
         public void setHotKeyEnabled(int value)
         {
-            if (value != 0 || value != 1)
+            if (value == 0 || value == 1)
             {
-                HotkeyEnabled= 1;
+                HotkeyEnabled= value;
             }
             else
             {
-                HotkeyEnabled = value;
+                HotkeyEnabled = 1;
             }
         }
 
         public void setSoundsEnabled(int value)
         {
-            if (value != 0 || value != 1)
+            if (value == 0 || value == 1)
             {
-                SoundsEnabled = 1;
+                SoundsEnabled = value;
             }
             else
             {
-                SoundsEnabled = value;
+                SoundsEnabled = 1;
             }
         }
 
         public void setHideKeybindSuccessMsg(int value)
         {
-            if (value != 0 || value != 1)
+            if (value == 0 || value == 1)
             {
-                HideKeybindSuccessMsg = 0;
+                HideKeybindSuccessMsg = value;
             }
             else
             {
-                HideKeybindSuccessMsg = value;
+                HideKeybindSuccessMsg = 0;
             }
         }
 
         public void setUpdateTimeout(int value)
         {
-            if (value != 0 || value != 1)
+            if (value == 0 || value == 1)
             {
-                UpdateTimeout = 3000;
+                UpdateTimeout = value;
             }
             else
             {
-                UpdateTimeout = value;
+                UpdateTimeout = 3000;
             }
         }
 
         public void setIncrementSens(int value)
         {
-            if (value != 0 || value != 1)
+            if (value == 0 || value == 1)
             {
-                IncrementSens = 1;
+                IncrementSens = value;
             }
             else
             {
-                IncrementSens = value;
+                IncrementSens = 1;
             }
         }
 
@@ -131,11 +135,11 @@
         {
             if (value < 0 || value > 5)
             {
-                IncrementAmount = 0.5F;
+                IncrementAmount = value;
             }
             else
             {
-                IncrementAmount = value;
+                IncrementAmount = 0.5F;
             }
         }
     }

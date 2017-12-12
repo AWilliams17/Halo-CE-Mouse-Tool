@@ -99,7 +99,7 @@ namespace Halo_CE_Mouse_Tool
                 SaveSettings(settings, 2); //Try to generate a new config. Since I am calling from loadsettings, pass 2 to the context arg.
             }
             else
-            { //ToDo: validate these for gods sake...
+            {
                 settings.setSensX(loaded_settings.SensX);
                 settings.setSensY(loaded_settings.SensY);
                 settings.setPatchAcceleration(loaded_settings.PatchAcceleration);

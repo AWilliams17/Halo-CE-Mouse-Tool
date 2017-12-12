@@ -91,7 +91,7 @@ namespace Halo_CE_Mouse_Tool
         {
             if (SoundsEnabledCheckbox.Checked)
             {
-                settings.setSoundsEnabled(0);
+                settings.setSoundsEnabled(1);
             }
             else {
                 settings.setSoundsEnabled(0);
