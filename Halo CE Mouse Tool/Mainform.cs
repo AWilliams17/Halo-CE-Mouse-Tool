@@ -1,94 +1,91 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
-using System.Runtime.InteropServices;
-using System.IO;
-using System.Media;
 
 namespace Halo_CE_Mouse_Tool
 {
     public partial class Mainform : Form
     { //And here we go...
-        public XmlHandler xmlhandler = new XmlHandler(Application.StartupPath + "/CEMT.xml");
-        public SettingsHandler settings = new SettingsHandler();
-        public SettingsForm settingsform;
-        public DonateForm donateform;
+        public XmlHandler Xmlhandler = new XmlHandler(Application.StartupPath + "/CEMT.xml");
+        public SettingsHandler Settings = new SettingsHandler();
+        public SettingsForm Settingsform;
+        public DonateForm Donateform;
 
         public Mainform()
         {
             InitializeComponent();
-            AppDomain.CurrentDomain.ProcessExit += new EventHandler(OnProcessExit);
+            AppDomain.CurrentDomain.ProcessExit += OnProcessExit;
         }
 
         private void Mainform_Load(object sender, EventArgs e)
         {
-            utils.LoadSettings(settings, 2);
-            SensX.Text = settings.SensX.ToString();
-            SensY.Text = settings.SensY.ToString();
-            string window_title = "Halo CE Mouse Tool v" + UpdateHandler.Version.ToString();
+            utils.LoadSettings(Settings, 2);
+            SensX.Text = Settings.SensX.ToString();
+            SensY.Text = Settings.SensY.ToString();
+            string windowTitle = "Halo CE Mouse Tool v" + UpdateHandler.Version;
             if (!utils.IsAdministrator())
             { //Gripe at the user if they're not an admin.
-                window_title += " -NOT ADMIN-";
-                SoundHandler.sound_notice(settings);
-                MessageBox.Show("Warning - You must run this tool as an administrator in order for it to work properly.");
+                windowTitle += " -NOT ADMIN-";
+                const string adminWarning = "Warning - You must run this tool as an administrator in order for it to work properly.";
+                SoundHandler.sound_notice(Settings);
+                MessageBox.Show(adminWarning);
             }
-            Text = window_title;
+            Text = windowTitle;
 
-            if (settings.CheckForUpdatesOnStart == 1)
+            if (Settings.CheckForUpdatesOnStart == 1)
             {
-                utils.CheckForUpdates(settings);
+                utils.CheckForUpdates(Settings);
             }
         }
 
         private void ActivateBtn_Click_1(object sender, EventArgs e)
         {
-            utils.WriteHaloMemory(this.settings, 0);
+            utils.WriteHaloMemory(Settings, 0);
         }
 
         private void StatusLabelTimer_Tick(object sender, EventArgs e)
         {
+            string status;
+            Color labelColor;
             if (ProcessHandler.ProcessIsRunning("haloce"))
             {
-                StatusLabel.Text = "Halo CE Process found.";
-                StatusLabel.ForeColor = Color.Green;
-                ActivateBtn.Enabled = true;
+                labelColor = Color.Green;
+                status = "Halo CE Process found.";
                 KeybindHandler.KeybindsEnabled = true;
+                ActivateBtn.Enabled = true;
             }
-            else {
-                StatusLabel.Text = "Halo CE Process not found.";
-                StatusLabel.ForeColor = Color.Red;
-                ActivateBtn.Enabled = false;
+            else
+            {
+                labelColor = Color.Red;
+                status = "Halo CE process not found.";
                 KeybindHandler.KeybindsEnabled = false;
+                ActivateBtn.Enabled = false;
             }
+            StatusLabel.Text = status;
+            StatusLabel.ForeColor = labelColor;
         }
 
         private void SettingsBtn_Click(object sender, EventArgs e)
         {
-            if (FormHandler.formopen(settingsform))
+            if (FormHandler.Formopen(Settingsform))
             {
-                settingsform.Dispose();
+                Settingsform.Dispose();
             }
-            settingsform = new SettingsForm(settings);
-            settingsform.Show();
+            Settingsform = new SettingsForm(Settings);
+            Settingsform.Show();
         }
 
         private void DonateLink_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
         {
             // >Implying anyone would ever give me money for this shit
             //Aren't I ever the dreamer
-            if (FormHandler.formopen(donateform))
+            if (FormHandler.Formopen(Donateform))
             {
-                donateform.Dispose();
+                Donateform.Dispose();
             }
-            donateform = new DonateForm();
-            donateform.Show();
+            Donateform = new DonateForm();
+            Donateform.Show();
         }
 
         private void GithubLink_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
@@ -104,44 +101,47 @@ namespace Halo_CE_Mouse_Tool
 
         private void HotkeyLabelTimer_Tick(object sender, EventArgs e)
         {
-            if (settings.HotkeyEnabled == 1)
+            string status;
+            if (Settings.HotkeyEnabled == 1)
             {
-                HotkeyStatus.Text = "Keybind is set to: " + settings.Hotkey;
+                status = "Keybind is set to: " + Settings.Hotkey;
             }
-            else {
-                HotkeyStatus.Text = "Keybind is disabled/not set.";
+            else
+            {
+                status = "Keybind is disabled/not set.";
             }
+            HotkeyStatus.Text = status;
         }
 
         private void SensX_TextChanged(object sender, EventArgs e)
         {
-            utils.parse_sensitivity(SensX, 'x', settings); //Make sure the input is valid.
+            utils.parse_sensitivity(SensX, 'x', Settings); //Make sure the input is valid.
         }
 
         private void SensY_TextChanged(object sender, EventArgs e)
         {
-            utils.parse_sensitivity(SensY, 'y', settings); //Same as above.
+            utils.parse_sensitivity(SensY, 'y', Settings); //Same as above.
         }
 
         public void OnProcessExit(object sender, EventArgs e)
         {
-            utils.SaveSettings(settings, 1); //The exception generated if the user has no access to the file will be ignored. Nothing I can do about that.
+            utils.SaveSettings(Settings, 1); //The exception generated if the user has no access to the file will be ignored. Nothing I can do about that.
         }
 
         private void HotkeyTimer_Tick(object sender, EventArgs e)
         {
-            utils.keybind_handle(settings, SensX, SensY); //If the user presses their hotkey, then handle it.
+            utils.keybind_handle(Settings, SensX, SensY); //If the user presses their hotkey, then handle it.
             //Is there a better way of doing this?
         }
 
         private void SensX_Leave(object sender, EventArgs e)
         {
-            utils.check_if_blank(SensX, settings); //If the user tries to leave with the textbox being blank, then force them back to it.
+            utils.check_if_blank(SensX, Settings); //If the user tries to leave with the textbox being blank, then force them back to it.
         }
 
         private void SensY_Leave(object sender, EventArgs e)
         {
-            utils.check_if_blank(SensY, settings); //Same as above.
+            utils.check_if_blank(SensY, Settings); //Same as above.
         }
     }
 }
