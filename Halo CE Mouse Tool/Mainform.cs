@@ -16,7 +16,7 @@ namespace Halo_CE_Mouse_Tool
 {
     public partial class Mainform : Form
     { //And here we go...
-        public XMLHandler xmlhandler = new XMLHandler(Application.StartupPath + "/CEMT.xml");
+        public XmlHandler xmlhandler = new XmlHandler(Application.StartupPath + "/CEMT.xml");
         public SettingsHandler settings = new SettingsHandler();
         public SettingsForm settingsform;
         public DonateForm donateform;

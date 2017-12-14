@@ -65,26 +65,26 @@ namespace Halo_CE_Mouse_Tool
         //This method is kind of... yea... might wanna try to shorten this.
         public static void LoadSettings(SettingsHandler settings, int context) //Pass the context so if I need to call SerializeSettings, I will have something to pass it.
         { //For loading settings from the XML file.
-            SettingsHandler loaded_settings = XMLHandler.DeSerialize_Settings();
+            SettingsHandler loaded_settings = XmlHandler.DeSerialize_Settings();
             if (loaded_settings == null)
             {
                 SoundHandler.sound_error(settings);
-                if (!XMLHandler.XMLExists())
+                if (!XmlHandler.XmlExists())
                 {
                     MessageBox.Show("I did not find an XML config file. A new one will be generated with default values.");
                 }
                 else
                 {
                     MessageBox.Show("An XML config file was found, but I failed to load it properly. It is possible it is damaged. A new one will be generated.");
-                    FileInfo fi = new FileInfo(XMLHandler.XMLPath);
+                    FileInfo fi = new FileInfo(XmlHandler.XmlPath);
                     if (fi.IsReadOnly && IsAdministrator()) //If the file is readonly for some reason, that will cause an unauthorizedaccessexception.
                     {
-                        File.SetAttributes(XMLHandler.XMLPath, File.GetAttributes(XMLHandler.XMLPath) & ~FileAttributes.ReadOnly); //So make it not readonly.
+                        File.SetAttributes(XmlHandler.XmlPath, File.GetAttributes(XmlHandler.XmlPath) & ~FileAttributes.ReadOnly); //So make it not readonly.
                         //Since the application must be run as admin in order to set attributes, I check for that.
                     }
                     try
                     {
-                        File.Delete(XMLHandler.XMLPath);
+                        File.Delete(XmlHandler.XmlPath);
                     }
                     catch (UnauthorizedAccessException)
                     {
@@ -137,10 +137,10 @@ namespace Halo_CE_Mouse_Tool
         */
         public static void SaveSettings(SettingsHandler settings, int context)
         { //For saving settings to the XML file.
-            int save_settings = XMLHandler.Serialize_Settings(settings); //Return 1 for success, 0 on unauthorized access exception.
+            int save_settings = XmlHandler.Serialize_Settings(settings); //Return 1 for success, 0 on unauthorized access exception.
             if (context == 1 && save_settings != 1)
             {
-                save_settings = XMLHandler.Serialize_Settings(settings); //If an exception occurs, ignore it and exit.
+                save_settings = XmlHandler.Serialize_Settings(settings); //If an exception occurs, ignore it and exit.
             }
             else if (context == 2 && save_settings != 1)
             {

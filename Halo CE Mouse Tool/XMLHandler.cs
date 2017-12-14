@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Xml;
-using System.Xml.Serialization;
 using System.Runtime.Serialization;
 
 
@@ -11,27 +10,27 @@ namespace Halo_CE_Mouse_Tool
         -XMLHandler.cs-
         This class handles the applications XML file.
     */
-    public class XMLHandler
+    public class XmlHandler
     {
-        public static string XMLPath;
+        public static string XmlPath;
 
-        public XMLHandler(string xmlpath)
+        public XmlHandler(string xmlpath)
         {
-            XMLPath = xmlpath;
+            XmlPath = xmlpath;
         }
 
-        public static bool XMLExists()
+        public static bool XmlExists()
         { //Check if the XML configuration file exists.
-            return File.Exists(XMLPath);
+            return File.Exists(XmlPath);
         }
         public static int Serialize_Settings(SettingsHandler settings) //For context, if I am calling it in processexit, the context will be 0. Otherwise, it will be 1.
         {
             try
             {
-                DataContractSerializer SerializerObj = new DataContractSerializer(typeof(SettingsHandler));
-                XmlWriter WriteFileStream = XmlWriter.Create(XMLPath);
-                SerializerObj.WriteObject(WriteFileStream, settings);
-                WriteFileStream.Close();
+                DataContractSerializer serializerObj = new DataContractSerializer(typeof(SettingsHandler));
+                XmlWriter writeFileStream = XmlWriter.Create(XmlPath);
+                serializerObj.WriteObject(writeFileStream, settings);
+                writeFileStream.Close();
                 return 1; //Success
             }
             catch (UnauthorizedAccessException)
@@ -42,24 +41,24 @@ namespace Halo_CE_Mouse_Tool
 
         public static SettingsHandler DeSerialize_Settings()
         {
-            if (XMLExists())
+            if (XmlExists())
             {
-                DataContractSerializer SerializerObj = new DataContractSerializer(typeof(SettingsHandler));
-                SettingsHandler settings_loaded;
-                FileStream ReadFileStream = new FileStream(@XMLPath, FileMode.Open, FileAccess.Read, FileShare.Read);
+                DataContractSerializer serializerObj = new DataContractSerializer(typeof(SettingsHandler));
+                SettingsHandler settingsLoaded;
+                FileStream readFileStream = new FileStream(XmlPath, FileMode.Open, FileAccess.Read, FileShare.Read);
                 try
                 {
-                    settings_loaded = (SettingsHandler)SerializerObj.ReadObject(ReadFileStream);
+                    settingsLoaded = (SettingsHandler)serializerObj.ReadObject(readFileStream);
                 }
                 catch (InvalidOperationException) //Seems to occur if the xml file for some reason has been screwed up.
                 {
-                    settings_loaded = null; //Failed to load it. return null. I will leave what to do with the corrupt config file up to the user.
+                    settingsLoaded = null; //Failed to load it. return null. I will leave what to do with the corrupt config file up to the user.
                 }
                 finally //Always close the filestream no matter the outcome.
                 {
-                    ReadFileStream.Close();
+                    readFileStream.Close();
                 }
-                return settings_loaded;
+                return settingsLoaded;
             }
             return null; //It doesn't exist. Return null.
         }
