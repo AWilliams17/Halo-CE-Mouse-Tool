@@ -14,49 +14,51 @@ namespace Halo_CE_Mouse_Tool
     */
     public static class utils
     {
-        public static void WriteHaloMemory(SettingsHandler settings, int hide_messages)
+        public static void WriteHaloMemory(SettingsHandler settings, int hideMessages)
         { //Calls WriteMemory with selected settings.
             byte[] mouseaccelnop = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 }; //For noping the acceleration
-            int return_value;
-            int curr_addr = 0;
-            byte[] curr_val = { };
+            int currAddr = 0;
+            byte[] currVal = { };
             for (int i = 0; i != 4; i++)
             {
                 if (i == 0)
                 {
-                    curr_val = BitConverter.GetBytes(settings.SensX);
-                    curr_addr = 0x2ABB50;
+                    currVal = BitConverter.GetBytes(settings.SensX);
+                    currAddr = 0x2ABB50;
                 }
                 if (i == 1)
                 {
-                    curr_val = BitConverter.GetBytes(settings.SensY);
-                    curr_addr = 0x2ABB54;
+                    currVal = BitConverter.GetBytes(settings.SensY);
+                    currAddr = 0x2ABB54;
                 }
                 if (i == 2 && settings.PatchAcceleration == 1)
                 {
-                    curr_val = mouseaccelnop;
-                    curr_addr = 0x8F836;
+                    currVal = mouseaccelnop;
+                    currAddr = 0x8F836;
                 }
                 if (i == 3 && settings.PatchAcceleration == 1)
                 {
-                    curr_val = mouseaccelnop;
-                    curr_addr = 0x8F830;
+                    currVal = mouseaccelnop;
+                    currAddr = 0x8F830;
                 }
-                return_value = MemoryHandler.WriteToProcessMemory("haloce", curr_val, curr_addr);
-                if (return_value != 0)
+                int returnValue = MemoryHandler.WriteToProcessMemory("haloce", currVal, currAddr);
+                if (returnValue != 0)
                 {
+                    string returnMsg;
                     SoundHandler.sound_error(settings);
-                    if (return_value == 1)
+                    if (returnValue == 1)
                     {
-                        MessageBox.Show("Access Denied. Are you running the tool as Admin?");
+                        returnMsg = "Access Denied. Are you running the tool as Admin?";
                     }
-                    else {
-                        MessageBox.Show("One or more values failed to write. Error code " + return_value);
+                    else
+                    {
+                        returnMsg = "One or more values failed to write. Error code " + returnValue;
                     }
+                    MessageBox.Show(returnMsg);
                 }
             }
             SoundHandler.sound_success(settings);
-            if (hide_messages == 0)
+            if (hideMessages == 0)
             {
                 MessageBox.Show("Successfully wrote values to memory.");
             }
@@ -65,17 +67,20 @@ namespace Halo_CE_Mouse_Tool
         //This method is kind of... yea... might wanna try to shorten this.
         public static void LoadSettings(SettingsHandler settings, int context) //Pass the context so if I need to call SerializeSettings, I will have something to pass it.
         { //For loading settings from the XML file.
-            SettingsHandler loaded_settings = XmlHandler.DeSerialize_Settings();
-            if (loaded_settings == null)
+            SettingsHandler loadedSettings = XmlHandler.DeSerialize_Settings();
+            if (loadedSettings == null)
             {
                 SoundHandler.sound_error(settings);
+                string dialogResult;
                 if (!XmlHandler.XmlExists())
                 {
-                    MessageBox.Show("I did not find an XML config file. A new one will be generated with default values.");
+                    dialogResult = "I did not find an XML config file. A new one will be generated with default values.";
+                    MessageBox.Show(dialogResult);
                 }
                 else
                 {
-                    MessageBox.Show("An XML config file was found, but I failed to load it properly. It is possible it is damaged. A new one will be generated.");
+                    dialogResult = "An XML config file was found, but I failed to load it properly. It is possible it is damaged. A new one will be generated.";
+                    MessageBox.Show(dialogResult);
                     FileInfo fi = new FileInfo(XmlHandler.XmlPath);
                     if (fi.IsReadOnly && IsAdministrator()) //If the file is readonly for some reason, that will cause an unauthorizedaccessexception.
                     {
@@ -88,10 +93,11 @@ namespace Halo_CE_Mouse_Tool
                     }
                     catch (UnauthorizedAccessException)
                     {
-                        string err_text = "An error occurred whilst attempting to delete the corrupt config file. ";
+                        const string errText = "An error occurred whilst attempting to delete the corrupt config file. ";
+                        const string errTextDeletion = errText + "You are not running as administrator, so it's possible I do not have permission to access the file. Please re-run the tool as admin.";
                         if (!IsAdministrator()) //If the user isn't an administrator, then the file might be set to readonly.
                         {
-                            MessageBox.Show(err_text + "You are not running as administrator, so it's possible I do not have permission to access the file. Please re-run the tool as admin.");
+                            MessageBox.Show(errTextDeletion);
                             Application.Exit(); //Exit the tool so the user can re-run as admin. Really not much else I can do.
                         }
                     }
@@ -100,34 +106,36 @@ namespace Halo_CE_Mouse_Tool
             }
             else
             {
+                string dialogResult;
                 try
                 {
-                    settings.SensX = loaded_settings.SensX;
-                    settings.SensY = loaded_settings.SensY;
-                    settings.PatchAcceleration = loaded_settings.PatchAcceleration;
-                    settings.Hotkey = loaded_settings.Hotkey;
-                    settings.HotkeyEnabled = loaded_settings.HotkeyEnabled;
-                    settings.SoundsEnabled = loaded_settings.SoundsEnabled;
-                    settings.CheckForUpdatesOnStart = loaded_settings.CheckForUpdatesOnStart;
-                    settings.HideKeybindSuccessMsg = loaded_settings.HideKeybindSuccessMsg;
-                    settings.UpdateTimeout = loaded_settings.UpdateTimeout;
-                    settings.IncrementSens = loaded_settings.IncrementSens;
-                    settings.IncrementAmount = loaded_settings.IncrementAmount;
+                    settings.SensX = loadedSettings.SensX;
+                    settings.SensY = loadedSettings.SensY;
+                    settings.PatchAcceleration = loadedSettings.PatchAcceleration;
+                    settings.Hotkey = loadedSettings.Hotkey;
+                    settings.HotkeyEnabled = loadedSettings.HotkeyEnabled;
+                    settings.SoundsEnabled = loadedSettings.SoundsEnabled;
+                    settings.CheckForUpdatesOnStart = loadedSettings.CheckForUpdatesOnStart;
+                    settings.HideKeybindSuccessMsg = loadedSettings.HideKeybindSuccessMsg;
+                    settings.UpdateTimeout = loadedSettings.UpdateTimeout;
+                    settings.IncrementSens = loadedSettings.IncrementSens;
+                    settings.IncrementAmount = loadedSettings.IncrementAmount;
                     SoundHandler.sound_success(settings);
-                    MessageBox.Show("Successfully loaded the XML file.");
+                    dialogResult = "Successfully loaded the XML file.";
                 }
                 catch (Exception ex)
                 {
                     SoundHandler.sound_error(settings);
                     if (ex is ArgumentException || ex is ArgumentOutOfRangeException)
                     {
-                        MessageBox.Show("An error occurred whilst loading the settings file: One or more values were not set correctly. Did you manually edit the file? These settings have been set to their defaults.");
+                        dialogResult = "An error occurred whilst loading the settings file: One or more values were not set correctly. Did you manually edit the file? These settings have been set to their defaults.";
                     }
                     else
                     {
-                        MessageBox.Show("An error occurred whilst loading the settings file: Unspecified error. Possible malformation of config file. Settings that failed to load have been set back to their defaults.");
+                        dialogResult = "An error occurred whilst loading the settings file: Unspecified error. Possible malformation of config file. Settings that failed to load have been set back to their defaults.";
                     }
                 }
+                MessageBox.Show(dialogResult);
             }
         }
 
@@ -137,15 +145,16 @@ namespace Halo_CE_Mouse_Tool
         */
         public static void SaveSettings(SettingsHandler settings, int context)
         { //For saving settings to the XML file.
-            int save_settings = XmlHandler.Serialize_Settings(settings); //Return 1 for success, 0 on unauthorized access exception.
-            if (context == 1 && save_settings != 1)
+            string adminError = "An access violation occurred whilst generating a new configuration file. Are you running as admin?";
+            int saveSettings = XmlHandler.Serialize_Settings(settings); //Return 1 for success, 0 on unauthorized access exception.
+            if (context == 1 && saveSettings != 1)
             {
-                save_settings = XmlHandler.Serialize_Settings(settings); //If an exception occurs, ignore it and exit.
+                XmlHandler.Serialize_Settings(settings); //If an exception occurs, ignore it and exit.
             }
-            else if (context == 2 && save_settings != 1)
+            else if (context == 2 && saveSettings != 1)
             {
                 SoundHandler.sound_error(settings);
-                MessageBox.Show("An access violation occurred whilst generating a new configuration file. Are you running as admin?");
+                MessageBox.Show(adminError);
             }
         }
 
@@ -157,14 +166,16 @@ namespace Halo_CE_Mouse_Tool
 
         public static void parse_sensitivity(TextBox origin, char sens, SettingsHandler settings)
         { //For performing validation on the sensitivity text boxes.
-            float conv_float;
             if (origin.Text != "")
             {
+                float conv_float;
+                string BelowZeroErrorMsg = "Error: Sensitivities can not go below 0.";
+                string OnlyNumbersMsg = "Invalid input. Only numbers allowed.";
                 if (!float.TryParse(origin.Text, out conv_float))
                 {
                     origin.Text = "0";
                     SoundHandler.sound_error(settings);
-                    MessageBox.Show("Invalid input. Only numbers allowed.");
+                    MessageBox.Show(OnlyNumbersMsg);
                 }
                 else {
                     if (sens == 'x')
@@ -175,7 +186,7 @@ namespace Halo_CE_Mouse_Tool
                         }
                         catch (ArgumentOutOfRangeException)
                         {
-                            MessageBox.Show("Error: Sensitivities can not go below 0.");
+                            MessageBox.Show(BelowZeroErrorMsg);
                         }
                     }
                     else
@@ -186,7 +197,7 @@ namespace Halo_CE_Mouse_Tool
                         }
                         catch (ArgumentOutOfRangeException)
                         {
-                            MessageBox.Show("Error: Sensitivities can not go below 0.");
+                            MessageBox.Show(BelowZeroErrorMsg);
                         }
                     }
                 }
