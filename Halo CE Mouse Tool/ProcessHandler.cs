@@ -17,9 +17,10 @@ namespace Halo_CE_Mouse_Tool
             }
             Process[] pname = Process.GetProcessesByName(processName);
             if (pname.Length != 0)
+            {
                 return true;
-            else
-                return false;
+            }
+            return false;
         }
     }
 }
