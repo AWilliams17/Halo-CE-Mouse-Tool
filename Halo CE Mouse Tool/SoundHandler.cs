@@ -11,18 +11,18 @@ namespace Halo_CE_Mouse_Tool
     */
     public static class SoundHandler
     {
-        private static Stream success_file = Properties.Resources.SND_Success;
-        private static Stream notice_file = Properties.Resources.SND_Notice;
-        private static Stream error_file = Properties.Resources.SND_Error;
-        private static SoundPlayer success = new System.Media.SoundPlayer(success_file);
-        private static SoundPlayer notice = new System.Media.SoundPlayer(notice_file);
-        private static SoundPlayer error = new System.Media.SoundPlayer(error_file);
+        private static readonly Stream SuccessFile = Properties.Resources.SND_Success;
+        private static readonly Stream NoticeFile = Properties.Resources.SND_Notice;
+        private static readonly Stream ErrorFile = Properties.Resources.SND_Error;
+        private static readonly SoundPlayer Success = new SoundPlayer(SuccessFile);
+        private static readonly SoundPlayer Notice = new SoundPlayer(NoticeFile);
+        private static readonly SoundPlayer Error = new SoundPlayer(ErrorFile);
 
         public static void sound_success(SettingsHandler settings)
         {
             if (settings.SoundsEnabled == 1)
             {
-                success.Play();
+                Success.Play();
             }
         }
 
@@ -30,7 +30,7 @@ namespace Halo_CE_Mouse_Tool
         {
             if (settings.SoundsEnabled == 1)
             {
-                error.Play();
+                Error.Play();
             }
         }
 
@@ -38,7 +38,7 @@ namespace Halo_CE_Mouse_Tool
         {
             if (settings.SoundsEnabled == 1)
             {
-                notice.Play();
+                Notice.Play();
             }
         }
     }
