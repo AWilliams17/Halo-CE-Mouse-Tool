@@ -21,15 +21,15 @@ namespace Halo_CE_Mouse_Tool
         private static extern IntPtr OpenProcess(int dwDesiredAccess, bool bInheritHandle, int dwProcessId);
 
 
-        private static int GetPID(string processname)
+        private static int GetPid(string processname)
         { //Return the PID of the requested process. Needs exception handling.
             Process[] process = Process.GetProcessesByName(processname);
-            int PID = process[0].Id;
+            int pid = process[0].Id;
 
-            return PID;
+            return pid;
         }
 
-        private static IntPtr getBaseAddr(string processname)
+        private static IntPtr GetBaseAddr(string processname)
         { //Return the base address of the requested process.
             IntPtr baseaddr;
             try
@@ -53,9 +53,8 @@ namespace Halo_CE_Mouse_Tool
         */
         public static int WriteToProcessMemory(string processname, byte[] value, int address)
         {
-            Process process = Process.GetProcessesByName(processname)[0];
-            IntPtr processHandle = OpenProcess(PROCESS_WM_READ | PROCESS_VM_WRITE | PROCESS_VM_OPERATION, false, GetPID(processname));
-            IntPtr baseAddr = getBaseAddr(processname);
+            IntPtr processHandle = OpenProcess(PROCESS_WM_READ | PROCESS_VM_WRITE | PROCESS_VM_OPERATION, false, GetPid(processname));
+            IntPtr baseAddr = GetBaseAddr(processname);
             if ((int)baseAddr == 0)
             {
                 return 1;
