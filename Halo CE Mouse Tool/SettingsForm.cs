@@ -77,7 +77,7 @@ namespace Halo_CE_Mouse_Tool
 
         private void CheckforUpdatesBtn_Click(object sender, EventArgs e)
         {
-            utils.CheckForUpdates(Settings);
+            Utils.CheckForUpdates(Settings);
         }
 
         private void HotkeyText_KeyDown(object sender, KeyEventArgs e)

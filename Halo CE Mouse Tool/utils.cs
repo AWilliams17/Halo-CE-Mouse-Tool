@@ -12,7 +12,7 @@ namespace Halo_CE_Mouse_Tool
         This class contains code originally in mainform.cs which bloated the shit out of it.
         Very bloated and hideous. Better than it was before tho.
     */
-    public static class utils
+    public static class Utils
     {
         public static void WriteHaloMemory(SettingsHandler settings, int hideMessages)
         { //Calls WriteMemory with selected settings.

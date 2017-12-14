@@ -20,11 +20,11 @@ namespace Halo_CE_Mouse_Tool
 
         private void Mainform_Load(object sender, EventArgs e)
         {
-            utils.LoadSettings(Settings, 2);
+            Utils.LoadSettings(Settings, 2);
             SensX.Text = Settings.SensX.ToString();
             SensY.Text = Settings.SensY.ToString();
             string windowTitle = "Halo CE Mouse Tool v" + UpdateHandler.Version;
-            if (!utils.IsAdministrator())
+            if (!Utils.IsAdministrator())
             { //Gripe at the user if they're not an admin.
                 windowTitle += " -NOT ADMIN-";
                 const string adminWarning = "Warning - You must run this tool as an administrator in order for it to work properly.";
@@ -35,13 +35,13 @@ namespace Halo_CE_Mouse_Tool
 
             if (Settings.CheckForUpdatesOnStart == 1)
             {
-                utils.CheckForUpdates(Settings);
+                Utils.CheckForUpdates(Settings);
             }
         }
 
         private void ActivateBtn_Click_1(object sender, EventArgs e)
         {
-            utils.WriteHaloMemory(Settings, 0);
+            Utils.WriteHaloMemory(Settings, 0);
         }
 
         private void StatusLabelTimer_Tick(object sender, EventArgs e)
@@ -115,33 +115,33 @@ namespace Halo_CE_Mouse_Tool
 
         private void SensX_TextChanged(object sender, EventArgs e)
         {
-            utils.parse_sensitivity(SensX, 'x', Settings); //Make sure the input is valid.
+            Utils.parse_sensitivity(SensX, 'x', Settings); //Make sure the input is valid.
         }
 
         private void SensY_TextChanged(object sender, EventArgs e)
         {
-            utils.parse_sensitivity(SensY, 'y', Settings); //Same as above.
+            Utils.parse_sensitivity(SensY, 'y', Settings); //Same as above.
         }
 
         public void OnProcessExit(object sender, EventArgs e)
         {
-            utils.SaveSettings(Settings, 1); //The exception generated if the user has no access to the file will be ignored. Nothing I can do about that.
+            Utils.SaveSettings(Settings, 1); //The exception generated if the user has no access to the file will be ignored. Nothing I can do about that.
         }
 
         private void HotkeyTimer_Tick(object sender, EventArgs e)
         {
-            utils.keybind_handle(Settings, SensX, SensY); //If the user presses their hotkey, then handle it.
+            Utils.keybind_handle(Settings, SensX, SensY); //If the user presses their hotkey, then handle it.
             //Is there a better way of doing this?
         }
 
         private void SensX_Leave(object sender, EventArgs e)
         {
-            utils.check_if_blank(SensX, Settings); //If the user tries to leave with the textbox being blank, then force them back to it.
+            Utils.check_if_blank(SensX, Settings); //If the user tries to leave with the textbox being blank, then force them back to it.
         }
 
         private void SensY_Leave(object sender, EventArgs e)
         {
-            utils.check_if_blank(SensY, Settings); //Same as above.
+            Utils.check_if_blank(SensY, Settings); //Same as above.
         }
     }
 }
