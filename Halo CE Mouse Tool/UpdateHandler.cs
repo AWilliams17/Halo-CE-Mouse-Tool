@@ -13,20 +13,20 @@ using System.Net;
 namespace Halo_CE_Mouse_Tool {
     [System.ComponentModel.DesignerCategory("Code")]
     public class WebClientWithTimeout : WebClient { //Custom webclient implementation to allow for custom timeout
-        private int t;
+        private readonly int _t;
         public WebClientWithTimeout(int timeout) {
-            t = timeout;
+            _t = timeout;
         }
         protected override WebRequest GetWebRequest(Uri address) {
             WebRequest wr = base.GetWebRequest(address);
-            wr.Timeout = t; //in ms
+            wr.Timeout = _t; //in ms
             return wr;
         }
     }
 
     [System.ComponentModel.DesignerCategory("Code")]
     public static class UpdateHandler {
-        public const int version = 4; //Current program version
+        public const int Version = 4; //Current program version
 
         public static int CheckForUpdates(int timeout) { //Download a url, in this case pastebin, which has a single number in it.
             WebClientWithTimeout wb = new WebClientWithTimeout(timeout);
@@ -35,8 +35,8 @@ namespace Halo_CE_Mouse_Tool {
                 HTML = wb.DownloadData("https://pastebin.com/raw/UQpXvHBR"); //The number in the pastebin is the currently released version of the tool.
                 UTF8Encoding objUTF8 = new UTF8Encoding();
                 string nv = objUTF8.GetString(HTML);
-                int version_available = int.Parse(nv[0].ToString());
-                if (version_available > version) { //Compare the version available to the current version of the application.
+                int versionAvailable = int.Parse(nv[0].ToString());
+                if (versionAvailable > Version) { //Compare the version available to the current version of the application.
                     return 1; //There is an update available. Return 1.
                 }
                 return 0; //There are no updates available. Return 0.

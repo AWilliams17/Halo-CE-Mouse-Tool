@@ -32,7 +32,7 @@ namespace Halo_CE_Mouse_Tool
             utils.LoadSettings(settings, 2);
             SensX.Text = settings.SensX.ToString();
             SensY.Text = settings.SensY.ToString();
-            string window_title = "Halo CE Mouse Tool v" + UpdateHandler.version.ToString();
+            string window_title = "Halo CE Mouse Tool v" + UpdateHandler.Version.ToString();
             if (!utils.IsAdministrator())
             { //Gripe at the user if they're not an admin.
                 window_title += " -NOT ADMIN-";
