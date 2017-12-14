@@ -1,35 +1,33 @@
 ﻿using System.Runtime.Serialization;
 using System;
-using System.Windows.Forms;
 
 namespace Halo_CE_Mouse_Tool
 {
     /*
         -SettingsHandler.cs-
         This class contains the settings for the application.
-        I didn't declare as static since I wanted to try to keep it centralized or something.
     */
     [DataContract]
     public class SettingsHandler
-    { //I'll just keep the getters/setters so in the future I can perform validation of some sort
-        [DataMember] private float SensXP = 1;
-        [DataMember] private float SensYP = 1;
-        [DataMember] private int PatchAccelerationP = 1;
-        [DataMember] private int CheckForUpdatesP = 1;
-        [DataMember] private int HotkeyEnabledP = 1;
-        [DataMember] private string HotkeyP = "F1";
-        [DataMember] private int SoundsEnabledP = 1;
-        [DataMember] private int HideKeyBindSuccessMsgP = 1;
-        [DataMember] private int UpdateTimeoutP = 3000;
-        [DataMember] private int IncrementSensP = 1;
-        [DataMember] private float IncrementAmountP = 0.5F;
+    {
+        [DataMember] private float _sensX = 1;
+        [DataMember] private float _sensY = 1;
+        [DataMember] private int _patchAcceleration = 1;
+        [DataMember] private int _checkForUpdates = 1;
+        [DataMember] private int _hotkeyEnabled = 1;
+        [DataMember] private string _hotkey = "F1";
+        [DataMember] private int _soundEnabled = 1;
+        [DataMember] private int _hideKeybindSuccessMessage = 1;
+        [DataMember] private int _updateTimeout = 3000;
+        [DataMember] private int _incrementSens = 1;
+        [DataMember] private float _incrementAmount = 0.5F;
 
 
         public float SensX
         {
             get
             {
-                return SensXP;
+                return _sensX;
             }
             set
             {
@@ -37,17 +35,14 @@ namespace Halo_CE_Mouse_Tool
                 {
                     throw new ArgumentOutOfRangeException();
                 }
-                else
-                {
-                    SensXP = value;
-                }
+                _sensX = value;
             }
         }
         public float SensY
         {
             get
             {
-                return SensYP;
+                return _sensY;
             }
             set
             {
@@ -55,23 +50,20 @@ namespace Halo_CE_Mouse_Tool
                 {
                     throw new ArgumentOutOfRangeException();
                 }
-                else
-                {
-                    SensYP = value;
-                }
+                _sensY = value;
             }
         }
         public int PatchAcceleration
         {
             get
             {
-                return PatchAccelerationP;
+                return _patchAcceleration;
             }
             set
             {
                 if (value == 1 || value == 0)
                 {
-                    PatchAccelerationP = value;
+                    _patchAcceleration = value;
 
                 }
                 else
@@ -84,13 +76,13 @@ namespace Halo_CE_Mouse_Tool
         {
             get
             {
-                return CheckForUpdatesP;
+                return _checkForUpdates;
             }
             set
             {
                 if (value == 1 || value == 0)
                 {
-                    CheckForUpdatesP = value;
+                    _checkForUpdates = value;
                 }
                 else
                 {
@@ -102,13 +94,13 @@ namespace Halo_CE_Mouse_Tool
         {
             get
             {
-                return HotkeyEnabledP;
+                return _hotkeyEnabled;
             }
             set
             {
                 if (value == 1 || value == 0)
                 {
-                    HotkeyEnabledP = value;
+                    _hotkeyEnabled = value;
                 }
                 else
                 {
@@ -120,24 +112,24 @@ namespace Halo_CE_Mouse_Tool
         {
             get
             {
-                return HotkeyP;
+                return _hotkey;
             }
             set
             {
-                HotkeyP = value; //I guess I'll just validate if its got a Keys equiv.
+                _hotkey = value; //I guess I'll just validate if its got a Keys equiv.
             }
         }
         public int SoundsEnabled
         {
             get
             {
-                return SoundsEnabledP;
+                return _soundEnabled;
             }
             set
             {
                 if (value == 1 || value == 0)
                 {
-                    SoundsEnabledP = value;
+                    _soundEnabled = value;
                 }
                 else
                 {
@@ -149,13 +141,13 @@ namespace Halo_CE_Mouse_Tool
         {
             get
             {
-                return HideKeyBindSuccessMsgP;
+                return _hideKeybindSuccessMessage;
             }
             set
             {
                 if (value == 1 || value == 0)
                 {
-                    HideKeyBindSuccessMsgP = value;
+                    _hideKeybindSuccessMessage = value;
                 }
                 else
                 {
@@ -167,24 +159,24 @@ namespace Halo_CE_Mouse_Tool
         {
             get
             {
-                return UpdateTimeoutP;
+                return _updateTimeout;
             }
             set
             {
-                UpdateTimeoutP = value; //IDK if I should really care what the user sets the timeout to...
+                _updateTimeout = value; //IDK if I should really care what the user sets the timeout to...
             }
         }
         public int IncrementSens
         {
             get
             {
-                return IncrementSensP;
+                return _incrementSens;
             }
             set
             {
                 if (value == 0 || value == 1)
                 {
-                    IncrementSensP = value;
+                    _incrementSens = value;
                 }
                 else
                 {
@@ -196,7 +188,7 @@ namespace Halo_CE_Mouse_Tool
         {
             get
             {
-                return IncrementAmountP;
+                return _incrementAmount;
             }
             set
             {
@@ -204,10 +196,7 @@ namespace Halo_CE_Mouse_Tool
                 {
                     throw new ArgumentException();
                 }
-                else
-                {
-                    IncrementAmountP = value;
-                }
+                _incrementAmount = value;
             }
         }
     }
