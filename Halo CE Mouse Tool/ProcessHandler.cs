@@ -9,13 +9,13 @@ namespace Halo_CE_Mouse_Tool
 {
     public static class ProcessHandler
     {
-        public static bool ProcessIsRunning(string process_name)
+        public static bool ProcessIsRunning(string processName)
         { //If user passes process name with ".exe",
-            if (process_name.Contains(".exe"))
+            if (processName.Contains(".exe"))
             {
-                process_name = process_name.Substring(0, process_name.Length - 4); //Strip it out
+                processName = processName.Substring(0, processName.Length - 4); //Strip it out
             }
-            Process[] pname = Process.GetProcessesByName(process_name);
+            Process[] pname = Process.GetProcessesByName(processName);
             if (pname.Length != 0)
                 return true;
             else
