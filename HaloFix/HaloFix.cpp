@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include <iostream>
+#include "HaloFix.h"
 
 /*
 		-Halo Mouse Fix DLL-
@@ -28,6 +29,13 @@
 void write_memory () {
 	MOUSE_X = 2.25F;
 	MOUSE_Y = 2.25F;
-	memset (MOUSEACCELFUNC, NOP, 6);
-	memset (MOUSEACCELFUNC2, NOP, 6);
+	nop_memory (MOUSEACCELFUNC, 6);
+	nop_memory (MOUSEACCELFUNC2, 6);
+}
+
+void nop_memory (PVOID address, int bytes) {
+	DWORD old_protection;
+	VirtualProtect (address, bytes, PAGE_EXECUTE_READWRITE, &old_protection);
+	memset (address, NOP, bytes);
+	VirtualProtect (address, bytes, old_protection, NULL);
 }
