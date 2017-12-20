@@ -1,18 +1,19 @@
 // dllmain.cpp : Defines the entry point for the DLL application.
-#include "HaloMouseFixDLL.h"
-
+#include "stdafx.h"
+#include "HaloFix.h"
+#include <cstdlib>
 
 
 DWORD CALLBACK HookFunctions (LPVOID) {
 	while (1) {
 		if (GetAsyncKeyState (VK_F1)) {
 			write_memory ();
+
 			Beep (100, 200);
 		}
 	}
 	return 0;
 }
-
 
 BOOL APIENTRY DllMain( HMODULE hModule,
                        DWORD  ul_reason_for_call,
@@ -30,4 +31,3 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 	}
 	return TRUE;
 }
-
