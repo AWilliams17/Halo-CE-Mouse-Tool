@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Mainform));
             this.MouseAccelCheckbox = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -36,6 +37,7 @@
             this.SensYTextbox = new System.Windows.Forms.TextBox();
             this.SetBtn = new System.Windows.Forms.Button();
             this.CloseBtn = new System.Windows.Forms.Button();
+            this.Tooltip = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // MouseAccelCheckbox
@@ -46,6 +48,8 @@
             this.MouseAccelCheckbox.Size = new System.Drawing.Size(120, 17);
             this.MouseAccelCheckbox.TabIndex = 0;
             this.MouseAccelCheckbox.Text = "Mouse Acceleration";
+            this.Tooltip.SetToolTip(this.MouseAccelCheckbox, "If checked, Mouse Acceleration will be enabled ingame. If unchecked, Mouse Accele" +
+        "ration will be disabled ingame.");
             this.MouseAccelCheckbox.UseVisualStyleBackColor = true;
             // 
             // label1
@@ -72,6 +76,7 @@
             this.SensXTextbox.Name = "SensXTextbox";
             this.SensXTextbox.Size = new System.Drawing.Size(92, 20);
             this.SensXTextbox.TabIndex = 3;
+            this.Tooltip.SetToolTip(this.SensXTextbox, "Indicate your desired Horizontal Axis sensitivity");
             // 
             // SensYTextbox
             // 
@@ -79,6 +84,7 @@
             this.SensYTextbox.Name = "SensYTextbox";
             this.SensYTextbox.Size = new System.Drawing.Size(92, 20);
             this.SensYTextbox.TabIndex = 4;
+            this.Tooltip.SetToolTip(this.SensYTextbox, "Indicate your desired Vertical Axis sensitivity");
             // 
             // SetBtn
             // 
@@ -87,6 +93,7 @@
             this.SetBtn.Size = new System.Drawing.Size(75, 23);
             this.SetBtn.TabIndex = 5;
             this.SetBtn.Text = "Set";
+            this.Tooltip.SetToolTip(this.SetBtn, "Commit your desired settings to the registry.");
             this.SetBtn.UseVisualStyleBackColor = true;
             // 
             // CloseBtn
@@ -96,13 +103,19 @@
             this.CloseBtn.Size = new System.Drawing.Size(75, 23);
             this.CloseBtn.TabIndex = 6;
             this.CloseBtn.Text = "Close";
+            this.Tooltip.SetToolTip(this.CloseBtn, "Close the utility.");
             this.CloseBtn.UseVisualStyleBackColor = true;
+            // 
+            // Tooltip
+            // 
+            this.Tooltip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.Tooltip.ToolTipTitle = "About";
             // 
             // Mainform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(189, 110);
+            this.ClientSize = new System.Drawing.Size(191, 115);
             this.Controls.Add(this.CloseBtn);
             this.Controls.Add(this.SetBtn);
             this.Controls.Add(this.SensYTextbox);
@@ -128,6 +141,7 @@
         private System.Windows.Forms.TextBox SensYTextbox;
         private System.Windows.Forms.Button SetBtn;
         private System.Windows.Forms.Button CloseBtn;
+        private System.Windows.Forms.ToolTip Tooltip;
     }
 }
 
