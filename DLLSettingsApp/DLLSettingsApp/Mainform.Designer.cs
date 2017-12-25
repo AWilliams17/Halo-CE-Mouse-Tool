@@ -95,6 +95,7 @@
             this.SetBtn.Text = "Set";
             this.Tooltip.SetToolTip(this.SetBtn, "Commit your desired settings to the registry.");
             this.SetBtn.UseVisualStyleBackColor = true;
+            this.SetBtn.Click += new System.EventHandler(this.SetBtn_Click);
             // 
             // CloseBtn
             // 
@@ -105,6 +106,7 @@
             this.CloseBtn.Text = "Close";
             this.Tooltip.SetToolTip(this.CloseBtn, "Close the utility.");
             this.CloseBtn.UseVisualStyleBackColor = true;
+            this.CloseBtn.Click += new System.EventHandler(this.CloseBtn_Click);
             // 
             // Tooltip
             // 
