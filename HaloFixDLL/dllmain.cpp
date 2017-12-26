@@ -14,7 +14,7 @@ bool IsForegroundProcess(DWORD pid)
 	return (foregroundPid == pid);
 }
 
-DWORD WINAPI HookFunctions (LPVOID) {
+DWORD CALLBACK HookFunctions (LPVOID) {
 	do{
 		if (GetAsyncKeyState(VK_F1)) {
 			write_memory();
