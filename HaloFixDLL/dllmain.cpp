@@ -3,13 +3,18 @@
 #include "HaloFix.h"
 #include <cstdlib>
 #include <windowsx.h>
+
 bool IsForegroundProcess(DWORD pid)
 {
 	HWND hwnd = GetForegroundWindow();
-	if (hwnd == NULL) return false;
+	if (hwnd == NULL) {
+		return false;
+	}
 
 	DWORD foregroundPid;
-	if (GetWindowThreadProcessId(hwnd, &foregroundPid) == 0) return false;
+	if (GetWindowThreadProcessId(hwnd, &foregroundPid) == 0) {
+		return false;
+	}
 
 	return (foregroundPid == pid);
 }
