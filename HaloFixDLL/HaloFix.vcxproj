@@ -22,7 +22,7 @@
     <ProjectGuid>{9A0A2E04-D1E1-4140-8753-548B5B82976E}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>HaloFix</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

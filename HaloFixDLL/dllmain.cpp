@@ -2,16 +2,26 @@
 #include "stdafx.h"
 #include "HaloFix.h"
 #include <cstdlib>
+#include <windowsx.h>
+bool IsForegroundProcess(DWORD pid)
+{
+	HWND hwnd = GetForegroundWindow();
+	if (hwnd == NULL) return false;
 
+	DWORD foregroundPid;
+	if (GetWindowThreadProcessId(hwnd, &foregroundPid) == 0) return false;
 
-DWORD CALLBACK HookFunctions (LPVOID) {
-	while (1) {
-		if (GetAsyncKeyState (VK_F1)) {
-			write_memory ();
+	return (foregroundPid == pid);
+}
 
-			Beep (100, 200);
+DWORD WINAPI HookFunctions (LPVOID) {
+	do{
+		if (GetAsyncKeyState(VK_F1)) {
+			write_memory();
+			Beep(100, 200);
 		}
-	}
+		Sleep(10);
+	} while (IsForegroundProcess(GetCurrentProcessId()));
 	return 0;
 }
 
@@ -23,7 +33,8 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 	switch (ul_reason_for_call)
 	{
 	case DLL_PROCESS_ATTACH:
-		CreateThread (0, 0, HookFunctions, 0, 0, 0);
+		CreateThread(0, 0, (LPTHREAD_START_ROUTINE)HookFunctions, 0, 0, 0);
+		break;
 	case DLL_THREAD_ATTACH:
 	case DLL_THREAD_DETACH:
 	case DLL_PROCESS_DETACH:

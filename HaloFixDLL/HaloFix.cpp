@@ -27,8 +27,8 @@
 #define NOP 0x90
 
 void write_memory () {
-	MOUSE_X = 2.25F;
-	MOUSE_Y = 2.25F;
+	MOUSE_X = 0.25F;
+	MOUSE_Y = 0.25F;
 	nop_memory (MOUSEACCELFUNC, 6);
 	nop_memory (MOUSEACCELFUNC2, 6);
 }
