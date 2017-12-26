@@ -27,8 +27,19 @@
 #define NOP 0x90
 
 void write_memory () {
-	MOUSE_X = 0.25F;
-	MOUSE_Y = 0.25F;
+	char SensX[255];
+	char SensY[255];
+	char MouseAcceleration[255];
+	int BufferSize = sizeof(SensX);
+	RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloFixDLL"), ("SensX"), REG_SZ, NULL, (PVOID)&SensX, (LPDWORD)&BufferSize);
+	RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloFixDLL"), ("SensY"), REG_SZ, NULL, (PVOID)&SensY, (LPDWORD)&BufferSize);
+	RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloFixDLL"), ("MouseAcceleration"), REG_SZ, NULL, (PVOID)&MouseAcceleration, (LPDWORD)&BufferSize);
+
+
+
+	MOUSE_X = atof(SensX);
+	MOUSE_Y = atof(SensY);
+	//If mouse acceleration == 1, dont patch it, otherwise, run these two lines v
 	nop_memory (MOUSEACCELFUNC, 6);
 	nop_memory (MOUSEACCELFUNC2, 6);
 }
