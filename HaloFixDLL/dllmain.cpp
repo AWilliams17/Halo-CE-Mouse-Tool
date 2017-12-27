@@ -27,6 +27,8 @@ DWORD CALLBACK HookFunctions (LPVOID) {
 				Beep(900, 250);
 			}
 			else {
+				Beep(900, 150);
+				Beep(600, 250);
 				MessageBox(NULL, "Failed to read settings from registry. Did you run the DLL settings tool in the controls folder where the DLL is?", "HaloMouseDLL: Error", MB_OK);
 			}
 		}

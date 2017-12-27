@@ -42,7 +42,14 @@ int Read_Registry() {
 	result1 = RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloFixDLL"), ("SensX"), REG_SZ, NULL, (PVOID)&SensX, (LPDWORD)&BufferSize);
 	result2 = RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloFixDLL"), ("SensY"), REG_SZ, NULL, (PVOID)&SensY, (LPDWORD)&BufferSize);
 	result3 = RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloFixDLL"), ("MouseAcceleration"), REG_SZ, NULL, (PVOID)&MouseAcceleration, (LPDWORD)&BufferSize);
+	/*
+		For some reason, even when the registry values are valid REG_SZs, I get error code 1160 causing it to fail, even when 
+		the values retrieved are perfectly usable. I guess I only care if the key exists or not, so I'll just specifically
+		check for that.
 
+		The only way something else would be returned is if the user went into the registry themselves and messed with all the
+		values the tool used. Soooo whatever?
+	*/
 	if (result1 == ERROR_FILE_NOT_FOUND || result2 == ERROR_FILE_NOT_FOUND || result3 == ERROR_FILE_NOT_FOUND) {
 		return 0;
 	}
