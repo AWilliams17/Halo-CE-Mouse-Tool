@@ -131,6 +131,13 @@ NOTE: If you have already activated the tool with this
 enabled, IT WILL NOT REENABLE IT. You must
 restart Halo CE to get Mouse Acceleration back.</value>
   </data>
+  <data name="IncrementHotkeyCheckbox.ToolTip" xml:space="preserve">
+    <value>When checked, this allows you to use your
++/- keys to automatically add/subtract the desired increment
+amount to your mouse x and mouse y so you do not
+have to minimize and change your mouse settings
+through the tool gui.</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

@@ -136,7 +136,8 @@
             this.HideHotkeyMsgCheckbox.Size = new System.Drawing.Size(136, 17);
             this.HideHotkeyMsgCheckbox.TabIndex = 9;
             this.HideHotkeyMsgCheckbox.Text = "Hide Hotkey Messages";
-            this.Tooltip.SetToolTip(this.HideHotkeyMsgCheckbox, "Check this to enable your selected Hotkey.");
+            this.Tooltip.SetToolTip(this.HideHotkeyMsgCheckbox, "When checked, the success messages generated\r\nupon a successful memory write oper" +
+        "ation via\r\nthe hotkey will be hidden.");
             this.HideHotkeyMsgCheckbox.UseVisualStyleBackColor = true;
             this.HideHotkeyMsgCheckbox.CheckedChanged += new System.EventHandler(this.HideHotkeyMsgCheckbox_CheckedChanged);
             // 
@@ -157,6 +158,7 @@
             this.UpdateTimeoutUpDown.ReadOnly = true;
             this.UpdateTimeoutUpDown.Size = new System.Drawing.Size(52, 20);
             this.UpdateTimeoutUpDown.TabIndex = 10;
+            this.Tooltip.SetToolTip(this.UpdateTimeoutUpDown, "How many milliseconds to attempt to retrieve an\r\nupdate before timing out.");
             this.UpdateTimeoutUpDown.Value = new decimal(new int[] {
             1,
             0,
@@ -181,6 +183,7 @@
             this.IncrementHotkeyCheckbox.Size = new System.Drawing.Size(151, 17);
             this.IncrementHotkeyCheckbox.TabIndex = 12;
             this.IncrementHotkeyCheckbox.Text = "Enable Increment Hotkeys";
+            this.Tooltip.SetToolTip(this.IncrementHotkeyCheckbox, resources.GetString("IncrementHotkeyCheckbox.ToolTip"));
             this.IncrementHotkeyCheckbox.UseVisualStyleBackColor = true;
             this.IncrementHotkeyCheckbox.CheckedChanged += new System.EventHandler(this.IncrementHotkeyCheckbox_CheckedChanged);
             // 
@@ -216,6 +219,8 @@
             this.IncrementAmount.ReadOnly = true;
             this.IncrementAmount.Size = new System.Drawing.Size(52, 20);
             this.IncrementAmount.TabIndex = 14;
+            this.Tooltip.SetToolTip(this.IncrementAmount, "How much to add/subtract from the sensitivity\r\nwhen an increment/decrement key is" +
+        " pressed.");
             this.IncrementAmount.Value = new decimal(new int[] {
             5,
             0,

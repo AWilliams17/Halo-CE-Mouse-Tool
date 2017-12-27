@@ -150,21 +150,18 @@ You can also check for an update manually.</value>
     <value>312, 17</value>
   </metadata>
   <data name="DeployDllBtn.ToolTip" xml:space="preserve">
-    <value>Press this button to write your desired settings to
-the Halo process. You can also use your hotkey,
-if it is enabled and properly set.
+    <value>This will query you on the location of your Halo/SPV3's
+control folder, and then deploy a DLL version of the
+mouse tool there, along with a settings application
+to set the settings the DLL will use.
 
-Also note: If you have previously patched the 
-acceleration, you can not reenable it. You must
-restart to get it back.</value>
-  </data>
-  <data name="ExitBtn.ToolTip" xml:space="preserve">
-    <value>Edit the settings for the tool such as:
--What hotkey you want to use
--If you want to patch the mouse acceleration
--If you want the hotkey to even be enabled
--If you want to check for updates on launch
-You can also check for an update manually.</value>
+The benefit of the DLL over the regular tool you are using
+right now is that you do not need to open an application
+everytime you wish to utilize the mouse fix. You can
+just set your settings once through the DLL settings app,
+and then you're done. All you have to do from there is
+press F1 while ingame with the DLL installed to
+activate it.</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

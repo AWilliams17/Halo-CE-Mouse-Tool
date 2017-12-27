@@ -222,7 +222,8 @@
             this.ExitBtn.Size = new System.Drawing.Size(103, 23);
             this.ExitBtn.TabIndex = 14;
             this.ExitBtn.Text = "Exit";
-            this.Tooltip.SetToolTip(this.ExitBtn, resources.GetString("ExitBtn.ToolTip"));
+            this.Tooltip.SetToolTip(this.ExitBtn, "This will save your current settings to the XML\r\nfile and then exit the applicati" +
+        "on.");
             this.ExitBtn.UseVisualStyleBackColor = true;
             this.ExitBtn.Click += new System.EventHandler(this.ExitBtn_Click);
             // 
