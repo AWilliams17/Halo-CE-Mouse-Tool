@@ -22,8 +22,13 @@ bool IsForegroundProcess(DWORD pid)
 DWORD CALLBACK HookFunctions (LPVOID) {
 	do{
 		if (GetAsyncKeyState(VK_F1)) {
-			write_memory();
-			Beep(100, 200);
+			if (write_memory() == 1) {
+				Beep(600, 150);
+				Beep(900, 250);
+			}
+			else {
+				MessageBox(NULL, "Failed to read settings from registry. Did you run the DLL settings tool in the controls folder where the DLL is?", "HaloMouseDLL: Error", MB_OK);
+			}
 		}
 		Sleep(10);
 	} while (IsForegroundProcess(GetCurrentProcessId()));
