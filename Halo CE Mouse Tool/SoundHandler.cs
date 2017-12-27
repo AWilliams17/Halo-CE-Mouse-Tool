@@ -6,8 +6,6 @@ namespace Halo_CE_Mouse_Tool
     /*
         -SoundHandler-
         Plays sounds!
-        Relies on Mainform.settings though, can I abstract that out?
-        TODO: Do it.
     */
     public static class SoundHandler
     {

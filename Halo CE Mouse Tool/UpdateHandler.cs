@@ -6,9 +6,6 @@ using System.Net;
     -UpdateHandler Class-
     This class should check for updates and return a true/false value if one
     is available. It also should hold the current program version.
-
-    TODO: CheckUpdate() Causes the program to freeze while it checks. I need to run
-    it on another thread/do it asynchronously?
 */
 namespace Halo_CE_Mouse_Tool {
     [System.ComponentModel.DesignerCategory("Code")]
@@ -42,7 +39,6 @@ namespace Halo_CE_Mouse_Tool {
                 return 0; //There are no updates available. Return 0.
             } catch { //Generalized catch. Bad for business.
                 return 2;  //An error occurred, return 2. 
-                //TODO:Needs more specific error codes.
             }
         }
     }
