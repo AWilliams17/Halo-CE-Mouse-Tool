@@ -54,13 +54,13 @@ namespace Halo_CE_Mouse_Tool
                     {
                         returnMsg = "One or more values failed to write. Error code " + returnValue;
                     }
-                    MessageBox.Show(returnMsg);
+                    MessageBox.Show(returnMsg, "Failed to write");
                 }
             }
             SoundHandler.sound_success(settings);
             if (hideMessages == 0)
             {
-                MessageBox.Show("Successfully wrote values to memory.");
+                MessageBox.Show("Successfully wrote values to memory.", "Successfully wrote to memory");
             }
         }
 
@@ -75,12 +75,12 @@ namespace Halo_CE_Mouse_Tool
                 if (!XmlHandler.XmlExists())
                 {
                     dialogResult = "I did not find an XML config file. A new one will be generated with default values.";
-                    MessageBox.Show(dialogResult);
+                    MessageBox.Show(dialogResult, "XML does not exist");
                 }
                 else
                 {
                     dialogResult = "An XML config file was found, but I failed to load it properly. It is possible it is damaged. A new one will be generated.";
-                    MessageBox.Show(dialogResult);
+                    MessageBox.Show(dialogResult, "Failed to load XML");
                     FileInfo fi = new FileInfo(XmlHandler.XmlPath);
                     if (fi.IsReadOnly && IsAdministrator()) //If the file is readonly for some reason, that will cause an unauthorizedaccessexception.
                     {
@@ -97,7 +97,7 @@ namespace Halo_CE_Mouse_Tool
                         const string errTextDeletion = errText + "You are not running as administrator, so it's possible I do not have permission to access the file. Please re-run the tool as admin.";
                         if (!IsAdministrator()) //If the user isn't an administrator, then the file might be set to readonly.
                         {
-                            MessageBox.Show(errTextDeletion);
+                            MessageBox.Show(errTextDeletion, "Not running as Admin");
                             Application.Exit(); //Exit the tool so the user can re-run as admin. Really not much else I can do.
                         }
                     }
@@ -135,7 +135,7 @@ namespace Halo_CE_Mouse_Tool
                         dialogResult = "An error occurred whilst loading the settings file: Unspecified error. Possible malformation of config file. Settings that failed to load have been set back to their defaults.";
                     }
                 }
-                MessageBox.Show(dialogResult);
+                MessageBox.Show(dialogResult, "Result");
             }
         }
 
@@ -154,7 +154,7 @@ namespace Halo_CE_Mouse_Tool
             else if (context == 2 && saveSettings != 1)
             {
                 SoundHandler.sound_error(settings);
-                MessageBox.Show(adminError);
+                MessageBox.Show(adminError, "Access Violation");
             }
         }
 
@@ -175,7 +175,7 @@ namespace Halo_CE_Mouse_Tool
                 {
                     origin.Text = "0";
                     SoundHandler.sound_error(settings);
-                    MessageBox.Show(OnlyNumbersMsg);
+                    MessageBox.Show(OnlyNumbersMsg, "Error - Only numbers allowed!");
                 }
                 else {
                     if (sens == 'x')
@@ -186,7 +186,7 @@ namespace Halo_CE_Mouse_Tool
                         }
                         catch (ArgumentOutOfRangeException)
                         {
-                            MessageBox.Show(BelowZeroErrorMsg);
+                            MessageBox.Show(BelowZeroErrorMsg, "Error - Can't be below zero!");
                         }
                     }
                     else
@@ -197,7 +197,7 @@ namespace Halo_CE_Mouse_Tool
                         }
                         catch (ArgumentOutOfRangeException)
                         {
-                            MessageBox.Show(BelowZeroErrorMsg);
+                            MessageBox.Show(BelowZeroErrorMsg, "Error - Can't be below zero!");
                         }
                     }
                 }
@@ -210,7 +210,7 @@ namespace Halo_CE_Mouse_Tool
             {
                 origin.Focus();
                 SoundHandler.sound_error(settings);
-                MessageBox.Show("Error: You can't leave this field blank.");
+                MessageBox.Show("Error: You can't leave this field blank.", "Field can not be blank!");
             }
         }
 
@@ -222,13 +222,13 @@ namespace Halo_CE_Mouse_Tool
                 if (res == 2)
                 {
                     SoundHandler.sound_error(settings);
-                    MessageBox.Show("An error occurred while checking for updates(Timeout?)");
+                    MessageBox.Show("An error occurred while checking for updates(Timeout?)", "Update timeout/error");
                 }
                 else {
                     SoundHandler.sound_notice(settings);
                     if (res == 0)
                     {
-                        MessageBox.Show("No updates were found.");
+                        MessageBox.Show("No updates were found.", "No updates needed");
                     }
                     else {
                         DialogResult d = MessageBox.Show("An Update is Available. Would you like to visit the downloads page?", "Update Found", MessageBoxButtons.YesNo);

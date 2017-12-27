@@ -30,7 +30,7 @@ namespace Halo_CE_Mouse_Tool
                 windowTitle += " -NOT ADMIN-";
                 const string adminWarning = "Warning - You must run this tool as an administrator in order for it to work properly.";
                 SoundHandler.sound_notice(Settings);
-                MessageBox.Show(adminWarning);
+                MessageBox.Show(adminWarning, "Warning - Run this tool as an admin!");
             }
             Text = windowTitle;
 
@@ -185,11 +185,11 @@ namespace Halo_CE_Mouse_Tool
                             "Successfully deployed DLL to controls folder." +
                             " You must now go to the controls folder, run DLL Settings.exe, set your desired settings, and from there " +
                             "all you have to do to use the dll is open Halo, and at any time, press F1 to apply your settings.";
-                        MessageBox.Show(successMsg);
+                        MessageBox.Show(successMsg, "DLL Deployment successful");
                     }
                     else
                     {
-                        MessageBox.Show("Error");
+                        MessageBox.Show("Error - the selected folder did not have a controls.dll file.", "Invalid controls folder location");
                     }
 
                 }
