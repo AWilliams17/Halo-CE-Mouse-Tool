@@ -26,22 +26,25 @@
 #define MOUSEACCELFUNC2 (PVOID)(BASE_ADDR + 0x8F836)
 #define NOP 0x90
 
-void write_memory () {
-	char SensX[255];
-	char SensY[255];
-	char MouseAcceleration[255];
-	int BufferSize = sizeof(SensX);
-	RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloFixDLL"), ("SensX"), REG_SZ, NULL, (PVOID)&SensX, (LPDWORD)&BufferSize);
-	RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloFixDLL"), ("SensY"), REG_SZ, NULL, (PVOID)&SensY, (LPDWORD)&BufferSize);
-	RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloFixDLL"), ("MouseAcceleration"), REG_SZ, NULL, (PVOID)&MouseAcceleration, (LPDWORD)&BufferSize);
+float SensXF;
+float SensYF;
+int MouseAccelerationi;
 
+int write_memory () {
+	int RegistryValid = Read_Registry();
 
-
-	MOUSE_X = atof(SensX);
-	MOUSE_Y = atof(SensY);
-	//If mouse acceleration == 1, dont patch it, otherwise, run these two lines v
-	nop_memory (MOUSEACCELFUNC, 6);
-	nop_memory (MOUSEACCELFUNC2, 6);
+	if (RegistryValid == 1) {
+		MOUSE_X = SensXF;
+		MOUSE_Y = SensYF;
+		if (MouseAccelerationi != 1) {
+			nop_memory(MOUSEACCELFUNC, 6);
+			nop_memory(MOUSEACCELFUNC2, 6);
+		}
+		return 1;
+	}
+	else {
+		return 0;
+	}
 }
 
 void nop_memory (PVOID address, int bytes) {
@@ -50,3 +53,4 @@ void nop_memory (PVOID address, int bytes) {
 	memset (address, NOP, bytes);
 	VirtualProtect (address, bytes, old_protection, NULL);
 }
+
