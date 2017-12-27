@@ -61,6 +61,26 @@ namespace Halo_CE_Mouse_Tool.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] DLL_Settings {
+            get {
+                object obj = ResourceManager.GetObject("DLL_Settings", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] HaloFix {
+            get {
+                object obj = ResourceManager.GetObject("HaloFix", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon MouseTool {
