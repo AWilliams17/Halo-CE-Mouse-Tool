@@ -30,6 +30,30 @@ float SensXF;
 float SensYF;
 int MouseAccelerationi;
 
+int Read_Registry() {
+	char SensX[255];
+	char SensY[255];
+	char MouseAcceleration[255];
+	int BufferSize = 255;
+	int result1;
+	int result2;
+	int result3;
+
+	result1 = RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloFixDLL"), ("SensX"), REG_SZ, NULL, (PVOID)&SensX, (LPDWORD)&BufferSize);
+	result2 = RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloFixDLL"), ("SensY"), REG_SZ, NULL, (PVOID)&SensY, (LPDWORD)&BufferSize);
+	result3 = RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloFixDLL"), ("MouseAcceleration"), REG_SZ, NULL, (PVOID)&MouseAcceleration, (LPDWORD)&BufferSize);
+
+	if (result1 == ERROR_FILE_NOT_FOUND || result2 == ERROR_FILE_NOT_FOUND || result3 == ERROR_FILE_NOT_FOUND) {
+		return 0;
+	}
+	else {
+		SensXF = atof(SensX);
+		SensYF = atof(SensY);
+		MouseAccelerationi = atoi(MouseAcceleration);
+		return 1;
+	}
+}
+
 int write_memory () {
 	int RegistryValid = Read_Registry();
 
