@@ -39,8 +39,10 @@ namespace DLLSettingsApp
                 }
                 else
                 {
-                    Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloFixDLL", "SensX", SensXTextbox.Text, RegistryValueKind.String);
-                    Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloFixDLL", "SensY", SensYTextbox.Text, RegistryValueKind.String);
+                    sensX *= 0.25F;
+                    sensY *= 0.25F;
+                    Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloFixDLL", "SensX", sensX.ToString(), RegistryValueKind.String);
+                    Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloFixDLL", "SensY", sensY.ToString(), RegistryValueKind.String);
                     Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloFixDLL", "MouseAcceleration", mouseAcceleration, RegistryValueKind.String);
                     MessageBox.Show("Successfully commited values to registry.");
                 }

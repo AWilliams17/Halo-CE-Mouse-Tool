@@ -23,12 +23,12 @@ namespace Halo_CE_Mouse_Tool
             {
                 if (i == 0)
                 {
-                    currVal = BitConverter.GetBytes(settings.SensX);
+                    currVal = BitConverter.GetBytes((settings.SensX *= 0.25F));
                     currAddr = 0x2ABB50;
                 }
                 if (i == 1)
                 {
-                    currVal = BitConverter.GetBytes(settings.SensY);
+                    currVal = BitConverter.GetBytes((settings.SensY *= 0.25F));
                     currAddr = 0x2ABB54;
                 }
                 if (i == 2 && settings.PatchAcceleration == 1)

@@ -10,8 +10,8 @@ namespace Halo_CE_Mouse_Tool
     [DataContract]
     public class SettingsHandler
     {
-        [DataMember] private float _sensX = 1;
-        [DataMember] private float _sensY = 1;
+        [DataMember] private float _sensX = 0.25F;
+        [DataMember] private float _sensY = 0.25F;
         [DataMember] private int _patchAcceleration = 1;
         [DataMember] private int _checkForUpdates = 1;
         [DataMember] private int _hotkeyEnabled = 1;
