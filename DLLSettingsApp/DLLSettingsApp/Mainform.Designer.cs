@@ -36,8 +36,9 @@
             this.SensXTextbox = new System.Windows.Forms.TextBox();
             this.SensYTextbox = new System.Windows.Forms.TextBox();
             this.SetBtn = new System.Windows.Forms.Button();
-            this.CloseBtn = new System.Windows.Forms.Button();
             this.Tooltip = new System.Windows.Forms.ToolTip(this.components);
+            this.DLLSoundsCheckbox = new System.Windows.Forms.CheckBox();
+            this.CloseBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // MouseAccelCheckbox
@@ -74,7 +75,7 @@
             // 
             this.SensXTextbox.Location = new System.Drawing.Point(85, 6);
             this.SensXTextbox.Name = "SensXTextbox";
-            this.SensXTextbox.Size = new System.Drawing.Size(92, 20);
+            this.SensXTextbox.Size = new System.Drawing.Size(141, 20);
             this.SensXTextbox.TabIndex = 3;
             this.Tooltip.SetToolTip(this.SensXTextbox, "Indicate your desired Horizontal Axis sensitivity");
             // 
@@ -82,42 +83,57 @@
             // 
             this.SensYTextbox.Location = new System.Drawing.Point(85, 33);
             this.SensYTextbox.Name = "SensYTextbox";
-            this.SensYTextbox.Size = new System.Drawing.Size(92, 20);
+            this.SensYTextbox.Size = new System.Drawing.Size(141, 20);
             this.SensYTextbox.TabIndex = 4;
             this.Tooltip.SetToolTip(this.SensYTextbox, "Indicate your desired Vertical Axis sensitivity");
             // 
             // SetBtn
             // 
-            this.SetBtn.Location = new System.Drawing.Point(102, 82);
+            this.SetBtn.Location = new System.Drawing.Point(125, 82);
             this.SetBtn.Name = "SetBtn";
-            this.SetBtn.Size = new System.Drawing.Size(75, 23);
+            this.SetBtn.Size = new System.Drawing.Size(101, 23);
             this.SetBtn.TabIndex = 5;
             this.SetBtn.Text = "Set";
             this.Tooltip.SetToolTip(this.SetBtn, "Commit your desired settings to the registry.");
             this.SetBtn.UseVisualStyleBackColor = true;
             this.SetBtn.Click += new System.EventHandler(this.SetBtn_Click);
             // 
+            // Tooltip
+            // 
+            this.Tooltip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.Tooltip.ToolTipTitle = "About";
+            // 
+            // DLLSoundsCheckbox
+            // 
+            this.DLLSoundsCheckbox.AutoSize = true;
+            this.DLLSoundsCheckbox.Checked = true;
+            this.DLLSoundsCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.DLLSoundsCheckbox.Location = new System.Drawing.Point(141, 59);
+            this.DLLSoundsCheckbox.Name = "DLLSoundsCheckbox";
+            this.DLLSoundsCheckbox.Size = new System.Drawing.Size(85, 17);
+            this.DLLSoundsCheckbox.TabIndex = 7;
+            this.DLLSoundsCheckbox.Text = "DLL Sounds";
+            this.Tooltip.SetToolTip(this.DLLSoundsCheckbox, "When checked, upon activation ingame a chime will play indicating the success/fai" +
+        "lure of the operation.");
+            this.DLLSoundsCheckbox.UseVisualStyleBackColor = true;
+            // 
             // CloseBtn
             // 
             this.CloseBtn.Location = new System.Drawing.Point(15, 82);
             this.CloseBtn.Name = "CloseBtn";
-            this.CloseBtn.Size = new System.Drawing.Size(75, 23);
+            this.CloseBtn.Size = new System.Drawing.Size(101, 23);
             this.CloseBtn.TabIndex = 6;
             this.CloseBtn.Text = "Close";
             this.Tooltip.SetToolTip(this.CloseBtn, "Close the utility.");
             this.CloseBtn.UseVisualStyleBackColor = true;
             this.CloseBtn.Click += new System.EventHandler(this.CloseBtn_Click);
             // 
-            // Tooltip
-            // 
-            this.Tooltip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.Tooltip.ToolTipTitle = "About";
-            // 
             // Mainform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(191, 115);
+            this.ClientSize = new System.Drawing.Size(239, 116);
+            this.Controls.Add(this.DLLSoundsCheckbox);
             this.Controls.Add(this.CloseBtn);
             this.Controls.Add(this.SetBtn);
             this.Controls.Add(this.SensYTextbox);
@@ -128,11 +144,12 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(207, 154);
+            this.MaximumSize = new System.Drawing.Size(255, 155);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(207, 154);
+            this.MinimumSize = new System.Drawing.Size(255, 155);
             this.Name = "Mainform";
             this.Text = "Halo Mouse Fix DLL Settings";
+            this.Load += new System.EventHandler(this.Mainform_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -146,8 +163,9 @@
         private System.Windows.Forms.TextBox SensXTextbox;
         private System.Windows.Forms.TextBox SensYTextbox;
         private System.Windows.Forms.Button SetBtn;
-        private System.Windows.Forms.Button CloseBtn;
         private System.Windows.Forms.ToolTip Tooltip;
+        private System.Windows.Forms.CheckBox DLLSoundsCheckbox;
+        private System.Windows.Forms.Button CloseBtn;
     }
 }
 
