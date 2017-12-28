@@ -286,5 +286,58 @@ namespace Halo_CE_Mouse_Tool
                 }
             }
         }
+
+        public static void deploy_dll()
+        {
+            using (var fbd = new FolderBrowserDialog())
+            {
+                string description =
+                    "Select the Halo CE/SPV3 Controls directory." + Environment.NewLine +
+                    "If you wish to only use this for SPV3, you just have to select SPV3's control directory. " +
+                    "If you want to use it for Halo CE, select Halo CE's control directory." +
+                    "For reference, this folder will have a dll in it called 'controls.dll'.";
+                fbd.ShowNewFolderButton = false;
+                fbd.Description = description;
+                DialogResult result = fbd.ShowDialog();
+
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                {
+                    bool validselection = false;
+                    try
+                    {
+                        string[] files = Directory.GetFiles(fbd.SelectedPath);
+                        for (int i = 0; i < files.Length; i++)
+                        {
+                            if (files[i].ToLower().Contains("controls.dll"))
+                            {
+                                validselection = true;
+                                break;
+                            }
+                        }
+                        if (validselection)
+                        {
+                            string dllsettings = Path.Combine(fbd.SelectedPath, "DLL Settings.exe");
+                            string dll = Path.Combine(fbd.SelectedPath, "HaloMouseFix.dll");
+                            File.WriteAllBytes(dllsettings, Properties.Resources.DLL_Settings);
+                            File.WriteAllBytes(dll, Properties.Resources.DLL_Settings);
+                            string successMsg =
+                                "Successfully deployed DLL to controls folder." +
+                                " You must now go to the controls folder, run DLL Settings.exe, set your desired settings, and from there " +
+                                "all you have to do to use the dll is open Halo, and at any time, press F1 to apply your settings.";
+                            MessageBox.Show(successMsg, "DLL Deployment successful");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error - the selected folder did not have a controls.dll file.", "Invalid controls folder location");
+                        }
+                    }
+                    catch (UnauthorizedAccessException)
+                    {
+                        MessageBox.Show("Error - You do not have access. Are you running as admin?", "Unauthorized Access");
+                    }
+
+                }
+            }
+        }
     }
 }
