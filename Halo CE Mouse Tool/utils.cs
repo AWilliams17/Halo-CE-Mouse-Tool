@@ -54,13 +54,13 @@ namespace Halo_CE_Mouse_Tool
                     {
                         returnMsg = "One or more values failed to write. Error code " + returnValue;
                     }
-                    MessageBox.Show(returnMsg, "Failed to write");
+                    MessageBox.Show(returnMsg, "Failed to write values to memory!");
                 }
             }
             SoundHandler.sound_success(settings);
             if (hideMessages == 0)
             {
-                MessageBox.Show("Successfully wrote values to memory.", "Successfully wrote to memory");
+                MessageBox.Show("Successfully wrote values to memory.", "Successfully wrote to memory!";
             }
         }
 
@@ -75,7 +75,7 @@ namespace Halo_CE_Mouse_Tool
                 if (!XmlHandler.XmlExists())
                 {
                     dialogResult = "I did not find an XML config file. A new one will be generated with default values.";
-                    MessageBox.Show(dialogResult, "XML does not exist");
+                    MessageBox.Show(dialogResult, "XML does not exist.");
                 }
                 else
                 {
@@ -135,7 +135,7 @@ namespace Halo_CE_Mouse_Tool
                         dialogResult = "An error occurred whilst loading the settings file: Unspecified error. Possible malformation of config file. Settings that failed to load have been set back to their defaults.";
                     }
                 }
-                MessageBox.Show(dialogResult, "Result");
+                MessageBox.Show(dialogResult, "Settings Status");
             }
         }
 

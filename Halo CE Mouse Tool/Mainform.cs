@@ -30,7 +30,7 @@ namespace Halo_CE_Mouse_Tool
                 windowTitle += " -NOT ADMIN-";
                 const string adminWarning = "Warning - You must run this tool as an administrator in order for it to work properly.";
                 SoundHandler.sound_notice(Settings);
-                MessageBox.Show(adminWarning, "Warning - Run this tool as an admin!");
+                MessageBox.Show(adminWarning, "You are not an admin!");
             }
             Text = windowTitle;
 
