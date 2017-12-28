@@ -127,6 +127,10 @@
             this.Controls.Add(this.MouseAccelCheckbox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(207, 154);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(207, 154);
             this.Name = "Mainform";
             this.Text = "Halo Mouse Fix DLL Settings";
             this.ResumeLayout(false);
