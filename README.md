@@ -10,6 +10,14 @@ menu doesn't allow this.
 But it goes even further - if you want to just customize your sensitivity, but leave acceleration on (for some reason),
 you can do that!
 
-New in version 4 is a configuration file, which automatically saves your settings when you close the tool,
-and loads it when you launch it, so you no longer have to reset all your settings. Just launch the tool,
-go in game, hit the hotkey you have set (if you enabled it), or hit the activate button!
+There are two methods available to you:
+	1: Patch it via the regular mouse tool, which must be opened everytime you want to enable the changes. The tool automatically saves any
+	of your settings on exit so you don't have to keep putting it in everytime you open it back up.
+	
+	2: From the mouse tool, you can deploy a DLL along with a settings application for the DLL which will allow you to get around having
+	to open up any external applications everytime you want to play Halo with custom mouse settings. All you must do is just open
+	the DLL settings application after pressing the "deploy DLL" button from the mouse tool, set your desired settings, and then
+	go into Halo and press F1 to use the settings. Easy.
+	
+So yeah.
+:3
