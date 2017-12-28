@@ -239,6 +239,7 @@ namespace Halo_CE_Mouse_Tool
                     }
                 }
             });
+            update_thread.IsBackground = true;
             update_thread.Start();
         }
         public static void keybind_handle(SettingsHandler settings, TextBox sensXText, TextBox sensYText)
