@@ -1,6 +1,0 @@
-Future Features:
--Maybe make XML be loaded/saved to Halo Custom Edition folder if the location if the install can be found?
--Automatically write to memory when Halo is detected?
--Automatically launch Halo CE when the tool starts? (although this will prevent SPV3 from being launched. might be a way around that?)
--Embed a DLL into the tool, if the user wishes to, they can have this DLL get pasted into the controls directory in Halo,
-which will patch the sensitivity that way.
