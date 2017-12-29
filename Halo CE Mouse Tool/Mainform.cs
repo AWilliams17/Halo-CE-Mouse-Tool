@@ -115,12 +115,12 @@ namespace Halo_CE_Mouse_Tool
 
         private void SensX_TextChanged(object sender, EventArgs e)
         {
-            Utils.parse_sensitivity(SensX, 'x', Settings); //Make sure the input is valid.
+            Utils.Parse_Sensitivity(SensX, 'x', Settings); //Make sure the input is valid.
         }
 
         private void SensY_TextChanged(object sender, EventArgs e)
         {
-            Utils.parse_sensitivity(SensY, 'y', Settings); //Same as above.
+            Utils.Parse_Sensitivity(SensY, 'y', Settings); //Same as above.
         }
 
         public void OnProcessExit(object sender, EventArgs e)
@@ -130,23 +130,23 @@ namespace Halo_CE_Mouse_Tool
 
         private void HotkeyTimer_Tick(object sender, EventArgs e)
         {
-            Utils.keybind_handle(Settings, SensX, SensY); //If the user presses their hotkey, then handle it.
+            Utils.KeybindHandle(Settings, SensX, SensY); //If the user presses their hotkey, then handle it.
             //Is there a better way of doing this?
         }
 
         private void SensX_Leave(object sender, EventArgs e)
         {
-            Utils.check_if_blank(SensX, Settings); //If the user tries to leave with the textbox being blank, then force them back to it.
+            Utils.CheckIfBlank(SensX, Settings); //If the user tries to leave with the textbox being blank, then force them back to it.
         }
 
         private void SensY_Leave(object sender, EventArgs e)
         {
-            Utils.check_if_blank(SensY, Settings); //Same as above.
+            Utils.CheckIfBlank(SensY, Settings); //Same as above.
         }
 
         private void DeployDllBtn_Click(object sender, EventArgs e)
         {
-            Utils.deploy_dll();
+            Utils.DeployDLL();
         }
 
         private void ExitBtn_Click(object sender, EventArgs e)

@@ -23,7 +23,7 @@ namespace Halo_CE_Mouse_Tool {
 
     [System.ComponentModel.DesignerCategory("Code")]
     public static class UpdateHandler {
-        public const int Version = 4; //Current program version
+        public const int Version = 5; //Current program version
 
         public static int CheckForUpdates(int timeout) { //Download a url, in this case pastebin, which has a single number in it.
             WebClientWithTimeout wb = new WebClientWithTimeout(timeout);

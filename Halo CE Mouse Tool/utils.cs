@@ -60,7 +60,7 @@ namespace Halo_CE_Mouse_Tool
             SoundHandler.sound_success(settings);
             if (hideMessages == 0)
             {
-                MessageBox.Show("Successfully wrote values to memory.", "Successfully wrote to memory!";
+                MessageBox.Show("Successfully wrote values to memory.", "Successfully wrote to memory!");
             }
         }
 
@@ -164,7 +164,7 @@ namespace Halo_CE_Mouse_Tool
                       .IsInRole(WindowsBuiltInRole.Administrator);
         }
 
-        public static void parse_sensitivity(TextBox origin, char sens, SettingsHandler settings)
+        public static void Parse_Sensitivity(TextBox origin, char sens, SettingsHandler settings)
         { //For performing validation on the sensitivity text boxes.
             if (origin.Text != "")
             {
@@ -204,7 +204,7 @@ namespace Halo_CE_Mouse_Tool
             }
         }
 
-        public static void check_if_blank(TextBox origin, SettingsHandler settings)
+        public static void CheckIfBlank(TextBox origin, SettingsHandler settings)
         { //Check if the sensitivity textbox is blank or not. Prevent user from leaving if it is.
             if (origin.Text == "")
             {
@@ -242,7 +242,7 @@ namespace Halo_CE_Mouse_Tool
             update_thread.IsBackground = true;
             update_thread.Start();
         }
-        public static void keybind_handle(SettingsHandler settings, TextBox sensXText, TextBox sensYText)
+        public static void KeybindHandle(SettingsHandler settings, TextBox sensXText, TextBox sensYText)
         { //Detects if the hotkey is pressed or not. IDK if there's a better way of doing this or not.
             if (KeybindHandler.KeybindsEnabled && settings.HotkeyEnabled == 1)
             {
@@ -287,7 +287,7 @@ namespace Halo_CE_Mouse_Tool
             }
         }
 
-        public static void deploy_dll()
+        public static void DeployDLL()
         {
             using (var fbd = new FolderBrowserDialog())
             {
