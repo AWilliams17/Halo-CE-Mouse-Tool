@@ -11,13 +11,13 @@ But it goes even further - if you want to just customize your sensitivity, but l
 you can do that!
 
 There are two methods available to you:
-	1: Patch it via the regular mouse tool, which must be opened everytime you want to enable the changes. The tool automatically saves any
-	of your settings on exit so you don't have to keep putting it in everytime you open it back up.
+1: Patch it via the regular mouse tool, which must be opened everytime you want to enable the changes. The tool automatically saves any
+of your settings on exit so you don't have to keep putting it in everytime you open it back up.
 	
-	2: From the mouse tool, you can deploy a DLL along with a settings application for the DLL which will allow you to get around having
-	to open up any external applications everytime you want to play Halo with custom mouse settings. All you must do is just open
-	the DLL settings application after pressing the "deploy DLL" button from the mouse tool, set your desired settings, and then
-	go into Halo and press F1 to use the settings. Easy.
+2: From the mouse tool, you can deploy a DLL along with a settings application for the DLL which will allow you to get around having
+to open up any external applications everytime you want to play Halo with custom mouse settings. All you must do is just open
+the DLL settings application after pressing the "deploy DLL" button from the mouse tool, set your desired settings, and then
+go into Halo and press F1 to use the settings. Easy.
 	
 So yeah.
 :3
