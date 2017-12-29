@@ -75,7 +75,7 @@
             // 
             this.SensXTextbox.Location = new System.Drawing.Point(85, 6);
             this.SensXTextbox.Name = "SensXTextbox";
-            this.SensXTextbox.Size = new System.Drawing.Size(141, 20);
+            this.SensXTextbox.Size = new System.Drawing.Size(164, 20);
             this.SensXTextbox.TabIndex = 3;
             this.Tooltip.SetToolTip(this.SensXTextbox, "Indicate your desired Horizontal Axis sensitivity");
             // 
@@ -83,13 +83,13 @@
             // 
             this.SensYTextbox.Location = new System.Drawing.Point(85, 33);
             this.SensYTextbox.Name = "SensYTextbox";
-            this.SensYTextbox.Size = new System.Drawing.Size(141, 20);
+            this.SensYTextbox.Size = new System.Drawing.Size(164, 20);
             this.SensYTextbox.TabIndex = 4;
             this.Tooltip.SetToolTip(this.SensYTextbox, "Indicate your desired Vertical Axis sensitivity");
             // 
             // SetBtn
             // 
-            this.SetBtn.Location = new System.Drawing.Point(125, 82);
+            this.SetBtn.Location = new System.Drawing.Point(148, 82);
             this.SetBtn.Name = "SetBtn";
             this.SetBtn.Size = new System.Drawing.Size(101, 23);
             this.SetBtn.TabIndex = 5;
@@ -108,7 +108,7 @@
             this.DLLSoundsCheckbox.AutoSize = true;
             this.DLLSoundsCheckbox.Checked = true;
             this.DLLSoundsCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.DLLSoundsCheckbox.Location = new System.Drawing.Point(141, 59);
+            this.DLLSoundsCheckbox.Location = new System.Drawing.Point(164, 59);
             this.DLLSoundsCheckbox.Name = "DLLSoundsCheckbox";
             this.DLLSoundsCheckbox.Size = new System.Drawing.Size(85, 17);
             this.DLLSoundsCheckbox.TabIndex = 7;
@@ -132,7 +132,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(239, 116);
+            this.ClientSize = new System.Drawing.Size(261, 116);
             this.Controls.Add(this.DLLSoundsCheckbox);
             this.Controls.Add(this.CloseBtn);
             this.Controls.Add(this.SetBtn);
@@ -144,11 +144,11 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(255, 155);
+            this.MaximumSize = new System.Drawing.Size(277, 155);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(255, 155);
+            this.MinimumSize = new System.Drawing.Size(277, 155);
             this.Name = "Mainform";
-            this.Text = "Halo Mouse Fix DLL Settings";
+            this.Text = "-";
             this.Load += new System.EventHandler(this.Mainform_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

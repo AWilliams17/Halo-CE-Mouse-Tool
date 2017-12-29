@@ -1,11 +1,19 @@
 ﻿using System;
 using System.Windows.Forms;
 using Microsoft.Win32;
+using System.Security.Principal;
+
 
 namespace DLLSettingsApp
 {
     public partial class Mainform : Form
     {
+        public static bool IsAdministrator()
+        {
+            return (new WindowsPrincipal(WindowsIdentity.GetCurrent()))
+                      .IsInRole(WindowsBuiltInRole.Administrator);
+        }
+
         public Mainform()
         {
             InitializeComponent();
@@ -57,8 +65,16 @@ namespace DLLSettingsApp
 
         private void Mainform_Load(object sender, EventArgs e)
         {
-            RegistryKey halofixdllRK = Registry.CurrentUser.OpenSubKey("Software\\HaloFixDLL", false);
+            string windowTitle = "Halo Mouse Fix DLL Settings";
+            if (!IsAdministrator())
+            {
+                windowTitle += " -NOT ADMIN-";
+                const string adminWarning = "Warning - You must run this tool as an administrator in order for it to work properly.";
+                MessageBox.Show(adminWarning, "You are not an admin!");
+            }
+            Text = windowTitle;
 
+            RegistryKey halofixdllRK = Registry.CurrentUser.OpenSubKey("Software\\HaloFixDLL", false);
             try
             {
                 object sensX = halofixdllRK.GetValue("SensX");
