@@ -11,6 +11,7 @@ But it goes even further - if you want to just customize your sensitivity, but l
 you can do that!
 
 There are two methods available to you:
+
 1: Patch it via the regular mouse tool, which must be opened everytime you want to enable the changes. The tool automatically saves any
 of your settings on exit so you don't have to keep putting it in everytime you open it back up.
 	
