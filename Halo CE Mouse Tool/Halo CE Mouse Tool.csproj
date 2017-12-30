@@ -65,39 +65,39 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DonateForm.cs">
+    <Compile Include="Forms\DonateForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DonateForm.Designer.cs">
+    <Compile Include="Forms\DonateForm.Designer.cs">
       <DependentUpon>DonateForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormHandler.cs" />
-    <Compile Include="KeybindHandler.cs" />
-    <Compile Include="Mainform.cs">
+    <Compile Include="Classes\FormHandler.cs" />
+    <Compile Include="Classes\KeybindHandler.cs" />
+    <Compile Include="Forms\Mainform.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="Forms\Form1.Designer.cs">
       <DependentUpon>Mainform.cs</DependentUpon>
     </Compile>
-    <Compile Include="MemoryHandler.cs" />
-    <Compile Include="ProcessHandler.cs" />
+    <Compile Include="Classes\MemoryHandler.cs" />
+    <Compile Include="Classes\ProcessHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SettingsForm.cs">
+    <Compile Include="Forms\SettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SettingsForm.Designer.cs">
+    <Compile Include="Forms\SettingsForm.Designer.cs">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SettingsHandler.cs" />
-    <Compile Include="SoundHandler.cs" />
-    <Compile Include="UpdateHandler.cs" />
-    <Compile Include="utils.cs" />
-    <Compile Include="XMLHandler.cs" />
-    <EmbeddedResource Include="DonateForm.resx">
+    <Compile Include="Classes\SettingsHandler.cs" />
+    <Compile Include="Classes\SoundHandler.cs" />
+    <Compile Include="Classes\UpdateHandler.cs" />
+    <Compile Include="Classes\utils.cs" />
+    <Compile Include="Classes\XMLHandler.cs" />
+    <EmbeddedResource Include="Forms\DonateForm.resx">
       <DependentUpon>DonateForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mainform.resx">
+    <EmbeddedResource Include="Forms\Mainform.resx">
       <DependentUpon>Mainform.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -110,7 +110,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="SettingsForm.resx">
+    <EmbeddedResource Include="Forms\SettingsForm.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
