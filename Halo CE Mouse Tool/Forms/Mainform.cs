@@ -29,27 +29,9 @@ namespace Halo_CE_Mouse_Tool
                 SoundHandler.sound_success(Settings);
                 MessageBox.Show("Successfully loaded XML file.");
             }
-            catch (FileLoadException)
-            {
-                dialogResult = "An XML config file was found, but I failed to load it properly. It is possible it is damaged. A new one will be generated.";
-                MessageBox.Show(dialogResult, "Failed to load XML");
-                try
-                {
-                    Utils.GenerateXML();
-                }
-                catch (UnauthorizedAccessException)
-                {
-                    const string errText = "An error occurred whilst attempting to delete the corrupt config file. ";
-                    const string errTextDeletion = errText + "You are not running as administrator, so it's possible I do not have permission to access the file. Please re-run the tool as admin.";
-                    if (!Utils.IsAdministrator()) //If the user isn't an administrator, then the file might be set to readonly.
-                    {
-                        MessageBox.Show(errTextDeletion, "Not running as Admin");
-                        Application.Exit(); //Exit the tool so the user can re-run as admin. Really not much else I can do.
-                    }
-                }
-            }
             catch (FileNotFoundException)
             {
+                SoundHandler.sound_error(Settings);
                 dialogResult = "I did not find an XML config file. A new one will be generated with default values.";
                 MessageBox.Show(dialogResult, "XML does not exist.");
 
@@ -63,6 +45,7 @@ namespace Halo_CE_Mouse_Tool
                 }
                 else
                 {
+                    MessageBox.Show(ex.Message);
                     dialogResult = "An error occurred whilst loading the settings file: Unspecified error. Possible malformation of config file. Settings that failed to load have been set back to their defaults.";
                 }
                 MessageBox.Show(dialogResult, "Settings Status");

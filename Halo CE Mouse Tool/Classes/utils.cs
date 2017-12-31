@@ -61,11 +61,7 @@ namespace Halo_CE_Mouse_Tool
         public static void LoadSettings(SettingsHandler settings, int context) //Pass the context so if I need to call SerializeSettings, I will have something to pass it.
         { //For loading settings from the XML file.
             SettingsHandler loadedSettings = XmlHandler.DeSerialize_Settings();
-            if (loadedSettings == null && XmlHandler.XmlExists())
-            {
-                throw new FileLoadException();
-            }
-            else if (loadedSettings == null)
+            if (loadedSettings == null)
             {
                 throw new FileNotFoundException();
             }
@@ -85,7 +81,7 @@ namespace Halo_CE_Mouse_Tool
             }
         }
 
-        public static void GenerateXML() //Generate a new XML file
+        public static void DeleteCorruptXML() //Delete the corrupt XML
         {
             FileInfo fi = new FileInfo(XmlHandler.XmlPath);
             if (fi.IsReadOnly && IsAdministrator()) //If the file is readonly for some reason, that will cause an unauthorizedaccessexception.
