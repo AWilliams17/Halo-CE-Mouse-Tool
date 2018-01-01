@@ -52,7 +52,9 @@ namespace Halo_CE_Mouse_Tool
                     }
                     else
                     {
+                        //MSDN: Do not throw Exception, SystemException, NullReferenceException, or IndexOutOfRangeException intentionally from your own source code.
                         throw new SystemException();
+                        //Well shit !
                     }
                 }
             }
