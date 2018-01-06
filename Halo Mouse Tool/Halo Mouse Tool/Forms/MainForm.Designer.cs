@@ -55,6 +55,7 @@
             this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.HotkeyLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.AboutBtn = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveSettingsBtn = new System.Windows.Forms.ToolStripMenuItem();
             this.MainMenu.SuspendLayout();
             this.StatusBar.SuspendLayout();
             this.SuspendLayout();
@@ -88,12 +89,14 @@
             this.HaloCustomEditionBtn.Name = "HaloCustomEditionBtn";
             this.HaloCustomEditionBtn.Size = new System.Drawing.Size(189, 22);
             this.HaloCustomEditionBtn.Text = "Halo Custom Edition";
+            this.HaloCustomEditionBtn.Click += new System.EventHandler(this.HaloCustomEditionBtn_Click);
             // 
             // HaloCombatEvolvedBtn
             // 
             this.HaloCombatEvolvedBtn.Name = "HaloCombatEvolvedBtn";
             this.HaloCombatEvolvedBtn.Size = new System.Drawing.Size(189, 22);
             this.HaloCombatEvolvedBtn.Text = "Halo Combat Evolved";
+            this.HaloCombatEvolvedBtn.Click += new System.EventHandler(this.HaloCombatEvolvedBtn_Click);
             // 
             // toolsToolStripMenuItem
             // 
@@ -110,16 +113,19 @@
             this.DeployDllBtn.Name = "DeployDllBtn";
             this.DeployDllBtn.Size = new System.Drawing.Size(166, 22);
             this.DeployDllBtn.Text = "Deploy DLL";
+            this.DeployDllBtn.Click += new System.EventHandler(this.DeployDllBtn_Click);
             // 
             // OptionsBtn
             // 
             this.OptionsBtn.Name = "OptionsBtn";
             this.OptionsBtn.Size = new System.Drawing.Size(166, 22);
             this.OptionsBtn.Text = "Options";
+            this.OptionsBtn.Click += new System.EventHandler(this.OptionsBtn_Click);
             // 
             // miscToolStripMenuItem
             // 
             this.miscToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SaveSettingsBtn,
             this.HelpBtn,
             this.AboutBtn,
             this.DonateBtn,
@@ -134,18 +140,21 @@
             this.DonateBtn.Name = "DonateBtn";
             this.DonateBtn.Size = new System.Drawing.Size(152, 22);
             this.DonateBtn.Text = "Donate";
+            this.DonateBtn.Click += new System.EventHandler(this.DonateBtn_Click);
             // 
             // ExitBtn
             // 
             this.ExitBtn.Name = "ExitBtn";
             this.ExitBtn.Size = new System.Drawing.Size(152, 22);
             this.ExitBtn.Text = "Exit";
+            this.ExitBtn.Click += new System.EventHandler(this.ExitBtn_Click);
             // 
             // HelpBtn
             // 
             this.HelpBtn.Name = "HelpBtn";
             this.HelpBtn.Size = new System.Drawing.Size(152, 22);
             this.HelpBtn.Text = "Help";
+            this.HelpBtn.Click += new System.EventHandler(this.HelpBtn_Click);
             // 
             // toolStripSeparator1
             // 
@@ -202,7 +211,7 @@
             this.UpdateStatusLabel,
             this.toolStripStatusLabel5,
             this.HotkeyLabel});
-            this.StatusBar.Location = new System.Drawing.Point(0, 80);
+            this.StatusBar.Location = new System.Drawing.Point(0, 79);
             this.StatusBar.Name = "StatusBar";
             this.StatusBar.Size = new System.Drawing.Size(340, 22);
             this.StatusBar.TabIndex = 6;
@@ -232,6 +241,7 @@
             this.CheckForUpdateBtn.Name = "CheckForUpdateBtn";
             this.CheckForUpdateBtn.Size = new System.Drawing.Size(166, 22);
             this.CheckForUpdateBtn.Text = "Check for Update";
+            this.CheckForUpdateBtn.Click += new System.EventHandler(this.CheckForUpdateBtn_Click);
             // 
             // UpdateStatusLabel
             // 
@@ -258,13 +268,21 @@
             this.AboutBtn.Name = "AboutBtn";
             this.AboutBtn.Size = new System.Drawing.Size(152, 22);
             this.AboutBtn.Text = "About";
+            this.AboutBtn.Click += new System.EventHandler(this.AboutBtn_Click);
+            // 
+            // SaveSettingsBtn
+            // 
+            this.SaveSettingsBtn.Name = "SaveSettingsBtn";
+            this.SaveSettingsBtn.Size = new System.Drawing.Size(152, 22);
+            this.SaveSettingsBtn.Text = "Save Settings";
+            this.SaveSettingsBtn.Click += new System.EventHandler(this.SaveSettingsBtn_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(340, 102);
+            this.ClientSize = new System.Drawing.Size(340, 101);
             this.Controls.Add(this.StatusBar);
             this.Controls.Add(this.WriteBtn);
             this.Controls.Add(this.SensYTextBox);
@@ -314,6 +332,7 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel5;
         private System.Windows.Forms.ToolStripStatusLabel HotkeyLabel;
         private System.Windows.Forms.ToolStripMenuItem AboutBtn;
+        private System.Windows.Forms.ToolStripMenuItem SaveSettingsBtn;
     }
 }
 
