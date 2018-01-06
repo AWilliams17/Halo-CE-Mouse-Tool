@@ -16,5 +16,10 @@ namespace Halo_Mouse_Tool.Forms
         {
             InitializeComponent();
         }
+
+        private void PaypalLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://www.paypal.me/AWilliams17411");
+        }
     }
 }

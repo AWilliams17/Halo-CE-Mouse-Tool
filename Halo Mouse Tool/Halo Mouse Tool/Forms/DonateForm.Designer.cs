@@ -64,6 +64,7 @@
             this.PaypalLink.TabIndex = 5;
             this.PaypalLink.TabStop = true;
             this.PaypalLink.Text = "Here\'s my paypal.";
+            this.PaypalLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.PaypalLink_LinkClicked);
             // 
             // label1
             // 

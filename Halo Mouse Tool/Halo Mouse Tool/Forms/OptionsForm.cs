@@ -16,5 +16,10 @@ namespace Halo_Mouse_Tool.Forms
         {
             InitializeComponent();
         }
+
+        private void CloseBtn_Click(object sender, EventArgs e)
+        {
+            Dispose();
+        }
     }
 }
