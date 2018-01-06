@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Reflection;
+using System.Diagnostics;
 
 namespace Halo_Mouse_Tool
 {
@@ -15,6 +17,11 @@ namespace Halo_Mouse_Tool
         public MainForm()
         {
             InitializeComponent();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
         }
 
         private void ExitBtn_Click(object sender, EventArgs e)
