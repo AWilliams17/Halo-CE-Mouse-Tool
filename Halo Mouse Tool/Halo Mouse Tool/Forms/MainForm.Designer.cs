@@ -54,6 +54,7 @@
             this.UpdateStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.HotkeyLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.AboutBtn = new System.Windows.Forms.ToolStripMenuItem();
             this.MainMenu.SuspendLayout();
             this.StatusBar.SuspendLayout();
             this.SuspendLayout();
@@ -120,6 +121,7 @@
             // 
             this.miscToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.HelpBtn,
+            this.AboutBtn,
             this.DonateBtn,
             this.toolStripSeparator1,
             this.ExitBtn});
@@ -251,6 +253,12 @@
             this.HotkeyLabel.Size = new System.Drawing.Size(52, 17);
             this.HotkeyLabel.Text = "Disabled";
             // 
+            // AboutBtn
+            // 
+            this.AboutBtn.Name = "AboutBtn";
+            this.AboutBtn.Size = new System.Drawing.Size(152, 22);
+            this.AboutBtn.Text = "About";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -305,6 +313,7 @@
         private System.Windows.Forms.ToolStripStatusLabel UpdateStatusLabel;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel5;
         private System.Windows.Forms.ToolStripStatusLabel HotkeyLabel;
+        private System.Windows.Forms.ToolStripMenuItem AboutBtn;
     }
 }
 
