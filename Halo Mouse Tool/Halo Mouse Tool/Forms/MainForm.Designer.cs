@@ -248,6 +248,7 @@
             this.UpdateStatusLabel.Name = "UpdateStatusLabel";
             this.UpdateStatusLabel.Size = new System.Drawing.Size(36, 17);
             this.UpdateStatusLabel.Text = "None";
+            this.UpdateStatusLabel.Click += new System.EventHandler(this.UpdateStatusLabel_Click);
             // 
             // toolStripStatusLabel5
             // 

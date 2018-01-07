@@ -1,19 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Reflection;
 using System.Diagnostics;
+using System.Security.Principal;
+using System.Reflection;
 
 namespace Halo_Mouse_Tool
 {
     public partial class MainForm : Form
     {
+        public static bool IsAdministrator()
+        { //Detects if the user is admin or not (dur)
+            return (new WindowsPrincipal(WindowsIdentity.GetCurrent()))
+                      .IsInRole(WindowsBuiltInRole.Administrator);
+        }
+
         public MainForm()
         {
             InitializeComponent();
@@ -21,12 +21,34 @@ namespace Halo_Mouse_Tool
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            try
+            {
+                if (UpdateHandlingUtils.UpdateAvailable(5))
+                {
+                    UpdateStatusLabel.IsLink = true;
+                    UpdateStatusLabel.Text = "Yes!";
+                }
+                else
+                {
+                    UpdateStatusLabel.Text = "None.";
+                }
+            }
+            catch (System.Net.WebException ex)
+            {
+                MessageBox.Show("An error occured whilst checking for updates: " + ex.Message, "Update Error");
+                UpdateStatusLabel.Text = "Error.";
+            }
 
+            string title = "Halo Mouse Tool v" + Assembly.GetExecutingAssembly().GetName().Version.ToString()[0];
+            if (!IsAdministrator())
+            {
+                title += " -NOT ADMIN-";
+            }
+            Text = title;
         }
 
         private void ExitBtn_Click(object sender, EventArgs e)
         {
-            //Exit
             Application.Exit();
         }
 
@@ -73,6 +95,11 @@ namespace Halo_Mouse_Tool
         private void HaloCombatEvolvedBtn_Click(object sender, EventArgs e)
         {
             //Set the game to Halo PC
+        }
+
+        private void UpdateStatusLabel_Click(object sender, EventArgs e)
+        {
+            Process.Start(@"https://github.com/AWilliams17/Halo-CE-Mouse-Tool/releases");
         }
     }
 }
