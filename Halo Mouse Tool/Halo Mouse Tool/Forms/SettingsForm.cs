@@ -12,7 +12,7 @@ namespace Halo_Mouse_Tool
 {
     public partial class SettingsForm : Form
     {
-        public SettingsForm(Settings)
+        public SettingsForm(Settings settings)
         {
             InitializeComponent();
         }

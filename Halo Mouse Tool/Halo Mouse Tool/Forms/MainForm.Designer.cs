@@ -168,8 +168,6 @@
             // 
             // HaloCustomEditionBtn
             // 
-            this.HaloCustomEditionBtn.Checked = true;
-            this.HaloCustomEditionBtn.CheckState = System.Windows.Forms.CheckState.Checked;
             this.HaloCustomEditionBtn.Name = "HaloCustomEditionBtn";
             this.HaloCustomEditionBtn.Size = new System.Drawing.Size(189, 22);
             this.HaloCustomEditionBtn.Text = "Halo Custom Edition";

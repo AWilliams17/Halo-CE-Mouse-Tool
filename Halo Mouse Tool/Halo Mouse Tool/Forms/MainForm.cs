@@ -8,9 +8,9 @@ namespace Halo_Mouse_Tool
 {
     public partial class MainForm : Form
     {
-        static SettingsForm Settingsform = new SettingsForm();
-        static DonateForm Donateform = new DonateForm();
         static Settings settings = new Settings();
+        static SettingsForm settingsForm = new SettingsForm(settings);
+        static DonateForm donateForm = new DonateForm();
 
         public static bool IsAdministrator()
         { //Detects if the user is admin or not (dur)
@@ -27,7 +27,7 @@ namespace Halo_Mouse_Tool
         {
             try
             {
-                if (UpdateHandlingUtils.UpdateAvailable(5))
+                if (UpdateHandlingUtils.UpdateAvailable(5000))
                 {
                     UpdateStatusLabel.IsLink = true;
                     UpdateStatusLabel.Text = "Yes!";
@@ -49,6 +49,17 @@ namespace Halo_Mouse_Tool
                 title += " -NOT ADMIN-";
             }
             Text = title;
+
+            if (settings.current_game == Settings.Game.CustomEdition)
+            {
+                HaloCustomEditionBtn.Checked = true;
+                HaloCombatEvolvedBtn.Checked = false;
+            }
+            else
+            {
+                HaloCustomEditionBtn.Checked = false;
+                HaloCombatEvolvedBtn.Checked = true;
+            }
         }
 
         private void ExitBtn_Click(object sender, EventArgs e)
@@ -58,20 +69,20 @@ namespace Halo_Mouse_Tool
 
         private void DonateBtn_Click(object sender, EventArgs e)
         {
-            if (!FormHandlingUtils.Formopen(Donateform))
+            if (!FormHandlingUtils.Formopen(donateForm))
             {
-                Donateform = new DonateForm();
+                donateForm = new DonateForm();
             }
-            Donateform.Show();
+            donateForm.Show();
         }
 
         private void OptionsBtn_Click(object sender, EventArgs e)
         {
-            if (!FormHandlingUtils.Formopen(Settingsform))
+            if (!FormHandlingUtils.Formopen(settingsForm))
             {
-                Settingsform = new SettingsForm(settings);
+                settingsForm = new SettingsForm(settings);
             }
-            Settingsform.Show();
+            settingsForm.Show();
         }
 
         private void AboutBtn_Click(object sender, EventArgs e)
@@ -101,12 +112,16 @@ namespace Halo_Mouse_Tool
 
         private void HaloCustomEditionBtn_Click(object sender, EventArgs e)
         {
-            //Set the game to Halo CE
+            settings.current_game = Settings.Game.CustomEdition;
+            HaloCustomEditionBtn.Checked = true;
+            HaloCombatEvolvedBtn.Checked = false;
         }
 
         private void HaloCombatEvolvedBtn_Click(object sender, EventArgs e)
         {
-            //Set the game to Halo PC
+            settings.current_game = Settings.Game.CombatEvolved;
+            HaloCustomEditionBtn.Checked = false;
+            HaloCombatEvolvedBtn.Checked = true;
         }
 
         private void UpdateStatusLabel_Click(object sender, EventArgs e)
