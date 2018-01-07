@@ -1,6 +1,6 @@
-﻿namespace Halo_Mouse_Tool.Forms
+﻿namespace Halo_Mouse_Tool
 {
-    partial class OptionsForm
+    partial class SettingsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OptionsForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
             this.HotkeyTextbox = new System.Windows.Forms.TextBox();
             this.HotkeyCheckbox = new System.Windows.Forms.CheckBox();
             this.CheckForUpdatesCheckbox = new System.Windows.Forms.CheckBox();
@@ -94,7 +94,7 @@
             this.CloseBtn.UseVisualStyleBackColor = true;
             this.CloseBtn.Click += new System.EventHandler(this.CloseBtn_Click);
             // 
-            // OptionsForm
+            // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -107,8 +107,8 @@
             this.Controls.Add(this.HotkeyTextbox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "OptionsForm";
-            this.Text = "OptionsForm";
+            this.Name = "SettingsForm";
+            this.Text = "Settings";
             this.ResumeLayout(false);
             this.PerformLayout();
 

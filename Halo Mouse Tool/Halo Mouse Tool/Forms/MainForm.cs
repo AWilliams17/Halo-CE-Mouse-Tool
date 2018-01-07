@@ -8,6 +8,10 @@ namespace Halo_Mouse_Tool
 {
     public partial class MainForm : Form
     {
+        static SettingsForm Settingsform = new SettingsForm();
+        static DonateForm Donateform = new DonateForm();
+        static Settings settings = new Settings();
+
         public static bool IsAdministrator()
         { //Detects if the user is admin or not (dur)
             return (new WindowsPrincipal(WindowsIdentity.GetCurrent()))
@@ -54,7 +58,20 @@ namespace Halo_Mouse_Tool
 
         private void DonateBtn_Click(object sender, EventArgs e)
         {
-            //Open Donate Form
+            if (!FormHandlingUtils.Formopen(Donateform))
+            {
+                Donateform = new DonateForm();
+            }
+            Donateform.Show();
+        }
+
+        private void OptionsBtn_Click(object sender, EventArgs e)
+        {
+            if (!FormHandlingUtils.Formopen(Settingsform))
+            {
+                Settingsform = new SettingsForm(settings);
+            }
+            Settingsform.Show();
         }
 
         private void AboutBtn_Click(object sender, EventArgs e)
@@ -80,11 +97,6 @@ namespace Halo_Mouse_Tool
         private void CheckForUpdateBtn_Click(object sender, EventArgs e)
         {
             //Check if an update is available
-        }
-
-        private void OptionsBtn_Click(object sender, EventArgs e)
-        {
-            //Display Options form
         }
 
         private void HaloCustomEditionBtn_Click(object sender, EventArgs e)

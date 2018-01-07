@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Halo_Mouse_Tool.Forms
+namespace Halo_Mouse_Tool
 {
-    public partial class OptionsForm : Form
+    public partial class SettingsForm : Form
     {
-        public OptionsForm()
+        public SettingsForm(Settings)
         {
             InitializeComponent();
         }

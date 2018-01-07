@@ -1,4 +1,4 @@
-﻿namespace Halo_Mouse_Tool.Forms
+﻿namespace Halo_Mouse_Tool
 {
     partial class DonateForm
     {

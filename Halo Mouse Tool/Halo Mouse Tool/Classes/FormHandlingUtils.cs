@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace Halo_Mouse_Tool.Classes
+namespace Halo_Mouse_Tool
 {
     public static class FormHandlingUtils
     {
