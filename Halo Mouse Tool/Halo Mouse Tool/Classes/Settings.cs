@@ -12,15 +12,21 @@ namespace Halo_Mouse_Tool
         private float _sensX = 1.0F;
         private float _sensY = 1.0F;
         private string _hotKeyApplication = "F1";
-        private string _hotKeyDll = "F2";
+        private string _hotKeyDll = "F11";
+        private bool _hotKeyEnabled = true;
         private bool _patchAccel = true;
 
         private bool _checkForUpdates = true;
-        private int _updateTimeout = 5000;
+        private int _updateTimeout = 5000; //TODO: This needs restrictions
         private bool _soundsEnabled = true;
         private bool _soundsEnabledDll = true;
         private bool _successMessages = true;
+        private bool _successMessagesDll = true;
 
+        private float _incrementAmount = 0.1F; //TODO: Don't let it go below 0 and above 10
+        private bool _incrementKeysEnabled = true;
+        private bool _incrementKeysEnabledDll = true;
+        
         public Game Current_Game
         {
             get
@@ -98,6 +104,18 @@ namespace Halo_Mouse_Tool
                 {
                     throw new ArgumentException("String must have a Keys equivelant.");
                 }
+            }
+        }
+
+        public bool HotKeyEnabled
+        {
+            get
+            {
+                return _hotKeyEnabled;
+            }
+            set
+            {
+                _hotKeyEnabled = value;
             }
         }
 
@@ -186,6 +204,62 @@ namespace Halo_Mouse_Tool
             set
             {
                 _successMessages = value;
+            }
+        }
+
+        public bool SuccessMessagesDll
+        {
+            get
+            {
+                return _successMessagesDll;
+            }
+            set
+            {
+                _successMessagesDll = value;
+            }
+        }
+
+        public float IncrementAmount
+        {
+            get
+            {
+                return _incrementAmount;
+            }
+            set
+            {
+                if (value < 0.0F)
+                {
+                    throw new ArgumentOutOfRangeException("Increment amount can not be below 0.");
+                }
+                if (value > 25.0F)
+                {
+                    throw new ArgumentOutOfRangeException("Increment amount can not be above 25.");
+                }
+                _incrementAmount = value;
+            }
+        }
+
+        public bool IncrementKeysEnabled
+        {
+            get
+            {
+                return _incrementKeysEnabled;
+            }
+            set
+            {
+                _incrementKeysEnabled = value;
+            }
+        }
+
+        public bool IncrementKeysEnabledDll
+        {
+            get
+            {
+                return _incrementKeysEnabledDll;
+            }
+            set
+            {
+                _incrementKeysEnabledDll = value;
             }
         }
     }
