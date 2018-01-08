@@ -5,6 +5,7 @@ namespace Halo_Mouse_Tool
 {
     public class Settings
     {
+        //CombatEvolved == 1, CustomEdition == 0 in registry
         public enum Game { CombatEvolved, CustomEdition };
 
         private Game _current_game = Game.CustomEdition;

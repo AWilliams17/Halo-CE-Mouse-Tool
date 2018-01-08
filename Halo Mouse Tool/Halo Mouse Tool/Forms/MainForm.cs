@@ -26,22 +26,9 @@ namespace Halo_Mouse_Tool
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            try
+            if (settings.CheckForUpdates)
             {
-                if (UpdateHandlingUtils.UpdateAvailable(5000))
-                {
-                    UpdateStatusLabel.IsLink = true;
-                    UpdateStatusLabel.Text = "Yes!";
-                }
-                else
-                {
-                    UpdateStatusLabel.Text = "None.";
-                }
-            }
-            catch (System.Net.WebException ex)
-            {
-                MessageBox.Show("An error occured whilst checking for updates: " + ex.Message, "Update Error");
-                UpdateStatusLabel.Text = "Error.";
+                CheckForUpdates();
             }
 
             string title = "Halo Mouse Tool v" + Assembly.GetExecutingAssembly().GetName().Version.ToString()[0];
@@ -102,7 +89,7 @@ namespace Halo_Mouse_Tool
             //This looks horrible
             Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "SensX", settings.SensX, RegistryValueKind.String);
             Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "SensY", settings.SensY, RegistryValueKind.String);
-            if (settings.PatchAcceleration == true)
+            if (settings.PatchAcceleration)
             {
                 Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "PatchMouseAcceleration", 1, RegistryValueKind.DWord);
             }
@@ -112,7 +99,7 @@ namespace Halo_Mouse_Tool
             }
             Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "HotkeyApplication", settings.HotKeyApplication, RegistryValueKind.String);
             Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "HotkeyDll", settings.HotKeyDll, RegistryValueKind.String);
-            if (settings.CheckForUpdates == true)
+            if (settings.CheckForUpdates)
             {
                 Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "CheckForUpdates", 1, RegistryValueKind.DWord);
             }
@@ -121,7 +108,7 @@ namespace Halo_Mouse_Tool
                 Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "CheckForUpdates", 0, RegistryValueKind.DWord);
             }
 
-            if (settings.SoundsEnabled == true)
+            if (settings.SoundsEnabled)
             {
                 Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "SoundsEnabled", 1, RegistryValueKind.DWord);
             }
@@ -130,7 +117,7 @@ namespace Halo_Mouse_Tool
                 Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "SoundsEnabled", 0, RegistryValueKind.DWord);
             }
 
-            if (settings.SoundsEnabledDll == true)
+            if (settings.SoundsEnabledDll)
             {
                 Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "SoundsEnabledDll", 1, RegistryValueKind.DWord);
             }
@@ -139,13 +126,22 @@ namespace Halo_Mouse_Tool
                 Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "SoundsEnabledDll", 0, RegistryValueKind.DWord);
             }
 
-            if (settings.SuccessMessages == true)
+            if (settings.SuccessMessages)
             {
                 Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "SuccessMessages", 1, RegistryValueKind.DWord);
             }
             else
             {
                 Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "SuccessMessages", 0, RegistryValueKind.DWord);
+            }
+
+            if (settings.Current_Game == Settings.Game.CombatEvolved)
+            {
+                Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "CurrentGame", 1, RegistryValueKind.DWord);
+            }
+            else
+            {
+                Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "CurrentGame", 0, RegistryValueKind.DWord);
             }
         }
 
@@ -156,7 +152,7 @@ namespace Halo_Mouse_Tool
 
         private void CheckForUpdateBtn_Click(object sender, EventArgs e)
         {
-            //Check if an update is available
+            CheckForUpdates();
         }
 
         private void HaloCustomEditionBtn_Click(object sender, EventArgs e)
@@ -181,6 +177,27 @@ namespace Halo_Mouse_Tool
         private void WriteBtn_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void CheckForUpdates()
+        {
+            try
+            {
+                if (UpdateHandlingUtils.UpdateAvailable(settings.UpdateTimeout))
+                {
+                    UpdateStatusLabel.IsLink = true;
+                    UpdateStatusLabel.Text = "Yes!";
+                }
+                else
+                {
+                    UpdateStatusLabel.Text = "None.";
+                }
+            }
+            catch (System.Net.WebException ex)
+            {
+                MessageBox.Show("An error occured whilst checking for updates: " + ex.Message, "Update Error");
+                UpdateStatusLabel.Text = "Error.";
+            }
         }
     }
 }
