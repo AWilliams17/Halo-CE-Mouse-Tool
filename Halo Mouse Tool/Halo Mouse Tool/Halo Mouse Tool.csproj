@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\FormHandlingUtils.cs" />
+    <Compile Include="Classes\MemoryHandlingUtils.cs" />
     <Compile Include="Classes\Settings.cs" />
     <Compile Include="Classes\UpdateHandlingUtils.cs" />
     <Compile Include="Forms\DonateForm.cs">
