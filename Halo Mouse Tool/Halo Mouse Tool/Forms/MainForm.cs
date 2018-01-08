@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Security.Principal;
 using System.Reflection;
+using Microsoft.Win32;
 
 namespace Halo_Mouse_Tool
 {
@@ -97,7 +98,55 @@ namespace Halo_Mouse_Tool
 
         private void SaveSettingsBtn_Click(object sender, EventArgs e)
         {
-            //Save Settings to Registry
+            //Is there a better way of doing this... ?
+            //This looks horrible
+            Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "SensX", settings.SensX, RegistryValueKind.String);
+            Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "SensY", settings.SensY, RegistryValueKind.String);
+            if (settings.PatchAcceleration == true)
+            {
+                Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "PatchMouseAcceleration", 1, RegistryValueKind.DWord);
+            }
+            else
+            {
+                Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "PatchMouseAcceleration", 0, RegistryValueKind.DWord);
+            }
+            Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "HotkeyApplication", settings.HotKeyApplication, RegistryValueKind.String);
+            Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "HotkeyDll", settings.HotKeyDll, RegistryValueKind.String);
+            if (settings.CheckForUpdates == true)
+            {
+                Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "CheckForUpdates", 1, RegistryValueKind.DWord);
+            }
+            else
+            {
+                Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "CheckForUpdates", 0, RegistryValueKind.DWord);
+            }
+
+            if (settings.SoundsEnabled == true)
+            {
+                Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "SoundsEnabled", 1, RegistryValueKind.DWord);
+            }
+            else
+            {
+                Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "SoundsEnabled", 0, RegistryValueKind.DWord);
+            }
+
+            if (settings.SoundsEnabledDll == true)
+            {
+                Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "SoundsEnabledDll", 1, RegistryValueKind.DWord);
+            }
+            else
+            {
+                Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "SoundsEnabledDll", 0, RegistryValueKind.DWord);
+            }
+
+            if (settings.SuccessMessages == true)
+            {
+                Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "SuccessMessages", 1, RegistryValueKind.DWord);
+            }
+            else
+            {
+                Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "SuccessMessages", 0, RegistryValueKind.DWord);
+            }
         }
 
         private void DeployDllBtn_Click(object sender, EventArgs e)

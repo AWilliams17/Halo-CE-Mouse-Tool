@@ -17,6 +17,7 @@ namespace Halo_Mouse_Tool
         private bool _checkForUpdates = true;
         private int _updateTimeout = 5000;
         private bool _soundsEnabled = true;
+        private bool _soundsEnabledDll = true;
         private bool _successMessages = true;
 
         public Game Current_Game
@@ -160,6 +161,18 @@ namespace Halo_Mouse_Tool
             set
             {
                 _soundsEnabled = value;
+            }
+        }
+
+        public bool SoundsEnabledDll
+        {
+            get
+            {
+                return _soundsEnabledDll;
+            }
+            set
+            {
+                _soundsEnabledDll = value;
             }
         }
 
