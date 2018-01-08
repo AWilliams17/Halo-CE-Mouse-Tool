@@ -14,7 +14,7 @@ namespace Halo_Mouse_Tool
         static DonateForm donateForm = new DonateForm();
 
         public static bool IsAdministrator()
-        { //Detects if the user is admin or not (dur)
+        {
             return (new WindowsPrincipal(WindowsIdentity.GetCurrent()))
                       .IsInRole(WindowsBuiltInRole.Administrator);
         }
@@ -36,9 +36,13 @@ namespace Halo_Mouse_Tool
             {
                 LoadSettings();
             }
-            catch (NullReferenceException) //1 or more settings == null
+            catch (Exception ex)
             {
-                MessageBox.Show("One or more settings did not load from the registry. They have been set to the default values and will be saved on exit.");
+                if (ex is NullReferenceException || ex is ArgumentException || ex is ArgumentOutOfRangeException)
+                {
+                    MessageBox.Show("One or more settings did not load from the registry. Settings have been restored to defaults. Error message was: " + ex.Message, "Error loading settings");
+                    saveSettings();
+                }
             }
 
             if (settings.CheckForUpdates)
@@ -152,22 +156,72 @@ namespace Halo_Mouse_Tool
         private void LoadSettings()
         {
             RegistryKey HaloMouseToolRegistry = Registry.CurrentUser.OpenSubKey("Software\\HaloMouseTool", false);
-            if (HaloMouseToolRegistry == null) //The registry key doesn't exist.
+            if (HaloMouseToolRegistry == null)
             {
-                saveSettings(); //Generate new one with default values
+                saveSettings();
             }
             else
             {
                 object sensX = HaloMouseToolRegistry.GetValue("SensX");
                 object sensY = HaloMouseToolRegistry.GetValue("SensY");
-                object mouseAcceleration = HaloMouseToolRegistry.GetValue("MouseAcceleration");
+                object mouseAcceleration = HaloMouseToolRegistry.GetValue("PatchMouseAcceleration");
                 object hotKeyApplication = HaloMouseToolRegistry.GetValue("HotkeyApplication");
                 object hotKeyDll = HaloMouseToolRegistry.GetValue("HotkeyDll");
+
+                object incrementAmount = HaloMouseToolRegistry.GetValue("IncrementAmount");
+                object incrementEnabled = HaloMouseToolRegistry.GetValue("IncrementKeysEnabled");
+                object incrementEnabledDll = HaloMouseToolRegistry.GetValue("IncrementKeysEnabledDll");
+                object currentGame = HaloMouseToolRegistry.GetValue("CurrentGame");
+
                 object checkForUpdates = HaloMouseToolRegistry.GetValue("CheckForUpdates");
                 object updateTimeout = HaloMouseToolRegistry.GetValue("UpdateTimeout");
                 object soundsEnabled = HaloMouseToolRegistry.GetValue("SoundsEnabled");
                 object soundsEnabledDll = HaloMouseToolRegistry.GetValue("SoundsEnabledDll");
                 object successMessages = HaloMouseToolRegistry.GetValue("SuccessMessages");
+                object successMessagesDll = HaloMouseToolRegistry.GetValue("SuccessMessagesDll");
+
+                settings.SensX = float.Parse(sensX.ToString());
+                settings.SensY = float.Parse(sensY.ToString());
+                if (mouseAcceleration.ToString() == "0")
+                {
+                    settings.PatchAcceleration = false;
+                }
+                settings.HotKeyApplication = hotKeyApplication.ToString();
+                settings.HotKeyDll = hotKeyDll.ToString();
+                if (checkForUpdates.ToString() == "0")
+                {
+                    settings.CheckForUpdates = false;
+                }
+                settings.UpdateTimeout = int.Parse(updateTimeout.ToString());
+                if (soundsEnabled.ToString() == "0")
+                {
+                    settings.SoundsEnabled = false;
+                }
+                if (soundsEnabledDll.ToString() == "0")
+                {
+                    settings.SoundsEnabledDll = false;
+                }
+                if (successMessages.ToString() == "0")
+                {
+                    settings.SuccessMessages = false;
+                }
+                if(successMessagesDll.ToString() == "0")
+                {
+                    settings.SuccessMessagesDll = false;
+                }
+                if (incrementEnabled.ToString() == "0")
+                {
+                    settings.IncrementKeysEnabled = false;
+                }
+                if (incrementEnabledDll.ToString() == "0")
+                {
+                    settings.IncrementKeysEnabledDll = false;
+                }
+                if ((int)currentGame == 1)
+                {
+                    settings.Current_Game = Settings.Game.CombatEvolved;
+                }
+                settings.IncrementAmount = float.Parse(incrementAmount.ToString());
             }
         }
 
@@ -258,6 +312,16 @@ namespace Halo_Mouse_Tool
             {
                 Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "IncrementKeysEnabledDll", 0, RegistryValueKind.DWord);
             }
+
+            if (settings.SuccessMessagesDll)
+            {
+                Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "SuccessMessagesDll", 1, RegistryValueKind.DWord);
+            }
+            else
+            {
+                Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "SuccessMessagesDll", 0, RegistryValueKind.DWord);
+            }
+
             Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "IncrementAmount", settings.IncrementAmount, RegistryValueKind.String);
         }
 
