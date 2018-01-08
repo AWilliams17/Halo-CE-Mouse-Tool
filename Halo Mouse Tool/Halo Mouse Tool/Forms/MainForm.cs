@@ -50,7 +50,7 @@ namespace Halo_Mouse_Tool
             }
             Text = title;
 
-            if (settings.current_game == Settings.Game.CustomEdition)
+            if (settings.Current_Game == Settings.Game.CustomEdition)
             {
                 HaloCustomEditionBtn.Checked = true;
                 HaloCombatEvolvedBtn.Checked = false;
@@ -112,14 +112,14 @@ namespace Halo_Mouse_Tool
 
         private void HaloCustomEditionBtn_Click(object sender, EventArgs e)
         {
-            settings.current_game = Settings.Game.CustomEdition;
+            settings.Current_Game = Settings.Game.CustomEdition;
             HaloCustomEditionBtn.Checked = true;
             HaloCombatEvolvedBtn.Checked = false;
         }
 
         private void HaloCombatEvolvedBtn_Click(object sender, EventArgs e)
         {
-            settings.current_game = Settings.Game.CombatEvolved;
+            settings.Current_Game = Settings.Game.CombatEvolved;
             HaloCustomEditionBtn.Checked = false;
             HaloCombatEvolvedBtn.Checked = true;
         }
@@ -127,6 +127,11 @@ namespace Halo_Mouse_Tool
         private void UpdateStatusLabel_Click(object sender, EventArgs e)
         {
             Process.Start(@"https://github.com/AWilliams17/Halo-CE-Mouse-Tool/releases");
+        }
+
+        private void WriteBtn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -35,6 +35,8 @@
             this.SoundsCheckbox = new System.Windows.Forms.CheckBox();
             this.SuccessMessagesCheckbox = new System.Windows.Forms.CheckBox();
             this.CloseBtn = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // HotkeyTextbox
@@ -47,17 +49,17 @@
             // HotkeyCheckbox
             // 
             this.HotkeyCheckbox.AutoSize = true;
-            this.HotkeyCheckbox.Location = new System.Drawing.Point(12, 8);
+            this.HotkeyCheckbox.Location = new System.Drawing.Point(13, 8);
             this.HotkeyCheckbox.Name = "HotkeyCheckbox";
-            this.HotkeyCheckbox.Size = new System.Drawing.Size(60, 17);
+            this.HotkeyCheckbox.Size = new System.Drawing.Size(63, 17);
             this.HotkeyCheckbox.TabIndex = 2;
-            this.HotkeyCheckbox.Text = "Hotkey";
+            this.HotkeyCheckbox.Text = "Hotkey:";
             this.HotkeyCheckbox.UseVisualStyleBackColor = true;
             // 
             // CheckForUpdatesCheckbox
             // 
             this.CheckForUpdatesCheckbox.AutoSize = true;
-            this.CheckForUpdatesCheckbox.Location = new System.Drawing.Point(12, 32);
+            this.CheckForUpdatesCheckbox.Location = new System.Drawing.Point(12, 58);
             this.CheckForUpdatesCheckbox.Name = "CheckForUpdatesCheckbox";
             this.CheckForUpdatesCheckbox.Size = new System.Drawing.Size(155, 17);
             this.CheckForUpdatesCheckbox.TabIndex = 3;
@@ -67,7 +69,7 @@
             // SoundsCheckbox
             // 
             this.SoundsCheckbox.AutoSize = true;
-            this.SoundsCheckbox.Location = new System.Drawing.Point(12, 55);
+            this.SoundsCheckbox.Location = new System.Drawing.Point(12, 81);
             this.SoundsCheckbox.Name = "SoundsCheckbox";
             this.SoundsCheckbox.Size = new System.Drawing.Size(104, 17);
             this.SoundsCheckbox.TabIndex = 4;
@@ -77,7 +79,7 @@
             // SuccessMessagesCheckbox
             // 
             this.SuccessMessagesCheckbox.AutoSize = true;
-            this.SuccessMessagesCheckbox.Location = new System.Drawing.Point(12, 78);
+            this.SuccessMessagesCheckbox.Location = new System.Drawing.Point(12, 104);
             this.SuccessMessagesCheckbox.Name = "SuccessMessagesCheckbox";
             this.SuccessMessagesCheckbox.Size = new System.Drawing.Size(118, 17);
             this.SuccessMessagesCheckbox.TabIndex = 5;
@@ -86,7 +88,7 @@
             // 
             // CloseBtn
             // 
-            this.CloseBtn.Location = new System.Drawing.Point(12, 101);
+            this.CloseBtn.Location = new System.Drawing.Point(12, 127);
             this.CloseBtn.Name = "CloseBtn";
             this.CloseBtn.Size = new System.Drawing.Size(155, 23);
             this.CloseBtn.TabIndex = 6;
@@ -94,11 +96,29 @@
             this.CloseBtn.UseVisualStyleBackColor = true;
             this.CloseBtn.Click += new System.EventHandler(this.CloseBtn_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(10, 35);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(67, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "DLL Hotkey:";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(78, 32);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(71, 20);
+            this.textBox1.TabIndex = 8;
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(179, 136);
+            this.ClientSize = new System.Drawing.Size(179, 158);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.CloseBtn);
             this.Controls.Add(this.SuccessMessagesCheckbox);
             this.Controls.Add(this.SoundsCheckbox);
@@ -122,5 +142,7 @@
         private System.Windows.Forms.CheckBox SoundsCheckbox;
         private System.Windows.Forms.CheckBox SuccessMessagesCheckbox;
         private System.Windows.Forms.Button CloseBtn;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

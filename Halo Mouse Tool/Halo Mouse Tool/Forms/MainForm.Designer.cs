@@ -220,6 +220,7 @@
             this.WriteBtn.TabIndex = 5;
             this.WriteBtn.Text = "Write to Memory";
             this.WriteBtn.UseVisualStyleBackColor = true;
+            this.WriteBtn.Click += new System.EventHandler(this.WriteBtn_Click);
             // 
             // toolStripStatusLabel1
             // 
