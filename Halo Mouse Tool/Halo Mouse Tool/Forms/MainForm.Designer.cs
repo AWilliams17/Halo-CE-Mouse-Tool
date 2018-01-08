@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.MainMenu = new System.Windows.Forms.MenuStrip();
             this.miscToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,6 +57,7 @@
             this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.HotkeyLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.StatusBar = new System.Windows.Forms.StatusStrip();
+            this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.MainMenu.SuspendLayout();
             this.StatusBar.SuspendLayout();
             this.SuspendLayout();
@@ -277,6 +279,14 @@
             this.StatusBar.TabIndex = 6;
             this.StatusBar.Text = "statusStrip1";
             // 
+            // ToolTip
+            // 
+            this.ToolTip.AutoPopDelay = 20000;
+            this.ToolTip.InitialDelay = 250;
+            this.ToolTip.ReshowDelay = 100;
+            this.ToolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.ToolTip.ToolTipTitle = "Help";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -334,6 +344,7 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel5;
         private System.Windows.Forms.ToolStripStatusLabel HotkeyLabel;
         private System.Windows.Forms.StatusStrip StatusBar;
+        private System.Windows.Forms.ToolTip ToolTip;
     }
 }
 

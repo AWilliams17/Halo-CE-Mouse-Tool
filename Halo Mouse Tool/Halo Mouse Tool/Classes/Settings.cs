@@ -15,6 +15,7 @@ namespace Halo_Mouse_Tool
         private bool _patchAccel = true;
 
         private bool _checkForUpdates = true;
+        private int _updateTimeout = 5000;
         private bool _soundsEnabled = true;
         private bool _successMessages = true;
 
@@ -127,6 +128,26 @@ namespace Halo_Mouse_Tool
             set
             {
                 _checkForUpdates = value;
+            }
+        }
+
+        public int UpdateTimeout
+        {
+            get
+            {
+                return _updateTimeout;
+            }
+            set
+            {
+                if (value < 1000)
+                {
+                    throw new ArgumentOutOfRangeException("This can not be less than 1 second.");
+                }
+                if (value > 15000)
+                {
+                    throw new ArgumentOutOfRangeException("This can not be greater than 15 seconds.");
+                }
+                _updateTimeout = value;
             }
         }
 

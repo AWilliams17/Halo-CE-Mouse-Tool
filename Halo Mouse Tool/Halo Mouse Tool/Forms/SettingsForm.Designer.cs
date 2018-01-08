@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
             this.HotkeyTextbox = new System.Windows.Forms.TextBox();
             this.HotkeyCheckbox = new System.Windows.Forms.CheckBox();
@@ -37,6 +38,9 @@
             this.CloseBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // HotkeyTextbox
@@ -59,7 +63,7 @@
             // CheckForUpdatesCheckbox
             // 
             this.CheckForUpdatesCheckbox.AutoSize = true;
-            this.CheckForUpdatesCheckbox.Location = new System.Drawing.Point(12, 58);
+            this.CheckForUpdatesCheckbox.Location = new System.Drawing.Point(13, 84);
             this.CheckForUpdatesCheckbox.Name = "CheckForUpdatesCheckbox";
             this.CheckForUpdatesCheckbox.Size = new System.Drawing.Size(155, 17);
             this.CheckForUpdatesCheckbox.TabIndex = 3;
@@ -69,7 +73,7 @@
             // SoundsCheckbox
             // 
             this.SoundsCheckbox.AutoSize = true;
-            this.SoundsCheckbox.Location = new System.Drawing.Point(12, 81);
+            this.SoundsCheckbox.Location = new System.Drawing.Point(13, 107);
             this.SoundsCheckbox.Name = "SoundsCheckbox";
             this.SoundsCheckbox.Size = new System.Drawing.Size(104, 17);
             this.SoundsCheckbox.TabIndex = 4;
@@ -79,7 +83,7 @@
             // SuccessMessagesCheckbox
             // 
             this.SuccessMessagesCheckbox.AutoSize = true;
-            this.SuccessMessagesCheckbox.Location = new System.Drawing.Point(12, 104);
+            this.SuccessMessagesCheckbox.Location = new System.Drawing.Point(13, 130);
             this.SuccessMessagesCheckbox.Name = "SuccessMessagesCheckbox";
             this.SuccessMessagesCheckbox.Size = new System.Drawing.Size(118, 17);
             this.SuccessMessagesCheckbox.TabIndex = 5;
@@ -88,7 +92,7 @@
             // 
             // CloseBtn
             // 
-            this.CloseBtn.Location = new System.Drawing.Point(12, 127);
+            this.CloseBtn.Location = new System.Drawing.Point(13, 153);
             this.CloseBtn.Name = "CloseBtn";
             this.CloseBtn.Size = new System.Drawing.Size(155, 23);
             this.CloseBtn.TabIndex = 6;
@@ -112,11 +116,37 @@
             this.textBox1.Size = new System.Drawing.Size(71, 20);
             this.textBox1.TabIndex = 8;
             // 
+            // ToolTip
+            // 
+            this.ToolTip.AutoPopDelay = 20000;
+            this.ToolTip.InitialDelay = 250;
+            this.ToolTip.ReshowDelay = 100;
+            this.ToolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.ToolTip.ToolTipTitle = "Help";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(10, 61);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(86, 13);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Update Timeout:";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(96, 58);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(53, 20);
+            this.textBox2.TabIndex = 10;
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(179, 158);
+            this.ClientSize = new System.Drawing.Size(179, 181);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.CloseBtn);
@@ -144,5 +174,8 @@
         private System.Windows.Forms.Button CloseBtn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ToolTip ToolTip;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }
