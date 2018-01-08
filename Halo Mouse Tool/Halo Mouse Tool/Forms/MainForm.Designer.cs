@@ -40,6 +40,7 @@
             this.ExitBtn = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DeployDllBtn = new System.Windows.Forms.ToolStripMenuItem();
+            this.patchMouseAccelerationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CheckForUpdateBtn = new System.Windows.Forms.ToolStripMenuItem();
             this.OptionsBtn = new System.Windows.Forms.ToolStripMenuItem();
             this.gameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,7 +59,8 @@
             this.HotkeyLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.StatusBar = new System.Windows.Forms.StatusStrip();
             this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.patchMouseAccelerationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.StatusTimer = new System.Windows.Forms.Timer(this.components);
+            this.HotkeyTimer = new System.Windows.Forms.Timer(this.components);
             this.MainMenu.SuspendLayout();
             this.StatusBar.SuspendLayout();
             this.SuspendLayout();
@@ -92,40 +94,40 @@
             // SaveSettingsBtn
             // 
             this.SaveSettingsBtn.Name = "SaveSettingsBtn";
-            this.SaveSettingsBtn.Size = new System.Drawing.Size(152, 22);
+            this.SaveSettingsBtn.Size = new System.Drawing.Size(143, 22);
             this.SaveSettingsBtn.Text = "Save Settings";
             this.SaveSettingsBtn.Click += new System.EventHandler(this.SaveSettingsBtn_Click);
             // 
             // HelpBtn
             // 
             this.HelpBtn.Name = "HelpBtn";
-            this.HelpBtn.Size = new System.Drawing.Size(152, 22);
+            this.HelpBtn.Size = new System.Drawing.Size(143, 22);
             this.HelpBtn.Text = "Help";
             this.HelpBtn.Click += new System.EventHandler(this.HelpBtn_Click);
             // 
             // AboutBtn
             // 
             this.AboutBtn.Name = "AboutBtn";
-            this.AboutBtn.Size = new System.Drawing.Size(152, 22);
+            this.AboutBtn.Size = new System.Drawing.Size(143, 22);
             this.AboutBtn.Text = "About";
             this.AboutBtn.Click += new System.EventHandler(this.AboutBtn_Click);
             // 
             // DonateBtn
             // 
             this.DonateBtn.Name = "DonateBtn";
-            this.DonateBtn.Size = new System.Drawing.Size(152, 22);
+            this.DonateBtn.Size = new System.Drawing.Size(143, 22);
             this.DonateBtn.Text = "Donate";
             this.DonateBtn.Click += new System.EventHandler(this.DonateBtn_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(140, 6);
             // 
             // ExitBtn
             // 
             this.ExitBtn.Name = "ExitBtn";
-            this.ExitBtn.Size = new System.Drawing.Size(152, 22);
+            this.ExitBtn.Size = new System.Drawing.Size(143, 22);
             this.ExitBtn.Text = "Exit";
             this.ExitBtn.Click += new System.EventHandler(this.ExitBtn_Click);
             // 
@@ -146,6 +148,12 @@
             this.DeployDllBtn.Size = new System.Drawing.Size(212, 22);
             this.DeployDllBtn.Text = "Deploy DLL";
             this.DeployDllBtn.Click += new System.EventHandler(this.DeployDllBtn_Click);
+            // 
+            // patchMouseAccelerationToolStripMenuItem
+            // 
+            this.patchMouseAccelerationToolStripMenuItem.Name = "patchMouseAccelerationToolStripMenuItem";
+            this.patchMouseAccelerationToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
+            this.patchMouseAccelerationToolStripMenuItem.Text = "Patch Mouse Acceleration";
             // 
             // CheckForUpdateBtn
             // 
@@ -289,11 +297,17 @@
             this.ToolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.ToolTip.ToolTipTitle = "Help";
             // 
-            // patchMouseAccelerationToolStripMenuItem
+            // StatusTimer
             // 
-            this.patchMouseAccelerationToolStripMenuItem.Name = "patchMouseAccelerationToolStripMenuItem";
-            this.patchMouseAccelerationToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
-            this.patchMouseAccelerationToolStripMenuItem.Text = "Patch Mouse Acceleration";
+            this.StatusTimer.Enabled = true;
+            this.StatusTimer.Interval = 500;
+            this.StatusTimer.Tick += new System.EventHandler(this.StatusTimer_Tick);
+            // 
+            // HotkeyTimer
+            // 
+            this.HotkeyTimer.Enabled = true;
+            this.HotkeyTimer.Interval = 500;
+            this.HotkeyTimer.Tick += new System.EventHandler(this.HotkeyTimer_Tick);
             // 
             // MainForm
             // 
@@ -354,6 +368,8 @@
         private System.Windows.Forms.StatusStrip StatusBar;
         private System.Windows.Forms.ToolTip ToolTip;
         private System.Windows.Forms.ToolStripMenuItem patchMouseAccelerationToolStripMenuItem;
+        private System.Windows.Forms.Timer StatusTimer;
+        private System.Windows.Forms.Timer HotkeyTimer;
     }
 }
 

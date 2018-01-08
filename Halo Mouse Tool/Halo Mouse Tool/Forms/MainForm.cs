@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Security.Principal;
 using System.Reflection;
 using Microsoft.Win32;
+using System.Drawing;
 
 namespace Halo_Mouse_Tool
 {
@@ -129,7 +130,7 @@ namespace Halo_Mouse_Tool
 
         private void WriteBtn_Click(object sender, EventArgs e)
         {
-
+            WriteHaloMemory();
         }
 
         private void CheckForUpdates()
@@ -153,7 +154,7 @@ namespace Halo_Mouse_Tool
             }
         }
 
-        private void LoadSettings()
+        private void LoadSettings() //ToDo: Refactor this garbage
         {
             RegistryKey HaloMouseToolRegistry = Registry.CurrentUser.OpenSubKey("Software\\HaloMouseTool", false);
             if (HaloMouseToolRegistry == null)
@@ -225,7 +226,7 @@ namespace Halo_Mouse_Tool
             }
         }
 
-        private void saveSettings()
+        private void saveSettings() //ToDo: Refactor this garbage.
         {
             Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "SensX", settings.SensX, RegistryValueKind.String);
             Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "SensY", settings.SensY, RegistryValueKind.String);
@@ -339,6 +340,95 @@ namespace Halo_Mouse_Tool
                 HaloCustomEditionBtn.Checked = false;
                 HaloCombatEvolvedBtn.Checked = true;
             }
+        }
+
+        private void WriteHaloMemory()
+        {
+            byte[] mouseaccelnop = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 }; //For noping the acceleration
+            int currAddr = 0;
+            byte[] currVal = { };
+            string game;
+            if (settings.Current_Game == Settings.Game.CombatEvolved)
+            {
+                game = "halo";
+                for (int i = 0; i != 3; i++)
+                {
+                    if (i == 0)
+                    {
+                        currVal = BitConverter.GetBytes((settings.SensX * 0.25F));
+                        currAddr = 0x2ABB50;
+                    }
+                    if (i == 1)
+                    {
+                        currVal = BitConverter.GetBytes((settings.SensY * 0.25F));
+                        currAddr = 0x2ABB54;
+                    }
+                    if (i == 2 && settings.PatchAcceleration)
+                    {
+                        currVal = mouseaccelnop;
+                        currAddr = 0x8F830;
+                    }
+                    MemoryHandlingUtils.WriteToProcessMemory(game, currVal, currAddr);
+                }
+            }
+            else
+            {
+                game = "haloce";
+                for (int i = 0; i != 3; i++)
+                {
+                    if (i == 0)
+                    {
+                        currVal = BitConverter.GetBytes((settings.SensX * 0.25F));
+                        currAddr = 0x2ABB50;
+                    }
+                    if (i == 1)
+                    {
+                        currVal = BitConverter.GetBytes((settings.SensY * 0.25F));
+                        currAddr = 0x2ABB54;
+                    }
+                    if (i == 2 && settings.PatchAcceleration)
+                    {
+                        currVal = mouseaccelnop;
+                        currAddr = 0x8F830;
+                    }
+                    MemoryHandlingUtils.WriteToProcessMemory(game, currVal, currAddr);
+                }
+            }
+        }
+
+        private void StatusTimer_Tick(object sender, EventArgs e)
+        {
+            string status;
+            string game;
+            string proc;
+            if (settings.Current_Game == Settings.Game.CombatEvolved)
+            {
+                game = "Halo PC";
+                proc = "halo";
+            }
+            else
+            {
+                game = "Halo CE";
+                proc = "haloce";
+            }
+            Color labelColor;
+            if (ProcessHandlingUtils.ProcessIsRunning(proc))
+            {
+                labelColor = Color.Green;
+                status = game + " found.";
+            }
+            else
+            {
+                labelColor = Color.Red;
+                status = game + " not found.";
+            }
+            HaloStatusLabel.Text = status;
+            HaloStatusLabel.ForeColor = labelColor;
+        }
+
+        private void HotkeyTimer_Tick(object sender, EventArgs e)
+        {
+
         }
     }
 }

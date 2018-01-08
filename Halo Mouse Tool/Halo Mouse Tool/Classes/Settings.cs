@@ -35,10 +35,6 @@ namespace Halo_Mouse_Tool
             }
             set
             {
-                if (value != Game.CombatEvolved || value != Game.CustomEdition)
-                {
-                    throw new ArgumentException();
-                }
                 _current_game = value;
             }
         }
