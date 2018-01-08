@@ -426,9 +426,18 @@ namespace Halo_Mouse_Tool
             HaloStatusLabel.ForeColor = labelColor;
         }
 
-        private void HotkeyTimer_Tick(object sender, EventArgs e)
+        private void HotkeyLabelTimer_Tick(object sender, EventArgs e)
         {
-
+            string status;
+            if (settings.HotKeyEnabled)
+            {
+                status = "Hotkey is set to: " + settings.HotKeyApplication;
+            }
+            else
+            {
+                status = "Hotkey is disabled/not set.";
+            }
+            HotkeyLabel.Text = status;
         }
     }
 }
