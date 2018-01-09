@@ -463,5 +463,63 @@ namespace Halo_Mouse_Tool
                 }
             }
         }
+
+        private void SensXTextBox_TextChanged(object sender, EventArgs e)
+        {
+            float res;
+            if (!float.TryParse(SensXTextBox.Text, out res))
+            {
+                MessageBox.Show("");
+                SensXTextBox.Text = "0";
+                SensXTextBox.Focus();
+            }
+        }
+
+        private void SensYTextBox_TextChanged(object sender, EventArgs e)
+        {
+            float res;
+            if (!float.TryParse(SensYTextBox.Text, out res))
+            {
+                MessageBox.Show("");
+                SensYTextBox.Text = "0";
+                SensYTextBox.Focus();
+            }
+        }
+
+        private void SensYTextBox_Leave(object sender, EventArgs e)
+        {
+            if (SensYTextBox.Text == "")
+            {
+                MessageBox.Show("");
+                SensXTextBox.Focus();
+            }
+        }
+
+        private void SensXTextBox_Leave(object sender, EventArgs e)
+        {
+            if (SensXTextBox.Text == "")
+            {
+                MessageBox.Show("");
+                SensXTextBox.Focus();
+            }
+        }
+
+        private void SensYTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.OemMinus || e.KeyData == Keys.Space)
+            {
+                MessageBox.Show("");
+                SensXTextBox.Text = "0";
+            }
+        }
+
+        private void SensXTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.OemMinus || e.KeyData == Keys.Space)
+            {
+                MessageBox.Show("");
+                SensXTextBox.Text = "0";
+            }
+        }
     }
 }

@@ -214,16 +214,24 @@
             // SensXTextBox
             // 
             this.SensXTextBox.Location = new System.Drawing.Point(106, 29);
+            this.SensXTextBox.MaxLength = 15;
             this.SensXTextBox.Name = "SensXTextBox";
             this.SensXTextBox.Size = new System.Drawing.Size(82, 20);
             this.SensXTextBox.TabIndex = 3;
+            this.SensXTextBox.TextChanged += new System.EventHandler(this.SensXTextBox_TextChanged);
+            this.SensXTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SensXTextBox_KeyDown);
+            this.SensXTextBox.Leave += new System.EventHandler(this.SensXTextBox_Leave);
             // 
             // SensYTextBox
             // 
             this.SensYTextBox.Location = new System.Drawing.Point(266, 29);
+            this.SensYTextBox.MaxLength = 15;
             this.SensYTextBox.Name = "SensYTextBox";
             this.SensYTextBox.Size = new System.Drawing.Size(82, 20);
             this.SensYTextBox.TabIndex = 4;
+            this.SensYTextBox.TextChanged += new System.EventHandler(this.SensYTextBox_TextChanged);
+            this.SensYTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SensYTextBox_KeyDown);
+            this.SensYTextBox.Leave += new System.EventHandler(this.SensYTextBox_Leave);
             // 
             // WriteBtn
             // 
