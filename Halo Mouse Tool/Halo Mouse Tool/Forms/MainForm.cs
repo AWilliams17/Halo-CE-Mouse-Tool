@@ -352,7 +352,7 @@ namespace Halo_Mouse_Tool
             }
         }
 
-        private void WriteHaloMemory()
+        private void WriteHaloMemory() //ToDo: Refactor this garbage lol
         {
             byte[] mouseaccelnop = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 }; //For noping the acceleration
             int currAddr = 0;
@@ -521,6 +521,33 @@ namespace Halo_Mouse_Tool
             {
                 MessageBox.Show("");
                 SensXTextBox.Text = "0";
+            }
+        }
+
+        private void MessageBoxSnd(string title, string text, SoundHandlingUtils.SoundType soundtype)
+        {
+            MessageBox.Show(text, title);
+            if (settings.SoundsEnabled)
+            {
+                if (soundtype == SoundHandlingUtils.SoundType.Success)
+                {
+                    SoundHandlingUtils.sound_success();
+                }
+
+                if (soundtype == SoundHandlingUtils.SoundType.Error)
+                {
+                    SoundHandlingUtils.sound_error();
+                }
+
+                if (soundtype == SoundHandlingUtils.SoundType.IncrementError)
+                {
+                    SoundHandlingUtils.sound_incrementerror();
+                }
+
+                if (soundtype == SoundHandlingUtils.SoundType.Alert)
+                {
+                    SoundHandlingUtils.sound_alert();
+                }
             }
         }
     }
