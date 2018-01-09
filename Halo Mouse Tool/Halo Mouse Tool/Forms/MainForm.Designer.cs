@@ -61,6 +61,7 @@
             this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.StatusTimer = new System.Windows.Forms.Timer(this.components);
             this.HotkeyLabelTimer = new System.Windows.Forms.Timer(this.components);
+            this.HotkeyTimer = new System.Windows.Forms.Timer(this.components);
             this.MainMenu.SuspendLayout();
             this.StatusBar.SuspendLayout();
             this.SuspendLayout();
@@ -309,6 +310,12 @@
             this.HotkeyLabelTimer.Interval = 500;
             this.HotkeyLabelTimer.Tick += new System.EventHandler(this.HotkeyLabelTimer_Tick);
             // 
+            // HotkeyTimer
+            // 
+            this.HotkeyTimer.Enabled = true;
+            this.HotkeyTimer.Interval = 500;
+            this.HotkeyTimer.Tick += new System.EventHandler(this.HotkeyTimer_Tick);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -370,6 +377,7 @@
         private System.Windows.Forms.ToolStripMenuItem patchMouseAccelerationToolStripMenuItem;
         private System.Windows.Forms.Timer StatusTimer;
         private System.Windows.Forms.Timer HotkeyLabelTimer;
+        private System.Windows.Forms.Timer HotkeyTimer;
     }
 }
 

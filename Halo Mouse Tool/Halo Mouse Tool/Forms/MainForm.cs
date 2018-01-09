@@ -130,7 +130,15 @@ namespace Halo_Mouse_Tool
 
         private void WriteBtn_Click(object sender, EventArgs e)
         {
-            WriteHaloMemory();
+            try
+            {
+                WriteHaloMemory();
+                MessageBox.Show("It work?");
+            }
+            catch (WriteProcessException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void CheckForUpdates()
@@ -344,7 +352,7 @@ namespace Halo_Mouse_Tool
 
         private void WriteHaloMemory()
         {
-            byte[] mouseaccelnop = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 }; //For noping the acceleration
+            byte[] mouseaccelnop = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 }; //For noping the acceleration
             int currAddr = 0;
             byte[] currVal = { };
             string game;
@@ -356,17 +364,17 @@ namespace Halo_Mouse_Tool
                     if (i == 0)
                     {
                         currVal = BitConverter.GetBytes((settings.SensX * 0.25F));
-                        currAddr = 0x2ABB50;
+                        currAddr = 0x310B50;
                     }
                     if (i == 1)
                     {
                         currVal = BitConverter.GetBytes((settings.SensY * 0.25F));
-                        currAddr = 0x2ABB54;
+                        currAddr = 0x310B54;
                     }
                     if (i == 2 && settings.PatchAcceleration)
                     {
                         currVal = mouseaccelnop;
-                        currAddr = 0x8F830;
+                        currAddr = 0x963C0;
                     }
                     MemoryHandlingUtils.WriteToProcessMemory(game, currVal, currAddr);
                 }
@@ -387,6 +395,11 @@ namespace Halo_Mouse_Tool
                         currAddr = 0x2ABB54;
                     }
                     if (i == 2 && settings.PatchAcceleration)
+                    {
+                        currVal = mouseaccelnop;
+                        currAddr = 0x8F836;
+                    }
+                    if (i == 3 && settings.PatchAcceleration)
                     {
                         currVal = mouseaccelnop;
                         currAddr = 0x8F830;
@@ -416,11 +429,13 @@ namespace Halo_Mouse_Tool
             {
                 labelColor = Color.Green;
                 status = game + " found.";
+                WriteBtn.Enabled = true;
             }
             else
             {
                 labelColor = Color.Red;
                 status = game + " not found.";
+                WriteBtn.Enabled = false;
             }
             HaloStatusLabel.Text = status;
             HaloStatusLabel.ForeColor = labelColor;
@@ -428,16 +443,25 @@ namespace Halo_Mouse_Tool
 
         private void HotkeyLabelTimer_Tick(object sender, EventArgs e)
         {
-            string status;
             if (settings.HotKeyEnabled)
             {
-                status = "Hotkey is set to: " + settings.HotKeyApplication;
+                HotkeyLabel.Text = settings.HotKeyApplication;
             }
             else
             {
-                status = "Hotkey is disabled/not set.";
+                HotkeyLabel.Text = "Disabled.";
             }
-            HotkeyLabel.Text = status;
+        }
+
+        private void HotkeyTimer_Tick(object sender, EventArgs e)
+        {
+            if (WriteBtn.Enabled && settings.HotKeyEnabled)
+            {
+                if (KeybindHandlingUtils.IsKeyPushedDown((Keys)Enum.Parse(typeof(Keys), settings.HotKeyApplication)))
+                {
+                    WriteHaloMemory();
+                }
+            }
         }
     }
 }
