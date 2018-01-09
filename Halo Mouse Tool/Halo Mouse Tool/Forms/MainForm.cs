@@ -464,6 +464,49 @@ namespace Halo_Mouse_Tool
                     WriteHaloMemory();
                 }
             }
+
+            if (WriteBtn.Enabled && settings.IncrementKeysEnabled)
+            {
+                if (KeybindHandlingUtils.IsKeyPushedDown(Keys.Oemplus))
+                {
+                    try
+                    {
+                        settings.SensX = settings.SensX += settings.IncrementAmount;
+                        settings.SensY = settings.SensY += settings.IncrementAmount;
+                        WriteHaloMemory();
+                        SensXTextBox.Text = settings.SensX.ToString();
+                        SensYTextBox.Text = settings.SensY.ToString();
+                    }
+                    catch (ArgumentOutOfRangeException)
+                    {
+                        //a
+                    }
+                    catch (WriteProcessException)
+                    {
+                        //b
+                    }
+                }
+
+                else if (KeybindHandlingUtils.IsKeyPushedDown(Keys.OemMinus))
+                {
+                    try
+                    {
+                        settings.SensX = settings.SensX -= settings.IncrementAmount;
+                        settings.SensY = settings.SensY -= settings.IncrementAmount;
+                        WriteHaloMemory();
+                        SensXTextBox.Text = settings.SensX.ToString();
+                        SensYTextBox.Text = settings.SensY.ToString();
+                    }
+                    catch (ArgumentOutOfRangeException)
+                    {
+                        //a
+                    }
+                    catch (WriteProcessException)
+                    {
+                        //b
+                    }
+                }
+            }
         }
 
         private void SensXTextBox_TextChanged(object sender, EventArgs e)
