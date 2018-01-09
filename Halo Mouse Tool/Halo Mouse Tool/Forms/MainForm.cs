@@ -15,6 +15,7 @@ namespace Halo_Mouse_Tool
         static Settings settings = new Settings();
         static SettingsForm settingsForm = new SettingsForm(settings);
         static DonateForm donateForm = new DonateForm();
+        static AboutForm aboutForm = new AboutForm();
 
         public static bool IsAdministrator()
         {
@@ -88,7 +89,11 @@ namespace Halo_Mouse_Tool
 
         private void AboutBtn_Click(object sender, EventArgs e)
         {
-            //About
+            if (!FormHandlingUtils.Formopen(donateForm))
+            {
+                aboutForm = new AboutForm();
+            }
+            aboutForm.Show();
         }
 
         private void HelpBtn_Click(object sender, EventArgs e)
