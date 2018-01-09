@@ -5,7 +5,9 @@ using System.Security.Principal;
 using System.Reflection;
 using Microsoft.Win32;
 using System.Drawing;
-
+/*
+ * I will refactor all this BS out of mainform when it all works lol
+ */
 namespace Halo_Mouse_Tool
 {
     public partial class MainForm : Form
