@@ -665,7 +665,6 @@ namespace Halo_Mouse_Tool
                     {
                         MessageBox.Show("Error - You do not have access. Are you running as admin?", "Unauthorized Access");
                     }
-
                 }
             }
         }
