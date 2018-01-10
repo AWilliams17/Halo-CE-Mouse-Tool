@@ -5,9 +5,10 @@ using System.Security.Principal;
 using System.Reflection;
 using Microsoft.Win32;
 using System.Drawing;
+using System.IO;
 /*
- * I will refactor all this BS out of mainform when it all works lol
- */
+* I will refactor all this BS out of mainform when it all works lol
+*/
 namespace Halo_Mouse_Tool
 {
     public partial class MainForm : Form
@@ -98,7 +99,18 @@ namespace Halo_Mouse_Tool
 
         private void HelpBtn_Click(object sender, EventArgs e)
         {
-            //Open Help doc
+            string chmPath = Path.Combine(Path.GetTempPath(), "Halo Mouse Tool.chm");
+            if (!File.Exists(chmPath))
+            {
+                byte[] chmBytes;
+                chmBytes = Properties.Resources.Halo_Mouse_Tool;
+                using (FileStream chmFile = new FileStream(chmPath, FileMode.Create))
+                {
+                    chmFile.Write(chmBytes, 0, chmBytes.Length);
+                }
+            }
+            Help.ShowHelp(this, chmPath);
+
         }
 
         private void SaveSettingsBtn_Click(object sender, EventArgs e)
