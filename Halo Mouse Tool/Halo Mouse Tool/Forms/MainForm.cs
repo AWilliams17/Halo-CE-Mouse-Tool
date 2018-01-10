@@ -241,6 +241,7 @@ namespace Halo_Mouse_Tool
             }
         }
 
+        //Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "CurrentGame", settings.Current_Game == Settings.Game.CombatEvolved ), RegistryValueKind.DWord);
         private void saveSettings() //ToDo: Refactor this garbage.
         {
             Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "SensX", settings.SensX, RegistryValueKind.String);
