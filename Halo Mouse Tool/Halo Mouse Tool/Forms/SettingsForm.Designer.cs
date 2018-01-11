@@ -41,7 +41,6 @@
             this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.DllSoundsCheckbox = new System.Windows.Forms.CheckBox();
-            this.SuccessMessagesDll = new System.Windows.Forms.CheckBox();
             this.IncrementCheckbox = new System.Windows.Forms.CheckBox();
             this.IncrementDllCheckbox = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -106,7 +105,7 @@
             // 
             // CloseBtn
             // 
-            this.CloseBtn.Location = new System.Drawing.Point(12, 271);
+            this.CloseBtn.Location = new System.Drawing.Point(10, 248);
             this.CloseBtn.Name = "CloseBtn";
             this.CloseBtn.Size = new System.Drawing.Size(145, 23);
             this.CloseBtn.TabIndex = 6;
@@ -159,17 +158,6 @@
             this.DllSoundsCheckbox.Text = "Sounds Enabled(DLL)";
             this.DllSoundsCheckbox.UseVisualStyleBackColor = true;
             this.DllSoundsCheckbox.CheckedChanged += new System.EventHandler(this.DllSoundsCheckbox_CheckedChanged);
-            // 
-            // SuccessMessagesDll
-            // 
-            this.SuccessMessagesDll.AutoSize = true;
-            this.SuccessMessagesDll.Location = new System.Drawing.Point(13, 248);
-            this.SuccessMessagesDll.Name = "SuccessMessagesDll";
-            this.SuccessMessagesDll.Size = new System.Drawing.Size(144, 17);
-            this.SuccessMessagesDll.TabIndex = 12;
-            this.SuccessMessagesDll.Text = "Success Messages(DLL)";
-            this.SuccessMessagesDll.UseVisualStyleBackColor = true;
-            this.SuccessMessagesDll.CheckedChanged += new System.EventHandler(this.SuccessMessagesDll_CheckedChanged);
             // 
             // IncrementCheckbox
             // 
@@ -245,13 +233,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(171, 302);
+            this.ClientSize = new System.Drawing.Size(169, 276);
             this.Controls.Add(this.UpdateIncrement);
             this.Controls.Add(this.IncrementAmountUpDown);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.IncrementDllCheckbox);
             this.Controls.Add(this.IncrementCheckbox);
-            this.Controls.Add(this.SuccessMessagesDll);
             this.Controls.Add(this.DllSoundsCheckbox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.DllHotkeyTextbox);
@@ -286,7 +273,6 @@
         private System.Windows.Forms.ToolTip ToolTip;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox DllSoundsCheckbox;
-        private System.Windows.Forms.CheckBox SuccessMessagesDll;
         private System.Windows.Forms.CheckBox IncrementCheckbox;
         private System.Windows.Forms.CheckBox IncrementDllCheckbox;
         private System.Windows.Forms.Label label3;

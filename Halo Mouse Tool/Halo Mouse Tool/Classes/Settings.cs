@@ -21,7 +21,6 @@ namespace Halo_Mouse_Tool
         private bool _soundsEnabled = true;
         private bool _soundsEnabledDll = true;
         private bool _successMessages = true;
-        private bool _successMessagesDll = true;
 
         private float _incrementAmount = 0.1F; //TODO: Don't let it go below 0 and above 10
         private bool _incrementKeysEnabled = true;
@@ -200,18 +199,6 @@ namespace Halo_Mouse_Tool
             set
             {
                 _successMessages = value;
-            }
-        }
-
-        public bool SuccessMessagesDll
-        {
-            get
-            {
-                return _successMessagesDll;
-            }
-            set
-            {
-                _successMessagesDll = value;
             }
         }
 

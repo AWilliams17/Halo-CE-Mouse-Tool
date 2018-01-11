@@ -3,3 +3,4 @@
 
 void writeMemory();
 void nop_memory(PVOID address, int bytes);
+int resultValid(int result);

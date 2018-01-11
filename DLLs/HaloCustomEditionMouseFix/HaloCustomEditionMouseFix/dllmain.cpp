@@ -22,7 +22,7 @@ bool IsForegroundProcess(DWORD pid)
 DWORD CALLBACK HookFunctions(LPVOID) {
 	do {
 		if (GetAsyncKeyState(VK_F1)) {
-			write_memory();
+			writeMemory();
 		}
 		Sleep(10);
 	} while (IsForegroundProcess(GetCurrentProcessId()));

@@ -206,7 +206,6 @@ namespace Halo_Mouse_Tool
                 object soundsEnabled = HaloMouseToolRegistry.GetValue("SoundsEnabled");
                 object soundsEnabledDll = HaloMouseToolRegistry.GetValue("SoundsEnabledDll");
                 object successMessages = HaloMouseToolRegistry.GetValue("SuccessMessages");
-                object successMessagesDll = HaloMouseToolRegistry.GetValue("SuccessMessagesDll");
 
                 settings.SensX = float.Parse(sensX.ToString());
                 settings.SensY = float.Parse(sensY.ToString());
@@ -232,10 +231,6 @@ namespace Halo_Mouse_Tool
                 if (successMessages.ToString() == "0")
                 {
                     settings.SuccessMessages = false;
-                }
-                if(successMessagesDll.ToString() == "0")
-                {
-                    settings.SuccessMessagesDll = false;
                 }
                 if (incrementEnabled.ToString() == "0")
                 {
@@ -340,15 +335,6 @@ namespace Halo_Mouse_Tool
             else
             {
                 Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "IncrementKeysEnabledDll", 0, RegistryValueKind.DWord);
-            }
-
-            if (settings.SuccessMessagesDll)
-            {
-                Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "SuccessMessagesDll", 1, RegistryValueKind.DWord);
-            }
-            else
-            {
-                Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "SuccessMessagesDll", 0, RegistryValueKind.DWord);
             }
 
             Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "IncrementAmount", settings.IncrementAmount, RegistryValueKind.String);

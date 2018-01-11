@@ -58,11 +58,6 @@ namespace Halo_Mouse_Tool
             settings.SuccessMessages = SuccessMessagesCheckbox.Checked;
         }
 
-        private void SuccessMessagesDll_CheckedChanged(object sender, EventArgs e)
-        {
-            settings.SuccessMessagesDll = SuccessMessagesDll.Checked;
-        }
-
         private void IncrementCheckbox_CheckedChanged(object sender, EventArgs e)
         {
             settings.IncrementKeysEnabled = IncrementCheckbox.Checked;
