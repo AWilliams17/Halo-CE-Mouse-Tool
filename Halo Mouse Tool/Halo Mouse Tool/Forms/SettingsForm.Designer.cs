@@ -42,7 +42,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.DllSoundsCheckbox = new System.Windows.Forms.CheckBox();
             this.IncrementCheckbox = new System.Windows.Forms.CheckBox();
-            this.IncrementDllCheckbox = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.IncrementAmountUpDown = new System.Windows.Forms.NumericUpDown();
             this.UpdateIncrement = new System.Windows.Forms.NumericUpDown();
@@ -73,7 +72,7 @@
             // CheckForUpdatesCheckbox
             // 
             this.CheckForUpdatesCheckbox.AutoSize = true;
-            this.CheckForUpdatesCheckbox.Location = new System.Drawing.Point(13, 156);
+            this.CheckForUpdatesCheckbox.Location = new System.Drawing.Point(13, 133);
             this.CheckForUpdatesCheckbox.Name = "CheckForUpdatesCheckbox";
             this.CheckForUpdatesCheckbox.Size = new System.Drawing.Size(155, 17);
             this.CheckForUpdatesCheckbox.TabIndex = 3;
@@ -84,7 +83,7 @@
             // SoundsCheckbox
             // 
             this.SoundsCheckbox.AutoSize = true;
-            this.SoundsCheckbox.Location = new System.Drawing.Point(13, 179);
+            this.SoundsCheckbox.Location = new System.Drawing.Point(13, 156);
             this.SoundsCheckbox.Name = "SoundsCheckbox";
             this.SoundsCheckbox.Size = new System.Drawing.Size(104, 17);
             this.SoundsCheckbox.TabIndex = 4;
@@ -95,7 +94,7 @@
             // SuccessMessagesCheckbox
             // 
             this.SuccessMessagesCheckbox.AutoSize = true;
-            this.SuccessMessagesCheckbox.Location = new System.Drawing.Point(13, 225);
+            this.SuccessMessagesCheckbox.Location = new System.Drawing.Point(13, 202);
             this.SuccessMessagesCheckbox.Name = "SuccessMessagesCheckbox";
             this.SuccessMessagesCheckbox.Size = new System.Drawing.Size(118, 17);
             this.SuccessMessagesCheckbox.TabIndex = 5;
@@ -105,7 +104,7 @@
             // 
             // CloseBtn
             // 
-            this.CloseBtn.Location = new System.Drawing.Point(10, 248);
+            this.CloseBtn.Location = new System.Drawing.Point(10, 225);
             this.CloseBtn.Name = "CloseBtn";
             this.CloseBtn.Size = new System.Drawing.Size(145, 23);
             this.CloseBtn.TabIndex = 6;
@@ -151,7 +150,7 @@
             // DllSoundsCheckbox
             // 
             this.DllSoundsCheckbox.AutoSize = true;
-            this.DllSoundsCheckbox.Location = new System.Drawing.Point(13, 202);
+            this.DllSoundsCheckbox.Location = new System.Drawing.Point(13, 179);
             this.DllSoundsCheckbox.Name = "DllSoundsCheckbox";
             this.DllSoundsCheckbox.Size = new System.Drawing.Size(130, 17);
             this.DllSoundsCheckbox.TabIndex = 11;
@@ -169,17 +168,6 @@
             this.IncrementCheckbox.Text = "+/- Keys Increment";
             this.IncrementCheckbox.UseVisualStyleBackColor = true;
             this.IncrementCheckbox.CheckedChanged += new System.EventHandler(this.IncrementCheckbox_CheckedChanged);
-            // 
-            // IncrementDllCheckbox
-            // 
-            this.IncrementDllCheckbox.AutoSize = true;
-            this.IncrementDllCheckbox.Location = new System.Drawing.Point(13, 133);
-            this.IncrementDllCheckbox.Name = "IncrementDllCheckbox";
-            this.IncrementDllCheckbox.Size = new System.Drawing.Size(142, 17);
-            this.IncrementDllCheckbox.TabIndex = 14;
-            this.IncrementDllCheckbox.Text = "+/- Keys Increment(DLL)";
-            this.IncrementDllCheckbox.UseVisualStyleBackColor = true;
-            this.IncrementDllCheckbox.CheckedChanged += new System.EventHandler(this.IncrementDllCheckbox_CheckedChanged);
             // 
             // label3
             // 
@@ -233,11 +221,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(169, 276);
+            this.ClientSize = new System.Drawing.Size(169, 255);
             this.Controls.Add(this.UpdateIncrement);
             this.Controls.Add(this.IncrementAmountUpDown);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.IncrementDllCheckbox);
             this.Controls.Add(this.IncrementCheckbox);
             this.Controls.Add(this.DllSoundsCheckbox);
             this.Controls.Add(this.label2);
@@ -274,7 +261,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox DllSoundsCheckbox;
         private System.Windows.Forms.CheckBox IncrementCheckbox;
-        private System.Windows.Forms.CheckBox IncrementDllCheckbox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown IncrementAmountUpDown;
         private System.Windows.Forms.NumericUpDown UpdateIncrement;

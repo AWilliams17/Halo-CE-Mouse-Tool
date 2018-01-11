@@ -17,6 +17,7 @@ namespace Halo_Mouse_Tool
         static SettingsForm settingsForm = new SettingsForm(settings);
         static DonateForm donateForm = new DonateForm();
         static AboutForm aboutForm = new AboutForm();
+        KeysConverter kc = new KeysConverter();
 
         public static bool IsAdministrator()
         {
@@ -236,10 +237,6 @@ namespace Halo_Mouse_Tool
                 {
                     settings.IncrementKeysEnabled = false;
                 }
-                if (incrementEnabledDll.ToString() == "0")
-                {
-                    settings.IncrementKeysEnabledDll = false;
-                }
                 if ((int)currentGame == 1)
                 {
                     settings.Current_Game = Settings.Game.CombatEvolved;
@@ -326,15 +323,6 @@ namespace Halo_Mouse_Tool
             else
             {
                 Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "IncrementKeysEnabled", 0, RegistryValueKind.DWord);
-            }
-
-            if (settings.IncrementKeysEnabledDll)
-            {
-                Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "IncrementKeysEnabledDll", 1, RegistryValueKind.DWord);
-            }
-            else
-            {
-                Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "IncrementKeysEnabledDll", 0, RegistryValueKind.DWord);
             }
 
             Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "IncrementAmount", settings.IncrementAmount, RegistryValueKind.String);
@@ -451,7 +439,7 @@ namespace Halo_Mouse_Tool
         {
             if (settings.HotKeyEnabled)
             {
-                HotkeyLabel.Text = ((Keys)settings.HotKeyApplication).ToString();
+                HotkeyLabel.Text = kc.ConvertToString(settings.HotKeyApplication);
             }
             else
             {
@@ -629,12 +617,12 @@ namespace Halo_Mouse_Tool
                             if (settings.Current_Game == Settings.Game.CombatEvolved)
                             {
                                 string dll = Path.Combine(fbd.SelectedPath, "HaloCombatEvolvedMouseFix.dll");
-                                File.WriteAllBytes(dll, Properties.Resources.HaloCombatEvolvedMouseFix);
+                                //File.WriteAllBytes(dll, Properties.Resources.HaloCombatEvolvedMouseFix);
                             }
                             else
                             {
                                 string dll = Path.Combine(fbd.SelectedPath, "HaloCustomEditionMouseFix.dll");
-                                File.WriteAllBytes(dll, Properties.Resources.HaloCustomEditionMouseFix);
+                                //File.WriteAllBytes(dll, Properties.Resources.HaloCustomEditionMouseFix);
                             }
                             string successMsg =
                                 "Successfully deployed DLL to controls folder." +

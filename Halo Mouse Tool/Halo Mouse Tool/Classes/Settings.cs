@@ -24,7 +24,6 @@ namespace Halo_Mouse_Tool
 
         private float _incrementAmount = 0.1F; //TODO: Don't let it go below 0 and above 10
         private bool _incrementKeysEnabled = true;
-        private bool _incrementKeysEnabledDll = true;
         
         public Game Current_Game
         {
@@ -215,18 +214,6 @@ namespace Halo_Mouse_Tool
             set
             {
                 _incrementKeysEnabled = value;
-            }
-        }
-
-        public bool IncrementKeysEnabledDll
-        {
-            get
-            {
-                return _incrementKeysEnabledDll;
-            }
-            set
-            {
-                _incrementKeysEnabledDll = value;
             }
         }
     }

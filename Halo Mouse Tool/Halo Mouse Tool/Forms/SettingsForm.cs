@@ -5,7 +5,8 @@ namespace Halo_Mouse_Tool
 {
     public partial class SettingsForm : Form
     {
-        public Settings settings;
+        Settings settings;
+        KeysConverter kc = new KeysConverter();
         public SettingsForm(Settings settingsRef)
         {
             InitializeComponent();
@@ -18,11 +19,10 @@ namespace Halo_Mouse_Tool
             DllSoundsCheckbox.Checked = settings.SoundsEnabledDll;
             CheckForUpdatesCheckbox.Checked = settings.CheckForUpdates;
             IncrementCheckbox.Checked = settings.IncrementKeysEnabled;
-            IncrementDllCheckbox.Checked = settings.IncrementKeysEnabledDll;
 
             //Textboxes & increment up/downs
-            HotkeyTextbox.Text = ((Keys)settings.HotKeyApplication).ToString();
-            DllHotkeyTextbox.Text = ((Keys)settings.HotKeyDll).ToString();
+            HotkeyTextbox.Text = kc.ConvertToString(settings.HotKeyApplication);
+            DllHotkeyTextbox.Text = kc.ConvertToString(settings.HotKeyDll);
             UpdateIncrement.Value = decimal.Parse(settings.UpdateTimeout.ToString()) / 1000;
             IncrementAmountUpDown.Value = decimal.Parse(settings.IncrementAmount.ToString());
         }
@@ -62,11 +62,6 @@ namespace Halo_Mouse_Tool
             settings.IncrementKeysEnabled = IncrementCheckbox.Checked;
         }
 
-        private void IncrementDllCheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-            settings.IncrementKeysEnabledDll = IncrementDllCheckbox.Checked;
-        }
-
         private void IncrementAmountUpDown_ValueChanged(object sender, EventArgs e)
         {
             float val = (float)IncrementAmountUpDown.Value;
@@ -82,7 +77,7 @@ namespace Halo_Mouse_Tool
         private void HotkeyTextbox_KeyDown(object sender, KeyEventArgs e)
         {
             string key = e.KeyCode.ToString();
-            HotkeyTextbox.Text = key;
+            HotkeyTextbox.Text = kc.ConvertToString(e.KeyCode);
 
             settings.HotKeyApplication = (int)e.KeyCode;
         }
@@ -90,7 +85,7 @@ namespace Halo_Mouse_Tool
         private void DllHotkeyTextbox_KeyDown(object sender, KeyEventArgs e)
         {
             string key = e.KeyCode.ToString();
-            DllHotkeyTextbox.Text = key;
+            DllHotkeyTextbox.Text = kc.ConvertToString(e.KeyCode);
 
             settings.HotKeyDll = (int)e.KeyCode;
         }
