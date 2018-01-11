@@ -14,7 +14,6 @@
 
 bool PatchAcceleration = true;
 bool SoundsEnabled = true;
-bool SuccessMessageEnabled = true;
 float SensX;
 float SensY;
 
@@ -23,30 +22,23 @@ int readRegistry() {
 	int result2;
 	int result3;
 	int result4;
-	int result5;
 
-	char sensXSZ;
-	char sensYSZ;
+	char sensXSZ[255];
+	char sensYSZ[255];
 	DWORD soundsEnabledDword;
-	DWORD successMessagesEnabledDword;
 	DWORD patchAccelerationDword;
+	DWORD buffersize = 255;
 
-	const int BUFFERSIZE = 255;
+	result1 = RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloMouseTool"), ("SensX"), REG_SZ, NULL, sensXSZ, &buffersize);
+	result2 = RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloMouseTool"), ("SensY"), REG_SZ, NULL, sensYSZ, &buffersize);
+	result3 = RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloMouseTool"), ("SoundsEnabledDll"), REG_DWORD, NULL, (PVOID)&soundsEnabledDword, &buffersize);
+	result4 = RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloMouseTool"), ("PatchMouseAcceleration"), REG_DWORD, NULL, (PVOID)&patchAccelerationDword, &buffersize);
 
-	result1 = RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloMouseFix"), ("SensX"), REG_SZ, NULL, (PVOID)&sensXSZ, (LPDWORD)&BUFFERSIZE);
-	result2 = RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloMouseFix"), ("SensY"), REG_SZ, NULL, (PVOID)&sensYSZ, (LPDWORD)&BUFFERSIZE);
-	result3 = RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloMouseFix"), ("SoundsEnabledDll"), REG_DWORD, NULL, (PVOID)&soundsEnabledDword, (LPDWORD)&BUFFERSIZE);
-	result4 = RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloMouseFix"), ("SuccessMessagesDll"), REG_DWORD, NULL, (PVOID)&successMessagesEnabledDword, (LPDWORD)&BUFFERSIZE);
-	result5 = RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloMouseFix"), ("PatchMouseAcceleration"), REG_DWORD, NULL, (PVOID)&patchAccelerationDword, (LPDWORD)&BUFFERSIZE);
-
-	if (resultValid(result1) && resultValid(result2) && resultValid(result3) && resultValid(result4) && resultValid(result5)) {
-		SensX = atof(&sensXSZ);
-		SensY = atof(&sensYSZ);
+	if (resultValid(result1) && resultValid(result2) && resultValid(result3) && resultValid(result4)) {
+		SensX = atof(&sensXSZ[0]);
+		SensY = atof(&sensYSZ[0]);
 		if (soundsEnabledDword == 0) {
 			SoundsEnabled = false;
-		}
-		if (successMessagesEnabledDword == 0) {
-			SuccessMessageEnabled = false;
 		}
 		if (patchAccelerationDword == 0) {
 			PatchAcceleration = false;
@@ -59,8 +51,8 @@ int readRegistry() {
 
 void writeMemory() {
 	if (readRegistry() == 0) {
-		MOUSE_X = SensX;
-		MOUSE_Y = SensY;
+		MOUSE_X = SensX * 0.25f;
+		MOUSE_Y = SensY * 0.25f;
 		if (PatchAcceleration == 1) {
 			nop_memory(MOUSEACCELFUNC, 6);
 			nop_memory(MOUSEACCELFUNC2, 6);
@@ -71,7 +63,6 @@ void writeMemory() {
 		}
 	}
 	else {
-		Beep(100, 150);
 		Beep(250, 250);
 		MessageBox(NULL, "", "", MB_OK); //Failure message
 	}
