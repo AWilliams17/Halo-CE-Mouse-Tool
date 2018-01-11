@@ -213,8 +213,8 @@ namespace Halo_Mouse_Tool
                 {
                     settings.PatchAcceleration = false;
                 }
-                settings.HotKeyApplication = hotKeyApplication.ToString();
-                settings.HotKeyDll = hotKeyDll.ToString();
+                settings.HotKeyApplication = int.Parse(hotKeyApplication.ToString());
+                settings.HotKeyDll = int.Parse(hotKeyDll.ToString());
                 if (checkForUpdates.ToString() == "0")
                 {
                     settings.CheckForUpdates = false;
@@ -261,8 +261,8 @@ namespace Halo_Mouse_Tool
             {
                 Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "PatchMouseAcceleration", 0, RegistryValueKind.DWord);
             }
-            Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "HotkeyApplication", settings.HotKeyApplication, RegistryValueKind.String);
-            Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "HotkeyDll", settings.HotKeyDll, RegistryValueKind.String);
+            Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "HotkeyApplication", settings.HotKeyApplication, RegistryValueKind.DWord);
+            Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "HotkeyDll", settings.HotKeyDll, RegistryValueKind.DWord);
             if (settings.CheckForUpdates)
             {
                 Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "CheckForUpdates", 1, RegistryValueKind.DWord);
@@ -451,7 +451,7 @@ namespace Halo_Mouse_Tool
         {
             if (settings.HotKeyEnabled)
             {
-                HotkeyLabel.Text = settings.HotKeyApplication;
+                HotkeyLabel.Text = ((Keys)settings.HotKeyApplication).ToString();
             }
             else
             {
@@ -463,7 +463,7 @@ namespace Halo_Mouse_Tool
         {
             if (WriteBtn.Enabled && settings.HotKeyEnabled)
             {
-                if (KeybindHandlingUtils.IsKeyPushedDown((Keys)Enum.Parse(typeof(Keys), settings.HotKeyApplication)))
+                if (KeybindHandlingUtils.IsKeyPushedDown((Keys)Enum.Parse(typeof(Keys), ((Keys)settings.HotKeyApplication).ToString())))
                 {
                     WriteHaloMemory();
                 }

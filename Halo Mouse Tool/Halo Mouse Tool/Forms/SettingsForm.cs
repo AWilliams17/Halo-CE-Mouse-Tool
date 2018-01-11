@@ -14,7 +14,6 @@ namespace Halo_Mouse_Tool
             //Checkboxes
             HotkeyCheckbox.Checked = settings.HotKeyEnabled;
             SuccessMessagesCheckbox.Checked = settings.SuccessMessages;
-            SuccessMessagesDll.Checked = settings.SuccessMessagesDll;
             SoundsCheckbox.Checked = settings.SoundsEnabled;
             DllSoundsCheckbox.Checked = settings.SoundsEnabledDll;
             CheckForUpdatesCheckbox.Checked = settings.CheckForUpdates;
@@ -22,8 +21,8 @@ namespace Halo_Mouse_Tool
             IncrementDllCheckbox.Checked = settings.IncrementKeysEnabledDll;
 
             //Textboxes & increment up/downs
-            HotkeyTextbox.Text = settings.HotKeyApplication;
-            DllHotkeyTextbox.Text = settings.HotKeyDll;
+            HotkeyTextbox.Text = ((Keys)settings.HotKeyApplication).ToString();
+            DllHotkeyTextbox.Text = ((Keys)settings.HotKeyDll).ToString();
             UpdateIncrement.Value = decimal.Parse(settings.UpdateTimeout.ToString()) / 1000;
             IncrementAmountUpDown.Value = decimal.Parse(settings.IncrementAmount.ToString());
         }
@@ -83,17 +82,17 @@ namespace Halo_Mouse_Tool
         private void HotkeyTextbox_KeyDown(object sender, KeyEventArgs e)
         {
             string key = e.KeyCode.ToString();
-
             HotkeyTextbox.Text = key;
-            settings.HotKeyApplication = key;
+
+            settings.HotKeyApplication = (int)e.KeyCode;
         }
 
         private void DllHotkeyTextbox_KeyDown(object sender, KeyEventArgs e)
         {
             string key = e.KeyCode.ToString();
-
             DllHotkeyTextbox.Text = key;
-            settings.HotKeyDll = key;
+
+            settings.HotKeyDll = (int)e.KeyCode;
         }
     }
 }

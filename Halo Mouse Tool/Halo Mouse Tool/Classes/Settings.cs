@@ -11,8 +11,8 @@ namespace Halo_Mouse_Tool
         private Game _current_game = Game.CustomEdition;
         private float _sensX = 1.0F;
         private float _sensY = 1.0F;
-        private string _hotKeyApplication = "F1";
-        private string _hotKeyDll = "F11";
+        private int _hotKeyApplication = 0x70; //F1
+        private int _hotKeyDll = 0x71; //F2
         private bool _hotKeyEnabled = true;
         private bool _patchAccel = true;
 
@@ -82,7 +82,7 @@ namespace Halo_Mouse_Tool
             }
         }
 
-        public string HotKeyApplication
+        public int HotKeyApplication
         {
             get
             {
@@ -90,15 +90,7 @@ namespace Halo_Mouse_Tool
             }
             set
             {
-                Keys key;
-                if(Enum.TryParse(value, out key))
-                {
-                    _hotKeyApplication = value;
-                }
-                else
-                {
-                    throw new ArgumentException("String must have a Keys equivelant.");
-                }
+                _hotKeyApplication = value;
             }
         }
 
@@ -114,7 +106,7 @@ namespace Halo_Mouse_Tool
             }
         }
 
-        public string HotKeyDll
+        public int HotKeyDll
         {
             get
             {
@@ -122,15 +114,7 @@ namespace Halo_Mouse_Tool
             }
             set
             {
-                Keys key;
-                if (Enum.TryParse(value, out key))
-                {
-                    _hotKeyDll = value;
-                }
-                else
-                {
-                    throw new ArgumentException("String must have a Keys equivelant.");
-                }
+                _hotKeyDll = value;
             }
         }
 

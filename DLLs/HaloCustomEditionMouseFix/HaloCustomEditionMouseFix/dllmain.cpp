@@ -21,7 +21,7 @@ bool IsForegroundProcess(DWORD pid)
 
 DWORD CALLBACK HookFunctions(LPVOID) {
 	do {
-		if (GetAsyncKeyState(VK_F1)) {
+		if (GetAsyncKeyState(Hotkey)) {
 			writeMemory();
 		}
 		Sleep(10);
@@ -38,6 +38,7 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 	switch (ul_reason_for_call)
 	{
 	case DLL_PROCESS_ATTACH:
+		readRegistry(); //to set hotkey
 		CreateThread(0, 0, (LPTHREAD_START_ROUTINE)HookFunctions, 0, 0, 0);
 	case DLL_THREAD_ATTACH:
 	case DLL_THREAD_DETACH:

@@ -1,6 +1,7 @@
 // HaloCustomEditionMouseFix.cpp : Defines the exported functions for the DLL application.
 //
 
+//NOTE: WIP. code sucks. will be fixed lol.
 #include "stdafx.h"
 #include <iostream>
 #include "HaloFix.h"
@@ -16,34 +17,43 @@ bool PatchAcceleration = true;
 bool SoundsEnabled = true;
 float SensX;
 float SensY;
+DWORD Hotkey;
 
 int readRegistry() {
 	int result1;
 	int result2;
 	int result3;
 	int result4;
+	int result5;
 
 	char sensXSZ[255];
 	char sensYSZ[255];
+	DWORD hotkeyDword;
 	DWORD soundsEnabledDword;
 	DWORD patchAccelerationDword;
 	DWORD buffersize = 255;
 
 	result1 = RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloMouseTool"), ("SensX"), REG_SZ, NULL, sensXSZ, &buffersize);
+	buffersize = 255;
 	result2 = RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloMouseTool"), ("SensY"), REG_SZ, NULL, sensYSZ, &buffersize);
-	result3 = RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloMouseTool"), ("SoundsEnabledDll"), REG_DWORD, NULL, (PVOID)&soundsEnabledDword, &buffersize);
-	result4 = RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloMouseTool"), ("PatchMouseAcceleration"), REG_DWORD, NULL, (PVOID)&patchAccelerationDword, &buffersize);
+	buffersize = 255;
+	result2 = RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloMouseTool"), ("HotkeyDll"), REG_DWORD, NULL, &hotkeyDword, &buffersize);
+	buffersize = 255;
+	result3 = RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloMouseTool"), ("SoundsEnabledDll"), REG_DWORD, NULL, &soundsEnabledDword, &buffersize);
+	buffersize = 255;
+	result4 = RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloMouseTool"), ("PatchMouseAcceleration"), REG_DWORD, NULL, &patchAccelerationDword, &buffersize);
+	buffersize = 255;
 
 	if (resultValid(result1) && resultValid(result2) && resultValid(result3) && resultValid(result4)) {
 		SensX = atof(&sensXSZ[0]);
 		SensY = atof(&sensYSZ[0]);
+		Hotkey = hotkeyDword;
 		if (soundsEnabledDword == 0) {
 			SoundsEnabled = false;
 		}
 		if (patchAccelerationDword == 0) {
 			PatchAcceleration = false;
 		}
-
 		return 0;
 	}
 	return 1;
