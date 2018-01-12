@@ -9,6 +9,17 @@ using System.IO;
 /*
 * I will refactor all this BS out of mainform when it all works lol
 */
+
+/*
+ * what do i even have to do...
+ *  -todo-
+ * 1: Make success messages work
+ * 2: uh... update the help doc i guess?
+ * 3: make error messages not stupid
+ * 4: refactor mainform.cs
+ * 5: get more mountain dew to fuel this endeavor
+ * 6: make halo combat evolved dll
+*/
 namespace Halo_Mouse_Tool
 {
     public partial class MainForm : Form
