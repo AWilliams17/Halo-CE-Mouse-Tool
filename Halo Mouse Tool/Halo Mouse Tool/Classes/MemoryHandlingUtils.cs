@@ -61,7 +61,6 @@ namespace Halo_Mouse_Tool
             }
 
             IntPtr addr = IntPtr.Add(baseAddr, address);
-            MessageBox.Show(addr.ToString());
             int bytesWritten = 0;
 
             if (!WriteProcessMemory(processHandle, addr, value, value.Length, out bytesWritten))

@@ -162,5 +162,8 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\Success.wav" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\HaloCustomEditionMouseFix.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

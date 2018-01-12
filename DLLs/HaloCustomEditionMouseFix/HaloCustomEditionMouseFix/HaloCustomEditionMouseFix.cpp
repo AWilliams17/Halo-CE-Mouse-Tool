@@ -15,7 +15,6 @@
 
 bool PatchAcceleration = true;
 bool SoundsEnabled = true;
-bool IncrementKeysEnabled = true;
 float SensX;
 float SensY;
 float IncAmt;
@@ -35,15 +34,21 @@ int readRegistry() {
 	DWORD soundsEnabledDword;
 	DWORD patchAccelerationDword;
 	DWORD buffersize = 255;
-
+	/*
+	Is there any real point in doing a loop for these? It seems like it's already easy to understand and follow. -shrug-
+	*/
 	result1 = RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloMouseTool"), ("SensX"), REG_SZ, NULL, sensXSZ, &buffersize);
 	buffersize = 255;
+
 	result2 = RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloMouseTool"), ("SensY"), REG_SZ, NULL, sensYSZ, &buffersize);
 	buffersize = 255;
+
 	result3 = RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloMouseTool"), ("HotkeyDll"), REG_DWORD, NULL, &hotkeyDword, &buffersize);
 	buffersize = 255;
+
 	result4 = RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloMouseTool"), ("SoundsEnabledDll"), REG_DWORD, NULL, &soundsEnabledDword, &buffersize);
 	buffersize = 255;
+
 	result5 = RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloMouseTool"), ("PatchMouseAcceleration"), REG_DWORD, NULL, &patchAccelerationDword, &buffersize);
 	buffersize = 255;
 
@@ -68,17 +73,15 @@ void writeMemory() {
 		MOUSE_X = SensX * 0.25f;
 		MOUSE_Y = SensY * 0.25f;
 		if (PatchAcceleration == 1) {
-			nop_memory(MOUSEACCELFUNC, 6);
-			nop_memory(MOUSEACCELFUNC2, 6);
+			nop_memory(MOUSEACCELFUNC, 12);
 		}
 		if (SoundsEnabled) {
 			Beep(500, 150);
-			Beep(700, 250);
 		}
 	}
 	else {
 		Beep(250, 250);
-		MessageBox(NULL, "", "", MB_OK); //Failure message
+		MessageBox(NULL, "Failed to read registry.", "Failure to read registry.", MB_OK); //Failure message
 	}
 }
 

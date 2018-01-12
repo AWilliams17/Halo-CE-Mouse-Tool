@@ -46,7 +46,7 @@ namespace Halo_Mouse_Tool
             {
                 if (ex is NullReferenceException || ex is ArgumentException || ex is ArgumentOutOfRangeException)
                 {
-                    MessageBox.Show("One or more settings did not load from the registry. Settings have been restored to defaults. Error message was: " + ex.Message, "Error loading settings");
+                    MessageBoxSnd("Error loading registry", "Failed to load settings from the registry. Settings reset to defaults. Error Message: " + ex.Message, SoundHandlingUtils.SoundType.Error);
                     saveSettings();
                 }
             }
@@ -148,16 +148,16 @@ namespace Halo_Mouse_Tool
             Process.Start(@"https://github.com/AWilliams17/Halo-CE-Mouse-Tool/releases");
         }
 
-        private void WriteBtn_Click(object sender, EventArgs e)
+        private void WriteBtn_Click(object sender, EventArgs e) //Note: SuccessMessages needs to be added
         {
             try
             {
                 WriteHaloMemory();
-                MessageBox.Show("It work?");
+                MessageBoxSnd("Success", "Successfully wrote to memory.", SoundHandlingUtils.SoundType.Success);
             }
             catch (WriteProcessException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBoxSnd("Failed to write to memory", ex.Message, SoundHandlingUtils.SoundType.Error);
             }
         }
 
@@ -177,7 +177,7 @@ namespace Halo_Mouse_Tool
             }
             catch (System.Net.WebException ex)
             {
-                MessageBox.Show("An error occured whilst checking for updates: " + ex.Message, "Update Error");
+                MessageBoxSnd("Update Error", "An error occurred while checking for updates: " + ex.Message, SoundHandlingUtils.SoundType.Error);
                 UpdateStatusLabel.Text = "Error.";
             }
         }
@@ -199,7 +199,6 @@ namespace Halo_Mouse_Tool
 
                 object incrementAmount = HaloMouseToolRegistry.GetValue("IncrementAmount");
                 object incrementEnabled = HaloMouseToolRegistry.GetValue("IncrementKeysEnabled");
-                object incrementEnabledDll = HaloMouseToolRegistry.GetValue("IncrementKeysEnabledDll");
                 object currentGame = HaloMouseToolRegistry.GetValue("CurrentGame");
 
                 object checkForUpdates = HaloMouseToolRegistry.GetValue("CheckForUpdates");
@@ -457,7 +456,7 @@ namespace Halo_Mouse_Tool
                 }
             }
 
-            if (WriteBtn.Enabled && settings.IncrementKeysEnabled)
+            if (WriteBtn.Enabled && settings.IncrementKeysEnabled) //ToDo: these error messages are horrible. Fix them.
             {
                 if (KeybindHandlingUtils.IsKeyPushedDown(Keys.Oemplus))
                 {
@@ -469,13 +468,13 @@ namespace Halo_Mouse_Tool
                         SensXTextBox.Text = settings.SensX.ToString();
                         SensYTextBox.Text = settings.SensY.ToString();
                     }
-                    catch (ArgumentOutOfRangeException)
+                    catch (ArgumentOutOfRangeException ex)
                     {
-                        //a
+                        MessageBoxSnd("Invalid setting", ex.Message, SoundHandlingUtils.SoundType.Error);
                     }
-                    catch (WriteProcessException)
+                    catch (WriteProcessException ex)
                     {
-                        //b
+                        MessageBoxSnd("Failed to write memory.", ex.Message, SoundHandlingUtils.SoundType.Error);
                     }
                 }
 
@@ -489,13 +488,13 @@ namespace Halo_Mouse_Tool
                         SensXTextBox.Text = settings.SensX.ToString();
                         SensYTextBox.Text = settings.SensY.ToString();
                     }
-                    catch (ArgumentOutOfRangeException)
+                    catch (ArgumentOutOfRangeException ex)
                     {
-                        //a
+                        MessageBoxSnd("Invalid setting", ex.Message, SoundHandlingUtils.SoundType.Error);
                     }
-                    catch (WriteProcessException)
+                    catch (WriteProcessException ex)
                     {
-                        //b
+                        MessageBoxSnd("Failed to write memory.", ex.Message, SoundHandlingUtils.SoundType.Error);
                     }
                 }
             }
@@ -506,7 +505,7 @@ namespace Halo_Mouse_Tool
             float res;
             if (!float.TryParse(SensXTextBox.Text, out res))
             {
-                MessageBox.Show("");
+                MessageBoxSnd("Invalid Input", "Please make sure this is a valid value.", SoundHandlingUtils.SoundType.Error);
                 SensXTextBox.Text = "0";
                 SensXTextBox.Focus();
             }
@@ -517,7 +516,7 @@ namespace Halo_Mouse_Tool
             float res;
             if (!float.TryParse(SensYTextBox.Text, out res))
             {
-                MessageBox.Show("");
+                MessageBoxSnd("Invalid Input", "Please make sure this is a valid value.", SoundHandlingUtils.SoundType.Error);
                 SensYTextBox.Text = "0";
                 SensYTextBox.Focus();
             }
@@ -527,8 +526,8 @@ namespace Halo_Mouse_Tool
         {
             if (SensYTextBox.Text == "")
             {
-                MessageBox.Show("");
-                SensXTextBox.Focus();
+                MessageBoxSnd("Can not be blank", "Error: this field cannot be left blank!", SoundHandlingUtils.SoundType.Error);
+                SensYTextBox.Focus();
             }
         }
 
@@ -536,7 +535,7 @@ namespace Halo_Mouse_Tool
         {
             if (SensXTextBox.Text == "")
             {
-                MessageBox.Show("");
+                MessageBoxSnd("Can not be blank", "Error: this field cannot be left blank!", SoundHandlingUtils.SoundType.Error);
                 SensXTextBox.Focus();
             }
         }
@@ -545,8 +544,8 @@ namespace Halo_Mouse_Tool
         {
             if (e.KeyData == Keys.OemMinus || e.KeyData == Keys.Space)
             {
-                MessageBox.Show("");
-                SensXTextBox.Text = "0";
+                MessageBoxSnd("Invalid Input", "This cannot be a negative value or contain a space.", SoundHandlingUtils.SoundType.Error);
+                SensYTextBox.Text = "0";
             }
         }
 
@@ -554,7 +553,7 @@ namespace Halo_Mouse_Tool
         {
             if (e.KeyData == Keys.OemMinus || e.KeyData == Keys.Space)
             {
-                MessageBox.Show("");
+                MessageBoxSnd("Invalid Input", "This cannot be a negative value or contain a space.", SoundHandlingUtils.SoundType.Error);
                 SensXTextBox.Text = "0";
             }
         }
@@ -585,59 +584,67 @@ namespace Halo_Mouse_Tool
                 }
             }
         }
-        public static void DeployDLL()
-        {
-            using (var fbd = new FolderBrowserDialog())
-            {
-                string description =
-                    "Select the Halo CE/SPV3 Controls directory." + Environment.NewLine +
-                    "If you wish to only use this for SPV3, you just have to select SPV3's control directory. " +
-                    "If you want to use it for Halo CE, select Halo CE's control directory." +
-                    "For reference, this folder will have a dll in it called 'controls.dll'.";
-                fbd.ShowNewFolderButton = false;
-                fbd.Description = description;
-                DialogResult result = fbd.ShowDialog();
 
-                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+        private void DeployDLL()
+        {
+            if (settings.Current_Game == Settings.Game.CombatEvolved) //Just for testers. this if branch will be removed in release.
+            {
+                MessageBoxSnd("Combat Evolved DLL isn't done yet", "I haven't made Combat Evolved's DLL yet :p select Custom Edition", SoundHandlingUtils.SoundType.Error);
+            }
+            else
+            {
+                using (var fbd = new FolderBrowserDialog())
                 {
-                    bool validselection = false;
-                    try
+                    string description =
+                        "Select the Halo CE/SPV3 Controls directory." + Environment.NewLine +
+                        "If you wish to only use this for SPV3, you just have to select SPV3's control directory. " +
+                        "If you want to use it for Halo CE, select Halo CE's control directory." +
+                        "For reference, this folder will have a dll in it called 'controls.dll'.";
+                    fbd.ShowNewFolderButton = false;
+                    fbd.Description = description;
+                    DialogResult result = fbd.ShowDialog();
+
+                    if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                     {
-                        string[] files = Directory.GetFiles(fbd.SelectedPath);
-                        for (int i = 0; i < files.Length; i++)
+                        bool validselection = false;
+                        try
                         {
-                            if (files[i].ToLower().Contains("controls.dll"))
+                            string[] files = Directory.GetFiles(fbd.SelectedPath);
+                            for (int i = 0; i < files.Length; i++)
                             {
-                                validselection = true;
-                                break;
+                                if (files[i].ToLower().Contains("controls.dll"))
+                                {
+                                    validselection = true;
+                                    break;
+                                }
                             }
-                        }
-                        if (validselection)
-                        {
-                            if (settings.Current_Game == Settings.Game.CombatEvolved)
+                            if (validselection)
                             {
-                                string dll = Path.Combine(fbd.SelectedPath, "HaloCombatEvolvedMouseFix.dll");
-                                //File.WriteAllBytes(dll, Properties.Resources.HaloCombatEvolvedMouseFix);
+                                if (settings.Current_Game == Settings.Game.CombatEvolved)
+                                {
+                                    string dll = Path.Combine(fbd.SelectedPath, "HaloCombatEvolvedMouseFix.dll");
+                                    //File.WriteAllBytes(dll, Properties.Resources.HaloCombatEvolvedMouseFix);
+                                }
+                                else
+                                {
+                                    string dll = Path.Combine(fbd.SelectedPath, "HaloCustomEditionMouseFix.dll");
+                                    File.WriteAllBytes(dll, Properties.Resources.HaloCustomEditionMouseFix);
+                                }
+                                string successMsg =
+                                    "Successfully deployed DLL to controls folder." +
+                                    " All you must do from here is just set your settings in this application, and then make sure you have saved them " +
+                                    "(file -> save settings just to be sure), run the game, and press your hotkey!";
+                                MessageBoxSnd("Successfully deployed DLL", successMsg, SoundHandlingUtils.SoundType.Success);
                             }
                             else
                             {
-                                string dll = Path.Combine(fbd.SelectedPath, "HaloCustomEditionMouseFix.dll");
-                                //File.WriteAllBytes(dll, Properties.Resources.HaloCustomEditionMouseFix);
+                                MessageBoxSnd("Wrong folder!", "Error - the selected folder did not have a controls.dll file.", SoundHandlingUtils.SoundType.Error);
                             }
-                            string successMsg =
-                                "Successfully deployed DLL to controls folder." +
-                                " You must now go to the controls folder, run DLL Settings.exe, set your desired settings, and from there " +
-                                "all you have to do to use the dll is open Halo, and at any time, press F1 to apply your settings.";
-                            MessageBox.Show(successMsg, "DLL Deployment successful");
                         }
-                        else
+                        catch (UnauthorizedAccessException)
                         {
-                            MessageBox.Show("Error - the selected folder did not have a controls.dll file.", "Invalid controls folder location");
+                            MessageBoxSnd("Access Denied!", "Error - you do not have access to this location. Are you running as admin?", SoundHandlingUtils.SoundType.Error);
                         }
-                    }
-                    catch (UnauthorizedAccessException)
-                    {
-                        MessageBox.Show("Error - You do not have access. Are you running as admin?", "Unauthorized Access");
                     }
                 }
             }
