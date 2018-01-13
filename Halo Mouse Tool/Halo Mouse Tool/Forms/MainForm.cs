@@ -132,7 +132,7 @@ namespace Halo_Mouse_Tool
 
         private void DeployDllBtn_Click(object sender, EventArgs e)
         {
-            //Deploy the DLL
+            DeployDLL();
         }
 
         private void CheckForUpdateBtn_Click(object sender, EventArgs e)
@@ -571,7 +571,6 @@ namespace Halo_Mouse_Tool
 
         private void MessageBoxSnd(string title, string text, SoundHandlingUtils.SoundType soundtype)
         {
-            MessageBox.Show(text, title);
             if (settings.SoundsEnabled)
             {
                 if (soundtype == SoundHandlingUtils.SoundType.Success)
@@ -594,13 +593,14 @@ namespace Halo_Mouse_Tool
                     SoundHandlingUtils.sound_alert();
                 }
             }
+            MessageBox.Show(text, title);
         }
 
         private void DeployDLL()
         {
             if (settings.Current_Game == Settings.Game.CombatEvolved) //Just for testers. this if branch will be removed in release.
             {
-                MessageBoxSnd("Combat Evolved DLL isn't done yet", "I haven't made Combat Evolved's DLL yet :p select Custom Edition", SoundHandlingUtils.SoundType.Error);
+                MessageBoxSnd("Combat Evolved DLL isn't done yet", "I haven't made Combat Evolved's DLL yet :p select Custom Edition", SoundHandlingUtils.SoundType.IncrementError);
             }
             else
             {
