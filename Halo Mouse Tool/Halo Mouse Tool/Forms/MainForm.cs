@@ -164,7 +164,13 @@ namespace Halo_Mouse_Tool
             try
             {
                 WriteHaloMemory();
-                MessageBoxSnd("Success", "Successfully wrote to memory.", SoundHandlingUtils.SoundType.Success);
+                if (settings.SoundsEnabled && !settings.SuccessMessages) {
+                    SoundHandlingUtils.sound_success();
+                }
+                else //Success messages are enabled, and the messageboxsnd function has a sound setting check, so just call that.
+                {
+                    MessageBoxSnd("Success", "Successfully wrote to memory.", SoundHandlingUtils.SoundType.Success);
+                }
             }
             catch (WriteProcessException ex)
             {
@@ -463,7 +469,22 @@ namespace Halo_Mouse_Tool
             {
                 if (KeybindHandlingUtils.IsKeyPushedDown((Keys)Enum.Parse(typeof(Keys), ((Keys)settings.HotKeyApplication).ToString())))
                 {
-                    WriteHaloMemory();
+                    try
+                    {
+                        WriteHaloMemory();
+                        if (settings.SoundsEnabled && !settings.SuccessMessages)
+                        {
+                            SoundHandlingUtils.sound_success();
+                        }
+                        else //Success messages are enabled, and the messageboxsnd function has a sound setting check, so just call that.
+                        {
+                            MessageBoxSnd("Success", "Successfully wrote to memory.", SoundHandlingUtils.SoundType.Success);
+                        }
+                    }
+                    catch (WriteProcessException ex)
+                    {
+                        MessageBoxSnd("Failed to write to memory", ex.Message, SoundHandlingUtils.SoundType.Error);
+                    }
                 }
             }
 
@@ -476,6 +497,14 @@ namespace Halo_Mouse_Tool
                         settings.SensX = settings.SensX += settings.IncrementAmount;
                         settings.SensY = settings.SensY += settings.IncrementAmount;
                         WriteHaloMemory();
+                        if (settings.SoundsEnabled && !settings.SuccessMessages)
+                        {
+                            SoundHandlingUtils.sound_success();
+                        }
+                        else //Success messages are enabled, and the messageboxsnd function has a sound setting check, so just call that.
+                        {
+                            MessageBoxSnd("Success", "Successfully wrote to memory.", SoundHandlingUtils.SoundType.Success);
+                        }
                         SensXTextBox.Text = settings.SensX.ToString();
                         SensYTextBox.Text = settings.SensY.ToString();
                     }
@@ -496,6 +525,14 @@ namespace Halo_Mouse_Tool
                         settings.SensX = settings.SensX -= settings.IncrementAmount;
                         settings.SensY = settings.SensY -= settings.IncrementAmount;
                         WriteHaloMemory();
+                        if (settings.SoundsEnabled && !settings.SuccessMessages)
+                        {
+                            SoundHandlingUtils.sound_success();
+                        }
+                        else //Success messages are enabled, and the messageboxsnd function has a sound setting check, so just call that.
+                        {
+                            MessageBoxSnd("Success", "Successfully wrote to memory.", SoundHandlingUtils.SoundType.Success);
+                        }
                         SensXTextBox.Text = settings.SensX.ToString();
                         SensYTextBox.Text = settings.SensY.ToString();
                     }
