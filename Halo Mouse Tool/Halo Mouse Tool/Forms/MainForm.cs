@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Drawing;
 using System.IO;
+using System.Threading;
 
 namespace Halo_Mouse_Tool
 {
@@ -13,7 +14,7 @@ namespace Halo_Mouse_Tool
         static SettingsForm settingsForm = new SettingsForm(settings);
         static DonateForm donateForm = new DonateForm();
         static AboutForm aboutForm = new AboutForm();
-        KeysConverter kc = new KeysConverter();
+        KeysConverter kc = new KeysConverter(); //for the hotkey label
 
         public MainForm()
         {
@@ -43,7 +44,12 @@ namespace Halo_Mouse_Tool
 
             if (settings.CheckForUpdates)
             {
-                CheckForUpdates();
+                Thread update_thread = new Thread(() =>
+                {
+                    CheckForUpdates();
+                });
+                update_thread.IsBackground = true;
+                update_thread.Start();
             }
 
             string title = "Halo Mouse Tool v" + Assembly.GetExecutingAssembly().GetName().Version.ToString()[0];
@@ -100,7 +106,12 @@ namespace Halo_Mouse_Tool
 
         private void CheckForUpdateBtn_Click(object sender, EventArgs e)
         {
-            CheckForUpdates(true);
+            Thread update_thread = new Thread(() =>
+            {
+                CheckForUpdates(true);
+            });
+            update_thread.IsBackground = true;
+            update_thread.Start();
         }
 
         private void HaloCustomEditionBtn_Click(object sender, EventArgs e)
@@ -146,6 +157,7 @@ namespace Halo_Mouse_Tool
 
         private void CheckForUpdates(bool messageBox = false)
         {
+            UpdateStatusLabel.Text = "Checking";
             try
             {
                 if (UpdateHandlingUtils.UpdateAvailable(settings.UpdateTimeout))
