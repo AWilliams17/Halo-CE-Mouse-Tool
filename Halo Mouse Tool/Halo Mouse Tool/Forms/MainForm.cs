@@ -1,25 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Diagnostics;
-using System.Security.Principal;
 using System.Reflection;
-using Microsoft.Win32;
 using System.Drawing;
 using System.IO;
-/*
-* I will refactor all this BS out of mainform when it all works lol
-*/
 
-/*
- * what do i even have to do...
- *  -todo-
- * 1: Make success messages work *done*
- * 2: uh... update the help doc i guess? *done*
- * 3: make error messages not stupid *ayy*
- * 4: refactor mainform.cs
- * 5: get more mountain dew to fuel this endeavor *done*
- * 6: make halo combat evolved dll
-*/
 namespace Halo_Mouse_Tool
 {
     public partial class MainForm : Form
@@ -30,12 +15,6 @@ namespace Halo_Mouse_Tool
         static AboutForm aboutForm = new AboutForm();
         KeysConverter kc = new KeysConverter();
 
-        public static bool IsAdministrator()
-        {
-            return (new WindowsPrincipal(WindowsIdentity.GetCurrent()))
-                      .IsInRole(WindowsBuiltInRole.Administrator);
-        }
-
         public MainForm()
         {
             InitializeComponent();
@@ -44,7 +23,7 @@ namespace Halo_Mouse_Tool
 
         private void OnProcessExit(object sender, EventArgs e)
         {
-            settings.saveSettings();
+            settings.SaveSettings();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -58,7 +37,7 @@ namespace Halo_Mouse_Tool
                 if (ex is NullReferenceException || ex is ArgumentException || ex is ArgumentOutOfRangeException)
                 {
                     MessageBoxSnd("Error loading registry", "Failed to load settings from the registry. Settings reset to defaults. Error Message: " + ex.Message, SoundHandlingUtils.SoundType.Error);
-                    settings.saveSettings();
+                    settings.SaveSettings();
                 }
             }
 
@@ -68,13 +47,13 @@ namespace Halo_Mouse_Tool
             }
 
             string title = "Halo Mouse Tool v" + Assembly.GetExecutingAssembly().GetName().Version.ToString()[0];
-            if (!IsAdministrator())
+            if (!MiscUtils.IsAdministrator())
             {
                 title += " -NOT ADMIN-";
             }
             Text = title;
 
-            setControls();
+            SetControls();
         }
 
         private void ExitBtn_Click(object sender, EventArgs e)
@@ -111,18 +90,7 @@ namespace Halo_Mouse_Tool
 
         private void HelpBtn_Click(object sender, EventArgs e)
         {
-            string chmPath = Path.Combine(Path.GetTempPath(), "Halo Mouse Tool.chm");
-            if (!File.Exists(chmPath))
-            {
-                byte[] chmBytes;
-                chmBytes = Properties.Resources.Halo_Mouse_Tool;
-                using (FileStream chmFile = new FileStream(chmPath, FileMode.Create))
-                {
-                    chmFile.Write(chmBytes, 0, chmBytes.Length);
-                }
-            }
-            Help.ShowHelp(this, chmPath);
-
+            MiscUtils.ShowHelp(this);
         }
 
         private void DeployDllBtn_Click(object sender, EventArgs e)
@@ -161,7 +129,7 @@ namespace Halo_Mouse_Tool
         {
             try
             {
-                WriteHaloMemory();
+                MiscUtils.WriteHaloMemory(settings);
                 if (settings.SoundsEnabled && !settings.SuccessMessages) {
                     SoundHandlingUtils.sound_success();
                 }
@@ -205,7 +173,7 @@ namespace Halo_Mouse_Tool
             }
         }
 
-        private void setControls()
+        private void SetControls()
         {
             SensXTextBox.Text = settings.SensX.ToString();
             SensYTextBox.Text = settings.SensY.ToString();
@@ -223,65 +191,6 @@ namespace Halo_Mouse_Tool
             if (settings.PatchAcceleration)
             {
                 patchMouseAccelerationToolStripMenuItem.Checked = true;
-            }
-        }
-
-        private void WriteHaloMemory() //ToDo: Refactor this garbage lol
-        {
-            byte[] mouseaccelnop = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 }; //For noping the acceleration
-            int currAddr = 0;
-            byte[] currVal = { };
-            string game;
-            if (settings.Current_Game == Settings.Game.CombatEvolved)
-            {
-                game = "halo";
-                for (int i = 0; i != 3; i++)
-                {
-                    if (i == 0)
-                    {
-                        currVal = BitConverter.GetBytes((settings.SensX * 0.25F));
-                        currAddr = 0x310B50;
-                    }
-                    if (i == 1)
-                    {
-                        currVal = BitConverter.GetBytes((settings.SensY * 0.25F));
-                        currAddr = 0x310B54;
-                    }
-                    if (i == 2 && settings.PatchAcceleration)
-                    {
-                        currVal = mouseaccelnop;
-                        currAddr = 0x963C0;
-                    }
-                    MemoryHandlingUtils.WriteToProcessMemory(game, currVal, currAddr);
-                }
-            }
-            else
-            {
-                game = "haloce";
-                for (int i = 0; i != 4; i++)
-                {
-                    if (i == 0)
-                    {
-                        currVal = BitConverter.GetBytes((settings.SensX * 0.25F));
-                        currAddr = 0x2ABB50;
-                    }
-                    if (i == 1)
-                    {
-                        currVal = BitConverter.GetBytes((settings.SensY * 0.25F));
-                        currAddr = 0x2ABB54;
-                    }
-                    if (i == 2 && settings.PatchAcceleration)
-                    {
-                        currVal = mouseaccelnop;
-                        currAddr = 0x8F836;
-                    }
-                    if (i == 3 && settings.PatchAcceleration)
-                    {
-                        currVal = mouseaccelnop;
-                        currAddr = 0x8F830;
-                    }
-                    MemoryHandlingUtils.WriteToProcessMemory(game, currVal, currAddr);
-                }
             }
         }
 
@@ -315,7 +224,7 @@ namespace Halo_Mouse_Tool
             }
             HaloStatusLabel.Text = status;
             HaloStatusLabel.ForeColor = labelColor;
-            settings.saveSettings();
+            settings.SaveSettings();
         }
 
         private void HotkeyLabelTimer_Tick(object sender, EventArgs e)
@@ -338,7 +247,7 @@ namespace Halo_Mouse_Tool
                 {
                     try
                     {
-                        WriteHaloMemory();
+                        MiscUtils.WriteHaloMemory(settings);
                         if (settings.SoundsEnabled && !settings.SuccessMessages)
                         {
                             SoundHandlingUtils.sound_success();
@@ -363,7 +272,7 @@ namespace Halo_Mouse_Tool
                     {
                         settings.SensX = settings.SensX += settings.IncrementAmount;
                         settings.SensY = settings.SensY += settings.IncrementAmount;
-                        WriteHaloMemory();
+                        MiscUtils.WriteHaloMemory(settings);
                         if (settings.SoundsEnabled && !settings.SuccessMessages)
                         {
                             SoundHandlingUtils.sound_success();
@@ -391,7 +300,7 @@ namespace Halo_Mouse_Tool
                     {
                         settings.SensX = settings.SensX -= settings.IncrementAmount;
                         settings.SensY = settings.SensY -= settings.IncrementAmount;
-                        WriteHaloMemory();
+                        MiscUtils.WriteHaloMemory(settings);
                         if (settings.SoundsEnabled && !settings.SuccessMessages)
                         {
                             SoundHandlingUtils.sound_success();

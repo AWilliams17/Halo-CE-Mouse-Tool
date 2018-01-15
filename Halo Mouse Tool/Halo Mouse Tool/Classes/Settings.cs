@@ -223,7 +223,7 @@ namespace Halo_Mouse_Tool
             RegistryKey HaloMouseToolRegistry = Registry.CurrentUser.OpenSubKey("Software\\HaloMouseTool", false);
             if (HaloMouseToolRegistry == null)
             {
-                saveSettings();
+                SaveSettings();
             }
             else
             {
@@ -280,7 +280,7 @@ namespace Halo_Mouse_Tool
             }
         }
 
-        public void saveSettings() //ToDo: Refactor this garbage.
+        public void SaveSettings() //ToDo: Refactor this garbage.
         {
             Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "SensX", SensX, RegistryValueKind.String);
             Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "SensY", SensY, RegistryValueKind.String);
