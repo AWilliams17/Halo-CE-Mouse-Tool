@@ -32,7 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.MainMenu = new System.Windows.Forms.MenuStrip();
             this.miscToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.SaveSettingsBtn = new System.Windows.Forms.ToolStripMenuItem();
             this.HelpBtn = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutBtn = new System.Windows.Forms.ToolStripMenuItem();
             this.DonateBtn = new System.Windows.Forms.ToolStripMenuItem();
@@ -82,7 +81,6 @@
             // miscToolStripMenuItem
             // 
             this.miscToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.SaveSettingsBtn,
             this.HelpBtn,
             this.AboutBtn,
             this.DonateBtn,
@@ -92,43 +90,36 @@
             this.miscToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.miscToolStripMenuItem.Text = "File";
             // 
-            // SaveSettingsBtn
-            // 
-            this.SaveSettingsBtn.Name = "SaveSettingsBtn";
-            this.SaveSettingsBtn.Size = new System.Drawing.Size(143, 22);
-            this.SaveSettingsBtn.Text = "Save Settings";
-            this.SaveSettingsBtn.Click += new System.EventHandler(this.SaveSettingsBtn_Click);
-            // 
             // HelpBtn
             // 
             this.HelpBtn.Name = "HelpBtn";
-            this.HelpBtn.Size = new System.Drawing.Size(143, 22);
+            this.HelpBtn.Size = new System.Drawing.Size(152, 22);
             this.HelpBtn.Text = "Help";
             this.HelpBtn.Click += new System.EventHandler(this.HelpBtn_Click);
             // 
             // AboutBtn
             // 
             this.AboutBtn.Name = "AboutBtn";
-            this.AboutBtn.Size = new System.Drawing.Size(143, 22);
+            this.AboutBtn.Size = new System.Drawing.Size(152, 22);
             this.AboutBtn.Text = "About";
             this.AboutBtn.Click += new System.EventHandler(this.AboutBtn_Click);
             // 
             // DonateBtn
             // 
             this.DonateBtn.Name = "DonateBtn";
-            this.DonateBtn.Size = new System.Drawing.Size(143, 22);
+            this.DonateBtn.Size = new System.Drawing.Size(152, 22);
             this.DonateBtn.Text = "Donate";
             this.DonateBtn.Click += new System.EventHandler(this.DonateBtn_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(140, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // ExitBtn
             // 
             this.ExitBtn.Name = "ExitBtn";
-            this.ExitBtn.Size = new System.Drawing.Size(143, 22);
+            this.ExitBtn.Size = new System.Drawing.Size(152, 22);
             this.ExitBtn.Text = "Exit";
             this.ExitBtn.Click += new System.EventHandler(this.ExitBtn_Click);
             // 
@@ -310,7 +301,7 @@
             // StatusTimer
             // 
             this.StatusTimer.Enabled = true;
-            this.StatusTimer.Interval = 250;
+            this.StatusTimer.Interval = 150;
             this.StatusTimer.Tick += new System.EventHandler(this.StatusTimer_Tick);
             // 
             // HotkeyLabelTimer
@@ -374,7 +365,6 @@
         private System.Windows.Forms.Button WriteBtn;
         private System.Windows.Forms.ToolStripMenuItem CheckForUpdateBtn;
         private System.Windows.Forms.ToolStripMenuItem AboutBtn;
-        private System.Windows.Forms.ToolStripMenuItem SaveSettingsBtn;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel HaloStatusLabel;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
