@@ -180,11 +180,9 @@ namespace Halo_Mouse_Tool
             if (settings.Current_Game == Settings.Game.CustomEdition)
             {
                 HaloCustomEditionBtn.Checked = true;
-                HaloCombatEvolvedBtn.Checked = false;
             }
             else
             {
-                HaloCustomEditionBtn.Checked = false;
                 HaloCombatEvolvedBtn.Checked = true;
             }
 
@@ -264,7 +262,7 @@ namespace Halo_Mouse_Tool
                 }
             }
 
-            if (WriteBtn.Enabled && settings.IncrementKeysEnabled) //ToDo: these error messages are horrible. Fix them.
+            if (WriteBtn.Enabled && settings.IncrementKeysEnabled)
             {
                 if (KeybindHandlingUtils.IsKeyPushedDown(Keys.Oemplus))
                 {
@@ -404,7 +402,7 @@ namespace Halo_Mouse_Tool
             MessageBox.Show(text, title);
         }
 
-        private void DeployDLL()
+        private void DeployDLL() //I'll just let this be in mainform.cs since it contains mostly UI related code
         {
             using (var fbd = new FolderBrowserDialog())
             {

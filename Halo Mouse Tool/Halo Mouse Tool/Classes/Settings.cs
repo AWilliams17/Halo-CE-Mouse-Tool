@@ -218,7 +218,7 @@ namespace Halo_Mouse_Tool
             }
         }
 
-        public void LoadSettings() //ToDo: Refactor this garbage
+        public void LoadSettings() //This is bad, but it works.
         {
             RegistryKey HaloMouseToolRegistry = Registry.CurrentUser.OpenSubKey("Software\\HaloMouseTool", false);
             if (HaloMouseToolRegistry == null)
@@ -274,92 +274,27 @@ namespace Halo_Mouse_Tool
                 }
                 if ((int)currentGame == 1)
                 {
-                    Current_Game = Settings.Game.CombatEvolved;
+                    Current_Game = Game.CombatEvolved;
                 }
                 IncrementAmount = float.Parse(incrementAmount.ToString());
             }
         }
 
-        public void SaveSettings() //ToDo: Refactor this garbage.
+        public void SaveSettings()
         {
             Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "SensX", SensX, RegistryValueKind.String);
             Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "SensY", SensY, RegistryValueKind.String);
-            if (PatchAcceleration)
-            {
-                Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "PatchMouseAcceleration", 1, RegistryValueKind.DWord);
-            }
-            else
-            {
-                Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "PatchMouseAcceleration", 0, RegistryValueKind.DWord);
-            }
-
+            Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "PatchMouseAcceleration", Convert.ToInt32(PatchAcceleration), RegistryValueKind.DWord);
             Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "HotkeyApplication", HotKeyApplication, RegistryValueKind.DWord);
             Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "HotkeyDll", HotKeyDll, RegistryValueKind.DWord);
-            if (CheckForUpdates)
-            {
-                Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "CheckForUpdates", 1, RegistryValueKind.DWord);
-            }
-            else
-            {
-                Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "CheckForUpdates", 0, RegistryValueKind.DWord);
-            }
-
+            Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "CheckForUpdates", CheckForUpdates, RegistryValueKind.DWord);
             Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "UpdateTimeout", UpdateTimeout, RegistryValueKind.DWord);
-
-            if (HotKeyEnabled)
-            {
-                Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "HotKeyEnabled", 1, RegistryValueKind.DWord);
-            }
-            else
-            {
-                Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "HotKeyEnabled", 0, RegistryValueKind.DWord);
-            }
-
-            if (SoundsEnabled)
-            {
-                Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "SoundsEnabled", 1, RegistryValueKind.DWord);
-            }
-            else
-            {
-                Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "SoundsEnabled", 0, RegistryValueKind.DWord);
-            }
-
-            if (SoundsEnabledDll)
-            {
-                Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "SoundsEnabledDll", 1, RegistryValueKind.DWord);
-            }
-            else
-            {
-                Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "SoundsEnabledDll", 0, RegistryValueKind.DWord);
-            }
-
-            if (SuccessMessages)
-            {
-                Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "SuccessMessages", 1, RegistryValueKind.DWord);
-            }
-            else
-            {
-                Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "SuccessMessages", 0, RegistryValueKind.DWord);
-            }
-
-            if (Current_Game == Settings.Game.CombatEvolved)
-            {
-                Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "CurrentGame", 1, RegistryValueKind.DWord);
-            }
-            else
-            {
-                Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "CurrentGame", 0, RegistryValueKind.DWord);
-            }
-
-            if (IncrementKeysEnabled)
-            {
-                Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "IncrementKeysEnabled", 1, RegistryValueKind.DWord);
-            }
-            else
-            {
-                Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "IncrementKeysEnabled", 0, RegistryValueKind.DWord);
-            }
-
+            Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "HotKeyEnabled", Convert.ToInt32(HotKeyEnabled), RegistryValueKind.DWord);
+            Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "SoundsEnabled", Convert.ToInt32(SoundsEnabled), RegistryValueKind.DWord);
+            Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "SoundsEnabledDll", Convert.ToInt32(SoundsEnabledDll), RegistryValueKind.DWord);
+            Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "SuccessMessages", Convert.ToInt32(SuccessMessages), RegistryValueKind.DWord);
+            Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "CurrentGame", Current_Game, RegistryValueKind.DWord);
+            Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "IncrementKeysEnabled", Convert.ToInt32(IncrementKeysEnabled), RegistryValueKind.DWord);
             Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "IncrementAmount", IncrementAmount, RegistryValueKind.String);
         }
     }
