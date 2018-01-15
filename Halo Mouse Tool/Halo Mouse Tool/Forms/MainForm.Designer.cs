@@ -155,6 +155,7 @@
             this.patchMouseAccelerationToolStripMenuItem.Name = "patchMouseAccelerationToolStripMenuItem";
             this.patchMouseAccelerationToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
             this.patchMouseAccelerationToolStripMenuItem.Text = "Patch Mouse Acceleration";
+            this.patchMouseAccelerationToolStripMenuItem.Click += new System.EventHandler(this.patchMouseAccelerationToolStripMenuItem_Click);
             // 
             // CheckForUpdateBtn
             // 
@@ -309,7 +310,7 @@
             // StatusTimer
             // 
             this.StatusTimer.Enabled = true;
-            this.StatusTimer.Interval = 500;
+            this.StatusTimer.Interval = 250;
             this.StatusTimer.Tick += new System.EventHandler(this.StatusTimer_Tick);
             // 
             // HotkeyLabelTimer
@@ -321,7 +322,7 @@
             // HotkeyTimer
             // 
             this.HotkeyTimer.Enabled = true;
-            this.HotkeyTimer.Interval = 500;
+            this.HotkeyTimer.Interval = 250;
             this.HotkeyTimer.Tick += new System.EventHandler(this.HotkeyTimer_Tick);
             // 
             // MainForm

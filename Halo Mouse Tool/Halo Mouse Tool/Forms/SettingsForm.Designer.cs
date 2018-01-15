@@ -181,6 +181,11 @@
             // IncrementAmountUpDown
             // 
             this.IncrementAmountUpDown.DecimalPlaces = 1;
+            this.IncrementAmountUpDown.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.IncrementAmountUpDown.Location = new System.Drawing.Point(96, 85);
             this.IncrementAmountUpDown.Maximum = new decimal(new int[] {
             250,

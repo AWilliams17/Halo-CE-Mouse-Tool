@@ -21,54 +21,48 @@ float IncAmt;
 DWORD Hotkey;
 
 int readRegistry() {
-	int result1;
-	int result2;
-	int result3;
-	int result4;
-	int result5;
-
 	char sensXSZ[255];
 	char sensYSZ[255];
 	char incAmtSZ[255];
 	DWORD hotkeyDword;
 	DWORD soundsEnabledDword;
 	DWORD patchAccelerationDword;
+
+	int result;
 	DWORD buffersize = 255;
-	/*
-	Is there any real point in doing a loop for these? It seems like it's already easy to understand and follow. -shrug-
-	*/
-	result3 = RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloMouseTool"), ("HotkeyDll"), REG_DWORD, NULL, &hotkeyDword, &buffersize);
-	buffersize = 255;
+	for (int i = 0; i != 4; i++) {
+		if (i == 0) {
+			result = RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloMouseTool"), ("SensX"), REG_SZ, NULL, sensXSZ, &buffersize);
+			SensX = atof(&sensXSZ[0]);
 
-	result1 = RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloMouseTool"), ("SensX"), REG_SZ, NULL, sensXSZ, &buffersize);
-	buffersize = 255;
-
-	result2 = RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloMouseTool"), ("SensY"), REG_SZ, NULL, sensYSZ, &buffersize);
-	buffersize = 255;
-
-	result3 = RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloMouseTool"), ("HotkeyDll"), REG_DWORD, NULL, &hotkeyDword, &buffersize);
-	buffersize = 255;
-
-	result4 = RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloMouseTool"), ("SoundsEnabledDll"), REG_DWORD, NULL, &soundsEnabledDword, &buffersize);
-	buffersize = 255;
-
-	result5 = RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloMouseTool"), ("PatchMouseAcceleration"), REG_DWORD, NULL, &patchAccelerationDword, &buffersize);
-	buffersize = 255;
-	
-	if (resultValid(result1) && resultValid(result2) && resultValid(result3) && resultValid(result4) && resultValid(result5)) {
-		SensX = atof(&sensXSZ[0]);
-		SensY = atof(&sensYSZ[0]);
-		IncAmt = atof(&incAmtSZ[0]);
-		Hotkey = hotkeyDword;
-		if (soundsEnabledDword == 0) {
-			SoundsEnabled = false;
 		}
-		if (patchAccelerationDword == 0) {
-			PatchAcceleration = false;
+		if (i == 1) {
+			result = RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloMouseTool"), ("SensY"), REG_SZ, NULL, sensYSZ, &buffersize);
+			SensY = atof(&sensYSZ[0]);
 		}
-		return 0;
+		if (i == 2) {
+			result = RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloMouseTool"), ("HotkeyDll"), REG_DWORD, NULL, &hotkeyDword, &buffersize);
+			Hotkey = hotkeyDword;
+		}
+		if (i == 3) {
+			result = RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloMouseTool"), ("SoundsEnabledDll"), REG_DWORD, NULL, &soundsEnabledDword, &buffersize);
+			if (soundsEnabledDword == 0) {
+				SoundsEnabled = false;
+			}
+		}
+		if (i == 4) {
+			result = RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloMouseTool"), ("PatchMouseAcceleration"), REG_DWORD, NULL, &patchAccelerationDword, &buffersize);
+			if (patchAccelerationDword == 0) {
+				PatchAcceleration = false;
+			}
+		}
+		buffersize = 255;
+
+		if (!resultValid(result)) {
+			return 1;
+		}
 	}
-	return 1;
+	return 0;
 }
 
 void writeMemory() {
