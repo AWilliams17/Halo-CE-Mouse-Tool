@@ -93,33 +93,33 @@
             // HelpBtn
             // 
             this.HelpBtn.Name = "HelpBtn";
-            this.HelpBtn.Size = new System.Drawing.Size(152, 22);
+            this.HelpBtn.Size = new System.Drawing.Size(112, 22);
             this.HelpBtn.Text = "Help";
             this.HelpBtn.Click += new System.EventHandler(this.HelpBtn_Click);
             // 
             // AboutBtn
             // 
             this.AboutBtn.Name = "AboutBtn";
-            this.AboutBtn.Size = new System.Drawing.Size(152, 22);
+            this.AboutBtn.Size = new System.Drawing.Size(112, 22);
             this.AboutBtn.Text = "About";
             this.AboutBtn.Click += new System.EventHandler(this.AboutBtn_Click);
             // 
             // DonateBtn
             // 
             this.DonateBtn.Name = "DonateBtn";
-            this.DonateBtn.Size = new System.Drawing.Size(152, 22);
+            this.DonateBtn.Size = new System.Drawing.Size(112, 22);
             this.DonateBtn.Text = "Donate";
             this.DonateBtn.Click += new System.EventHandler(this.DonateBtn_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(109, 6);
             // 
             // ExitBtn
             // 
             this.ExitBtn.Name = "ExitBtn";
-            this.ExitBtn.Size = new System.Drawing.Size(152, 22);
+            this.ExitBtn.Size = new System.Drawing.Size(112, 22);
             this.ExitBtn.Text = "Exit";
             this.ExitBtn.Click += new System.EventHandler(this.ExitBtn_Click);
             // 
@@ -211,7 +211,6 @@
             this.SensXTextBox.Size = new System.Drawing.Size(82, 20);
             this.SensXTextBox.TabIndex = 3;
             this.SensXTextBox.TextChanged += new System.EventHandler(this.SensXTextBox_TextChanged);
-            this.SensXTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SensXTextBox_KeyDown);
             this.SensXTextBox.Leave += new System.EventHandler(this.SensXTextBox_Leave);
             // 
             // SensYTextBox
@@ -222,7 +221,6 @@
             this.SensYTextBox.Size = new System.Drawing.Size(82, 20);
             this.SensYTextBox.TabIndex = 4;
             this.SensYTextBox.TextChanged += new System.EventHandler(this.SensYTextBox_TextChanged);
-            this.SensYTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SensYTextBox_KeyDown);
             this.SensYTextBox.Leave += new System.EventHandler(this.SensYTextBox_Leave);
             // 
             // WriteBtn

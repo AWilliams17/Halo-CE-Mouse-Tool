@@ -326,67 +326,54 @@ namespace Halo_Mouse_Tool
 
         private void SensXTextBox_TextChanged(object sender, EventArgs e)
         {
-            float res;
-            if (!float.TryParse(SensXTextBox.Text, out res))
+            MiscUtils.TextboxResult t = MiscUtils.TextboxValid(SensXTextBox);
+            if (t != MiscUtils.TextboxResult.valid)
             {
-                MessageBoxSnd("Invalid Input", "Please make sure this is a valid value.", SoundHandlingUtils.SoundType.Error);
-                SensXTextBox.Text = "0";
-                SensXTextBox.Focus();
+                if (t != MiscUtils.TextboxResult.is_empty)
+                {
+                    SensXTextBox.Text = "";
+                    SoundHandlingUtils.sound_error();
+                }
             }
             else
             {
-                settings.SensX = res;
+                settings.SensX = float.Parse(SensXTextBox.Text);
             }
         }
 
         private void SensYTextBox_TextChanged(object sender, EventArgs e)
         {
-            float res;
-            if (!float.TryParse(SensYTextBox.Text, out res))
+            MiscUtils.TextboxResult t = MiscUtils.TextboxValid(SensYTextBox);
+            if (t != MiscUtils.TextboxResult.valid)
             {
-                MessageBoxSnd("Invalid Input", "Please make sure this is a valid value.", SoundHandlingUtils.SoundType.Error);
-                SensYTextBox.Text = "0";
-                SensYTextBox.Focus();
+                if (t != MiscUtils.TextboxResult.is_empty)
+                {
+                    SensYTextBox.Text = "0";
+                    SoundHandlingUtils.sound_error();
+                    SensYTextBox.Focus();
+                }
             }
             else
             {
-                settings.SensY = res;
+                settings.SensY = float.Parse(SensYTextBox.Text);
             }
         }
 
         private void SensYTextBox_Leave(object sender, EventArgs e)
         {
-            if (SensYTextBox.Text == "")
+            if (MiscUtils.TextboxValid(SensYTextBox) == MiscUtils.TextboxResult.is_empty)
             {
-                MessageBoxSnd("Can not be blank", "Error: this field cannot be left blank!", SoundHandlingUtils.SoundType.Error);
+                SoundHandlingUtils.sound_error();
                 SensYTextBox.Focus();
             }
         }
 
         private void SensXTextBox_Leave(object sender, EventArgs e)
         {
-            if (SensXTextBox.Text == "")
+            if (MiscUtils.TextboxValid(SensXTextBox) == MiscUtils.TextboxResult.is_empty)
             {
-                MessageBoxSnd("Can not be blank", "Error: this field cannot be left blank!", SoundHandlingUtils.SoundType.Error);
+                SoundHandlingUtils.sound_error();
                 SensXTextBox.Focus();
-            }
-        }
-
-        private void SensYTextBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyData == Keys.OemMinus || e.KeyData == Keys.Space)
-            {
-                MessageBoxSnd("Invalid Input", "This cannot be a negative value or contain a space.", SoundHandlingUtils.SoundType.Error);
-                SensYTextBox.Text = "0";
-            }
-        }
-
-        private void SensXTextBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyData == Keys.OemMinus || e.KeyData == Keys.Space)
-            {
-                MessageBoxSnd("Invalid Input", "This cannot be a negative value or contain a space.", SoundHandlingUtils.SoundType.Error);
-                SensXTextBox.Text = "0";
             }
         }
 

@@ -86,5 +86,31 @@ namespace Halo_Mouse_Tool
                 }
             }
         }
+
+        public enum TextboxResult { contains_negatives, contains_spaces, is_empty, not_float, valid };
+        public static TextboxResult TextboxValid(TextBox textbox)
+        {
+            float res;
+            if (textbox.Text == "")
+            {
+                return TextboxResult.is_empty;
+            }
+            if (textbox.Text.Contains(" "))
+            {
+                return TextboxResult.contains_spaces;
+            }
+            if (textbox.Text.Contains("-"))
+            {
+                return TextboxResult.contains_negatives;
+            }
+            if (!float.TryParse(textbox.Text, out res))
+            {
+                return TextboxResult.not_float;
+            }
+            else
+            {
+                return TextboxResult.valid;
+            }
+        }
     }
 }
