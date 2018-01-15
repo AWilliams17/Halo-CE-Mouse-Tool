@@ -66,6 +66,7 @@
     <Compile Include="Classes\FormHandlingUtils.cs" />
     <Compile Include="Classes\KeybindHandlingUtils.cs" />
     <Compile Include="Classes\MemoryHandlingUtils.cs" />
+    <Compile Include="Classes\MiscUtils.cs" />
     <Compile Include="Classes\ProcessHandlingUtils.cs" />
     <Compile Include="Classes\Settings.cs" />
     <Compile Include="Classes\SoundHandlingUtils.cs" />

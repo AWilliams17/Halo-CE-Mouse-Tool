@@ -37,6 +37,9 @@ int readRegistry() {
 	/*
 	Is there any real point in doing a loop for these? It seems like it's already easy to understand and follow. -shrug-
 	*/
+	result3 = RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloMouseTool"), ("HotkeyDll"), REG_DWORD, NULL, &hotkeyDword, &buffersize);
+	buffersize = 255;
+
 	result1 = RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloMouseTool"), ("SensX"), REG_SZ, NULL, sensXSZ, &buffersize);
 	buffersize = 255;
 
@@ -51,7 +54,7 @@ int readRegistry() {
 
 	result5 = RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloMouseTool"), ("PatchMouseAcceleration"), REG_DWORD, NULL, &patchAccelerationDword, &buffersize);
 	buffersize = 255;
-
+	
 	if (resultValid(result1) && resultValid(result2) && resultValid(result3) && resultValid(result4) && resultValid(result5)) {
 		SensX = atof(&sensXSZ[0]);
 		SensY = atof(&sensYSZ[0]);
@@ -81,7 +84,7 @@ void writeMemory() {
 	}
 	else {
 		Beep(250, 250);
-		MessageBox(NULL, "Failed to read registry.", "Failure to read registry.", MB_OK); //Failure message
+		MessageBox(NULL, "Failed to read registry. Did you run the mouse tool first/delete the registry settings?", "Failure to read registry.", MB_OK);
 	}
 }
 

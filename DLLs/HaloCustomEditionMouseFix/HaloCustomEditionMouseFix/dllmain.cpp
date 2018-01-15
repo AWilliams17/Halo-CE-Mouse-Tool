@@ -7,25 +7,20 @@
 bool IsForegroundProcess(DWORD pid)
 {
 	HWND hwnd = GetForegroundWindow();
-	if (hwnd == NULL) {
-		return false;
-	}
-
 	DWORD foregroundPid;
-	if (GetWindowThreadProcessId(hwnd, &foregroundPid) == 0) {
-		return false;
-	}
+
+	GetWindowThreadProcessId(hwnd, &foregroundPid);
 
 	return (foregroundPid == pid);
 }
 
 DWORD CALLBACK HookFunctions(LPVOID) {
-	do {
+	while (IsForegroundProcess(GetCurrentProcessId())) {
 		if (GetAsyncKeyState(Hotkey)) {
 			writeMemory();
 		}
-		Sleep(10);
-	} while (IsForegroundProcess(GetCurrentProcessId()));
+		Sleep(100);
+	}
 	return 0;
 }
 

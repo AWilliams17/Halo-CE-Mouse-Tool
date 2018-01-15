@@ -13,7 +13,7 @@ using System.IO;
 /*
  * what do i even have to do...
  *  -todo-
- * 1: Make success messages work
+ * 1: Make success messages work *done*
  * 2: uh... update the help doc i guess?
  * 3: make error messages not stupid
  * 4: refactor mainform.cs
