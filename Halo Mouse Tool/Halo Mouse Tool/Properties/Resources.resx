@@ -139,4 +139,7 @@
   <data name="HaloCustomEditionMouseFix" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HaloCustomEditionMouseFix.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="HaloCombatEvolvedMouseFix" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HaloCombatEvolvedMouseFix.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

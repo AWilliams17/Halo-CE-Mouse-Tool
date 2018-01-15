@@ -1,7 +1,5 @@
 // HaloCustomEditionMouseFix.cpp : Defines the exported functions for the DLL application.
 //
-
-//NOTE: WIP. code sucks. will be fixed lol.
 #include "stdafx.h"
 #include <iostream>
 #include "HaloFix.h"
@@ -10,7 +8,6 @@
 #define MOUSE_X *(float*)(BASE_ADDR + 0x2ABB50)
 #define MOUSE_Y *(float*)(BASE_ADDR + 0x2ABB54)
 #define MOUSEACCELFUNC (PVOID)(BASE_ADDR + 0x8F830)
-#define MOUSEACCELFUNC2 (PVOID)(BASE_ADDR + 0x8F836)
 #define NOP 0x90
 
 bool PatchAcceleration = true;
@@ -34,7 +31,6 @@ int readRegistry() {
 		if (i == 0) {
 			result = RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloMouseTool"), ("SensX"), REG_SZ, NULL, sensXSZ, &buffersize);
 			SensX = atof(&sensXSZ[0]);
-
 		}
 		if (i == 1) {
 			result = RegGetValue(HKEY_CURRENT_USER, ("SOFTWARE\\HaloMouseTool"), ("SensY"), REG_SZ, NULL, sensYSZ, &buffersize);

@@ -540,7 +540,7 @@ namespace Halo_Mouse_Tool
                             if (settings.Current_Game == Settings.Game.CombatEvolved)
                             {
                                 string dll = Path.Combine(fbd.SelectedPath, "HaloCombatEvolvedMouseFix.dll");
-                                //File.WriteAllBytes(dll, Properties.Resources.HaloCombatEvolvedMouseFix);
+                                File.WriteAllBytes(dll, Properties.Resources.HaloCombatEvolvedMouseFix);
                             }
                             else
                             {
