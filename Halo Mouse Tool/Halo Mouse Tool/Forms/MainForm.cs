@@ -14,7 +14,7 @@ namespace Halo_Mouse_Tool
         static SettingsForm settingsForm = new SettingsForm(settings);
         static DonateForm donateForm = new DonateForm();
         static AboutForm aboutForm = new AboutForm();
-        KeysConverter kc = new KeysConverter(); //for the hotkey label
+        static KeysConverter kc = new KeysConverter(); //for the hotkey label
 
         public MainForm()
         {
@@ -160,7 +160,7 @@ namespace Halo_Mouse_Tool
             UpdateStatusLabel.Text = "Checking";
             try
             {
-                if (UpdateHandlingUtils.UpdateAvailable(settings.UpdateTimeout))
+                if (UpdateHandlingUtils.UpdateAvailable(settings.UpdateTimeout, "https://pastebin.com/raw/UQpXvHBR"))
                 {
                     UpdateStatusLabel.IsLink = true;
                     UpdateStatusLabel.Text = "Yes!";

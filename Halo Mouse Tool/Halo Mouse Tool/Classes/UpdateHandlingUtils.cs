@@ -25,12 +25,12 @@ namespace Halo_Mouse_Tool
     [System.ComponentModel.DesignerCategory("Code")]
     public static class UpdateHandlingUtils
     {
-        public static bool UpdateAvailable(int timeout)
+        public static bool UpdateAvailable(int timeout, string currVersionLink)
         {
-            int current_version = int.Parse(Assembly.GetExecutingAssembly().GetName().Version.ToString()[0].ToString()); //jesus christ
+            int current_version = int.Parse(Assembly.GetExecutingAssembly().GetName().Version.ToString()[0].ToString());
             WebClientWithTimeout wb = new WebClientWithTimeout(timeout);
             byte[] HTML;
-            HTML = wb.DownloadData("https://pastebin.com/raw/UQpXvHBR"); //The number in the pastebin is the currently released version of the tool.
+            HTML = wb.DownloadData(currVersionLink); //The number downloaded from the link is the currently released version
             UTF8Encoding objUTF8 = new UTF8Encoding();
             string nv = objUTF8.GetString(HTML);
             int versionAvailable = int.Parse(nv[0].ToString());
