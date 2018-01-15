@@ -70,7 +70,7 @@ namespace Halo_Mouse_Tool
 
         private void UpdateIncrement_ValueChanged(object sender, EventArgs e)
         {
-            int val = (int)UpdateIncrement.Value * 1000;
+            int val = (int)UpdateIncrement.Value * 1000; //Since this is in milliseconds.
             settings.UpdateTimeout = val;
         }
 
