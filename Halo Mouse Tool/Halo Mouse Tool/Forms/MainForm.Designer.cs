@@ -93,34 +93,38 @@
             // HelpBtn
             // 
             this.HelpBtn.Name = "HelpBtn";
-            this.HelpBtn.Size = new System.Drawing.Size(112, 22);
+            this.HelpBtn.Size = new System.Drawing.Size(152, 22);
             this.HelpBtn.Text = "Help";
+            this.HelpBtn.ToolTipText = "Display the help documentation.";
             this.HelpBtn.Click += new System.EventHandler(this.HelpBtn_Click);
             // 
             // AboutBtn
             // 
             this.AboutBtn.Name = "AboutBtn";
-            this.AboutBtn.Size = new System.Drawing.Size(112, 22);
+            this.AboutBtn.Size = new System.Drawing.Size(152, 22);
             this.AboutBtn.Text = "About";
+            this.AboutBtn.ToolTipText = "View Reddit links + Github links";
             this.AboutBtn.Click += new System.EventHandler(this.AboutBtn_Click);
             // 
             // DonateBtn
             // 
             this.DonateBtn.Name = "DonateBtn";
-            this.DonateBtn.Size = new System.Drawing.Size(112, 22);
+            this.DonateBtn.Size = new System.Drawing.Size(152, 22);
             this.DonateBtn.Text = "Donate";
+            this.DonateBtn.ToolTipText = "Donate in crypto or via Paypal :D";
             this.DonateBtn.Click += new System.EventHandler(this.DonateBtn_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(109, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // ExitBtn
             // 
             this.ExitBtn.Name = "ExitBtn";
-            this.ExitBtn.Size = new System.Drawing.Size(112, 22);
+            this.ExitBtn.Size = new System.Drawing.Size(152, 22);
             this.ExitBtn.Text = "Exit";
+            this.ExitBtn.ToolTipText = "Saves the settings & Closes the tool";
             this.ExitBtn.Click += new System.EventHandler(this.ExitBtn_Click);
             // 
             // toolsToolStripMenuItem
@@ -139,6 +143,9 @@
             this.DeployDllBtn.Name = "DeployDllBtn";
             this.DeployDllBtn.Size = new System.Drawing.Size(212, 22);
             this.DeployDllBtn.Text = "Deploy DLL";
+            this.DeployDllBtn.ToolTipText = "Displays a folder select dialog in which you select\r\nthe controls folder of your " +
+    "Halo Custom Edition,\r\nSPV3, or Halo Combat Evolved install and then deploys\r\nthe" +
+    " DLL version of this tool to it.";
             this.DeployDllBtn.Click += new System.EventHandler(this.DeployDllBtn_Click);
             // 
             // patchMouseAccelerationToolStripMenuItem
@@ -146,6 +153,9 @@
             this.patchMouseAccelerationToolStripMenuItem.Name = "patchMouseAccelerationToolStripMenuItem";
             this.patchMouseAccelerationToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
             this.patchMouseAccelerationToolStripMenuItem.Text = "Patch Mouse Acceleration";
+            this.patchMouseAccelerationToolStripMenuItem.ToolTipText = "If checked, mouse acceleration will be disabled\r\nupon activation of the tool.\r\n\r\n" +
+    "This cannot be undone. You must restart Halo\r\nto get the acceleration back on if" +
+    " you turn this\r\nsetting off.";
             this.patchMouseAccelerationToolStripMenuItem.Click += new System.EventHandler(this.patchMouseAccelerationToolStripMenuItem_Click);
             // 
             // CheckForUpdateBtn
@@ -153,6 +163,7 @@
             this.CheckForUpdateBtn.Name = "CheckForUpdateBtn";
             this.CheckForUpdateBtn.Size = new System.Drawing.Size(212, 22);
             this.CheckForUpdateBtn.Text = "Check for Update";
+            this.CheckForUpdateBtn.ToolTipText = "Manually checks for an update.";
             this.CheckForUpdateBtn.Click += new System.EventHandler(this.CheckForUpdateBtn_Click);
             // 
             // OptionsBtn
@@ -160,6 +171,7 @@
             this.OptionsBtn.Name = "OptionsBtn";
             this.OptionsBtn.Size = new System.Drawing.Size(212, 22);
             this.OptionsBtn.Text = "Options";
+            this.OptionsBtn.ToolTipText = "Displays the options menu of the tool.";
             this.OptionsBtn.Click += new System.EventHandler(this.OptionsBtn_Click);
             // 
             // gameToolStripMenuItem
@@ -176,6 +188,8 @@
             this.HaloCustomEditionBtn.Name = "HaloCustomEditionBtn";
             this.HaloCustomEditionBtn.Size = new System.Drawing.Size(189, 22);
             this.HaloCustomEditionBtn.Text = "Halo Custom Edition";
+            this.HaloCustomEditionBtn.ToolTipText = "Patch Halo Custom Edition\'s memory & sets the\r\ndeploy DLL button to deploy the Ha" +
+    "lo CE DLL.";
             this.HaloCustomEditionBtn.Click += new System.EventHandler(this.HaloCustomEditionBtn_Click);
             // 
             // HaloCombatEvolvedBtn
@@ -183,6 +197,8 @@
             this.HaloCombatEvolvedBtn.Name = "HaloCombatEvolvedBtn";
             this.HaloCombatEvolvedBtn.Size = new System.Drawing.Size(189, 22);
             this.HaloCombatEvolvedBtn.Text = "Halo Combat Evolved";
+            this.HaloCombatEvolvedBtn.ToolTipText = "Patch Halo Custom Edition\'s memory & sets the\r\ndeploy DLL button to deploy the Ha" +
+    "lo PC DLL.";
             this.HaloCombatEvolvedBtn.Click += new System.EventHandler(this.HaloCombatEvolvedBtn_Click);
             // 
             // label1
@@ -210,6 +226,7 @@
             this.SensXTextBox.Name = "SensXTextBox";
             this.SensXTextBox.Size = new System.Drawing.Size(82, 20);
             this.SensXTextBox.TabIndex = 3;
+            this.ToolTip.SetToolTip(this.SensXTextBox, resources.GetString("SensXTextBox.ToolTip"));
             this.SensXTextBox.TextChanged += new System.EventHandler(this.SensXTextBox_TextChanged);
             this.SensXTextBox.Leave += new System.EventHandler(this.SensXTextBox_Leave);
             // 
@@ -220,6 +237,7 @@
             this.SensYTextBox.Name = "SensYTextBox";
             this.SensYTextBox.Size = new System.Drawing.Size(82, 20);
             this.SensYTextBox.TabIndex = 4;
+            this.ToolTip.SetToolTip(this.SensYTextBox, resources.GetString("SensYTextBox.ToolTip"));
             this.SensYTextBox.TextChanged += new System.EventHandler(this.SensYTextBox_TextChanged);
             this.SensYTextBox.Leave += new System.EventHandler(this.SensYTextBox_Leave);
             // 
@@ -230,6 +248,7 @@
             this.WriteBtn.Size = new System.Drawing.Size(360, 30);
             this.WriteBtn.TabIndex = 5;
             this.WriteBtn.Text = "Write to Memory";
+            this.ToolTip.SetToolTip(this.WriteBtn, "When pressed, this will write your settings to the\r\nHalo proccess\' memory.");
             this.WriteBtn.UseVisualStyleBackColor = true;
             this.WriteBtn.Click += new System.EventHandler(this.WriteBtn_Click);
             // 

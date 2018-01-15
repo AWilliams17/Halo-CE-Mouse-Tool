@@ -120,11 +120,35 @@
   <metadata name="MainMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <metadata name="StatusBar.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>127, 17</value>
-  </metadata>
   <metadata name="ToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>230, 17</value>
+  </metadata>
+  <data name="SensXTextBox.ToolTip" xml:space="preserve">
+    <value>This is the value for your Horizontal sensitivity.
+
+This follows the internal Halo sensitivity values,
+as in:
+1 Sens == 0.25,
+2 Sens == 0.50,
+3 Sens == 0.75, etc.
+
+So bear that in mind before setting this to say, 0.10,
+since it will be 0.10 * 0.25 == 0.025.</value>
+  </data>
+  <data name="SensYTextBox.ToolTip" xml:space="preserve">
+    <value>This is the value for your Vertical sensitivity.
+
+This follows the internal Halo sensitivity values,
+as in:
+1 Sens == 0.25,
+2 Sens == 0.50,
+3 Sens == 0.75, etc.
+
+So bear that in mind before setting this to say, 0.10,
+since it will be 0.10 * 0.25 == 0.025.</value>
+  </data>
+  <metadata name="StatusBar.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>127, 17</value>
   </metadata>
   <metadata name="StatusTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>322, 17</value>

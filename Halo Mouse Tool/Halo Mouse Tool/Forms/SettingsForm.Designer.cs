@@ -56,6 +56,7 @@
             this.HotkeyTextbox.ReadOnly = true;
             this.HotkeyTextbox.Size = new System.Drawing.Size(71, 20);
             this.HotkeyTextbox.TabIndex = 1;
+            this.ToolTip.SetToolTip(this.HotkeyTextbox, "Click here and press the button you want to be\r\nyour hotkey.");
             this.HotkeyTextbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.HotkeyTextbox_KeyDown);
             // 
             // HotkeyCheckbox
@@ -66,6 +67,7 @@
             this.HotkeyCheckbox.Size = new System.Drawing.Size(63, 17);
             this.HotkeyCheckbox.TabIndex = 2;
             this.HotkeyCheckbox.Text = "Hotkey:";
+            this.ToolTip.SetToolTip(this.HotkeyCheckbox, "When checked, this will activate the tool when you\r\npress your chosen hotkey.");
             this.HotkeyCheckbox.UseVisualStyleBackColor = true;
             this.HotkeyCheckbox.CheckedChanged += new System.EventHandler(this.HotkeyCheckbox_CheckedChanged);
             // 
@@ -77,6 +79,8 @@
             this.CheckForUpdatesCheckbox.Size = new System.Drawing.Size(155, 17);
             this.CheckForUpdatesCheckbox.TabIndex = 3;
             this.CheckForUpdatesCheckbox.Text = "Check for Updates on Start";
+            this.ToolTip.SetToolTip(this.CheckForUpdatesCheckbox, "When checked, the tool will automatically check for\r\nan update on application sta" +
+        "rt.");
             this.CheckForUpdatesCheckbox.UseVisualStyleBackColor = true;
             this.CheckForUpdatesCheckbox.CheckedChanged += new System.EventHandler(this.CheckForUpdatesCheckbox_CheckedChanged);
             // 
@@ -88,6 +92,7 @@
             this.SoundsCheckbox.Size = new System.Drawing.Size(104, 17);
             this.SoundsCheckbox.TabIndex = 4;
             this.SoundsCheckbox.Text = "Sounds Enabled";
+            this.ToolTip.SetToolTip(this.SoundsCheckbox, "If checked, sound chimes for error/alert/success\r\nmessages will play.");
             this.SoundsCheckbox.UseVisualStyleBackColor = true;
             this.SoundsCheckbox.CheckedChanged += new System.EventHandler(this.SoundsCheckbox_CheckedChanged);
             // 
@@ -99,6 +104,7 @@
             this.SuccessMessagesCheckbox.Size = new System.Drawing.Size(118, 17);
             this.SuccessMessagesCheckbox.TabIndex = 5;
             this.SuccessMessagesCheckbox.Text = "Success Messages";
+            this.ToolTip.SetToolTip(this.SuccessMessagesCheckbox, resources.GetString("SuccessMessagesCheckbox.ToolTip"));
             this.SuccessMessagesCheckbox.UseVisualStyleBackColor = true;
             this.SuccessMessagesCheckbox.CheckedChanged += new System.EventHandler(this.SuccessMessagesCheckbox_CheckedChanged);
             // 
@@ -109,6 +115,7 @@
             this.CloseBtn.Size = new System.Drawing.Size(145, 23);
             this.CloseBtn.TabIndex = 6;
             this.CloseBtn.Text = "Close";
+            this.ToolTip.SetToolTip(this.CloseBtn, "Close this panel. Any chosen settings are saved.");
             this.CloseBtn.UseVisualStyleBackColor = true;
             this.CloseBtn.Click += new System.EventHandler(this.CloseBtn_Click);
             // 
@@ -128,6 +135,7 @@
             this.DllHotkeyTextbox.ReadOnly = true;
             this.DllHotkeyTextbox.Size = new System.Drawing.Size(71, 20);
             this.DllHotkeyTextbox.TabIndex = 8;
+            this.ToolTip.SetToolTip(this.DllHotkeyTextbox, "Click here and press the button you want to be");
             this.DllHotkeyTextbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DllHotkeyTextbox_KeyDown);
             // 
             // ToolTip
@@ -155,6 +163,7 @@
             this.DllSoundsCheckbox.Size = new System.Drawing.Size(130, 17);
             this.DllSoundsCheckbox.TabIndex = 11;
             this.DllSoundsCheckbox.Text = "Sounds Enabled(DLL)";
+            this.ToolTip.SetToolTip(this.DllSoundsCheckbox, "If checked, sound chimes for error/alert/success");
             this.DllSoundsCheckbox.UseVisualStyleBackColor = true;
             this.DllSoundsCheckbox.CheckedChanged += new System.EventHandler(this.DllSoundsCheckbox_CheckedChanged);
             // 
@@ -166,6 +175,9 @@
             this.IncrementCheckbox.Size = new System.Drawing.Size(116, 17);
             this.IncrementCheckbox.TabIndex = 13;
             this.IncrementCheckbox.Text = "+/- Keys Increment";
+            this.ToolTip.SetToolTip(this.IncrementCheckbox, "When checked, pressing the plus or minus keys\r\nwill add or subtract the increment" +
+        " amount to/from\r\nyour sensitivity. Good for fine tuning your sensitivity\r\ningame" +
+        ".");
             this.IncrementCheckbox.UseVisualStyleBackColor = true;
             this.IncrementCheckbox.CheckedChanged += new System.EventHandler(this.IncrementCheckbox_CheckedChanged);
             // 
@@ -196,6 +208,8 @@
             this.IncrementAmountUpDown.ReadOnly = true;
             this.IncrementAmountUpDown.Size = new System.Drawing.Size(53, 20);
             this.IncrementAmountUpDown.TabIndex = 17;
+            this.ToolTip.SetToolTip(this.IncrementAmountUpDown, "When the increment/decrement keys are enabled,\r\nthis will control how much to inc" +
+        "rease your sensitivity\r\nby.");
             this.IncrementAmountUpDown.ValueChanged += new System.EventHandler(this.IncrementAmountUpDown_ValueChanged);
             // 
             // UpdateIncrement
@@ -215,6 +229,7 @@
             this.UpdateIncrement.ReadOnly = true;
             this.UpdateIncrement.Size = new System.Drawing.Size(53, 20);
             this.UpdateIncrement.TabIndex = 18;
+            this.ToolTip.SetToolTip(this.UpdateIncrement, "This is the timeout value for updates in seconds.\r\nI recommend 5 seconds.");
             this.UpdateIncrement.Value = new decimal(new int[] {
             1,
             0,

@@ -239,7 +239,7 @@ namespace Halo_Mouse_Tool
 
         private void HotkeyTimer_Tick(object sender, EventArgs e)
         {
-            if (WriteBtn.Enabled && settings.HotKeyEnabled)
+            if (WriteBtn.Enabled && settings.HotKeyEnabled) //Regular writing - nonincrement/decrement
             {
                 if (KeybindHandlingUtils.IsKeyPushedDown((Keys)Enum.Parse(typeof(Keys), ((Keys)settings.HotKeyApplication).ToString())))
                 {
@@ -264,7 +264,7 @@ namespace Halo_Mouse_Tool
 
             if (WriteBtn.Enabled && settings.IncrementKeysEnabled)
             {
-                if (KeybindHandlingUtils.IsKeyPushedDown(Keys.Oemplus))
+                if (KeybindHandlingUtils.IsKeyPushedDown(Keys.Oemplus)) //increment
                 {
                     try
                     {
@@ -292,7 +292,7 @@ namespace Halo_Mouse_Tool
                     }
                 }
 
-                else if (KeybindHandlingUtils.IsKeyPushedDown(Keys.OemMinus))
+                else if (KeybindHandlingUtils.IsKeyPushedDown(Keys.OemMinus)) //decrement
                 {
                     try
                     {
