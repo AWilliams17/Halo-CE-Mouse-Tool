@@ -1,5 +1,0 @@
-What will be done:
--Integrate Halo PC and CE mouse settings into one tool
--Use registry instead of XML for settings
--Make the UI not look like a circa 2008 UnknownCheats catastrophe
--Build DLL Settings editing into the tool
