@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.Win32;
 using System.Windows.Forms;
 
@@ -25,7 +25,7 @@ namespace Halo_Mouse_Tool
 
         private float _incrementAmount = 0.1F; //TODO: Don't let it go below 0 and above 10
         private bool _incrementKeysEnabled = true;
-        
+
         public Game Current_Game
         {
             get
@@ -217,7 +217,7 @@ namespace Halo_Mouse_Tool
                 _incrementKeysEnabled = value;
             }
         }
-        
+
         public void SaveSettings()
         {
             Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "SensX", SensX, RegistryValueKind.String);
@@ -235,7 +235,7 @@ namespace Halo_Mouse_Tool
             Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "IncrementKeysEnabled", Convert.ToInt32(IncrementKeysEnabled), RegistryValueKind.DWord);
             Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "IncrementAmount", IncrementAmount, RegistryValueKind.String);
         }
-        
+
         public void LoadSettings() //This is bad, but it works.
         {
             RegistryKey HaloMouseToolRegistry = Registry.CurrentUser.OpenSubKey("Software\\HaloMouseTool", false);
@@ -258,7 +258,7 @@ namespace Halo_Mouse_Tool
                 HotKeyDll = int.Parse(HaloMouseToolRegistry.GetValue("HotkeyDll").ToString());
                 UpdateTimeout = int.Parse(HaloMouseToolRegistry.GetValue("UpdateTimeout").ToString());
                 IncrementAmount = float.Parse(HaloMouseToolRegistry.GetValue("IncrementAmount").ToString());
-                if (int.Parse(currentGame = HaloMouseToolRegistry.GetValue("CurrentGame").ToString()) == 0)
+                if (int.Parse(HaloMouseToolRegistry.GetValue("CurrentGame").ToString()) == 0)
                 {
                     Current_Game = Game.CombatEvolved;
                 }
