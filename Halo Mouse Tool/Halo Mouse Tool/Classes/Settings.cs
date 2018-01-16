@@ -272,7 +272,7 @@ namespace Halo_Mouse_Tool
                 {
                     IncrementKeysEnabled = false;
                 }
-                if ((int)currentGame == 1)
+                if (int.Parse(currentGame.ToString()) == 0)
                 {
                     Current_Game = Game.CombatEvolved;
                 }
@@ -293,7 +293,7 @@ namespace Halo_Mouse_Tool
             Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "SoundsEnabled", Convert.ToInt32(SoundsEnabled), RegistryValueKind.DWord);
             Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "SoundsEnabledDll", Convert.ToInt32(SoundsEnabledDll), RegistryValueKind.DWord);
             Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "SuccessMessages", Convert.ToInt32(SuccessMessages), RegistryValueKind.DWord);
-            Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "CurrentGame", Current_Game, RegistryValueKind.DWord);
+            Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "CurrentGame", (int)Current_Game, RegistryValueKind.DWord);
             Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "IncrementKeysEnabled", Convert.ToInt32(IncrementKeysEnabled), RegistryValueKind.DWord);
             Registry.SetValue("HKEY_CURRENT_USER\\Software\\HaloMouseTool", "IncrementAmount", IncrementAmount, RegistryValueKind.String);
         }

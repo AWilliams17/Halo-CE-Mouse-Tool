@@ -418,11 +418,18 @@ namespace Halo_Mouse_Tool
         {
             using (var fbd = new FolderBrowserDialog())
             {
+                string gameStr;
+                if (settings.Current_Game == Settings.Game.CombatEvolved)
+                {
+                    gameStr = "Halo PC";
+                }
+                else
+                {
+                    gameStr = "Halo CE/SPV3";
+                }
                 string description =
-                    "Select the Halo CE/SPV3 Controls directory." + Environment.NewLine +
-                    "If you wish to only use this for SPV3, you just have to select SPV3's control directory. " +
-                    "If you want to use it for Halo CE, select Halo CE's control directory." +
-                    "For reference, this folder will have a dll in it called 'controls.dll'.";
+                    "Select the "+ gameStr + " Controls directory." + Environment.NewLine +
+                    "This folder will have a dll in it called 'controls.dll'.";
                 fbd.ShowNewFolderButton = false;
                 fbd.Description = description;
                 DialogResult result = fbd.ShowDialog();
@@ -456,7 +463,7 @@ namespace Halo_Mouse_Tool
                             string successMsg =
                                 "Successfully deployed DLL to controls folder." +
                                 " All you must do from here is just set your settings in this application, and then make sure you have saved them " +
-                                "(file -> save settings just to be sure), run the game, and press your hotkey!";
+                                "and run the game, then press your hotkey! No need to keep this application running.";
                             MessageBoxSnd("Successfully deployed DLL", successMsg, SoundHandlingUtils.SoundType.Success);
                         }
                         else
