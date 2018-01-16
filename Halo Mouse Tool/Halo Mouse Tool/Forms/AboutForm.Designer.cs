@@ -53,6 +53,7 @@
             this.RedditLink.TabIndex = 1;
             this.RedditLink.TabStop = true;
             this.RedditLink.Text = "Reddit Thread";
+            this.RedditLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.RedditLink_LinkClicked);
             // 
             // GithubLink
             // 
@@ -64,6 +65,7 @@
             this.GithubLink.TabIndex = 2;
             this.GithubLink.TabStop = true;
             this.GithubLink.Text = "Github Repo";
+            this.GithubLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.GithubLink_LinkClicked);
             // 
             // AboutForm
             // 
