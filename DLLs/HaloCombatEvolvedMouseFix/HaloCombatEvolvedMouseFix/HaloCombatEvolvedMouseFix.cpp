@@ -1,5 +1,3 @@
-// HaloCombatEvolvedMouseFix.cpp : Defines the exported functions for the DLL application.
-//
 #include "stdafx.h"
 #include <iostream>
 #include "HaloFix.h"
@@ -52,9 +50,9 @@ int readRegistry() {
 				PatchAcceleration = false;
 			}
 		}
-		buffersize = 255;
+		buffersize = 255; //Every successful call of RegGetValue sets the buffersize to something else, so reset it.
 
-		if (!resultValid(result)) {
+		if (result == ERROR_FILE_NOT_FOUND) {
 			return 1;
 		}
 	}
@@ -78,18 +76,9 @@ void writeMemory() {
 	}
 }
 
-void nop_memory(PVOID address, int bytes) {
+inline void nop_memory(PVOID address, int bytes) {
 	DWORD old_protection;
 	VirtualProtect(address, bytes, PAGE_EXECUTE_READWRITE, &old_protection);
 	memset(address, NOP, bytes);
 	VirtualProtect(address, bytes, old_protection, NULL);
-}
-
-bool resultValid(int result) {
-	if (result == ERROR_FILE_NOT_FOUND) {
-		return false;
-	}
-	else {
-		return true;
-	}
 }

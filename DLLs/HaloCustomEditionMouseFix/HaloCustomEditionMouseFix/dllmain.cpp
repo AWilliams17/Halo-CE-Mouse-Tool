@@ -1,10 +1,9 @@
-// dllmain.cpp : Defines the entry point for the DLL application.
 #include "stdafx.h"
 #include "HaloFix.h"
 #include <cstdlib>
 #include <windowsx.h>
 
-bool IsForegroundProcess(DWORD pid)
+inline bool IsForegroundProcess(DWORD pid)
 {
 	HWND hwnd = GetForegroundWindow();
 	DWORD foregroundPid;
@@ -24,11 +23,7 @@ DWORD CALLBACK HookFunctions(LPVOID) {
 	return 0;
 }
 
-
-BOOL APIENTRY DllMain( HMODULE hModule,
-                       DWORD  ul_reason_for_call,
-                       LPVOID lpReserved
-					 )
+BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReserved)
 {
 	switch (ul_reason_for_call)
 	{
