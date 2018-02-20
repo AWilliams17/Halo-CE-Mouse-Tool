@@ -2,7 +2,7 @@
 
 namespace Halo_Mouse_Tool
 {
-    class KeybindHandlingUtils
+    public static class KeybindHandlingUtils
     {
         [DllImport("user32.dll")]
         static extern short GetAsyncKeyState(System.Windows.Forms.Keys vKey);

@@ -1,6 +1,5 @@
 using System;
 using Microsoft.Win32;
-using System.Windows.Forms;
 
 namespace Halo_Mouse_Tool
 {
