@@ -17,204 +17,96 @@ namespace Halo_Mouse_Tool
         private bool _patchAccel = true;
 
         private bool _checkForUpdates = true;
-        private int _updateTimeout = 5000; //TODO: This needs restrictions
+        private int _updateTimeout = 5000;
         private bool _soundsEnabled = true;
         private bool _soundsEnabledDll = true;
         private bool _successMessages = true;
 
-        private float _incrementAmount = 0.1F; //TODO: Don't let it go below 0 and above 10
+        private float _incrementAmount = 0.1F;
         private bool _incrementKeysEnabled = true;
 
         public Game Current_Game
         {
-            get
-            {
-                return _current_game;
-            }
-            set
-            {
-                _current_game = value;
-            }
+            get => _current_game;
+            set => _current_game = value;
         }
 
         public float SensX
         {
-            get
-            {
-                return _sensX;
-            }
-            set
-            {
-                if (value < 0)
-                {
-                    throw new ArgumentOutOfRangeException("This cannot be below 0.");
-                }
-                _sensX = value;
-            }
+            get => _sensX;
+            set => _sensX = Validators.BelowZero(value);
         }
 
         public float SensY
         {
-            get
-            {
-                return _sensY;
-            }
-            set
-            {
-                if (value < 0)
-                {
-                    throw new ArgumentOutOfRangeException("This cannot be below 0.");
-                }
-                _sensY = value;
-            }
+            get => _sensY;
+            set => _sensY = Validators.BelowZero(value);
         }
 
         public bool PatchAcceleration
         {
-            get
-            {
-                return _patchAccel;
-            }
-            set
-            {
-                _patchAccel = value;
-            }
+            get => _patchAccel;
+            set => _patchAccel = value;
         }
 
         public int HotKeyApplication
         {
-            get
-            {
-                return _hotKeyApplication;
-            }
-            set
-            {
-                _hotKeyApplication = value;
-            }
+            get => _hotKeyApplication;
+            set => _hotKeyApplication = value;
         }
 
         public bool HotKeyEnabled
         {
-            get
-            {
-                return _hotKeyEnabled;
-            }
-            set
-            {
-                _hotKeyEnabled = value;
-            }
+            get => _hotKeyEnabled;
+            set => _hotKeyEnabled = value;
         }
 
         public int HotKeyDll
         {
-            get
-            {
-                return _hotKeyDll;
-            }
-            set
-            {
-                _hotKeyDll = value;
-            }
+            get => _hotKeyDll;
+            set => _hotKeyDll = value;
         }
 
         public bool CheckForUpdates
         {
-            get
-            {
-                return _checkForUpdates;
-            }
-            set
-            {
-                _checkForUpdates = value;
-            }
+            get => _checkForUpdates;
+            set => _checkForUpdates = value;
         }
 
         public int UpdateTimeout
         {
-            get
-            {
-                return _updateTimeout;
-            }
-            set
-            {
-                if (value < 1000)
-                {
-                    throw new ArgumentOutOfRangeException("This can not be less than 1 second.");
-                }
-                if (value > 15000)
-                {
-                    throw new ArgumentOutOfRangeException("This can not be greater than 15 seconds.");
-                }
-                _updateTimeout = value;
-            }
+            get => _updateTimeout;
+            set => _updateTimeout = Validators.UpdateTimeout(value);
         }
 
         public bool SoundsEnabled
         {
-            get
-            {
-                return _soundsEnabled;
-            }
-            set
-            {
-                _soundsEnabled = value;
-            }
+            get => _soundsEnabled;
+            set => _soundsEnabled = value;
         }
 
         public bool SoundsEnabledDll
         {
-            get
-            {
-                return _soundsEnabledDll;
-            }
-            set
-            {
-                _soundsEnabledDll = value;
-            }
+            get => _soundsEnabledDll;
+            set => _soundsEnabledDll = value;
         }
 
         public bool SuccessMessages
         {
-            get
-            {
-                return _successMessages;
-            }
-            set
-            {
-                _successMessages = value;
-            }
+            get => _successMessages;
+            set => _successMessages = value;
         }
 
         public float IncrementAmount
         {
-            get
-            {
-                return _incrementAmount;
-            }
-            set
-            {
-                if (value < 0.0F)
-                {
-                    throw new ArgumentOutOfRangeException("Increment amount can not be below 0.");
-                }
-                if (value > 25.0F)
-                {
-                    throw new ArgumentOutOfRangeException("Increment amount can not be above 25.");
-                }
-                _incrementAmount = value;
-            }
+            get => _incrementAmount;
+            set => _incrementAmount = Validators.IncrementAmount(value);
         }
 
         public bool IncrementKeysEnabled
         {
-            get
-            {
-                return _incrementKeysEnabled;
-            }
-            set
-            {
-                _incrementKeysEnabled = value;
-            }
+            get => _incrementKeysEnabled;
+            set => _incrementKeysEnabled = value;
         }
 
         public void SaveSettings()
@@ -262,6 +154,43 @@ namespace Halo_Mouse_Tool
                     Current_Game = Game.CombatEvolved;
                 }
             }
+        }
+    }
+    class Validators
+    {
+        public static float BelowZero(float arg)
+        {
+            if (arg < 0)
+            {
+                throw new ArgumentOutOfRangeException("This cannot be below 0.");
+            }
+            return arg;
+        }
+
+        public static int UpdateTimeout(int arg)
+        {
+            if (arg < 1000)
+            {
+                throw new ArgumentOutOfRangeException("This can not be less than 1 second.");
+            }
+            if (arg > 15000)
+            {
+                throw new ArgumentOutOfRangeException("This can not be greater than 15 seconds.");
+            }
+            return arg;
+        }
+
+        public static float IncrementAmount(float arg)
+        {
+            if (arg < 0.0F)
+            {
+                throw new ArgumentOutOfRangeException("Increment amount can not be below 0.");
+            }
+            if (arg > 25.0F)
+            {
+                throw new ArgumentOutOfRangeException("Increment amount can not be above 25.");
+            }
+            return arg;
         }
     }
 }
