@@ -5,3 +5,4 @@ A tool for Halo Custom Edition(and Halo PC)which allows for the mouse accelerati
 ![alt text](https://i.imgur.com/FvRVRzi.png)
 ![alt text](https://i.imgur.com/gLcL3Mj.png)
 ![alt text](https://i.imgur.com/RYa6MVj.png)
+![alt text](https://i.imgur.com/wyNIjxX.png)
