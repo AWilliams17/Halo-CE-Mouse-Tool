@@ -24,5 +24,50 @@ namespace Halo_CE_Mouse_Tool
         {
             InitializeComponent();
         }
+
+        private void DeployDllBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SettingsBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void UpdateBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ExitBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CustomEditionBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CombatEvolvedBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void HelpBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void GithubBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RedditBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
