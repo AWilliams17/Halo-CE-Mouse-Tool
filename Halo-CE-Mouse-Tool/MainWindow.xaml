@@ -1,13 +1,29 @@
 ﻿<Controls:MetroWindow
-    xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls" x:Class="Halo_CE_Mouse_Tool.MainWindow"
+    xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls" x:Name="MainWindowUI" x:Class="Halo_CE_Mouse_Tool.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Halo_CE_Mouse_Tool"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525" Background="#FF252525" TitleCharacterCasing="Normal" ResizeMode="NoResize">
-    <Grid>
-        
-    </Grid>
+        Title="" Height="350" Width="525" Background="#FF252525" TitleCharacterCasing="Normal" ResizeMode="NoResize">
+    <DockPanel LastChildFill="False">
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="File" x:Name="menuFileDropdown">
+                <MenuItem x:Name="DeployDllBtn" Header="Deploy DLL" IsCheckable="False" Click="DeployDllBtn_Click"/>
+                <MenuItem x:Name="SettingsBtn" Header="Settings" IsCheckable="False" Click="SettingsBtn_Click"/>
+                <MenuItem x:Name="UpdateBtn" Header="Update" IsCheckable="False" Click="UpdateBtn_Click"/>
+                <MenuItem x:Name="ExitBtn" Header="Exit" IsCheckable="False" Click="ExitBtn_Click"/>
+            </MenuItem>
+            <MenuItem Header="File" x:Name="menuGameDropdown">
+                <MenuItem x:Name="HaloCustomEditionBtn" Header="Custom Edition" IsCheckable="True" Click="CustomEditionBtn_Click"/>
+                <MenuItem x:Name="HaloCombatEvolvedBtn" Header="Combat Evolved" IsCheckable="True" Click="CombatEvolvedBtn_Click"/>
+            </MenuItem>
+            <MenuItem Header="About" x:Name="menuAboutDropdown">
+                <MenuItem x:Name="HelpBtn" Header="Help" IsCheckable="False" Click="HelpBtn_Click"/>
+                <MenuItem x:Name="GithubBtn" Header="Github" IsCheckable="False" Click="GithubBtn_Click"/>
+                <MenuItem x:Name="RedditBtn" Header="Reddit" IsCheckable="False" Click="RedditBtn_Click"/>
+            </MenuItem>
+        </Menu>
+    </DockPanel>
 </Controls:MetroWindow>
