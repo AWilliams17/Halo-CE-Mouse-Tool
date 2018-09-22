@@ -5,9 +5,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-        xmlns:local="clr-namespace:Halo_CE_Mouse_Tool"
         mc:Ignorable="d"
-        Title="" Height="160.167" Width="272.644" Background="#FF252525" TitleCharacterCasing="Normal" ResizeMode="NoResize">
+        Title="" Height="163.5" Width="272.644" Background="#FF252525" TitleCharacterCasing="Normal" ResizeMode="NoResize">
     <DockPanel LastChildFill="False">
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="File" x:Name="menuFileDropdown">
@@ -29,13 +28,13 @@
         <StackPanel x:Name="windowControls" Orientation="Vertical" Width="245" Margin="10,5,0,0">
             <StackPanel Orientation="Horizontal">
                 <Label Content="Sens X"/>
-                <xctk:DoubleUpDown x:Name="SensXUpDown" Width="200"/>
+                <xctk:DecimalUpDown x:Name="SensXUpDown" Width="200" AllowTextInput="True" Increment="0.1" Foreground="White" DefaultValue="0.0"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0, 5, 0, 0">
                 <Label Content="Sens Y"/>
-                <xctk:DoubleUpDown x:Name="SensYUpDown" Width="200" Margin="1, 0, 0, 0"/>
+                <xctk:DecimalUpDown x:Name="SensYUpDown" Width="200" Margin="1, 0, 0, 0" AllowTextInput="True" Increment="0.1" Foreground="White" DefaultValue="0.0"/>
             </StackPanel>
-            <Button Content="Write to Memory" Height="26" Margin="0,5" x:Name="WriteMemoryBtn"/>
+            <Button Content="Write to Memory" Height="28" Margin="0,5" x:Name="WriteMemoryBtn" Click="WriteMemoryBtn_Click"/>
         </StackPanel>
     </DockPanel>
 </Controls:MetroWindow>

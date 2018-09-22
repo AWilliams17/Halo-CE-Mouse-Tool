@@ -69,5 +69,10 @@ namespace Halo_CE_Mouse_Tool
         {
 
         }
+
+        private void WriteMemoryBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
