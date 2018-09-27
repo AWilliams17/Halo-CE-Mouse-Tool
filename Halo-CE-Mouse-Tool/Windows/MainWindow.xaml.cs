@@ -45,12 +45,17 @@ namespace Halo_CE_Mouse_Tool
 
         }
 
-        private void CustomEditionBtn_Click(object sender, RoutedEventArgs e)
+        private void HaloCustomEditionBtn_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void CombatEvolvedBtn_Click(object sender, RoutedEventArgs e)
+        private void HaloCombatEvolvedBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Halo2VistaBtn_Click(object sender, RoutedEventArgs e)
         {
 
         }
