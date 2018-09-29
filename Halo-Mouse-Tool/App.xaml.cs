@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Halo_CE_Mouse_Tool
+namespace Halo_Mouse_Tool
 {
     /// <summary>
     /// Interaction logic for App.xaml

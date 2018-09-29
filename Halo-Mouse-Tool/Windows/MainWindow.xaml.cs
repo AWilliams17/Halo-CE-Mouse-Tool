@@ -12,8 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Registrar;
+using SharpUtils;
 
-namespace Halo_CE_Mouse_Tool
+namespace Halo_Mouse_Tool
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -23,6 +25,7 @@ namespace Halo_CE_Mouse_Tool
         public MainWindow()
         {
             InitializeComponent();
+
         }
 
         private void DeployDllBtn_Click(object sender, RoutedEventArgs e)

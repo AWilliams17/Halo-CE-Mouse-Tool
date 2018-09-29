@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Halo_CE_Mouse_Tool.Properties
+namespace Halo_Mouse_Tool.Properties
 {
 
 

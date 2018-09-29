@@ -12,12 +12,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Halo_CE_Mouse_Tool.Windows
+namespace Halo_Mouse_Tool.Windows
 {
     /// <summary>
     /// Interaction logic for UpdateWindow.xaml
     /// </summary>
-    public partial class UpdateWindow : Window
+    public partial class UpdateWindow
     {
         public UpdateWindow()
         {
