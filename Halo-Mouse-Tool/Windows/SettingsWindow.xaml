@@ -9,7 +9,11 @@
         Title="Halo Mouse Tool Settings" Height="188" Width="198.667" TitleCharacterCasing="Normal" ResizeMode="NoResize" Background="#FF252525">
     <DockPanel>
         <StackPanel Orientation="Vertical" Margin="0,0,0,0" Width="183">
-            <StackPanel Height="24" VerticalAlignment="Top" Margin="0,10,0,0" Orientation="Horizontal">
+            <StackPanel Height="26" VerticalAlignment="Top" Margin="0,5,0,0" Orientation="Horizontal">
+                <CheckBox x:Name="HotkeyCheckbox" Content="Hotkey:"/>
+                <TextBox x:Name="HotkeyTextbox" TextWrapping="Wrap" Text="F1" Width="82" Margin="37, 0, 0, 0"/>
+            </StackPanel>
+            <StackPanel Height="24" VerticalAlignment="Top" Margin="0,5,0,0" Orientation="Horizontal">
                 <Label Content="Halo 2 Vista FOV:"/>
                 <xctk:DecimalUpDown x:Name="H2VFOVUpDown" Width="82" AllowTextInput="True" Increment="0.1" Foreground="White" DefaultValue="75.0"/>
             </StackPanel>
@@ -17,11 +21,7 @@
                 <Label Content="Increment Amount:" FontSize="10.7"/>
                 <xctk:DecimalUpDown x:Name="IncrementAmountUpDown" Width="82" AllowTextInput="True" Increment="0.1" Foreground="White" DefaultValue="75.0"/>
             </StackPanel>
-            <CheckBox x:Name="KeyIncrementCheckbox" Content="+/- Keys Increment" Margin="0, 5, 0, 0"/>
-            <StackPanel Height="26" VerticalAlignment="Top" Margin="0,5,0,0" Orientation="Horizontal">
-                <CheckBox x:Name="HotkeyCheckbox" Content="Hotkey:"/>
-                <TextBox x:Name="HotkeyTextbox" TextWrapping="Wrap" Text="F1" Width="82" Margin="37, 0, 0, 0"/>
-            </StackPanel>
+            <CheckBox x:Name="KeyIncrementCheckbox" Content="+/- Keys Increment Enabled" Margin="0, 5, 0, 0" FontSize="10.7"/>
             <StackPanel Margin="0, 8, 0, 0">
                 <Button x:Name="CloseBtn" Content="Close" Height="1"/>
             </StackPanel>
