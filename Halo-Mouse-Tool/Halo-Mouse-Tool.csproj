@@ -157,9 +157,6 @@
     <Folder Include="Classes\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="hmtico_SgO_icon.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="HMT.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

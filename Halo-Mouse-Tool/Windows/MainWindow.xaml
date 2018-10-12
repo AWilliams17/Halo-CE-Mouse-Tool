@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="" Height="160.694" Width="272.644" Background="#FF252525" TitleCharacterCasing="Normal" ResizeMode="NoResize">
+        Title="" Height="166.745" Width="272.644" Background="#FF252525" TitleCharacterCasing="Normal" ResizeMode="NoResize">
     <DockPanel LastChildFill="False">
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="File" x:Name="menuFileDropdown">

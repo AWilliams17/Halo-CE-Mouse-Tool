@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Net;
 using System.Threading;
@@ -27,6 +28,7 @@ namespace Halo_Mouse_Tool.Windows
         public UpdateWindow()
         {
             InitializeComponent();
+            Closing += OnWindowClosing;
             UpdateTimeoutTimer.Tick += UpdateTimeoutTimer_Tick;
             UpdateTimeoutTimer.Interval = new TimeSpan(0, 0, 1);
         }
@@ -98,6 +100,12 @@ namespace Halo_Mouse_Tool.Windows
                     Process.Start("https://github.com/AWilliams17/Starbound-Asset-Ripper/releases");
                 }
             }
+        }
+
+        public void OnWindowClosing(object sender, CancelEventArgs e)
+        {
+            if (cancellationTokenSource != null)
+                cancellationTokenSource.Cancel();
         }
     }
 }
