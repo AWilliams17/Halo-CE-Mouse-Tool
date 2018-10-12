@@ -13,7 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Registrar;
-using SharpUtils;
+using SharpUtils.WPFUtils;
+using Halo_Mouse_Tool.Windows;
 
 namespace Halo_Mouse_Tool
 {
@@ -25,22 +26,21 @@ namespace Halo_Mouse_Tool
         public MainWindow()
         {
             InitializeComponent();
-
-        }
-
-        private void DeployDllBtn_Click(object sender, RoutedEventArgs e)
-        {
-
+            
         }
 
         private void SettingsBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void UpdateBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            if (!WindowHelpers.IsWindowOpen(typeof(UpdateWindow)))
+            {
+                UpdateWindow updateWindow = new UpdateWindow();
+                updateWindow.Show();
+            }
         }
 
         private void ExitBtn_Click(object sender, RoutedEventArgs e)
@@ -81,6 +81,11 @@ namespace Halo_Mouse_Tool
         private void WriteMemoryBtn_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void MainWindow_Closing(object sender, EventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }

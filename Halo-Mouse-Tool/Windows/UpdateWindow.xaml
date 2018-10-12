@@ -6,12 +6,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
     mc:Ignorable="d"
-        Title="Halo Mouse Tool Update Check" Height="121.949" Width="223.645" Background="#FF252525" TitleCharacterCasing="Normal" ResizeMode="NoResize">
+        Title="Halo Mouse Tool Update Check" Height="105.282" Width="223.645" Background="#FF252525" TitleCharacterCasing="Normal" ResizeMode="NoResize">
     <StackPanel Orientation="Vertical" Margin="10,10,10,0">
         <StackPanel Orientation="Horizontal">
             <Label Content="Timeout (seconds):"/>
-            <xctk:IntegerUpDown x:Name="TimeoutUpDown" Width="88" AllowTextInput="True" Increment="1" Foreground="White" DefaultValue="5" MaxLength="10"/>
+            <xctk:IntegerUpDown x:Name="TimeoutUpDown" Width="88" Increment="1" Foreground="White" Value="5" Maximum="10" Minimum="1"/>
         </StackPanel>
-        <Button x:Name="UpdateCheckBtn" Content="Check for Updates" Margin="0, 20, 0, 0"/>
+        <Button x:Name="UpdateCheckBtn" Content="Check for Updates" Margin="0,5,0,0" Click="UpdateCheckBtn_Click"/>
     </StackPanel>
 </Controls:MetroWindow>

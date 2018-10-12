@@ -1,27 +1,103 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
+using System.Net;
+using System.Threading;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System.Windows.Threading;
+using SharpUtils.WebUtils;
 
 namespace Halo_Mouse_Tool.Windows
 {
     /// <summary>
     /// Interaction logic for UpdateWindow.xaml
     /// </summary>
-    public partial class UpdateWindow
+    public partial class UpdateWindow // TODO: Re-write this mess.
     {
+        private bool checkInProgress = false;
+        private string haloMouseToolGithub = "https://github.com/AWilliams17/Halo-CE-Mouse-Tool";
+        private CancellationTokenSource cancellationTokenSource;
+        private DispatcherTimer UpdateTimeoutTimer = new DispatcherTimer();
+        private int timeoutCountdown;
+
+        private void UpdateTimeoutTimer_Tick(object sender, EventArgs e)
+        {
+            UpdateCheckBtn.Content = $"Timeout in {timeoutCountdown -= 1}... (Press to cancel)";
+        }
+
         public UpdateWindow()
         {
             InitializeComponent();
+            UpdateTimeoutTimer.Tick += UpdateTimeoutTimer_Tick;
+            UpdateTimeoutTimer.Interval = new TimeSpan(0, 0, 1);
+        }
+
+        private void UpdateCheckBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (!checkInProgress)
+            {
+                StartUpdateCheck();
+            }
+            else
+            {
+                StopUpdateCheck();
+            }
+        }
+
+        private async void StartUpdateCheck()
+        {
+            cancellationTokenSource = new CancellationTokenSource();
+            UpdateTimeoutTimer.Start();
+            TimeoutUpDown.IsEnabled = false;
+            checkInProgress = true;
+            int updateTimeOut = (int)TimeoutUpDown.Value;
+            timeoutCountdown = updateTimeOut;
+            try
+            {
+                bool updateAvailable = await GithubReleaseParser.GetUpdateAvailableAsync("AWilliams17", "Halo-CE-Mouse-Tool", updateTimeOut, cancellationTokenSource.Token);
+                ShowUpdateAvailableDialog(updateAvailable);
+            }
+            catch (WebException ex)
+            {
+                MessageBox.Show($"Update Check Failed: '{ex.Message}'", "Update Check Failed");
+            }
+            finally
+            {
+                StopUpdateCheck();
+            }
+        }
+
+        private void StopUpdateCheck()
+        {
+            TimeoutUpDown.IsEnabled = true;
+            UpdateTimeoutTimer.Stop();
+            UpdateCheckBtn.Content = "Check for Updates";
+            if (checkInProgress)
+            {
+                checkInProgress = false;
+                if (cancellationTokenSource.IsCancellationRequested)
+                {
+                    cancellationTokenSource.Cancel();
+                    MessageBox.Show("Update Check was cancelled.", "Update cancelled");
+                }
+            }
+        }
+
+        private void ShowUpdateAvailableDialog(bool UpdateAvailable)
+        {
+            StopUpdateCheck();
+            if (!UpdateAvailable)
+            {
+                MessageBox.Show("No updates are available.", "No updates found");
+            }
+            else
+            {
+                string updateAvailableMessage = "An update is available. Would you like to go to the download page?";
+                var userAction = MessageBox.Show(updateAvailableMessage, "Update Available", MessageBoxButton.YesNo);
+                if (userAction == MessageBoxResult.Yes)
+                {
+                    Process.Start("https://github.com/AWilliams17/Starbound-Asset-Ripper/releases");
+                }
+            }
         }
     }
 }
