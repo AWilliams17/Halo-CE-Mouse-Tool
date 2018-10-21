@@ -8,7 +8,6 @@ Right now this is what I got planned.
 * [ ] Main Window
 * [ ] Menubar - File, About, Tools
 * [ ] Update Window
-* [ ] Deploy DLL Window
 
 ## Settings
 * [ ] Enable Hotkeys
@@ -25,7 +24,6 @@ Right now this is what I got planned.
 * [ ] Memory Writing
 * [ ] Settings Saving/Loading
 * [ ] Update Check Window Functionality
-* [ ] Deploy DLL Window Functionality
 * [ ] Main Window Functionality
 * [ ] Automatically Launch Halo Functionality
 * [ ] Automatic Tool execution (+auto-close)
