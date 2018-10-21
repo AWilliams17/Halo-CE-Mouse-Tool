@@ -1,20 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using Halo_Mouse_Tool.Windows;
+using Halo_Mouse_Tool.Classes.ConfigContainer;
 using Registrar;
+using System;
+using System.Windows;
 using SharpUtils.WPFUtils;
-using Halo_Mouse_Tool.Windows;
 
 namespace Halo_Mouse_Tool
 {
@@ -23,15 +12,39 @@ namespace Halo_Mouse_Tool
     /// </summary>
     public partial class MainWindow
     {
+        private static Config config = new Config();
+
         public MainWindow()
         {
             InitializeComponent();
-            
+            Closing += MainWindow_Closing;
+
+            try
+            {
+                config.settings.LoadSettings();
+            }
+            catch (RegLoadException)
+            {
+                try
+                {
+                    config.settings.SaveSettings();
+                }
+                catch (RegSaveException ex)
+                {
+                    MessageBox.Show($"Failed to save default settings. Error message: {ex.Message}", "Error while saving settings to Registry.");
+                }
+            }
+
+            // TODO: Now, set the values in the sensitivity boxes.
         }
 
         private void SettingsBtn_Click(object sender, RoutedEventArgs e)
         {
-            
+            if (!WindowHelpers.IsWindowOpen(typeof(SettingsWindow)))
+            {
+                SettingsWindow settingsWindow = new SettingsWindow();
+                settingsWindow.Show();
+            }
         }
 
         private void UpdateBtn_Click(object sender, RoutedEventArgs e)
@@ -45,7 +58,7 @@ namespace Halo_Mouse_Tool
 
         private void ExitBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
 
         private void HaloCustomEditionBtn_Click(object sender, RoutedEventArgs e)
@@ -85,6 +98,7 @@ namespace Halo_Mouse_Tool
 
         private void MainWindow_Closing(object sender, EventArgs e)
         {
+            config.settings.SaveSettings();
             Application.Current.Shutdown();
         }
     }
