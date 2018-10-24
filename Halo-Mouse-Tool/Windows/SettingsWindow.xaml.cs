@@ -23,5 +23,40 @@ namespace Halo_Mouse_Tool.Windows
         {
             InitializeComponent();
         }
+
+        private void HotkeyCheckbox_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void HotkeyCheckbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void HotkeyTextbox_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void IncrementAmountUpDown_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+
+        }
+
+        private void CloseBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void KeyIncrementCheckbox_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void KeyIncrementCheckbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
