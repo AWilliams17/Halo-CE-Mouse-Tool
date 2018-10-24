@@ -72,9 +72,26 @@ namespace Halo_Mouse_Tool.Classes.ConfigValidators
             }
         }
 
+
+        class CurrentGameValidator : IValidator
+        {
+            public string Description()
+            {
+                return "Must be between 0 and 3.";
+            }
+
+            public bool Validate(object value)
+            {
+                int convertedValue = ValidatorConverters.ValidatorIntConverter(value);
+                return (convertedValue >= 0 && convertedValue <= 3);
+            }
+        }
+
+
         public IValidator SensitivityValidatorInstance = new SensitivityValidator();
         public IValidator BoolValidatorInstance = new BoolValidator();
         public IValidator IncrementAmountValidatorInstance = new IncrementAmountValidator();
         public IValidator HotkeyValidatorInstance = new HotkeyValidator();
+        public IValidator CurrentGameValidatorInstance = new CurrentGameValidator();
     }
 }
