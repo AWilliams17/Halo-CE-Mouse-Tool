@@ -4,6 +4,10 @@ using Registrar;
 using System;
 using System.Windows;
 using SharpUtils.WPFUtils;
+using System.Diagnostics;
+using System.Threading;
+using SharpUtils.WebUtils;
+using System.Net;
 
 namespace Halo_Mouse_Tool
 {
@@ -35,7 +39,7 @@ namespace Halo_Mouse_Tool
                 }
             }
 
-            // TODO: Now, set the values in the sensitivity boxes.
+            SetSensitivityBoxes(config.settings.GetOption<float>("SensX"), config.settings.GetOption<float>("SensY"));
         }
 
         private void SettingsBtn_Click(object sender, RoutedEventArgs e)
@@ -58,7 +62,7 @@ namespace Halo_Mouse_Tool
 
         private void ExitBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void HaloCustomEditionBtn_Click(object sender, RoutedEventArgs e)
@@ -76,19 +80,29 @@ namespace Halo_Mouse_Tool
 
         }
 
-        private void HelpBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void GithubBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            Process.Start("https://github.com/AWilliams17/Halo-CE-Mouse-Tool");
         }
 
-        private void RedditBtn_Click(object sender, RoutedEventArgs e)
+        private async void RedditBtn_Click(object sender, RoutedEventArgs e)
         {
+            CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+            try
+            {
+                string readmeLink = "https://raw.githubusercontent.com/AWilliams17/Halo-CE-Mouse-Tool/master/README.md";
+                string redditThreadLink = await GithubReadmeParser.GetLineFromReadmeAsync(readmeLink, "Reddit: ", 5, cancellationTokenSource.Token);
 
+                if (redditThreadLink != null)
+                {
+                    Process.Start(redditThreadLink);
+                }
+                else MessageBox.Show("Failed to get Reddit thread link from Github Readme.", "Failed to find Reddit thread link");
+            }
+            catch (WebException ex)
+            {
+                MessageBox.Show($"Error occurred while getting Reddit thread link from Github Readme: {ex.Message}", "Error getting Reddit thread link");
+            }
         }
 
         private void WriteMemoryBtn_Click(object sender, RoutedEventArgs e)
@@ -100,6 +114,12 @@ namespace Halo_Mouse_Tool
         {
             config.settings.SaveSettings();
             Application.Current.Shutdown();
+        }
+
+        private void SetSensitivityBoxes(float SensX, float SensY)
+        {
+            SensXUpDown.Value = SensX;
+            SensYUpDown.Value = SensY;
         }
     }
 }

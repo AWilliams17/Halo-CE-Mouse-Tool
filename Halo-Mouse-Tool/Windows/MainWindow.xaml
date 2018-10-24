@@ -20,7 +20,6 @@
                 <MenuItem x:Name="Halo2VistaBtn" Header="Halo 2 Vista" IsCheckable="True" Click="Halo2VistaBtn_Click"/>
             </MenuItem>
             <MenuItem Header="About" x:Name="menuAboutDropdown">
-                <MenuItem x:Name="HelpBtn" Header="Help" IsCheckable="False" Click="HelpBtn_Click"/>
                 <MenuItem x:Name="GithubBtn" Header="Github" IsCheckable="False" Click="GithubBtn_Click"/>
                 <MenuItem x:Name="RedditBtn" Header="Reddit" IsCheckable="False" Click="RedditBtn_Click"/>
             </MenuItem>
@@ -28,11 +27,11 @@
         <StackPanel x:Name="windowControls" Orientation="Vertical" Width="245" Margin="10,5,0,0">
             <StackPanel Orientation="Horizontal">
                 <Label Content="Sens X"/>
-                <xctk:DecimalUpDown x:Name="SensXUpDown" Width="200" AllowTextInput="True" Increment="0.1" Foreground="White" DefaultValue="0.0"/>
+                <xctk:SingleUpDown x:Name="SensXUpDown" Width="200" AllowTextInput="True" Increment="0.1" Foreground="White" DefaultValue="0.0"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0, 5, 0, 0">
                 <Label Content="Sens Y"/>
-                <xctk:DecimalUpDown x:Name="SensYUpDown" Width="200" Margin="1, 0, 0, 0" AllowTextInput="True" Increment="0.1" Foreground="White" DefaultValue="0.0"/>
+                <xctk:SingleUpDown x:Name="SensYUpDown" Width="200" Margin="1, 0, 0, 0" AllowTextInput="True" Increment="0.1" Foreground="White" DefaultValue="0.0"/>
             </StackPanel>
             <Button Content="Write to Memory" Height="28" Margin="0,5" x:Name="WriteMemoryBtn" Click="WriteMemoryBtn_Click"/>
         </StackPanel>
