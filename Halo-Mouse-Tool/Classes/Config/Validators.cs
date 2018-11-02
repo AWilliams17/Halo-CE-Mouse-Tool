@@ -29,8 +29,8 @@ namespace Halo_Mouse_Tool.Classes.ConfigValidators
 
             public bool Validate(object value)
             {
-                bool convertedValue = ValidatorConverters.ValidatorBooleanConverter(value);
-                return convertedValue;
+                int convertedValue = ValidatorConverters.ValidatorIntConverter(value);
+                return (convertedValue == 1 || convertedValue == 0);
             }
         }
 

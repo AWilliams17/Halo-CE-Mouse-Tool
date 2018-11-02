@@ -1,16 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Halo_Mouse_Tool.Classes.ConfigContainer;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Halo_Mouse_Tool.Windows
 {
@@ -19,44 +9,61 @@ namespace Halo_Mouse_Tool.Windows
     /// </summary>
     public partial class SettingsWindow
     {
-        public SettingsWindow()
+        Config config;
+
+        public SettingsWindow(Config ConfigInstance)
         {
             InitializeComponent();
+            config = ConfigInstance;
+            SetControls();
+        }
+
+        private void SetControls()
+        {
+            HotkeyCheckbox.IsChecked = config.settings.GetOption<int>("HotkeyEnabled") == 1;
+            KeyIncrementCheckbox.IsChecked = config.settings.GetOption<int>("IncrementKeysEnabled") == 1;
+            HotkeyTextbox.Text = config.settings.GetOption<string>("Hotkey");
+            IncrementAmountUpDown.Value = config.settings.GetOption<float>("IncrementAmount");
         }
 
         private void HotkeyCheckbox_Checked(object sender, RoutedEventArgs e)
         {
-
+            config.settings.SetOption("HotkeyEnabled", 1);
         }
 
         private void HotkeyCheckbox_Unchecked(object sender, RoutedEventArgs e)
         {
-
+            config.settings.SetOption("HotkeyEnabled", 0);
         }
 
         private void HotkeyTextbox_KeyDown(object sender, KeyEventArgs e)
         {
-
+            config.settings.SetOption("Hotkey", e.Key);
         }
 
         private void IncrementAmountUpDown_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-
+            if (config != null) // Without this check, this will get called before the config is set, causing an exception.
+            {
+                float incrementValue = IncrementAmountUpDown.Value.Value;
+                config.settings.SetOption("IncrementAmount", incrementValue);
+            }
         }
-
-        private void CloseBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
+        
         private void KeyIncrementCheckbox_Checked(object sender, RoutedEventArgs e)
         {
-
+            config.settings.SetOption("IncrementKeysEnabled", 1);
         }
 
         private void KeyIncrementCheckbox_Unchecked(object sender, RoutedEventArgs e)
         {
+            config.settings.SetOption("IncrementKeysEnabled", 0);
+        }
 
+        private void CloseBtn_Click(object sender, RoutedEventArgs e)
+        {
+            config.settings.SaveSettings();
+            Close();
         }
     }
 }

@@ -17,6 +17,7 @@ namespace Halo_Mouse_Tool
     public partial class MainWindow
     {
         private static Config config = new Config();
+        private enum CurrentGame {HaloCE, HaloPC, Halo2};
 
         public MainWindow()
         {
@@ -39,14 +40,14 @@ namespace Halo_Mouse_Tool
                 }
             }
 
-            SetSensitivityBoxes(config.settings.GetOption<float>("SensX"), config.settings.GetOption<float>("SensY"));
+            SetSensitivityBoxes(config.settings.GetOption<float>("SensitivityX"), config.settings.GetOption<float>("SensitivityY"));
         }
 
         private void SettingsBtn_Click(object sender, RoutedEventArgs e)
         {
             if (!WindowHelpers.IsWindowOpen(typeof(SettingsWindow)))
             {
-                SettingsWindow settingsWindow = new SettingsWindow();
+                SettingsWindow settingsWindow = new SettingsWindow(config);
                 settingsWindow.Show();
             }
         }
