@@ -142,18 +142,12 @@ namespace Halo_Mouse_Tool
 
         private void SensXUpDown_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            if (config != null) // Without this check, this will get called before the config is loaded, causing an exception.
-            {
-                config.settings.SetOption("SensitivityX", SensXUpDown.Value);
-            }
+            config?.settings.SetOption("SensitivityX", SensXUpDown.Value);
         }
 
         private void SensYUpDown_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            if (config != null) // Without this check, this will get called before the config is loaded, causing an exception.
-            {
-                config.settings.SetOption("SensitivityY", SensYUpDown.Value);
-            }
+            config?.settings.SetOption("SensitivityY", SensYUpDown.Value);
         }
     }
 }

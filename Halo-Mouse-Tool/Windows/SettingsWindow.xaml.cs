@@ -43,11 +43,8 @@ namespace Halo_Mouse_Tool.Windows
 
         private void IncrementAmountUpDown_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            if (config != null) // Without this check, this will get called before the config is set, causing an exception.
-            {
-                float incrementValue = IncrementAmountUpDown.Value.Value;
-                config.settings.SetOption("IncrementAmount", incrementValue);
-            }
+            float incrementValue = IncrementAmountUpDown.Value.Value;
+            config?.settings.SetOption("IncrementAmount", incrementValue);
         }
         
         private void KeyIncrementCheckbox_Checked(object sender, RoutedEventArgs e)

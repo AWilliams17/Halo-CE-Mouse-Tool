@@ -102,6 +102,7 @@
     </ApplicationDefinition>
     <Compile Include="Classes\Config\ConfigContainer.cs" />
     <Compile Include="Classes\Config\Validators.cs" />
+    <Compile Include="Classes\HaloMemoryWriter.cs" />
     <Compile Include="Windows\SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
