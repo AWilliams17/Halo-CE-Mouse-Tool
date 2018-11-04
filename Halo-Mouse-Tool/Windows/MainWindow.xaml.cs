@@ -16,13 +16,15 @@ namespace Halo_Mouse_Tool
     /// </summary>
     public partial class MainWindow
     {
-        private static Config config = new Config();
+        private static Config config;
         private enum CurrentGame {HaloCE, HaloPC, Halo2};
+        private CurrentGame selectedGame;
 
         public MainWindow()
         {
             InitializeComponent();
             Closing += MainWindow_Closing;
+            config = new Config();
 
             try
             {
@@ -40,6 +42,7 @@ namespace Halo_Mouse_Tool
                 }
             }
 
+            selectedGame = (CurrentGame)config.settings.GetOption<int>("CurrentGame");
             SetSensitivityBoxes(config.settings.GetOption<float>("SensitivityX"), config.settings.GetOption<float>("SensitivityY"));
         }
 
@@ -66,19 +69,33 @@ namespace Halo_Mouse_Tool
             Close();
         }
 
+        private void SetCurrentGameBtnStatuses()
+        {
+            // From what I understand there is no simple way to do this easily with binding, so this will do for now.
+            HaloCustomEditionBtn.IsChecked = (selectedGame == CurrentGame.HaloCE);
+            HaloCombatEvolvedBtn.IsChecked = (selectedGame == CurrentGame.HaloPC);
+            Halo2VistaBtn.IsChecked = (selectedGame == CurrentGame.Halo2);
+        }
+
         private void HaloCustomEditionBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            selectedGame = CurrentGame.HaloCE;
+            config.settings.SetOption("CurrentGame", (int)selectedGame);
+            SetCurrentGameBtnStatuses();
         }
 
         private void HaloCombatEvolvedBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            selectedGame = CurrentGame.HaloPC;
+            config.settings.SetOption("CurrentGame", (int)selectedGame);
+            SetCurrentGameBtnStatuses();
         }
 
         private void Halo2VistaBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            selectedGame = CurrentGame.Halo2;
+            config.settings.SetOption("CurrentGame", (int)selectedGame);
+            SetCurrentGameBtnStatuses();
         }
 
         private void GithubBtn_Click(object sender, RoutedEventArgs e)
@@ -121,6 +138,22 @@ namespace Halo_Mouse_Tool
         {
             SensXUpDown.Value = SensX;
             SensYUpDown.Value = SensY;
+        }
+
+        private void SensXUpDown_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (config != null) // Without this check, this will get called before the config is loaded, causing an exception.
+            {
+                config.settings.SetOption("SensitivityX", SensXUpDown.Value);
+            }
+        }
+
+        private void SensYUpDown_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (config != null) // Without this check, this will get called before the config is loaded, causing an exception.
+            {
+                config.settings.SetOption("SensitivityY", SensYUpDown.Value);
+            }
         }
     }
 }

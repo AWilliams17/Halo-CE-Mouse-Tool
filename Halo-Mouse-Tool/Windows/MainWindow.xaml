@@ -15,9 +15,9 @@
                 <MenuItem x:Name="ExitBtn" Header="Exit" IsCheckable="False" Click="ExitBtn_Click"/>
             </MenuItem>
             <MenuItem Header="Game" x:Name="menuGameDropdown">
-                <MenuItem x:Name="HaloCustomEditionBtn" Header="Halo Custom Edition" IsCheckable="True" Click="HaloCustomEditionBtn_Click"/>
-                <MenuItem x:Name="HaloCombatEvolvedBtn" Header="Halo Combat Evolved" IsCheckable="True" Click="HaloCombatEvolvedBtn_Click"/>
-                <MenuItem x:Name="Halo2VistaBtn" Header="Halo 2 Vista" IsCheckable="True" Click="Halo2VistaBtn_Click"/>
+                <MenuItem x:Name="HaloCustomEditionBtn" Header="Halo Custom Edition" IsCheckable="False" Click="HaloCustomEditionBtn_Click"/>
+                <MenuItem x:Name="HaloCombatEvolvedBtn" Header="Halo Combat Evolved" IsCheckable="False" Click="HaloCombatEvolvedBtn_Click"/>
+                <MenuItem x:Name="Halo2VistaBtn" Header="Halo 2 Vista" IsCheckable="False" Click="Halo2VistaBtn_Click"/>
             </MenuItem>
             <MenuItem Header="About" x:Name="menuAboutDropdown">
                 <MenuItem x:Name="GithubBtn" Header="Github" IsCheckable="False" Click="GithubBtn_Click"/>
@@ -27,11 +27,11 @@
         <StackPanel x:Name="windowControls" Orientation="Vertical" Width="245" Margin="10,5,0,0">
             <StackPanel Orientation="Horizontal">
                 <Label Content="Sens X"/>
-                <xctk:SingleUpDown x:Name="SensXUpDown" Width="200" AllowTextInput="True" FormatString="F" Increment="0.01" Foreground="White" DefaultValue="0.0"/>
+                <xctk:SingleUpDown x:Name="SensXUpDown" Width="200" AllowTextInput="True" FormatString="F" Increment="0.01" Foreground="White" DefaultValue="0.0" ValueChanged="SensXUpDown_ValueChanged"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0, 5, 0, 0">
                 <Label Content="Sens Y"/>
-                <xctk:SingleUpDown x:Name="SensYUpDown" Width="200" Margin="1, 0, 0, 0" AllowTextInput="True" FormatString="F" Increment="0.01" Foreground="White" DefaultValue="0.0"/>
+                <xctk:SingleUpDown x:Name="SensYUpDown" Width="200" Margin="1, 0, 0, 0" AllowTextInput="True" FormatString="F" Increment="0.01" Foreground="White" DefaultValue="0.0" ValueChanged="SensYUpDown_ValueChanged"/>
             </StackPanel>
             <Button Content="Write to Memory" Height="28" Margin="0,5" x:Name="WriteMemoryBtn" Click="WriteMemoryBtn_Click"/>
         </StackPanel>
