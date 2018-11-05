@@ -1,7 +1,9 @@
 ﻿using Halo_Mouse_Tool.Windows;
 using Halo_Mouse_Tool.Classes.ConfigContainer;
+using Halo_Mouse_Tool.Classes.HaloMemoryWriter;
 using Registrar;
 using System;
+using System.Runtime.InteropServices;
 using System.Windows;
 using SharpUtils.WPFUtils;
 using System.Diagnostics;
@@ -116,7 +118,21 @@ namespace Halo_Mouse_Tool
 
         private void WriteMemoryBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            string targetHaloGame = selectedGame.ToString();
+            float sensitivityX = SensXUpDown.Value.Value;
+            float sensitivityY = SensYUpDown.Value.Value;
+            if (HaloMemoryWriter.IsProcessRunning(targetHaloGame.ToLower()))
+            {
+                bool writeSuccessful = false;
+                if (selectedGame == CurrentGame.HaloCE)
+                    writeSuccessful = HaloMemoryWriter.WriteToCustomEdition(sensitivityX, sensitivityY);
+                else
+                    writeSuccessful = HaloMemoryWriter.WriteToCombatEvolved(sensitivityX, sensitivityY);
+                if (!writeSuccessful)
+                    MessageBox.Show($"Error: Failed to write to {targetHaloGame} - LastWin32ErrorCode: {Marshal.GetLastWin32Error()} (please post this to the thread/github).");
+            }
+            else
+                MessageBox.Show($"Error: {targetHaloGame} is not running.", $"{targetHaloGame} Not Running");
         }
 
         private void MainWindow_Closing(object sender, EventArgs e)

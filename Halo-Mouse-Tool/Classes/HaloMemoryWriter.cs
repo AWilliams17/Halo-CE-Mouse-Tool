@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using SharpUtils.MiscUtils;
 
-namespace Halo_Mouse_Tool.Classes
+namespace Halo_Mouse_Tool.Classes.HaloMemoryWriter
 {
     public static class HaloMemoryWriter
     {
@@ -21,7 +21,6 @@ namespace Halo_Mouse_Tool.Classes
 
         public static bool IsProcessRunning(string ProcessName)
         {
-            ProcessName = (ProcessName.Contains(".exe")) ? ProcessName.Substring(0, ProcessName.Length - 4) : ProcessName;
             Process[] processSearchResults = Process.GetProcessesByName(ProcessName);
             return (processSearchResults.Length != 0);
         }
