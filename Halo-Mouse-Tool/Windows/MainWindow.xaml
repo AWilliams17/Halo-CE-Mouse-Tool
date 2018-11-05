@@ -17,7 +17,6 @@
             <MenuItem Header="Game" x:Name="menuGameDropdown">
                 <MenuItem x:Name="HaloCustomEditionBtn" Header="Halo Custom Edition" IsCheckable="False" Click="HaloCustomEditionBtn_Click"/>
                 <MenuItem x:Name="HaloCombatEvolvedBtn" Header="Halo Combat Evolved" IsCheckable="False" Click="HaloCombatEvolvedBtn_Click"/>
-                <MenuItem x:Name="Halo2VistaBtn" Header="Halo 2 Vista" IsCheckable="False" Click="Halo2VistaBtn_Click"/>
             </MenuItem>
             <MenuItem Header="About" x:Name="menuAboutDropdown">
                 <MenuItem x:Name="GithubBtn" Header="Github" IsCheckable="False" Click="GithubBtn_Click"/>

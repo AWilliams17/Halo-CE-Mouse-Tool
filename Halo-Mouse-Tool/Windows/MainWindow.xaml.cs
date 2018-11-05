@@ -17,7 +17,7 @@ namespace Halo_Mouse_Tool
     public partial class MainWindow
     {
         private static Config config;
-        private enum CurrentGame {HaloCE, HaloPC, Halo2};
+        private enum CurrentGame {HaloCE, HaloPC};
         private CurrentGame selectedGame;
 
         public MainWindow()
@@ -71,10 +71,8 @@ namespace Halo_Mouse_Tool
 
         private void SetCurrentGameBtnStatuses()
         {
-            // From what I understand there is no simple way to do this easily with binding, so this will do for now.
             HaloCustomEditionBtn.IsChecked = (selectedGame == CurrentGame.HaloCE);
             HaloCombatEvolvedBtn.IsChecked = (selectedGame == CurrentGame.HaloPC);
-            Halo2VistaBtn.IsChecked = (selectedGame == CurrentGame.Halo2);
         }
 
         private void HaloCustomEditionBtn_Click(object sender, RoutedEventArgs e)
@@ -87,13 +85,6 @@ namespace Halo_Mouse_Tool
         private void HaloCombatEvolvedBtn_Click(object sender, RoutedEventArgs e)
         {
             selectedGame = CurrentGame.HaloPC;
-            config.settings.SetOption("CurrentGame", (int)selectedGame);
-            SetCurrentGameBtnStatuses();
-        }
-
-        private void Halo2VistaBtn_Click(object sender, RoutedEventArgs e)
-        {
-            selectedGame = CurrentGame.Halo2;
             config.settings.SetOption("CurrentGame", (int)selectedGame);
             SetCurrentGameBtnStatuses();
         }
