@@ -1,20 +1,56 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SharpUtils.MiscUtils;
 
 namespace Halo_Mouse_Tool.Classes
 {
     public static class HaloMemoryWriter
     {
-        // HALO PC SENSX: 0x310B50
-        // HALO PC SENSY: 0x310B54
-        // HALO PC MOUSE ACCELERATION: 0x963C0
+        private static byte[] _mouseAccelerationNOP = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+        private enum _haloAddresses
+        {
+            AccelerationCE_1 = 0x8F830,
+            AccelerationCE_2 = 0x8F836,
+            AccelerationPC = 0x963C0,
+            SensXCE = 0x2ABB50,
+            SensYCE = 0x2ABB54,
+            SensXPC = 0x310B50,
+            SensYPC = 0x310B54,
+        }
 
-        // HALO CE SENSX: 0x2ABB50
-        // HALO CE SENSY: 0x2ABB54
-        // HALO CE MOUSE ACCELERATION: 0x8F836 and 0x8F830 (?)
+        public static bool IsProcessRunning(string ProcessName)
+        {
+            ProcessName = (ProcessName.Contains(".exe")) ? ProcessName.Substring(0, ProcessName.Length - 4) : ProcessName;
+            Process[] processSearchResults = Process.GetProcessesByName(ProcessName);
+            return (processSearchResults.Length != 0);
+        }
+
+        public static bool WriteToCustomEdition(float SensitivityX, float SensitivityY)
+        {
+            byte[] sensitivityX = BitConverter.GetBytes(SensitivityX);
+            byte[] sensitivityY = BitConverter.GetBytes(SensitivityY);
+            bool[] operationResults = {
+                WriteMemoryHelper.WriteToProcessMemory("haloce", sensitivityX, (int)_haloAddresses.SensXCE),
+                WriteMemoryHelper.WriteToProcessMemory("haloce", sensitivityX, (int)_haloAddresses.SensXCE),
+                WriteMemoryHelper.WriteToProcessMemory("haloce", _mouseAccelerationNOP, (int)_haloAddresses.AccelerationCE_1),
+                WriteMemoryHelper.WriteToProcessMemory("haloce", _mouseAccelerationNOP, (int)_haloAddresses.AccelerationCE_2),
+            };
+            
+            return operationResults.All(x => !x);
+        }
+
+        public static bool WriteToCombatEvolved(float SensitivityX, float SensitivityY)
+        {
+            byte[] sensitivityX = BitConverter.GetBytes(SensitivityX);
+            byte[] sensitivityY = BitConverter.GetBytes(SensitivityY);
+            bool[] operationResults = {
+                WriteMemoryHelper.WriteToProcessMemory("halopc", sensitivityX, (int)_haloAddresses.SensXPC),
+                WriteMemoryHelper.WriteToProcessMemory("halopc", sensitivityX, (int)_haloAddresses.SensXPC),
+                WriteMemoryHelper.WriteToProcessMemory("halopc", _mouseAccelerationNOP, (int)_haloAddresses.AccelerationPC),
+            };
+
+            return operationResults.All(x => !x);
+        }
     }
 }
