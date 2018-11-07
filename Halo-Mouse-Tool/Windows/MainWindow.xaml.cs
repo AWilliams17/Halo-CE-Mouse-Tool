@@ -19,8 +19,8 @@ namespace Halo_Mouse_Tool
     public partial class MainWindow
     {
         private static Config config;
-        private enum CurrentGame {HaloCE, HaloPC};
-        private CurrentGame selectedGame;
+        private enum Game {HaloCE, HaloPC};
+        private Game selectedGame;
 
         public MainWindow()
         {
@@ -44,7 +44,7 @@ namespace Halo_Mouse_Tool
                 }
             }
 
-            selectedGame = (CurrentGame)config.settings.GetOption<int>("CurrentGame");
+            selectedGame = (Game)config.settings.GetOption<int>("CurrentGame");
             SetSensitivityBoxes(config.settings.GetOption<float>("SensitivityX"), config.settings.GetOption<float>("SensitivityY"));
         }
 
@@ -73,20 +73,20 @@ namespace Halo_Mouse_Tool
 
         private void SetCurrentGameBtnStatuses()
         {
-            HaloCustomEditionBtn.IsChecked = (selectedGame == CurrentGame.HaloCE);
-            HaloCombatEvolvedBtn.IsChecked = (selectedGame == CurrentGame.HaloPC);
+            HaloCustomEditionBtn.IsChecked = (selectedGame == Game.HaloCE);
+            HaloCombatEvolvedBtn.IsChecked = (selectedGame == Game.HaloPC);
         }
 
         private void HaloCustomEditionBtn_Click(object sender, RoutedEventArgs e)
         {
-            selectedGame = CurrentGame.HaloCE;
+            selectedGame = Game.HaloCE;
             config.settings.SetOption("CurrentGame", (int)selectedGame);
             SetCurrentGameBtnStatuses();
         }
 
         private void HaloCombatEvolvedBtn_Click(object sender, RoutedEventArgs e)
         {
-            selectedGame = CurrentGame.HaloPC;
+            selectedGame = Game.HaloPC;
             config.settings.SetOption("CurrentGame", (int)selectedGame);
             SetCurrentGameBtnStatuses();
         }
@@ -124,15 +124,15 @@ namespace Halo_Mouse_Tool
             if (HaloMemoryWriter.IsProcessRunning(targetHaloGame.ToLower()))
             {
                 bool writeSuccessful = false;
-                if (selectedGame == CurrentGame.HaloCE)
+                if (selectedGame == Game.HaloCE)
                     writeSuccessful = HaloMemoryWriter.WriteToCustomEdition(sensitivityX, sensitivityY);
                 else
                     writeSuccessful = HaloMemoryWriter.WriteToCombatEvolved(sensitivityX, sensitivityY);
                 if (!writeSuccessful)
-                    MessageBox.Show($"Error: Failed to write to {targetHaloGame} - LastWin32ErrorCode: {Marshal.GetLastWin32Error()} (please post this to the thread/github).");
+                    MessageBox.Show($"Error: Failed to write to '{targetHaloGame}' - Error Code: '{Marshal.GetLastWin32Error()}' - Refer to the readme/ask in the thread for help.");
             }
             else
-                MessageBox.Show($"Error: {targetHaloGame} is not running.", $"{targetHaloGame} Not Running");
+                MessageBox.Show($"Error: '{targetHaloGame}' is not running.", $"{targetHaloGame} Not Running");
         }
 
         private void MainWindow_Closing(object sender, EventArgs e)

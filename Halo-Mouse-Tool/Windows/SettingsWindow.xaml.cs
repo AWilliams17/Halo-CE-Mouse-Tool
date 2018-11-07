@@ -62,5 +62,15 @@ namespace Halo_Mouse_Tool.Windows
             config.settings.SaveSettings();
             Close();
         }
+
+        private void QuietModeCheckbox_Checked(object sender, RoutedEventArgs e)
+        {
+            config.settings.SetOption("QuietMode", 1);
+        }
+
+        private void QuietModeCheckbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            config.settings.SetOption("QuietMode", 0);
+        }
     }
 }
