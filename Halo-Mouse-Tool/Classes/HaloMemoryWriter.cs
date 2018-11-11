@@ -36,7 +36,7 @@ namespace Halo_Mouse_Tool.Classes.HaloMemoryWriter
                 WriteMemoryHelper.WriteToProcessMemory("haloce", _mouseAccelerationNOP, (int)_haloAddresses.AccelerationCE_2),
             };
             
-            return operationResults.All(x => !x);
+            return operationResults.All(x => x);
         }
 
         public static bool WriteToCombatEvolved(float SensitivityX, float SensitivityY)
@@ -49,7 +49,7 @@ namespace Halo_Mouse_Tool.Classes.HaloMemoryWriter
                 WriteMemoryHelper.WriteToProcessMemory("halopc", _mouseAccelerationNOP, (int)_haloAddresses.AccelerationPC),
             };
 
-            return operationResults.All(x => !x);
+            return operationResults.All(x => x);
         }
     }
 }
