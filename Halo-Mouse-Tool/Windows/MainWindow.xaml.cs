@@ -46,6 +46,7 @@ namespace Halo_Mouse_Tool
 
             selectedGame = (Game)config.settings.GetOption<int>("CurrentGame");
             SetSensitivityBoxes(config.settings.GetOption<float>("SensitivityX"), config.settings.GetOption<float>("SensitivityY"));
+            SetCurrentGameBtnStatuses();
         }
 
         private void SettingsBtn_Click(object sender, RoutedEventArgs e)
