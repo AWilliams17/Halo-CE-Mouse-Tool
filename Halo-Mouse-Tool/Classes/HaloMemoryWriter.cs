@@ -31,7 +31,7 @@ namespace Halo_Mouse_Tool.Classes.HaloMemoryWriter
             byte[] sensitivityY = BitConverter.GetBytes(SensitivityY);
             bool[] operationResults = {
                 WriteMemoryHelper.WriteToProcessMemory("haloce", sensitivityX, (int)_haloAddresses.SensXCE),
-                WriteMemoryHelper.WriteToProcessMemory("haloce", sensitivityX, (int)_haloAddresses.SensXCE),
+                WriteMemoryHelper.WriteToProcessMemory("haloce", sensitivityX, (int)_haloAddresses.SensYCE),
                 WriteMemoryHelper.WriteToProcessMemory("haloce", _mouseAccelerationNOP, (int)_haloAddresses.AccelerationCE_1),
                 WriteMemoryHelper.WriteToProcessMemory("haloce", _mouseAccelerationNOP, (int)_haloAddresses.AccelerationCE_2),
             };
@@ -45,7 +45,7 @@ namespace Halo_Mouse_Tool.Classes.HaloMemoryWriter
             byte[] sensitivityY = BitConverter.GetBytes(SensitivityY);
             bool[] operationResults = {
                 WriteMemoryHelper.WriteToProcessMemory("halopc", sensitivityX, (int)_haloAddresses.SensXPC),
-                WriteMemoryHelper.WriteToProcessMemory("halopc", sensitivityX, (int)_haloAddresses.SensXPC),
+                WriteMemoryHelper.WriteToProcessMemory("halopc", sensitivityX, (int)_haloAddresses.SensYPC),
                 WriteMemoryHelper.WriteToProcessMemory("halopc", _mouseAccelerationNOP, (int)_haloAddresses.AccelerationPC),
             };
 
