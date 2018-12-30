@@ -16,7 +16,6 @@ namespace Halo_Mouse_Tool.Classes.ConfigContainer
             Registrar.RegOption incrementKeysEnabled = new Registrar.RegOption("IncrementHotkeys", configValidators.BoolValidatorInstance, 0, typeof(int));
             Registrar.RegOption incrementAmount = new Registrar.RegOption("IncrementAmount", configValidators.IncrementAmountValidatorInstance, 1.0f, typeof(float));
             Registrar.RegOption currentGame = new Registrar.RegOption("CurrentGame", configValidators.CurrentGameValidatorInstance, 0, typeof(int));
-            Registrar.RegOption quietMode = new Registrar.RegOption("QuietMode", configValidators.BoolValidatorInstance, 0, typeof(int));
 
             settings.RegisterSetting("SensitivityX", mouseSensX);
             settings.RegisterSetting("SensitivityY", mouseSensY);
@@ -25,7 +24,6 @@ namespace Halo_Mouse_Tool.Classes.ConfigContainer
             settings.RegisterSetting("IncrementKeysEnabled", incrementKeysEnabled);
             settings.RegisterSetting("IncrementAmount", incrementAmount);
             settings.RegisterSetting("CurrentGame", currentGame);
-            settings.RegisterSetting("QuietMode", currentGame);
         }
 
         public Config()

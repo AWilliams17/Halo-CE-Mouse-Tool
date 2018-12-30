@@ -42,7 +42,7 @@ namespace Halo_Mouse_Tool.Windows
 
         private void HotkeyTextbox_KeyDown(object sender, KeyEventArgs e)
         {
-            HotkeyManager.Current.AddOrReplace("Activate", e.Key, 0, mainWindow.OnHotkeyPressed_Activate);
+            HotkeyManager.Current.AddOrReplace("Activate", e.Key, 0, mainWindow.OnHotkeyPressed_WriteMemory);
             config.settings.SetOption("Hotkey", e.Key);
             HotkeyTextbox.Text = e.Key.ToString();
         }
@@ -67,16 +67,6 @@ namespace Halo_Mouse_Tool.Windows
         {
             config.settings.SaveSettings();
             Close();
-        }
-
-        private void QuietModeCheckbox_Checked(object sender, RoutedEventArgs e)
-        {
-            config.settings.SetOption("QuietMode", 1);
-        }
-
-        private void QuietModeCheckbox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            config.settings.SetOption("QuietMode", 0);
         }
     }
 }

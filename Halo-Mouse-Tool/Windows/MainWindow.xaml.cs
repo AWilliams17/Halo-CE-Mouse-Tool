@@ -58,28 +58,36 @@ namespace Halo_Mouse_Tool
             KeyConverter keyConverter = new KeyConverter();
             Key activateKey = (Key)keyConverter.ConvertFromString(config.settings.GetOption<string>("Hotkey"));
 
-            HotkeyManager.Current.AddOrReplace("Activate", activateKey, 0, OnHotkeyPressed_Activate);
+            HotkeyManager.Current.AddOrReplace("Activate", activateKey, 0, OnHotkeyPressed_WriteMemory);
             HotkeyManager.Current.AddOrReplace("Increment", Key.OemPlus, 0, OnHotkeyPressed_PlusMinus);
             HotkeyManager.Current.AddOrReplace("Decrement", Key.OemMinus, 0, OnHotkeyPressed_PlusMinus);
         }
 
         private void OnHotkeyPressed_PlusMinus(object sender, HotkeyEventArgs e)
         {
-           if (e.Name == "Increment")
-           {
-               MessageBox.Show("Increment");
-           }
-           if (e.Name == "Decrement")
-           {
-               MessageBox.Show("Decrement");
-           }
-
+            if (config.settings.GetOption<int>("IncrementKeysEnabled") == 1)
+            {
+                if (e.Name == "Increment")
+                {
+                    SensXUpDown.Value += config.settings.GetOption<float>("IncrementAmount");
+                    SensYUpDown.Value += config.settings.GetOption<float>("IncrementAmount");
+                }
+                if (e.Name == "Decrement")
+                {
+                    SensXUpDown.Value -= config.settings.GetOption<float>("IncrementAmount");
+                    SensYUpDown.Value -= config.settings.GetOption<float>("IncrementAmount");
+                }
+                WriteToMemory();
+            }
             e.Handled = true;
         }
 
-        public void OnHotkeyPressed_Activate(object sender, HotkeyEventArgs e)
+        public void OnHotkeyPressed_WriteMemory(object sender, HotkeyEventArgs e)
         {
-            MessageBox.Show("T");
+            if (config.settings.GetOption<int>("HotkeyEnabled") == 1)
+            {
+                WriteToMemory();
+            }
             e.Handled = true;
         }
 
@@ -153,6 +161,11 @@ namespace Halo_Mouse_Tool
 
         private void WriteMemoryBtn_Click(object sender, RoutedEventArgs e)
         {
+            WriteToMemory();
+        }
+
+        private void WriteToMemory()
+        {
             string targetHaloGame = selectedGame.ToString();
             float sensitivityX = SensXUpDown.Value.Value;
             float sensitivityY = SensYUpDown.Value.Value;
@@ -184,12 +197,26 @@ namespace Halo_Mouse_Tool
 
         private void SensXUpDown_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            config?.settings.SetOption("SensitivityX", SensXUpDown.Value);
+            if (e.OldValue != null & e.NewValue != null)
+            {
+                if ((float)e.NewValue > 0.1)
+                {
+                    config?.settings.SetOption("SensitivityX", SensXUpDown.Value);
+                }
+                else SensXUpDown.Value = (float)e.OldValue;
+            }
         }
 
         private void SensYUpDown_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            config?.settings.SetOption("SensitivityY", SensYUpDown.Value);
+            if (e.OldValue != null & e.NewValue != null)
+            {
+                if ((float)e.NewValue > 0.1)
+                {
+                    config?.settings.SetOption("SensitivityY", SensYUpDown.Value);
+                }
+                else SensYUpDown.Value = (float)e.OldValue;
+            }
         }
     }
 }
