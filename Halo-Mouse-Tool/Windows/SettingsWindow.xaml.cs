@@ -1,6 +1,8 @@
 ﻿using Halo_Mouse_Tool.Classes.ConfigContainer;
 using System.Windows;
 using System.Windows.Input;
+using NHotkey.Wpf;
+using NHotkey;
 
 namespace Halo_Mouse_Tool.Windows
 {
@@ -9,11 +11,13 @@ namespace Halo_Mouse_Tool.Windows
     /// </summary>
     public partial class SettingsWindow
     {
+        MainWindow mainWindow;
         Config config;
 
-        public SettingsWindow(Config ConfigInstance)
+        public SettingsWindow(Config ConfigInstance, MainWindow MainWindowInstance)
         {
             InitializeComponent();
+            mainWindow = MainWindowInstance;
             config = ConfigInstance;
             SetControls();
         }
@@ -38,7 +42,9 @@ namespace Halo_Mouse_Tool.Windows
 
         private void HotkeyTextbox_KeyDown(object sender, KeyEventArgs e)
         {
+            HotkeyManager.Current.AddOrReplace("Activate", e.Key, 0, mainWindow.OnHotkeyPressed_Activate);
             config.settings.SetOption("Hotkey", e.Key);
+            HotkeyTextbox.Text = e.Key.ToString();
         }
 
         private void IncrementAmountUpDown_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)

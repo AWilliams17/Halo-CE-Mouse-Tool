@@ -40,6 +40,9 @@
     <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\ControlzEx.3.0.2.4\lib\net462\ControlzEx.dll</HintPath>
     </Reference>
+    <Reference Include="GlobalHotKey, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\GlobalHotKey.1.1.0\lib\GlobalHotKey.dll</HintPath>
+    </Reference>
     <Reference Include="MahApps.Metro, Version=1.6.5.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\MahApps.Metro.1.6.5\lib\net47\MahApps.Metro.dll</HintPath>
     </Reference>
@@ -109,7 +112,6 @@
     <Compile Include="Classes\Config\ConfigContainer.cs" />
     <Compile Include="Classes\Config\Validators.cs" />
     <Compile Include="Classes\HaloMemoryWriter.cs" />
-    <Compile Include="Classes\HotkeyUtils.cs" />
     <Compile Include="Windows\SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>

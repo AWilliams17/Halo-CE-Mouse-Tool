@@ -14,7 +14,7 @@
             </StackPanel>
             <StackPanel Height="26" VerticalAlignment="Top" Margin="0,5,0,0" Orientation="Horizontal">
                 <CheckBox x:Name="HotkeyCheckbox" Content="Hotkey:" Checked="HotkeyCheckbox_Checked" Unchecked="HotkeyCheckbox_Unchecked"/>
-                <TextBox x:Name="HotkeyTextbox" TextWrapping="Wrap" Text="F1" Width="82" Margin="37, 0, 0, 0" KeyDown="HotkeyTextbox_KeyDown"/>
+                <TextBox x:Name="HotkeyTextbox" TextWrapping="Wrap" Text="F1" Width="82" Margin="37, 0, 0, 0" IsReadOnly="True" KeyDown="HotkeyTextbox_KeyDown"/>
             </StackPanel>
             <StackPanel Height="26" VerticalAlignment="Top" Margin="0,5,0,0" Orientation="Horizontal">
                 <Label Content="Increment Amount:" FontSize="10.7"/>

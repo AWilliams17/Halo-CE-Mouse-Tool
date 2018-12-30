@@ -1,7 +1,6 @@
 ﻿using Halo_Mouse_Tool.Windows;
 using Halo_Mouse_Tool.Classes.ConfigContainer;
 using Halo_Mouse_Tool.Classes.HaloMemoryWriter;
-using Halo_Mouse_Tool.Classes.HotkeyUtils;
 using Registrar;
 using System;
 using System.Runtime.InteropServices;
@@ -13,6 +12,7 @@ using SharpUtils.WebUtils;
 using System.Net;
 using NHotkey.Wpf;
 using NHotkey;
+using System.Windows.Input;
 
 namespace Halo_Mouse_Tool
 {
@@ -50,12 +50,36 @@ namespace Halo_Mouse_Tool
             selectedGame = (Game)config.settings.GetOption<int>("CurrentGame");
             SetSensitivityBoxes(config.settings.GetOption<float>("SensitivityX"), config.settings.GetOption<float>("SensitivityY"));
             SetCurrentGameBtnStatuses();
-            HotkeyManager.Current.AddOrReplace("Increment", System.Windows.Input.Key.F1, 0, OnF1);
+            InitHotkeys();
         }
 
-        private void OnF1(object sender, HotkeyEventArgs e)
+        private void InitHotkeys()
         {
-            MessageBox.Show("ay");
+            KeyConverter keyConverter = new KeyConverter();
+            Key activateKey = (Key)keyConverter.ConvertFromString(config.settings.GetOption<string>("Hotkey"));
+
+            HotkeyManager.Current.AddOrReplace("Activate", activateKey, 0, OnHotkeyPressed_Activate);
+            HotkeyManager.Current.AddOrReplace("Increment", Key.OemPlus, 0, OnHotkeyPressed_PlusMinus);
+            HotkeyManager.Current.AddOrReplace("Decrement", Key.OemMinus, 0, OnHotkeyPressed_PlusMinus);
+        }
+
+        private void OnHotkeyPressed_PlusMinus(object sender, HotkeyEventArgs e)
+        {
+           if (e.Name == "Increment")
+           {
+               MessageBox.Show("Increment");
+           }
+           if (e.Name == "Decrement")
+           {
+               MessageBox.Show("Decrement");
+           }
+
+            e.Handled = true;
+        }
+
+        public void OnHotkeyPressed_Activate(object sender, HotkeyEventArgs e)
+        {
+            MessageBox.Show("T");
             e.Handled = true;
         }
 
@@ -63,7 +87,7 @@ namespace Halo_Mouse_Tool
         {
             if (!WindowHelpers.IsWindowOpen(typeof(SettingsWindow)))
             {
-                SettingsWindow settingsWindow = new SettingsWindow(config);
+                SettingsWindow settingsWindow = new SettingsWindow(config, this);
                 settingsWindow.Show();
             }
         }
