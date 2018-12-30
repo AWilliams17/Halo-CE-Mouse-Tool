@@ -23,7 +23,7 @@ namespace Halo_Mouse_Tool
     public partial class MainWindow
     {
         private static Config config;
-        private enum Game {HaloCE, HaloPC};
+        private enum Game {HaloPC, HaloCE};
         private Game selectedGame;
         private DispatcherTimer hotkeyListener = new DispatcherTimer();
         private KeyConverter keyConverter = new KeyConverter();
