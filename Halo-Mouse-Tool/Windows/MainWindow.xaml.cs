@@ -1,18 +1,19 @@
 ﻿using Halo_Mouse_Tool.Windows;
 using Halo_Mouse_Tool.Classes.ConfigContainer;
 using Halo_Mouse_Tool.Classes.HaloMemoryWriter;
+using Halo_Mouse_Tool.Classes.KeybindUtils;
 using Registrar;
+using SharpUtils.WebUtils;
+using SharpUtils.WPFUtils;
 using System;
 using System.Runtime.InteropServices;
 using System.Windows;
-using SharpUtils.WPFUtils;
 using System.Diagnostics;
 using System.Threading;
-using SharpUtils.WebUtils;
 using System.Net;
-using NHotkey.Wpf;
-using NHotkey;
 using System.Windows.Input;
+using System.Windows.Threading;
+using Keys = System.Windows.Forms.Keys;
 
 namespace Halo_Mouse_Tool
 {
@@ -24,12 +25,16 @@ namespace Halo_Mouse_Tool
         private static Config config;
         private enum Game {HaloCE, HaloPC};
         private Game selectedGame;
+        private DispatcherTimer hotkeyListener = new DispatcherTimer();
+        private KeyConverter keyConverter = new KeyConverter();
 
         public MainWindow()
         {
             InitializeComponent();
             Closing += MainWindow_Closing;
             config = new Config();
+            hotkeyListener.Tick += HotkeyListener_Tick;
+            hotkeyListener.Interval = new TimeSpan(0, 0, 0, 0, 250);
 
             try
             {
@@ -50,47 +55,37 @@ namespace Halo_Mouse_Tool
             selectedGame = (Game)config.settings.GetOption<int>("CurrentGame");
             SetSensitivityBoxes(config.settings.GetOption<float>("SensitivityX"), config.settings.GetOption<float>("SensitivityY"));
             SetCurrentGameBtnStatuses();
-            InitHotkeys();
+            hotkeyListener.Start();
         }
 
-        private void InitHotkeys()
-        {
-            KeyConverter keyConverter = new KeyConverter();
-            Key activateKey = (Key)keyConverter.ConvertFromString(config.settings.GetOption<string>("Hotkey"));
-
-            HotkeyManager.Current.AddOrReplace("Activate", activateKey, 0, OnHotkeyPressed_WriteMemory);
-            HotkeyManager.Current.AddOrReplace("Increment", Key.OemPlus, 0, OnHotkeyPressed_PlusMinus);
-            HotkeyManager.Current.AddOrReplace("Decrement", Key.OemMinus, 0, OnHotkeyPressed_PlusMinus);
-        }
-
-        private void OnHotkeyPressed_PlusMinus(object sender, HotkeyEventArgs e)
-        {
-            if (config.settings.GetOption<int>("IncrementKeysEnabled") == 1)
-            {
-                if (e.Name == "Increment")
-                {
-                    SensXUpDown.Value += config.settings.GetOption<float>("IncrementAmount");
-                    SensYUpDown.Value += config.settings.GetOption<float>("IncrementAmount");
-                }
-                if (e.Name == "Decrement")
-                {
-                    SensXUpDown.Value -= config.settings.GetOption<float>("IncrementAmount");
-                    SensYUpDown.Value -= config.settings.GetOption<float>("IncrementAmount");
-                }
-                WriteToMemory();
-            }
-            e.Handled = true;
-        }
-
-        public void OnHotkeyPressed_WriteMemory(object sender, HotkeyEventArgs e)
+        private void HotkeyListener_Tick(object sender, EventArgs e)
         {
             if (config.settings.GetOption<int>("HotkeyEnabled") == 1)
             {
-                WriteToMemory();
+                Keys hotKey = (Keys)Enum.Parse(typeof(Keys), config.settings.GetOption<string>("Hotkey"));
+                if (KeybindUtils.IsKeyPushedDown(hotKey))
+                {
+                    WriteToMemory();
+                }
             }
-            e.Handled = true;
-        }
 
+            if (config.settings.GetOption<int>("IncrementKeysEnabled") == 1)
+            {
+                if (KeybindUtils.IsKeyPushedDown(Keys.Oemplus))
+                {
+                    SensXUpDown.Value += config.settings.GetOption<float>("IncrementAmount");
+                    SensYUpDown.Value += config.settings.GetOption<float>("IncrementAmount");
+                    WriteToMemory();
+                }
+                if (KeybindUtils.IsKeyPushedDown(Keys.OemMinus))
+                {
+                    SensXUpDown.Value -= config.settings.GetOption<float>("IncrementAmount");
+                    SensYUpDown.Value -= config.settings.GetOption<float>("IncrementAmount");
+                    WriteToMemory();
+                }
+            }
+        }
+        
         private void SettingsBtn_Click(object sender, RoutedEventArgs e)
         {
             if (!WindowHelpers.IsWindowOpen(typeof(SettingsWindow)))

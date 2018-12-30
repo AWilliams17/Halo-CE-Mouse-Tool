@@ -1,8 +1,6 @@
 ﻿using Halo_Mouse_Tool.Classes.ConfigContainer;
 using System.Windows;
 using System.Windows.Input;
-using NHotkey.Wpf;
-using NHotkey;
 
 namespace Halo_Mouse_Tool.Windows
 {
@@ -42,7 +40,6 @@ namespace Halo_Mouse_Tool.Windows
 
         private void HotkeyTextbox_KeyDown(object sender, KeyEventArgs e)
         {
-            HotkeyManager.Current.AddOrReplace("Activate", e.Key, 0, mainWindow.OnHotkeyPressed_WriteMemory);
             config.settings.SetOption("Hotkey", e.Key);
             HotkeyTextbox.Text = e.Key.ToString();
         }
