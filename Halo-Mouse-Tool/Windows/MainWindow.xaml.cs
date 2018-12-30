@@ -1,6 +1,7 @@
 ﻿using Halo_Mouse_Tool.Windows;
 using Halo_Mouse_Tool.Classes.ConfigContainer;
 using Halo_Mouse_Tool.Classes.HaloMemoryWriter;
+using Halo_Mouse_Tool.Classes.HotkeyUtils;
 using Registrar;
 using System;
 using System.Runtime.InteropServices;
@@ -10,6 +11,8 @@ using System.Diagnostics;
 using System.Threading;
 using SharpUtils.WebUtils;
 using System.Net;
+using NHotkey.Wpf;
+using NHotkey;
 
 namespace Halo_Mouse_Tool
 {
@@ -47,6 +50,13 @@ namespace Halo_Mouse_Tool
             selectedGame = (Game)config.settings.GetOption<int>("CurrentGame");
             SetSensitivityBoxes(config.settings.GetOption<float>("SensitivityX"), config.settings.GetOption<float>("SensitivityY"));
             SetCurrentGameBtnStatuses();
+            HotkeyManager.Current.AddOrReplace("Increment", System.Windows.Input.Key.F1, 0, OnF1);
+        }
+
+        private void OnF1(object sender, HotkeyEventArgs e)
+        {
+            MessageBox.Show("ay");
+            e.Handled = true;
         }
 
         private void SettingsBtn_Click(object sender, RoutedEventArgs e)
