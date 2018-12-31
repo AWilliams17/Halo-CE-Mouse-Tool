@@ -15,9 +15,8 @@ namespace Halo_Mouse_Tool.Windows
     public partial class UpdateWindow // TODO: Re-write this mess.
     {
         private bool checkInProgress = false;
-        private string haloMouseToolGithub = "https://github.com/AWilliams17/Halo-CE-Mouse-Tool";
         private CancellationTokenSource cancellationTokenSource;
-        private DispatcherTimer UpdateTimeoutTimer = new DispatcherTimer();
+        private DispatcherTimer updateTimeoutTimer = new DispatcherTimer();
         private int timeoutCountdown;
 
         private void UpdateTimeoutTimer_Tick(object sender, EventArgs e)
@@ -29,8 +28,8 @@ namespace Halo_Mouse_Tool.Windows
         {
             InitializeComponent();
             Closing += OnWindowClosing;
-            UpdateTimeoutTimer.Tick += UpdateTimeoutTimer_Tick;
-            UpdateTimeoutTimer.Interval = new TimeSpan(0, 0, 1);
+            updateTimeoutTimer.Tick += UpdateTimeoutTimer_Tick;
+            updateTimeoutTimer.Interval = new TimeSpan(0, 0, 1);
         }
 
         private void UpdateCheckBtn_Click(object sender, RoutedEventArgs e)
@@ -48,7 +47,7 @@ namespace Halo_Mouse_Tool.Windows
         private async void StartUpdateCheck()
         {
             cancellationTokenSource = new CancellationTokenSource();
-            UpdateTimeoutTimer.Start();
+            updateTimeoutTimer.Start();
             TimeoutUpDown.IsEnabled = false;
             checkInProgress = true;
             int updateTimeOut = (int)TimeoutUpDown.Value;
@@ -71,7 +70,7 @@ namespace Halo_Mouse_Tool.Windows
         private void StopUpdateCheck()
         {
             TimeoutUpDown.IsEnabled = true;
-            UpdateTimeoutTimer.Stop();
+            updateTimeoutTimer.Stop();
             UpdateCheckBtn.Content = "Check for Updates";
             if (checkInProgress)
             {
@@ -97,7 +96,7 @@ namespace Halo_Mouse_Tool.Windows
                 var userAction = MessageBox.Show(updateAvailableMessage, "Update Available", MessageBoxButton.YesNo);
                 if (userAction == MessageBoxResult.Yes)
                 {
-                    Process.Start("https://github.com/AWilliams17/Starbound-Asset-Ripper/releases");
+                    Process.Start("https://github.com/AWilliams17/Halo-CE-Mouse-Tool");
                 }
             }
         }

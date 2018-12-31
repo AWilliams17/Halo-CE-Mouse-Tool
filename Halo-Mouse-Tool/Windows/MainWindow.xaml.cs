@@ -5,6 +5,7 @@ using Halo_Mouse_Tool.Classes.KeybindUtils;
 using Registrar;
 using SharpUtils.WebUtils;
 using SharpUtils.WPFUtils;
+using SharpUtils.MiscUtils;
 using System;
 using System.Runtime.InteropServices;
 using System.Windows;
@@ -22,17 +23,17 @@ namespace Halo_Mouse_Tool
     /// </summary>
     public partial class MainWindow
     {
-        private static Config config;
         private enum Game {HaloPC, HaloCE};
         private Game selectedGame;
+        private static Config config = new Config();
         private DispatcherTimer hotkeyListener = new DispatcherTimer();
         private KeyConverter keyConverter = new KeyConverter();
 
         public MainWindow()
         {
             InitializeComponent();
+            DoAdminCheck();
             Closing += MainWindow_Closing;
-            config = new Config();
             hotkeyListener.Tick += HotkeyListener_Tick;
             hotkeyListener.Interval = new TimeSpan(0, 0, 0, 0, 250);
 
@@ -55,7 +56,37 @@ namespace Halo_Mouse_Tool
             selectedGame = (Game)config.settings.GetOption<int>("CurrentGame");
             SetSensitivityBoxes(config.settings.GetOption<float>("SensitivityX"), config.settings.GetOption<float>("SensitivityY"));
             SetCurrentGameBtnStatuses();
+            SetWindowTitle();
             hotkeyListener.Start();
+        }
+
+        private void DoAdminCheck()
+        {
+            if (!AdminCheckHelper.IsRunningAsAdmin())
+            {
+                MessageBox.Show("This application requires you to run it as an administrator to work properly. " +
+                    "Please re-run as administrator.", "Not Admin!");
+                Application.Current.Shutdown();
+            }
+        }
+
+        private void SetWindowTitle()
+        {
+            string currentVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            string windowTitle = $"Halo Mouse Tool v{currentVersion}";
+            Title = windowTitle;
+        }
+
+        private void SetSensitivityBoxes(float SensX, float SensY)
+        {
+            SensXUpDown.Value = SensX;
+            SensYUpDown.Value = SensY;
+        }
+
+        private void SetCurrentGameBtnStatuses()
+        {
+            HaloCustomEditionBtn.IsChecked = (selectedGame == Game.HaloCE);
+            HaloCombatEvolvedBtn.IsChecked = (selectedGame == Game.HaloPC);
         }
 
         private void HotkeyListener_Tick(object sender, EventArgs e)
@@ -107,12 +138,6 @@ namespace Halo_Mouse_Tool
         private void ExitBtn_Click(object sender, RoutedEventArgs e)
         {
             Close();
-        }
-
-        private void SetCurrentGameBtnStatuses()
-        {
-            HaloCustomEditionBtn.IsChecked = (selectedGame == Game.HaloCE);
-            HaloCombatEvolvedBtn.IsChecked = (selectedGame == Game.HaloPC);
         }
 
         private void HaloCustomEditionBtn_Click(object sender, RoutedEventArgs e)
@@ -182,12 +207,6 @@ namespace Halo_Mouse_Tool
         {
             config.settings.SaveSettings();
             Application.Current.Shutdown();
-        }
-
-        private void SetSensitivityBoxes(float SensX, float SensY)
-        {
-            SensXUpDown.Value = SensX;
-            SensYUpDown.Value = SensY;
         }
 
         private void SensXUpDown_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
