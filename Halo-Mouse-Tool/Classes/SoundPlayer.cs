@@ -14,7 +14,7 @@ namespace Halo_Mouse_Tool.Classes.SoundPlayer
 
         public void PlaySuccess()
         {
-            if (configInstance.settings.GetOption<int>("SuccessSounds") == 1)
+            if (configInstance.settings.GetOption<int>("SuccessSoundsEnabled") == 1)
             {
                 Console.Beep(300, 250);
             }

@@ -37,7 +37,7 @@ namespace Halo_Mouse_Tool
             InitializeApplication();
             Closing += MainWindow_Closing;
             hotkeyListener.Tick += HotkeyListener_Tick;
-            hotkeyListener.Interval = new TimeSpan(0, 0, 0, 0, 250);
+            hotkeyListener.Interval = new TimeSpan(0, 0, 0, 0, 50);
             hotkeyListener.Start();
         }
         

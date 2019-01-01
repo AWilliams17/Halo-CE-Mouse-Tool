@@ -24,6 +24,7 @@ namespace Halo_Mouse_Tool.Windows
         {
             HotkeyCheckbox.IsChecked = config.settings.GetOption<int>("HotkeyEnabled") == 1;
             KeyIncrementCheckbox.IsChecked = config.settings.GetOption<int>("IncrementKeysEnabled") == 1;
+            SoundsCheckbox.IsChecked = config.settings.GetOption<int>("SuccessSoundsEnabled") == 1;
             HotkeyTextbox.Text = config.settings.GetOption<string>("Hotkey");
             IncrementAmountUpDown.Value = config.settings.GetOption<float>("IncrementAmount");
         }
