@@ -32,11 +32,25 @@ namespace Halo_Mouse_Tool
         public MainWindow()
         {
             InitializeComponent();
-            DoAdminCheck();
+            InitializeApplication();
             Closing += MainWindow_Closing;
             hotkeyListener.Tick += HotkeyListener_Tick;
             hotkeyListener.Interval = new TimeSpan(0, 0, 0, 0, 250);
+            hotkeyListener.Start();
+        }
+        
+        private void InitializeApplication()
+        {
+            DoAdminCheck();
+            LoadSettings();
+            selectedGame = (Game)config.settings.GetOption<int>("CurrentGame");
+            SetSensitivityBoxes(config.settings.GetOption<float>("SensitivityX"), config.settings.GetOption<float>("SensitivityY"));
+            SetCurrentGameBtnStatuses();
+            SetWindowTitle();
+        }
 
+        private void LoadSettings()
+        {
             try
             {
                 config.settings.LoadSettings();
@@ -52,12 +66,6 @@ namespace Halo_Mouse_Tool
                     MessageBox.Show($"Failed to save default settings. Error message: {ex.Message}", "Error while saving settings to Registry.");
                 }
             }
-
-            selectedGame = (Game)config.settings.GetOption<int>("CurrentGame");
-            SetSensitivityBoxes(config.settings.GetOption<float>("SensitivityX"), config.settings.GetOption<float>("SensitivityY"));
-            SetCurrentGameBtnStatuses();
-            SetWindowTitle();
-            hotkeyListener.Start();
         }
 
         private void DoAdminCheck()
@@ -73,7 +81,8 @@ namespace Halo_Mouse_Tool
         private void SetWindowTitle()
         {
             string currentVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            string windowTitle = $"Halo Mouse Tool v{currentVersion}";
+            string currentVersionTrimmed = currentVersion.Substring(0, currentVersion.Length - 2);
+            string windowTitle = $"Halo Mouse Tool v{currentVersionTrimmed}";
             Title = windowTitle;
         }
 
@@ -87,34 +96,6 @@ namespace Halo_Mouse_Tool
         {
             HaloCustomEditionBtn.IsChecked = (selectedGame == Game.HaloCE);
             HaloCombatEvolvedBtn.IsChecked = (selectedGame == Game.HaloPC);
-        }
-
-        private void HotkeyListener_Tick(object sender, EventArgs e)
-        {
-            if (config.settings.GetOption<int>("HotkeyEnabled") == 1)
-            {
-                Keys hotKey = (Keys)Enum.Parse(typeof(Keys), config.settings.GetOption<string>("Hotkey"));
-                if (KeybindUtils.IsKeyPushedDown(hotKey))
-                {
-                    WriteToMemory();
-                }
-            }
-
-            if (config.settings.GetOption<int>("IncrementKeysEnabled") == 1)
-            {
-                if (KeybindUtils.IsKeyPushedDown(Keys.Oemplus))
-                {
-                    SensXUpDown.Value += config.settings.GetOption<float>("IncrementAmount");
-                    SensYUpDown.Value += config.settings.GetOption<float>("IncrementAmount");
-                    WriteToMemory();
-                }
-                if (KeybindUtils.IsKeyPushedDown(Keys.OemMinus))
-                {
-                    SensXUpDown.Value -= config.settings.GetOption<float>("IncrementAmount");
-                    SensYUpDown.Value -= config.settings.GetOption<float>("IncrementAmount");
-                    WriteToMemory();
-                }
-            }
         }
         
         private void SettingsBtn_Click(object sender, RoutedEventArgs e)
@@ -154,6 +135,30 @@ namespace Halo_Mouse_Tool
             SetCurrentGameBtnStatuses();
         }
 
+        private void SensXUpDown_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (e.OldValue != null & e.NewValue != null)
+            {
+                if ((float)e.NewValue > 0.1)
+                {
+                    config?.settings.SetOption("SensitivityX", SensXUpDown.Value);
+                }
+                else SensXUpDown.Value = (float)e.OldValue;
+            }
+        }
+
+        private void SensYUpDown_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (e.OldValue != null & e.NewValue != null)
+            {
+                if ((float)e.NewValue > 0.1)
+                {
+                    config?.settings.SetOption("SensitivityY", SensYUpDown.Value);
+                }
+                else SensYUpDown.Value = (float)e.OldValue;
+            }
+        }
+
         private void GithubBtn_Click(object sender, RoutedEventArgs e)
         {
             Process.Start("https://github.com/AWilliams17/Halo-CE-Mouse-Tool");
@@ -184,6 +189,40 @@ namespace Halo_Mouse_Tool
             WriteToMemory();
         }
 
+        private void MainWindow_Closing(object sender, EventArgs e)
+        {
+            config.settings.SaveSettings();
+            Application.Current.Shutdown();
+        }
+
+        private void HotkeyListener_Tick(object sender, EventArgs e)
+        {
+            if (config.settings.GetOption<int>("HotkeyEnabled") == 1)
+            {
+                Keys hotKey = (Keys)Enum.Parse(typeof(Keys), config.settings.GetOption<string>("Hotkey"));
+                if (KeybindUtils.IsKeyPushedDown(hotKey))
+                {
+                    WriteToMemory();
+                }
+            }
+
+            if (config.settings.GetOption<int>("IncrementKeysEnabled") == 1)
+            {
+                if (KeybindUtils.IsKeyPushedDown(Keys.Oemplus))
+                {
+                    SensXUpDown.Value += config.settings.GetOption<float>("IncrementAmount");
+                    SensYUpDown.Value += config.settings.GetOption<float>("IncrementAmount");
+                    WriteToMemory();
+                }
+                if (KeybindUtils.IsKeyPushedDown(Keys.OemMinus))
+                {
+                    SensXUpDown.Value -= config.settings.GetOption<float>("IncrementAmount");
+                    SensYUpDown.Value -= config.settings.GetOption<float>("IncrementAmount");
+                    WriteToMemory();
+                }
+            }
+        }
+
         private void WriteToMemory()
         {
             string targetHaloGame = selectedGame.ToString();
@@ -201,36 +240,6 @@ namespace Halo_Mouse_Tool
             }
             else
                 MessageBox.Show($"Error: '{targetHaloGame}' is not running.", $"{targetHaloGame} Not Running");
-        }
-
-        private void MainWindow_Closing(object sender, EventArgs e)
-        {
-            config.settings.SaveSettings();
-            Application.Current.Shutdown();
-        }
-
-        private void SensXUpDown_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
-        {
-            if (e.OldValue != null & e.NewValue != null)
-            {
-                if ((float)e.NewValue > 0.1)
-                {
-                    config?.settings.SetOption("SensitivityX", SensXUpDown.Value);
-                }
-                else SensXUpDown.Value = (float)e.OldValue;
-            }
-        }
-
-        private void SensYUpDown_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
-        {
-            if (e.OldValue != null & e.NewValue != null)
-            {
-                if ((float)e.NewValue > 0.1)
-                {
-                    config?.settings.SetOption("SensitivityY", SensYUpDown.Value);
-                }
-                else SensYUpDown.Value = (float)e.OldValue;
-            }
         }
     }
 }
