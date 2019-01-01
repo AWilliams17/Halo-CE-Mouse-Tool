@@ -2,6 +2,7 @@
 using Halo_Mouse_Tool.Classes.ConfigContainer;
 using Halo_Mouse_Tool.Classes.HaloMemoryWriter;
 using Halo_Mouse_Tool.Classes.KeybindUtils;
+using Halo_Mouse_Tool.Classes.SoundPlayer;
 using Registrar;
 using SharpUtils.WebUtils;
 using SharpUtils.WPFUtils;
@@ -26,6 +27,7 @@ namespace Halo_Mouse_Tool
         private enum Game {HaloPC, HaloCE};
         private Game selectedGame;
         private static Config config = new Config();
+        private static SoundPlayer soundPlayer = new SoundPlayer(config);
         private DispatcherTimer hotkeyListener = new DispatcherTimer();
         private KeyConverter keyConverter = new KeyConverter();
 
@@ -63,6 +65,7 @@ namespace Halo_Mouse_Tool
                 }
                 catch (RegSaveException ex)
                 {
+                    soundPlayer.PlayError();
                     MessageBox.Show($"Failed to save default settings. Error message: {ex.Message}", "Error while saving settings to Registry.");
                 }
             }
@@ -72,6 +75,7 @@ namespace Halo_Mouse_Tool
         {
             if (!AdminCheckHelper.IsRunningAsAdmin())
             {
+                soundPlayer.PlayError();
                 MessageBox.Show("This application requires you to run it as an administrator to work properly. " +
                     "Please re-run as administrator.", "Not Admin!");
                 Application.Current.Shutdown();
@@ -176,10 +180,15 @@ namespace Halo_Mouse_Tool
                 {
                     Process.Start(redditThreadLink);
                 }
-                else MessageBox.Show("Failed to get Reddit thread link from Github Readme.", "Failed to find Reddit thread link");
+                else
+                {
+                    soundPlayer.PlayError();
+                    MessageBox.Show("Failed to get Reddit thread link from Github Readme.", "Failed to find Reddit thread link");
+                }
             }
             catch (WebException ex)
             {
+                soundPlayer.PlayError();
                 MessageBox.Show($"Error occurred while getting Reddit thread link from Github Readme: {ex.Message}", "Error getting Reddit thread link");
             }
         }
@@ -236,10 +245,18 @@ namespace Halo_Mouse_Tool
                 else
                     writeSuccessful = HaloMemoryWriter.WriteToCombatEvolved(sensitivityX, sensitivityY);
                 if (!writeSuccessful)
-                    MessageBox.Show($"Error: Failed to write to '{targetHaloGame}' - Error Code: '{Marshal.GetLastWin32Error()}' - Refer to the readme/ask in the thread for help.");
+                {
+                    soundPlayer.PlayError();
+                    MessageBox.Show($"Error: Failed to write to '{targetHaloGame}' - Error Code: '{Marshal.GetLastWin32Error()}' - " +
+                        $"Refer to the readme/ask in the thread for help.");
+                }
+                else soundPlayer.PlaySuccess();
             }
             else
+            {
+                soundPlayer.PlayError();
                 MessageBox.Show($"Error: '{targetHaloGame}' is not running.", $"{targetHaloGame} Not Running");
+            }
         }
     }
 }

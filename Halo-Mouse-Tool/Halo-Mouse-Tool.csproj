@@ -104,6 +104,7 @@
     <Compile Include="Classes\Config\Validators.cs" />
     <Compile Include="Classes\HaloMemoryWriter.cs" />
     <Compile Include="Classes\KeybindUtils.cs" />
+    <Compile Include="Classes\SoundPlayer.cs" />
     <Compile Include="Windows\SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>

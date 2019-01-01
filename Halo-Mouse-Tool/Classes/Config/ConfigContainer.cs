@@ -15,6 +15,7 @@ namespace Halo_Mouse_Tool.Classes.ConfigContainer
             Registrar.RegOption hotKey = new Registrar.RegOption("Hotkey", configValidators.HotkeyValidatorInstance, "F1", typeof(string));
             Registrar.RegOption incrementKeysEnabled = new Registrar.RegOption("IncrementHotkeys", configValidators.BoolValidatorInstance, 0, typeof(int));
             Registrar.RegOption incrementAmount = new Registrar.RegOption("IncrementAmount", configValidators.IncrementAmountValidatorInstance, 1.0f, typeof(float));
+            Registrar.RegOption successSoundsEnabled = new Registrar.RegOption("SuccessSoundsEnabled", configValidators.BoolValidatorInstance, 0, typeof(int));
             Registrar.RegOption currentGame = new Registrar.RegOption("CurrentGame", configValidators.CurrentGameValidatorInstance, 1, typeof(int));
 
             settings.RegisterSetting("SensitivityX", mouseSensX);
@@ -23,6 +24,7 @@ namespace Halo_Mouse_Tool.Classes.ConfigContainer
             settings.RegisterSetting("Hotkey", hotKey);
             settings.RegisterSetting("IncrementKeysEnabled", incrementKeysEnabled);
             settings.RegisterSetting("IncrementAmount", incrementAmount);
+            settings.RegisterSetting("SuccessSoundsEnabled", successSoundsEnabled);
             settings.RegisterSetting("CurrentGame", currentGame);
         }
 

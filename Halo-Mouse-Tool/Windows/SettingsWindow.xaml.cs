@@ -59,6 +59,16 @@ namespace Halo_Mouse_Tool.Windows
         {
             config.settings.SetOption("IncrementKeysEnabled", 0);
         }
+        
+        private void SoundsCheckbox_Checked(object sender, RoutedEventArgs e)
+        {
+            config.settings.SetOption("SuccessSoundsEnabled", 1);
+        }
+
+        private void SoundsCheckbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            config.settings.SetOption("SuccessSoundsEnabled", 0);
+        }
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
         {
