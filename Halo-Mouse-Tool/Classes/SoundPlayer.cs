@@ -24,5 +24,11 @@ namespace Halo_Mouse_Tool.Classes.SoundPlayer
         {
             Console.Beep(150, 250);
         }
+
+        public void PlayAdminError()
+        {
+            PlayError();
+            Console.Beep(125, 100);
+        }
     }
 }

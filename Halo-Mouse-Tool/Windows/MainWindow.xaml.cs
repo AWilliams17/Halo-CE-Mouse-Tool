@@ -83,7 +83,7 @@ namespace Halo_Mouse_Tool
         {
             if (!AdminCheckHelper.IsRunningAsAdmin())
             {
-                soundPlayer.PlayError();
+                soundPlayer.PlayAdminError();
                 MessageBox.Show("This application requires you to run it as an administrator to work properly. " +
                     "Please re-run as administrator.", "Not Admin!");
                 Application.Current.Shutdown();
@@ -190,13 +190,11 @@ namespace Halo_Mouse_Tool
                 }
                 else
                 {
-                    soundPlayer.PlayError();
                     MessageBox.Show("Failed to get Reddit thread link from Github Readme.", "Failed to find Reddit thread link");
                 }
             }
             catch (WebException ex)
             {
-                soundPlayer.PlayError();
                 MessageBox.Show($"Error occurred while getting Reddit thread link from Github Readme: {ex.Message}", "Error getting Reddit thread link");
             }
         }
