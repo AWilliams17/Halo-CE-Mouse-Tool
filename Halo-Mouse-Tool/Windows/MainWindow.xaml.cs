@@ -27,7 +27,7 @@ namespace Halo_Mouse_Tool
         private enum Game {HaloPC, HaloCE};
         private Game selectedGame;
         private static Config config = new Config();
-        private static SoundPlayer soundPlayer = new SoundPlayer(config);
+        private SoundPlayer soundPlayer = new SoundPlayer(config);
         private DispatcherTimer hotkeyListener = new DispatcherTimer();
         private KeyConverter keyConverter = new KeyConverter();
 
@@ -36,9 +36,6 @@ namespace Halo_Mouse_Tool
             InitializeComponent();
             InitializeApplication();
             Closing += MainWindow_Closing;
-            hotkeyListener.Tick += HotkeyListener_Tick;
-            hotkeyListener.Interval = new TimeSpan(0, 0, 0, 0, 50);
-            hotkeyListener.Start();
         }
         
         private void InitializeApplication()
@@ -49,6 +46,17 @@ namespace Halo_Mouse_Tool
             SetSensitivityBoxes(config.settings.GetOption<float>("SensitivityX"), config.settings.GetOption<float>("SensitivityY"));
             SetCurrentGameBtnStatuses();
             SetWindowTitle();
+            StartHotkeyListener();
+        }
+
+        private void StartHotkeyListener()
+        {
+            if (!hotkeyListener.IsEnabled)
+            {
+                hotkeyListener.Tick += HotkeyListener_Tick;
+                hotkeyListener.Interval = new TimeSpan(0, 0, 0, 0, 25);
+                hotkeyListener.Start();
+            }
         }
 
         private void LoadSettings()
@@ -106,7 +114,7 @@ namespace Halo_Mouse_Tool
         {
             if (!WindowHelpers.IsWindowOpen(typeof(SettingsWindow)))
             {
-                SettingsWindow settingsWindow = new SettingsWindow(config, this);
+                SettingsWindow settingsWindow = new SettingsWindow(config);
                 settingsWindow.Show();
             }
         }
@@ -215,7 +223,7 @@ namespace Halo_Mouse_Tool
                 }
             }
 
-            if (config.settings.GetOption<int>("IncrementKeysEnabled") == 1)
+            if (config.settings.GetOption<int>("IncrementHotkeysEnabled") == 1)
             {
                 if (KeybindUtils.IsKeyPushedDown(Keys.Oemplus))
                 {

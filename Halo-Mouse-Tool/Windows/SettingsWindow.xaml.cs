@@ -9,13 +9,11 @@ namespace Halo_Mouse_Tool.Windows
     /// </summary>
     public partial class SettingsWindow
     {
-        MainWindow mainWindow;
         Config config;
 
-        public SettingsWindow(Config ConfigInstance, MainWindow MainWindowInstance)
+        public SettingsWindow(Config ConfigInstance)
         {
             InitializeComponent();
-            mainWindow = MainWindowInstance;
             config = ConfigInstance;
             SetControls();
         }
@@ -23,7 +21,7 @@ namespace Halo_Mouse_Tool.Windows
         private void SetControls()
         {
             HotkeyCheckbox.IsChecked = config.settings.GetOption<int>("HotkeyEnabled") == 1;
-            KeyIncrementCheckbox.IsChecked = config.settings.GetOption<int>("IncrementKeysEnabled") == 1;
+            KeyIncrementCheckbox.IsChecked = config.settings.GetOption<int>("IncrementHotkeysEnabled") == 1;
             SoundsCheckbox.IsChecked = config.settings.GetOption<int>("SuccessSoundsEnabled") == 1;
             HotkeyTextbox.Text = config.settings.GetOption<string>("Hotkey");
             IncrementAmountUpDown.Value = config.settings.GetOption<float>("IncrementAmount");
@@ -53,12 +51,12 @@ namespace Halo_Mouse_Tool.Windows
         
         private void KeyIncrementCheckbox_Checked(object sender, RoutedEventArgs e)
         {
-            config.settings.SetOption("IncrementKeysEnabled", 1);
+            config.settings.SetOption("IncrementHotkeysEnabled", 1);
         }
 
         private void KeyIncrementCheckbox_Unchecked(object sender, RoutedEventArgs e)
         {
-            config.settings.SetOption("IncrementKeysEnabled", 0);
+            config.settings.SetOption("IncrementHotkeysEnabled", 0);
         }
         
         private void SoundsCheckbox_Checked(object sender, RoutedEventArgs e)
