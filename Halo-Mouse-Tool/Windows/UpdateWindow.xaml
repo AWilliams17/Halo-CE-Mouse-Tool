@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
     mc:Ignorable="d"
-        Title="Halo Mouse Tool Update Check" Height="105.282" Width="223.645" Background="#FF252525" TitleCharacterCasing="Normal" ResizeMode="NoResize">
+        Title="Update" Height="105.282" Width="223.645" Background="#FF252525" TitleCharacterCasing="Normal" ResizeMode="NoResize">
     <StackPanel Orientation="Vertical" Margin="10,10,10,0">
         <StackPanel Orientation="Horizontal">
             <Label Content="Timeout (seconds):"/>

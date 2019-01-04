@@ -93,7 +93,7 @@ namespace Halo_Mouse_Tool
         private void SetWindowTitle()
         {
             string currentVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            string currentVersionTrimmed = currentVersion.Substring(0, currentVersion.Length - 2);
+            string currentVersionTrimmed = currentVersion.Substring(0, currentVersion.Length - 4);
             string windowTitle = $"Halo Mouse Tool v{currentVersionTrimmed}";
             Title = windowTitle;
         }

@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="Halo Mouse Tool Settings" Height="177.088" Width="198.667" TitleCharacterCasing="Normal" ResizeMode="NoResize" Background="#FF252525">
+        Title="Settings" Height="177.088" Width="198.667" TitleCharacterCasing="Normal" ResizeMode="NoResize" Background="#FF252525">
     <DockPanel>
         <StackPanel Orientation="Vertical" Margin="0,0,0,0" Width="183">
             <StackPanel Height="26" VerticalAlignment="Top" Margin="0,5,0,0" Orientation="Horizontal">
