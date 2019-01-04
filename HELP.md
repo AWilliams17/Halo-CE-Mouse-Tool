@@ -7,7 +7,7 @@ Upon pressing the ```WRITE TO MEMORY``` button, mouse acceleration will automati
 When Halo is restarted, acceleration will once again be present.  
 ## Hotkeys  
 To enable the usage of hotkeys, and to specify which hotkey you want to use,  
-go to ```File->Settings``` to reach this window
+go to ```File->Settings``` to reach this window  
 ![alt text](https://i.imgur.com/vplrskF.png)  
 Then, press the ```Hotkey``` checkbox to enable the hotkey (default is F1). To change the hotkey,  
 simply press the textbox next to the checkbox and press the key you want to use.  
@@ -19,9 +19,8 @@ both the ```x``` and ```y``` sensitivity values, and press the '-' key to lower 
 The updater in Halo Mouse Tool is admittedly a little rough around the edges (and is slated for a rework).  
 ![alt text](https://i.imgur.com/1k3SejY.png)  
 The ```Timeout(seconds)``` value controls how long after pressing the ```CHECK FOR UPDATES``` button the request to GitHub will timeout after.  
-If the current version of the tool you're using does not match that of the most recently released version on the GitHub, then a message box  
-will pop up with a link to the download  
-page.  
+If the current version of the tool you're using does not match that of the most recently released version on the GitHub, then a message box   
+will pop up with a link to the download page.  
 Otherwise it'll tell you there's no updates available. Simple as that.
 ## Halo Combat Evolved  
 To use this tool with Halo Combat Evolved, simply hit the Game dropdown button from the main menu and select  
