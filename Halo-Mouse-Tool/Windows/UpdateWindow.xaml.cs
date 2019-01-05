@@ -59,6 +59,7 @@ namespace Halo_Mouse_Tool.Windows
             }
             catch (WebException ex)
             {
+                System.Media.SystemSounds.Hand.Play();
                 MessageBox.Show($"Update Check Failed: '{ex.Message}'", "Update Check Failed");
             }
             finally
@@ -78,6 +79,7 @@ namespace Halo_Mouse_Tool.Windows
                 if (cancellationTokenSource.IsCancellationRequested)
                 {
                     cancellationTokenSource.Cancel();
+                    System.Media.SystemSounds.Asterisk.Play();
                     MessageBox.Show("Update Check was cancelled.", "Update cancelled");
                 }
             }
@@ -88,10 +90,12 @@ namespace Halo_Mouse_Tool.Windows
             StopUpdateCheck();
             if (!UpdateAvailable)
             {
+                System.Media.SystemSounds.Asterisk.Play();
                 MessageBox.Show("No updates are available.", "No updates found");
             }
             else
             {
+                System.Media.SystemSounds.Exclamation.Play();
                 string updateAvailableMessage = "An update is available. Would you like to go to the download page?";
                 var userAction = MessageBox.Show(updateAvailableMessage, "Update Available", MessageBoxButton.YesNo);
                 if (userAction == MessageBoxResult.Yes)
