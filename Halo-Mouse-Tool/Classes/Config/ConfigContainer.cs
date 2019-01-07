@@ -14,7 +14,7 @@ namespace Halo_Mouse_Tool.Classes.ConfigContainer
             Registrar.RegOption hotKeyEnabled = new Registrar.RegOption("HotkeyEnabled", configValidators.BoolValidatorInstance, 0, typeof(int));
             Registrar.RegOption hotKey = new Registrar.RegOption("Hotkey", configValidators.HotkeyValidatorInstance, "F1", typeof(string));
             Registrar.RegOption incrementKeysEnabled = new Registrar.RegOption("IncrementHotkeysEnabled", configValidators.BoolValidatorInstance, 0, typeof(int));
-            Registrar.RegOption incrementAmount = new Registrar.RegOption("IncrementAmount", configValidators.IncrementAmountValidatorInstance, 1.0f, typeof(float));
+            Registrar.RegOption incrementAmount = new Registrar.RegOption("IncrementAmount", configValidators.IncrementAmountValidatorInstance, 0.1f, typeof(float));
             Registrar.RegOption successSoundsEnabled = new Registrar.RegOption("SuccessSoundsEnabled", configValidators.BoolValidatorInstance, 1, typeof(int));
             Registrar.RegOption currentGame = new Registrar.RegOption("CurrentGame", configValidators.CurrentGameValidatorInstance, 1, typeof(int));
 

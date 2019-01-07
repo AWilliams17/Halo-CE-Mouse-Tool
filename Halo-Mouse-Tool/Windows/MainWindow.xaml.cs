@@ -256,7 +256,8 @@ namespace Halo_Mouse_Tool
                     MessageBox.Show($"Error: Failed to write to '{targetHaloGame}' - Error Code: '{Marshal.GetLastWin32Error()}' - " +
                         $"Refer to the readme/ask in the thread for help.");
                 }
-                else Console.Beep(250, 200);
+                else if (config.settings.GetOption<int>("SuccessSoundsEnabled") == 1)
+                        Console.Beep(300, 250);
             }
             else
             {
