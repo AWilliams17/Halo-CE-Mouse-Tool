@@ -54,7 +54,8 @@ namespace Halo_Mouse_Tool.Windows
             timeoutCountdown = updateTimeOut;
             try
             {
-                bool updateAvailable = await GithubReleaseParser.GetUpdateAvailableAsync("AWilliams17", "Halo-CE-Mouse-Tool", updateTimeOut, cancellationTokenSource.Token);
+                string currentVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+                bool updateAvailable = await GithubReleaseParser.GetUpdateAvailableAsync(currentVersion, "AWilliams17", "Halo-CE-Mouse-Tool", updateTimeOut, cancellationTokenSource.Token);
                 ShowUpdateAvailableDialog(updateAvailable);
             }
             catch (WebException ex)
