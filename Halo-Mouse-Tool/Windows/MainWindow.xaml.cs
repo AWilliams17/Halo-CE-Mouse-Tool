@@ -25,7 +25,7 @@ namespace Halo_Mouse_Tool
     {
         private enum Game {HaloPC, HaloCE};
         private Game selectedGame;
-        private static Config config = new Config();
+        private Config config = new Config();
         private DispatcherTimer hotkeyListener = new DispatcherTimer();
         private KeyConverter keyConverter = new KeyConverter();
 
@@ -91,15 +91,13 @@ namespace Halo_Mouse_Tool
         private void SetWindowTitle()
         {
             string currentVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            string currentVersionTrimmed = currentVersion.Substring(0, currentVersion.Length - 4);
-            string windowTitle = $"Halo Mouse Tool v{currentVersionTrimmed}";
+            string windowTitle = $"Halo Mouse Tool v{currentVersion.Substring(0, currentVersion.Length - 4)}";
             Title = windowTitle;
         }
 
         private void SetSensitivityBoxes(float SensX, float SensY)
         {
-            SensXUpDown.Value = SensX;
-            SensYUpDown.Value = SensY;
+            (SensXUpDown.Value, SensYUpDown.Value) = (SensX, SensY);
         }
 
         private void SetCurrentGameBtnStatuses()
