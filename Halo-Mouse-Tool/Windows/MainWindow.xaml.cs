@@ -23,7 +23,7 @@ namespace Halo_Mouse_Tool
     /// </summary>
     public partial class MainWindow
     {
-        private enum Game {HaloPC, HaloCE};
+        private enum Game {Halo, HaloCE};
         private Game selectedGame;
         private Config config = new Config();
         private DispatcherTimer hotkeyListener = new DispatcherTimer();
@@ -52,7 +52,7 @@ namespace Halo_Mouse_Tool
             if (!hotkeyListener.IsEnabled) // If not already started, start it. Check may be unnecessary since this is only called once,
             {                              // but I like checking regardless.
                 hotkeyListener.Tick += HotkeyListener_Tick;
-                hotkeyListener.Interval = new TimeSpan(0, 0, 0, 0, 25);
+                hotkeyListener.Interval = new TimeSpan(0, 0, 0, 0, 20);
                 hotkeyListener.Start();
             }
         }
@@ -103,7 +103,7 @@ namespace Halo_Mouse_Tool
         private void SetCurrentGameBtnStatuses()
         {
             HaloCustomEditionBtn.IsChecked = (selectedGame == Game.HaloCE);
-            HaloCombatEvolvedBtn.IsChecked = (selectedGame == Game.HaloPC);
+            HaloCombatEvolvedBtn.IsChecked = (selectedGame == Game.Halo);
         }
         
         private void SettingsBtn_Click(object sender, RoutedEventArgs e)
@@ -138,7 +138,7 @@ namespace Halo_Mouse_Tool
 
         private void HaloCombatEvolvedBtn_Click(object sender, RoutedEventArgs e)
         {
-            selectedGame = Game.HaloPC;
+            selectedGame = Game.Halo;
             config.settings.SetOption("CurrentGame", (int)selectedGame);
             SetCurrentGameBtnStatuses();
         }
@@ -147,7 +147,7 @@ namespace Halo_Mouse_Tool
         {
             if (e.OldValue != null & e.NewValue != null) // This check is necessary because on initialization these will be null
             {                                            // and cause an exception.
-                if ((float)e.NewValue >= 0.1) // Don't let sensitivities go below 0.1
+                if ((float)e.NewValue >= 0.01) // Don't let sensitivities go below 0.1
                 {
                     config?.settings.SetOption("SensitivityX", SensXUpDown.Value);
                 }
@@ -159,7 +159,7 @@ namespace Halo_Mouse_Tool
         { // Same checks as above. (TODO: Can these checks be placed in a function?)
             if (e.OldValue != null & e.NewValue != null)
             {
-                if ((float)e.NewValue >= 0.1)
+                if ((float)e.NewValue >= 0.01)
                 {
                     config?.settings.SetOption("SensitivityY", SensYUpDown.Value);
                 }

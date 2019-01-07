@@ -3,7 +3,7 @@ A tool for Halo Custom Edition, and (with varying degrees of success) Halo Comba
 and fine tuning of sensitivity.
   
 # Links
-Reddit: https://www.reddit.com/r/test/comments/adjpb6/testing_reddit_image/
+Reddit: 
 
 # Help
 Refer to [HELP.md](https://github.com/AWilliams17/Halo-CE-Mouse-Tool/blob/master/HELP.md) for extensive help,  

@@ -44,9 +44,9 @@ namespace Halo_Mouse_Tool.Classes.HaloMemoryWriter
             byte[] sensitivityX = BitConverter.GetBytes(SensitivityX);
             byte[] sensitivityY = BitConverter.GetBytes(SensitivityY);
             bool[] operationResults = {
-                WriteMemoryHelper.WriteToProcessMemory("halopc", sensitivityX, (int)_haloAddresses.SensXPC),
-                WriteMemoryHelper.WriteToProcessMemory("halopc", sensitivityX, (int)_haloAddresses.SensYPC),
-                WriteMemoryHelper.WriteToProcessMemory("halopc", _mouseAccelerationNOP, (int)_haloAddresses.AccelerationPC),
+                WriteMemoryHelper.WriteToProcessMemory("halo", sensitivityX, (int)_haloAddresses.SensXPC),
+                WriteMemoryHelper.WriteToProcessMemory("halo", sensitivityX, (int)_haloAddresses.SensYPC),
+                WriteMemoryHelper.WriteToProcessMemory("halo", _mouseAccelerationNOP, (int)_haloAddresses.AccelerationPC),
             };
 
             return operationResults.All(x => x);

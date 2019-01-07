@@ -10,13 +10,13 @@ namespace Halo_Mouse_Tool.Classes.ConfigValidators
         {
             public string Description()
             {
-                return "Value must be between 0.1 and 20.0";
+                return "Value must be between 0.01 and 20.0";
             }
 
             public bool Validate(object value)
             {
                 float convertedValue = ValidatorConverters.ValidatorFloatConverter(value);
-                return (convertedValue >= 0.1f && convertedValue <= 20.0f);
+                return (convertedValue >= 0.01f && convertedValue <= 20.0f);
             }
         }
 
@@ -38,7 +38,7 @@ namespace Halo_Mouse_Tool.Classes.ConfigValidators
         {
             public string Description()
             {
-                return "Value must be between 0.1 and 5.0";
+                return "Value must be between 0.01 and 5.0";
             }
 
             public bool Validate(object value)
@@ -77,7 +77,7 @@ namespace Halo_Mouse_Tool.Classes.ConfigValidators
         {
             public string Description()
             {
-                return "Must be 0(CE) or 1(PC).";
+                return "Must be 0(PC) or 1(CE).";
             }
 
             public bool Validate(object value)
