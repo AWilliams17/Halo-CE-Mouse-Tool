@@ -44,7 +44,7 @@ namespace Halo_Mouse_Tool.Classes.ConfigValidators
             public bool Validate(object value)
             {
                 float convertedValue = ValidatorConverters.ValidatorFloatConverter(value);
-                return (convertedValue >= 0.1f && convertedValue <= 5.0f);
+                return (convertedValue >= 0.01f && convertedValue <= 5.0f);
             }
         }
 
