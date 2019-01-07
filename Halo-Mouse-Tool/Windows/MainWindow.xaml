@@ -1,0 +1,56 @@
+﻿<Controls:MetroWindow
+    xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls" x:Name="MainWindowUI" x:Class="Halo_Mouse_Tool.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="" Height="166.745" Width="272.644" Background="#FF252525" TitleCharacterCasing="Normal" ResizeMode="NoResize">
+    <DockPanel LastChildFill="False">
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="File" x:Name="menuFileDropdown">
+                <MenuItem x:Name="SettingsBtn" Header="Settings" IsCheckable="False" Click="SettingsBtn_Click"/>
+                <MenuItem x:Name="UpdateBtn" Header="Update" IsCheckable="False" Click="UpdateBtn_Click"/>
+                <MenuItem x:Name="ExitBtn" Header="Exit" IsCheckable="False" Click="ExitBtn_Click"/>
+            </MenuItem>
+            <MenuItem Header="Game" x:Name="menuGameDropdown">
+                <MenuItem x:Name="HaloCustomEditionBtn" Header="Halo Custom Edition" IsCheckable="False" Click="HaloCustomEditionBtn_Click"/>
+                <MenuItem x:Name="HaloCombatEvolvedBtn" Header="Halo Combat Evolved" IsCheckable="False" Click="HaloCombatEvolvedBtn_Click"/>
+            </MenuItem>
+            <MenuItem Header="About" x:Name="menuAboutDropdown">
+                <MenuItem x:Name="GithubBtn" Header="Github" IsCheckable="False" Click="GithubBtn_Click"/>
+                <MenuItem x:Name="RedditBtn" Header="Reddit" IsCheckable="False" Click="RedditBtn_Click"/>
+            </MenuItem>
+        </Menu>
+        <StackPanel x:Name="windowControls" Orientation="Vertical" Width="245" Margin="10,5,0,0">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Sens X"/>
+                <xctk:SingleUpDown x:Name="SensXUpDown" Width="200" AllowTextInput="True" FormatString="F" Increment="0.01" Foreground="White" DefaultValue="0.0" ValueChanged="SensXUpDown_ValueChanged" Minimum="0.01" Maximum="20.0">
+                    <xctk:SingleUpDown.ToolTip>
+                        <ToolTip>
+                            <StackPanel>
+                                <TextBlock FontWeight="Bold">X-Axis Sensitivity</TextBlock>
+                                <TextBlock>Sets your horizontal sensitivity.</TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </xctk:SingleUpDown.ToolTip>
+                </xctk:SingleUpDown>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0, 5, 0, 0">
+                <Label Content="Sens Y"/>
+                <xctk:SingleUpDown x:Name="SensYUpDown" Width="200" Margin="1, 0, 0, 0" AllowTextInput="True" FormatString="F" Increment="0.01" Foreground="White" DefaultValue="0.0" ValueChanged="SensYUpDown_ValueChanged" Minimum="0.01" Maximum="20.0">
+                    <xctk:SingleUpDown.ToolTip>
+                        <ToolTip>
+                            <StackPanel>
+                                <TextBlock FontWeight="Bold">Y-Axis Sensitivity</TextBlock>
+                                <TextBlock>Sets your vertical sensitivity.</TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </xctk:SingleUpDown.ToolTip>
+                </xctk:SingleUpDown>
+            </StackPanel>
+            <Button Content="Write to Memory" Height="28" Margin="0,5" x:Name="WriteMemoryBtn" Click="WriteMemoryBtn_Click"/>
+        </StackPanel>
+    </DockPanel>
+</Controls:MetroWindow>

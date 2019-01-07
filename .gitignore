@@ -313,3 +313,10 @@ OpenCover/
 
 # Azure Stream Analytics local run output 
 ASALocalRun/
+
+*.exe
+*.sln
+.vs/
+obj/
+Debug/
+bin/
