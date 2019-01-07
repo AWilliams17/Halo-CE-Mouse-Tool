@@ -1,11 +1,11 @@
-﻿using System;
+﻿using SharpUtils.WebUtils;
+using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Net;
 using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
-using SharpUtils.WebUtils;
 
 namespace Halo_Mouse_Tool.Windows
 {

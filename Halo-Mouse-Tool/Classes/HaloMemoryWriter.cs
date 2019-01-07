@@ -7,7 +7,7 @@ namespace Halo_Mouse_Tool.Classes.HaloMemoryWriter
 {
     public static class HaloMemoryWriter
     {
-        private static byte[] _mouseAccelerationNOP = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+        private static readonly byte[] _mouseAccelerationNOP = { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
         private enum _haloAddresses
         {
             AccelerationCE_1 = 0x8F830,
