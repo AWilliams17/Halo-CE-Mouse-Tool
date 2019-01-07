@@ -30,3 +30,5 @@ but right now it's on the back of the priority list.
 ## HAC2  
 I have not tested this tool with HAC2. I have played on servers using it and the tool and have been fine though.  
 Let me know if you run into any issues.
+## HotKeys aren't working  
+Make sure the Settings window is closed, and you've ticked the hotkey checkbox there as well.

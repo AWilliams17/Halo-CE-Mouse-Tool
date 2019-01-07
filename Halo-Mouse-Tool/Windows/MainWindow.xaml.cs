@@ -209,28 +209,31 @@ namespace Halo_Mouse_Tool
 
         private void HotkeyListener_Tick(object sender, EventArgs e)
         {
-            if (config.settings.GetOption<int>("HotkeyEnabled") == 1)
+            if (!WindowHelpers.IsWindowOpen(typeof(SettingsWindow)))
             {
-                Keys hotKey = (Keys)Enum.Parse(typeof(Keys), config.settings.GetOption<string>("Hotkey"));
-                if (KeybindUtils.IsKeyPushedDown(hotKey))
+                if (config.settings.GetOption<int>("HotkeyEnabled") == 1)
                 {
-                    WriteToMemory();
+                    Keys hotKey = (Keys)Enum.Parse(typeof(Keys), config.settings.GetOption<string>("Hotkey"));
+                    if (KeybindUtils.IsKeyPushedDown(hotKey))
+                    {
+                        WriteToMemory();
+                    }
                 }
-            }
 
-            if (config.settings.GetOption<int>("IncrementHotkeysEnabled") == 1)
-            {
-                if (KeybindUtils.IsKeyPushedDown(Keys.Oemplus))
+                if (config.settings.GetOption<int>("IncrementHotkeysEnabled") == 1)
                 {
-                    SensXUpDown.Value += config.settings.GetOption<float>("IncrementAmount");
-                    SensYUpDown.Value += config.settings.GetOption<float>("IncrementAmount");
-                    WriteToMemory();
-                }
-                if (KeybindUtils.IsKeyPushedDown(Keys.OemMinus))
-                {
-                    SensXUpDown.Value -= config.settings.GetOption<float>("IncrementAmount");
-                    SensYUpDown.Value -= config.settings.GetOption<float>("IncrementAmount");
-                    WriteToMemory();
+                    if (KeybindUtils.IsKeyPushedDown(Keys.Oemplus))
+                    {
+                        SensXUpDown.Value += config.settings.GetOption<float>("IncrementAmount");
+                        SensYUpDown.Value += config.settings.GetOption<float>("IncrementAmount");
+                        WriteToMemory();
+                    }
+                    if (KeybindUtils.IsKeyPushedDown(Keys.OemMinus))
+                    {
+                        SensXUpDown.Value -= config.settings.GetOption<float>("IncrementAmount");
+                        SensYUpDown.Value -= config.settings.GetOption<float>("IncrementAmount");
+                        WriteToMemory();
+                    }
                 }
             }
         }
