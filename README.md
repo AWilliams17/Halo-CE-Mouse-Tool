@@ -1,6 +1,5 @@
 # Halo-Mouse-Tool
-A tool for Halo Custom Edition, and (with varying degrees of success) Halo Combat Evolved which allows for the patching of mouse acceleration  
-and fine tuning of sensitivity.
+A tool for Halo Custom Edition, and (with varying degrees of success) Halo Combat Evolved which allows for the patching of mouse acceleration and fine tuning of sensitivity.
   
 # Links
 Reddit: https://www.reddit.com/r/halospv3/comments/adn5e0/halo_mouse_tool_v7_released/
