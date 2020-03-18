@@ -12,5 +12,5 @@ or ask in the Reddit thread. If you require assistance using the tool or an erro
 ![alt text](https://i.imgur.com/RLERuJx.png)
 
 ## Note before downloading source
-This project uses my [Registrar](https://github.com/AWilliams17/Registrar) library, which is not current on Nuget.org at this current time.  
+This project uses my [Registrar](https://github.com/AWilliams17/Registrar) library, which is currently not on Nuget.org at this time.  
 You'll have to download and import it if you want to mess around with the source.
