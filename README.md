@@ -12,5 +12,4 @@ or ask in the Reddit thread. If you require assistance using the tool or an erro
 ![alt text](https://i.imgur.com/RLERuJx.png)
 
 ## Note before downloading source
-This project uses my [Registrar](https://github.com/AWilliams17/Registrar) library, which is currently not on Nuget.org at this time.  
-You'll have to download and import it if you want to mess around with the source.
+This project uses two of my libraries - [Registrar](https://github.com/AWilliams17/Registrar), and [SharpUtils](https://github.com/AWilliams17/SharpUtils), both of which are not currently on Nuget.org. You will have to set up both in order to play with the source.
