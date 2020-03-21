@@ -13,3 +13,9 @@ or ask in the Reddit thread. If you require assistance using the tool or an erro
 
 ## Note before downloading source
 This project uses two of my libraries - [Registrar](https://github.com/AWilliams17/Registrar), and [SharpUtils](https://github.com/AWilliams17/SharpUtils), both of which are not currently on Nuget.org. You will have to set up both in order to play with the source.
+
+This can be done by recursively cloning the repository:
+
+```
+git clone --recurse-submodules -j8 https://github.com/AWilliams17/Halo-CE-Mouse-Tool.git
+```
