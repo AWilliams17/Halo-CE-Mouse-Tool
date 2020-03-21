@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29411.108
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Halo-Mouse-Tool", "Halo-Mouse-Tool\Halo-Mouse-Tool\Halo-Mouse-Tool.csproj", "{B4EE6406-CADF-492C-BEF4-9880C925FD43}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Halo-Mouse-Tool", "Halo-Mouse-Tool\Halo-Mouse-Tool.csproj", "{B4EE6406-CADF-492C-BEF4-9880C925FD43}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Registrar", "Registrar\Registrar\Registrar.csproj", "{CC48DF13-5788-48E6-ACBE-857CE2283EA9}"
 EndProject

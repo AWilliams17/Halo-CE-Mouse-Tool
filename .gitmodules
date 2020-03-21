@@ -1,0 +1,6 @@
+[submodule "Registrar"]
+	path = Registrar
+	url = https://github.com/AWilliams17/Registrar.git
+[submodule "SharpUtils"]
+	path = SharpUtils
+	url = https://github.com/AWilliams17/SharpUtils.git
